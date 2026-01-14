@@ -1,0 +1,14 @@
+{
+  "name": "travelblog-website-template",
+  "version": "0.1.0",
+  "description": "A high-performance, SEO-optimized travel blog template built with Astro, React, and Tailwind CSS.",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.9.3"
+  }
+}
