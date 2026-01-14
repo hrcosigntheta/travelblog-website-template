@@ -1,1 +1,106 @@
 @import 'tailwindcss';
+
+@layer base {
+  @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+  :root {
+    /* Primitive Palette */
+    /* Ocean Blue */
+    --palette-ocean-50: #f0f9fa;
+    --palette-ocean-100: #ccecef;
+    --palette-ocean-500: #006d77;
+    --palette-ocean-600: #005a63;
+    --palette-ocean-900: #003238;
+
+    /* Sunset Coral */
+    --palette-coral-50: #fdf4f1;
+    --palette-coral-500: #e29578;
+    --palette-coral-600: #d07d5d;
+
+    /* Jungle Green */
+    --palette-jungle-500: #83c5be;
+
+    /* Midnight Navy */
+    --palette-navy-900: #0f172a;
+    --palette-navy-800: #1e293b;
+
+    /* Neutrals */
+    --palette-neutral-50: #fbfbf9; /* Cloud Dancer */
+    --palette-neutral-100: #f3f4f6;
+    --palette-neutral-200: #e5e5e5; /* Sand Mist */
+    --palette-neutral-500: #6c757d; /* Stone Gray */
+    --palette-neutral-800: #2d3142; /* Charcoal */
+    --palette-neutral-900: #111827;
+    --palette-white: #ffffff;
+
+    /* Spacing */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+
+    /* Radius */
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+    --radius-full: 9999px;
+
+    /* Initial Theme (Light) */
+    --bg-default: var(--palette-neutral-50);
+    --bg-surface: var(--palette-white);
+    --bg-surface-raised: var(--palette-white);
+
+    --text-primary: var(--palette-neutral-800);
+    --text-secondary: var(--palette-neutral-500);
+    --text-inverse: var(--palette-white);
+
+    --color-primary: var(--palette-ocean-500);
+    --color-primary-hover: var(--palette-ocean-600);
+    --color-secondary: var(--palette-coral-500);
+
+    --border-subtle: var(--palette-neutral-200);
+    --border-default: var(--palette-neutral-200);
+
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  }
+
+  [data-theme='dark'] {
+    --bg-default: var(--palette-navy-900);
+    --bg-surface: var(--palette-navy-800);
+    --bg-surface-raised: #2a3855;
+
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-inverse: var(--palette-navy-900);
+
+    --color-primary: #4fd1c5;
+    --color-primary-hover: #38b2ac;
+    --color-secondary: #f6ad55;
+
+    --border-subtle: #334155;
+    --border-default: #334155;
+
+    --shadow-sm: 0 0 0 1px rgba(255, 255, 255, 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3);
+  }
+
+  body {
+    @apply font-body text-text-primary bg-background antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display font-bold;
+  }
+}
