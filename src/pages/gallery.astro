@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { PhotoGallery } from '../components/PhotoGallery';
+import { destinations } from '../data/destinations';
+import type { GalleryImage } from '../components/Lightbox';
+
+// Aggregate images from all destinations
+const galleryImages: GalleryImage[] = destinations.flatMap((dest) =>
+  dest.images.map((img, index) => ({
+    src: img,
+    alt: `${dest.title} - Photo ${index + 1}`,
+    caption: dest.title,
+  }))
+);
+
+// Deterministic shuffle for SSR consistency (seeded or just no shuffle for now to avoid hydration mismatch)
+// If we shuffle on server, client hydration might differ if Math.random() is used?
+// Astro components run on server (SSG), so the HTML is static.
+// React component (PhotoGallery) hydrates.
+// If we pass the shuffled array as props, it should be fine as long as the array is consistent during build.
+// But Math.random() in frontmatter runs at build time.
+// So it's static.
+const shuffledImages = [...galleryImages].sort(() => 0.5 - Math.random());
+---
+
+<BaseLayout
+  title="Photo Gallery | Philippines Travel Blog"
+  description="Explore the stunning landscapes and moments from our travels across the Philippines."
+>
+  <div class="container mx-auto px-4 py-12">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl md:text-5xl font-bold text-text-primary mb-4">Travel Gallery</h1>
+      <p class="text-xl text-text-secondary max-w-2xl mx-auto">
+        A visual journey through the islands, mountains, and vibrant culture of the Philippines.
+      </p>
+    </div>
+
+    <PhotoGallery client:load images={shuffledImages} />
+  </div>
+</BaseLayout>
