@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { DemoLinkModal } from '../components/DemoLinkModal';
 
 interface Props {
   title: string;
@@ -74,6 +75,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     class="bg-background text-text-primary min-h-screen flex flex-col transition-colors duration-300"
   >
     <slot />
+
+    <DemoLinkModal client:idle />
 
     <script>
       // Initialize the theme store (which sets up listeners)
