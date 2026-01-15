@@ -1,25 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { ImageWithFallback } from './ImageWithFallback';
 import { openDemoModal } from '../store/demo-modal';
-
-export interface GalleryImage {
-  src: string;
-  alt: string;
-  width?: number;
-  height?: number;
-  caption?: string;
-  category?: string;
-  placeholderSrc?: string;
-}
-
-export interface LightboxProps {
-  images: GalleryImage[];
-  currentIndex: number;
-  isOpen: boolean;
-  onClose: () => void;
-  onNext: () => void;
-  onPrev: () => void;
-}
+import type { LightboxProps } from '../types/gallery';
 
 export const Lightbox: React.FC<LightboxProps> = ({
   images,

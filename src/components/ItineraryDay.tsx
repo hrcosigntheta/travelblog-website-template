@@ -1,24 +1,18 @@
 import { useState } from 'react';
-import type { ItineraryActivityProps } from './ItineraryActivity';
+import type { ItineraryDayProps } from '../types/itinerary';
 import ItineraryActivity from './ItineraryActivity';
-
-/**
- * Props for the ItineraryDay component
- */
-export interface ItineraryDayProps {
-  /** The day number (1, 2, 3...) */
-  dayNumber: number;
-  /** Title/Theme of the day */
-  title: string;
-  /** List of activities for this day */
-  activities: ItineraryActivityProps[];
-  /** Whether the day details are expanded by default */
-  defaultOpen?: boolean;
-}
 
 /**
  * A collapsible section representing a single day in an itinerary.
  * Contains a list of activities.
+ *
+ * @example
+ * <ItineraryDay
+ *   dayNumber={1}
+ *   title="Arrival"
+ *   activities={[...]}
+ *   defaultOpen={true}
+ * />
  */
 export default function ItineraryDay({
   dayNumber,

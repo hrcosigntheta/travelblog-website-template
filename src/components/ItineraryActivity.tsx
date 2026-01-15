@@ -1,26 +1,16 @@
-/**
- * Props for the ItineraryActivity component
- */
-export interface ItineraryActivityProps {
-  /** Time of the activity (e.g., "10:00 AM") */
-  time?: string;
-  /** Title of the activity */
-  title: string;
-  /** Detailed description of the activity */
-  description?: string;
-  /** Duration of the activity (e.g., "2 hours") */
-  duration?: string;
-  /** Optional icon element */
-  icon?: React.ReactNode;
-  /** URL of an optional image */
-  image?: string;
-  /** Insider tips or notes */
-  tips?: string;
-}
+import type { ItineraryActivityProps } from '../types/itinerary';
 
 /**
  * Displays a single activity within an itinerary day.
  * Supports optional time, duration, image, and tips.
+ *
+ * @example
+ * <ItineraryActivity
+ *   time="10:00 AM"
+ *   title="Airport Transfer"
+ *   description="Pick up from airport."
+ *   duration="1 hour"
+ * />
  */
 export default function ItineraryActivity({
   time,

@@ -1,28 +1,16 @@
-import type { FilterOption } from '../types/components';
-
-/**
- * Props for the FilterGroup component
- */
-export interface FilterGroupProps {
-  /** Label for the filter group section */
-  label: string;
-  /** Array of available filter options */
-  options: FilterOption[];
-  /** Array of currently selected values */
-  selectedValues: string[];
-  /** Callback fired when selection changes */
-  onChange: (values: string[]) => void;
-  /** Input type: 'checkbox' for multiple selection, 'radio' for single selection */
-  type?: 'checkbox' | 'radio';
-  /** Whether the group is expanded by default */
-  defaultOpen?: boolean;
-  /** Additional CSS classes */
-  className?: string;
-}
+import type { FilterGroupProps } from '../types/search';
 
 /**
  * A collapsible group of filter options (checkboxes or radios).
  * Supports counts, custom styling, and accessibility features.
+ *
+ * @example
+ * <FilterGroup
+ *   label="Category"
+ *   options={[{ value: 'beach', label: 'Beach' }]}
+ *   selectedValues={['beach']}
+ *   onChange={(newValues) => console.log(newValues)}
+ * />
  */
 export default function FilterGroup({
   label,

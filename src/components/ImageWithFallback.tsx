@@ -1,13 +1,6 @@
 import React, { useState } from 'react';
 import { getAssetPath } from '../utils/paths';
-
-export interface ImageWithFallbackProps extends React.ImgHTMLAttributes<HTMLImageElement> {
-  src: string;
-  alt: string; // Enforce required alt text
-  fallbackSrc?: string;
-  placeholderSrc?: string; // Optional low-quality placeholder
-  className?: string;
-}
+import type { ImageWithFallbackProps } from '../types/common';
 
 export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
   src,

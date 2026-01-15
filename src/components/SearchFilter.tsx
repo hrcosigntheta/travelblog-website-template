@@ -1,31 +1,21 @@
-import type { FilterConfig } from '../types/components';
+import type { SearchFilterProps } from '../types/search';
 import FilterGroup from './FilterGroup';
 import SearchInput from './SearchInput';
 import { useState } from 'react';
 
 /**
- * Props for the SearchFilter component
- */
-export interface SearchFilterProps {
-  /** Current value of the search input */
-  searchValue: string;
-  /** Callback fired when search input changes */
-  onSearchChange: (value: string) => void;
-  /** Configuration for available filter groups */
-  availableFilters: FilterConfig[];
-  /** State of active filters (map of groupId -> selected values) */
-  activeFilters: Record<string, string[]>;
-  /** Callback fired when any filter changes */
-  onFilterChange: (groupId: string, newValues: string[]) => void;
-  /** Callback fired when "Clear all" is clicked */
-  onClearAll: () => void;
-  /** Additional CSS classes */
-  className?: string;
-}
-
-/**
  * Composite component combining a search input and collapsible filter groups.
  * Handles responsive layout (sidebar on desktop, bottom sheet/modal on mobile).
+ *
+ * @example
+ * <SearchFilter
+ *   searchValue={query}
+ *   onSearchChange={setQuery}
+ *   availableFilters={filters}
+ *   activeFilters={activeFilters}
+ *   onFilterChange={handleFilterChange}
+ *   onClearAll={handleClear}
+ * />
  */
 export default function SearchFilter({
   searchValue,

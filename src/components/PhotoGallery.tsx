@@ -1,11 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { ImageWithFallback } from './ImageWithFallback';
-import { Lightbox, type GalleryImage } from './Lightbox';
-
-export interface PhotoGalleryProps {
-  images: GalleryImage[];
-  className?: string;
-}
+import { Lightbox } from './Lightbox';
+import type { PhotoGalleryProps } from '../types/gallery';
 
 export const PhotoGallery: React.FC<PhotoGalleryProps> = ({ images, className = '' }) => {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);

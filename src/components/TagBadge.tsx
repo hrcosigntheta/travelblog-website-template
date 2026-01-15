@@ -1,14 +1,5 @@
 import React from 'react';
-
-export type TagBadgeVariant = 'default' | 'category' | 'activity' | 'difficulty' | 'budget';
-
-export interface TagBadgeProps {
-  label: string;
-  variant?: TagBadgeVariant;
-  icon?: React.ReactNode;
-  onClick?: () => void;
-  className?: string;
-}
+import type { TagBadgeProps, TagBadgeVariant } from '../types/destination';
 
 export const TagBadge: React.FC<TagBadgeProps> = ({
   label,

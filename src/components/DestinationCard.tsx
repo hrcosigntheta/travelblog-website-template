@@ -2,21 +2,7 @@ import React from 'react';
 import { ImageWithFallback } from './ImageWithFallback';
 import { TagBadge } from './TagBadge';
 import { ROUTES, BASE_PATH } from '../config/paths';
-
-export interface DestinationCardProps {
-  id: string;
-  slug: string;
-  title: string;
-  location: string;
-  image: string;
-  category: string;
-  description: string;
-  priceLevel: 'budget' | 'mid-range' | 'luxury'; // Maps to $, $$, $$$
-  difficulty: 'easy' | 'moderate' | 'challenging';
-  bestSeason?: string;
-  rating?: number;
-  className?: string;
-}
+import type { DestinationCardProps } from '../types/destination';
 
 export const DestinationCard: React.FC<DestinationCardProps> = ({
   slug,

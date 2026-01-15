@@ -1,4 +1,4 @@
-import type { ItineraryActivityProps } from '../components/ItineraryActivity';
+import type { ItineraryActivityProps } from '../types/itinerary';
 
 export interface ItineraryActivityData extends Omit<ItineraryActivityProps, 'icon'> {
   iconType?: 'transport' | 'food' | 'activity' | 'nature' | 'relax';

@@ -1,25 +1,15 @@
 import { useState, useEffect, useRef } from 'react';
-
-/**
- * Props for the SearchInput component
- */
-interface SearchInputProps {
-  /** Current value of the input */
-  value: string;
-  /** Callback fired when value changes (after debounce) */
-  onChange: (value: string) => void;
-  /** Placeholder text */
-  placeholder?: string;
-  /** Debounce delay in milliseconds */
-  debounceTime?: number;
-  /** Additional CSS classes */
-  className?: string;
-  /** HTML ID for the input element */
-  id?: string;
-}
+import type { SearchInputProps } from '../types/search';
 
 /**
  * A debounced search input component with clear functionality and accessible styling.
+ *
+ * @example
+ * <SearchInput
+ *   value={searchTerm}
+ *   onChange={setSearchTerm}
+ *   placeholder="Search..."
+ * />
  */
 export default function SearchInput({
   value,
