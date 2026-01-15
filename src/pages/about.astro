@@ -1,7 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { ImageWithFallback } from '../components/ImageWithFallback';
-import { BloggerHero } from '../components/BloggerHero';
+import { BloggerHero, type SocialLink } from '../components/BloggerHero';
+import { TravelPhilosophy } from '../components/TravelPhilosophy';
 
 const title = 'About MasuRii | Philippine Travel Blog';
 const description =
@@ -32,14 +33,14 @@ const stats = [
   { label: 'Photo Stories', value: '500+' },
 ];
 
-const socialLinks = [
+const socialLinks: SocialLink[] = [
   { platform: 'instagram', url: 'https://instagram.com/masurii', label: 'Instagram' },
   { platform: 'twitter', url: 'https://twitter.com/masurii', label: 'Twitter' },
   { platform: 'facebook', url: 'https://facebook.com/masurii', label: 'Facebook' },
   { platform: 'youtube', url: 'https://youtube.com/@masurii', label: 'YouTube' },
   { platform: 'pinterest', url: 'https://pinterest.com/masurii', label: 'Pinterest' },
   { platform: 'tiktok', url: 'https://tiktok.com/@masurii', label: 'TikTok' },
-] as const;
+];
 
 const gear = [
   { name: 'Sony A7IV', category: 'Camera', icon: 'camera' },
@@ -100,33 +101,12 @@ const gear = [
   </BloggerHero>
 
   {/* Philosophy Section */}
-  <section class="py-20 bg-[var(--bg-surface-raised)] border-y border-[var(--border-default)]">
-    <div class="container mx-auto px-4 text-center max-w-4xl">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="48"
-        height="48"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="mx-auto mb-6 text-[var(--color-primary)]"
-      >
-        <circle cx="12" cy="12" r="10"></circle>
-        <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
-      </svg>
-      <h2 class="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-8">
-        Travel Philosophy
-      </h2>
-      <p class="text-xl text-[var(--text-secondary)] leading-relaxed italic">
-        "We believe in slow travel, respecting local cultures, and leaving places better than we
-        found them. It's not about checking items off a bucket list, but about the connections we
-        make and the understanding we gain along the way."
-      </p>
-    </div>
-  </section>
+  <TravelPhilosophy
+    quote="We believe in slow travel, respecting local cultures, and leaving places better than we found them. It's not about checking items off a bucket list, but about the connections we make and the understanding we gain along the way."
+    content="Travel is more than just sightseeing; it's about immersion. It's waking up to the sound of waves in Siargao, sharing a meal with a local family in Batanes, and understanding the rich tapestry of cultures that make up the Philippines. With over 7,000 islands, the Philippines offers endless opportunities for discovery."
+    missionStatement="My mission is to promote responsible tourism and help you discover the authentic beauty of the Philippines, one island at a time."
+    client:visible
+  />
 
   {/* Gear Section */}
   <section class="py-20 bg-[var(--bg-surface)]">

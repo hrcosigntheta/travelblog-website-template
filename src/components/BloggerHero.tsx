@@ -6,7 +6,7 @@ interface Stat {
   value: string;
 }
 
-interface SocialLink {
+export interface SocialLink {
   platform: 'instagram' | 'twitter' | 'facebook' | 'youtube' | 'pinterest' | 'tiktok';
   url: string;
   label: string;
