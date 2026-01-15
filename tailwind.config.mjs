@@ -23,6 +23,28 @@ export default {
           DEFAULT: 'var(--border-default)',
           subtle: 'var(--border-subtle)',
         },
+        card: {
+          bg: 'var(--card-bg)',
+          border: 'var(--card-border)',
+          shadow: 'var(--card-shadow)',
+        },
+        input: {
+          bg: 'var(--input-bg)',
+          border: 'var(--input-border)',
+          focus: 'var(--input-focus)',
+        },
+        btn: {
+          primary: {
+            bg: 'var(--btn-primary-bg)',
+            text: 'var(--btn-primary-text)',
+            hover: 'var(--btn-primary-hover)',
+          },
+        },
+        nav: {
+          bg: 'var(--nav-bg)',
+          text: 'var(--nav-text)',
+          border: 'var(--nav-border)',
+        },
       },
       fontFamily: {
         display: ['"Playfair Display"', 'serif'],
