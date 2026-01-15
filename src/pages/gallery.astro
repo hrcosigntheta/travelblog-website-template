@@ -4,6 +4,7 @@ import { PhotoGallery } from '../components/PhotoGallery';
 import { destinations } from '../data/destinations';
 import type { GalleryImage } from '../types/gallery';
 import { generateGalleryPageSchema } from '../utils/schema';
+import { getUnsplashPlaceholder } from '../utils/images';
 
 // Aggregate images from all destinations
 const galleryImages: GalleryImage[] = destinations.flatMap((dest) =>
@@ -12,6 +13,7 @@ const galleryImages: GalleryImage[] = destinations.flatMap((dest) =>
     alt: `${dest.title} - Photo ${index + 1}`,
     caption: dest.title,
     category: dest.tags[0], // Use first tag as primary category for filtering
+    placeholderSrc: getUnsplashPlaceholder(img),
   }))
 );
 
