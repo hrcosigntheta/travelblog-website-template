@@ -2,7 +2,11 @@
   "ci": {
     "collect": {
       "staticDistDir": "./dist",
-      "url": ["http://localhost/", "http://localhost/destinations/el-nido-palawan/"],
+      "url": [
+        "http://localhost/",
+        "http://localhost/destinations/el-nido-palawan/",
+        "http://localhost/gallery/"
+      ],
       "numberOfRuns": 1
     },
     "upload": {
