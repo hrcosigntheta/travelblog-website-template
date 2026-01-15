@@ -62,7 +62,7 @@ export const MapMarker: React.FC<MapMarkerProps> = ({
   const detailPath = `${getRoutePath('DESTINATIONS')}/${slug}`;
 
   return (
-    <Marker position={position} icon={icon}>
+    <Marker position={position} icon={icon} title={title} alt={title}>
       <Popup className="destination-popup">
         <div className="w-[200px] overflow-hidden rounded-lg shadow-sm bg-white dark:bg-neutral-800">
           {image && (

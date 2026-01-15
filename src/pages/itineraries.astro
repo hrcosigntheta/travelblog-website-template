@@ -64,8 +64,10 @@ const description = 'Curated travel itineraries for the best destinations in the
                       <circle cx="12" cy="12" r="10" />
                       <polyline points="12 6 12 12 16 14" />
                     </svg>
-                    {dest.itinerary?.reduce((acc, day) => acc + day.activities.length, 0)}{' '}
-                    Activities
+                    <span>
+                      {dest.itinerary?.reduce((acc, day) => acc + day.activities.length, 0)}{' '}
+                      Activities
+                    </span>
                   </span>
                 </div>
 

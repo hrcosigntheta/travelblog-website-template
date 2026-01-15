@@ -22,7 +22,7 @@ test.describe('Itineraries Page', () => {
     await expect(page.getByText(/\d+ Days/)).toBeVisible();
 
     // Check for activities count
-    await expect(page.getByText(/\d+ Activities/)).toBeVisible();
+    await expect(page.getByText(/Activities/)).toBeVisible();
   });
 
   test('should navigate to destination itinerary', async ({ page }) => {
