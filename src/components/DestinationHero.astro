@@ -32,21 +32,39 @@ const stats = [
 <section class="relative h-[80vh] min-h-[600px] flex items-center justify-center overflow-hidden">
   {/* Background Image */}
   <div class="absolute inset-0 z-0">
-    <img
-      src={destination.image}
-      srcset={`
-        ${destination.image}?w=640&q=80&fm=webp 640w,
-        ${destination.image}?w=768&q=80&fm=webp 768w,
-        ${destination.image}?w=1024&q=80&fm=webp 1024w,
-        ${destination.image}?w=1280&q=80&fm=webp 1280w,
-        ${destination.image}?w=1536&q=80&fm=webp 1536w,
-        ${destination.image}?w=1920&q=80&fm=webp 1920w
-      `}
-      sizes="100vw"
-      alt=""
-      class="w-full h-full object-cover"
-      fetchpriority="high"
-    />
+    <picture>
+      <source
+        srcset={`
+          ${destination.image}?w=640&q=70&fm=avif 640w,
+          ${destination.image}?w=768&q=70&fm=avif 768w,
+          ${destination.image}?w=1024&q=70&fm=avif 1024w,
+          ${destination.image}?w=1280&q=70&fm=avif 1280w,
+          ${destination.image}?w=1536&q=70&fm=avif 1536w,
+          ${destination.image}?w=1920&q=70&fm=avif 1920w
+        `}
+        type="image/avif"
+        sizes="100vw"
+      />
+      <source
+        srcset={`
+          ${destination.image}?w=640&q=70&fm=webp 640w,
+          ${destination.image}?w=768&q=70&fm=webp 768w,
+          ${destination.image}?w=1024&q=70&fm=webp 1024w,
+          ${destination.image}?w=1280&q=70&fm=webp 1280w,
+          ${destination.image}?w=1536&q=70&fm=webp 1536w,
+          ${destination.image}?w=1920&q=70&fm=webp 1920w
+        `}
+        type="image/webp"
+        sizes="100vw"
+      />
+      <img
+        src={`${destination.image}?w=1920&q=70&fm=jpg`}
+        alt=""
+        class="w-full h-full object-cover"
+        fetchpriority="high"
+        loading="eager"
+      />
+    </picture>
     <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/80"></div>
   </div>
 
