@@ -5,6 +5,8 @@ import { vi } from 'vitest';
  * Usage: Import and call in setup.ts or specific tests.
  */
 export function mockMatchMedia() {
+  if (typeof window === 'undefined') return;
+
   Object.defineProperty(window, 'matchMedia', {
     writable: true,
     value: vi.fn().mockImplementation((query) => ({

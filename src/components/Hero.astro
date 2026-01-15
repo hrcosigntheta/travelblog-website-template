@@ -1,0 +1,74 @@
+---
+interface Props {
+  title: string;
+  tagline?: string;
+  image: string;
+  primaryAction?: {
+    label: string;
+    href: string;
+  };
+}
+
+const { title, tagline, image, primaryAction } = Astro.props;
+---
+
+<section class="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
+  {/* Background Image */}
+  <div class="absolute inset-0 z-0">
+    <img src={image} alt="" class="w-full h-full object-cover" fetchpriority="high" />
+    {/* Gradient Overlay */}
+    <div
+      class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/60 dark:from-black/50 dark:via-black/40 dark:to-black/80"
+    >
+    </div>
+  </div>
+
+  {/* Content */}
+  <div class="relative z-10 container mx-auto px-4 text-center text-white">
+    <h1 class="font-display text-5xl md:text-7xl font-bold mb-6 drop-shadow-lg tracking-tight">
+      {title}
+    </h1>
+
+    {
+      tagline && (
+        <p class="font-body text-xl md:text-2xl mb-10 max-w-2xl mx-auto drop-shadow-md text-white/90">
+          {tagline}
+        </p>
+      )
+    }
+
+    {
+      primaryAction && (
+        <a
+          href={primaryAction.href}
+          class="inline-flex items-center justify-center h-12 px-8 rounded-[var(--radius-md)] bg-[var(--color-primary)] text-white font-semibold uppercase tracking-wide transition-transform hover:scale-105 hover:bg-[var(--color-primary-hover)] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+        >
+          {primaryAction.label}
+        </a>
+      )
+    }
+  </div>
+
+  {/* Scroll Indicator */}
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
+    <a
+      href="#content"
+      aria-label="Scroll down"
+      class="text-white/80 hover:text-white transition-colors"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M7 13l5 5 5-5M7 6l5 5 5-5"></path>
+      </svg>
+    </a>
+  </div>
+</section>
