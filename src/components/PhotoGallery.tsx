@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { ImageWithFallback } from './ImageWithFallback';
 import { Lightbox, type GalleryImage } from './Lightbox';
 
@@ -9,28 +9,62 @@ export interface PhotoGalleryProps {
 
 export const PhotoGallery: React.FC<PhotoGalleryProps> = ({ images, className = '' }) => {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string>('All');
+
+  const categories = useMemo(() => {
+    const cats = new Set(images.map((img) => img.category).filter(Boolean));
+    return ['All', ...Array.from(cats)];
+  }, [images]);
+
+  const filteredImages = useMemo(() => {
+    if (selectedCategory === 'All') return images;
+    return images.filter((img) => img.category === selectedCategory);
+  }, [images, selectedCategory]);
 
   const openLightbox = (index: number) => setLightboxIndex(index);
   const closeLightbox = () => setLightboxIndex(null);
 
   const nextImage = () => {
     if (lightboxIndex === null) return;
-    setLightboxIndex((prev) => (prev! + 1) % images.length);
+    setLightboxIndex((prev) => (prev! + 1) % filteredImages.length);
   };
 
   const prevImage = () => {
     if (lightboxIndex === null) return;
-    setLightboxIndex((prev) => (prev! - 1 + images.length) % images.length);
+    setLightboxIndex((prev) => (prev! - 1 + filteredImages.length) % filteredImages.length);
   };
 
   return (
     <div className={`w-full ${className}`} data-testid="photo-gallery">
+      {/* Category Filter */}
+      {categories.length > 1 && (
+        <div className="flex flex-wrap justify-center gap-2 mb-8 animate-in fade-in slide-in-from-bottom-2 duration-500">
+          {categories.map((cat) => (
+            <button
+              key={cat as string}
+              onClick={() => {
+                setSelectedCategory(cat as string);
+                setLightboxIndex(null);
+              }}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                selectedCategory === cat
+                  ? 'bg-primary text-white shadow-md transform scale-105'
+                  : 'bg-gray-100 dark:bg-gray-800 text-text-secondary hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-text-primary'
+              }`}
+            >
+              {cat as string}
+            </button>
+          ))}
+        </div>
+      )}
+
       {/* Masonry Layout using CSS Columns */}
       <div className="columns-1 md:columns-2 lg:columns-3 gap-4 space-y-4">
-        {images.map((image, index) => (
+        {filteredImages.map((image, index) => (
           <div
             key={`${image.src}-${index}`}
-            className="break-inside-avoid mb-4 group cursor-zoom-in relative overflow-hidden rounded-xl bg-gray-100 dark:bg-gray-800 shadow-sm hover:shadow-md transition-all duration-300 min-h-[150px]"
+            className="break-inside-avoid mb-4 group cursor-zoom-in relative overflow-hidden rounded-xl bg-gray-100 dark:bg-gray-800 shadow-sm hover:shadow-md transition-all duration-300 min-h-[150px] animate-in fade-in zoom-in-95 duration-500 fill-mode-backwards"
+            style={{ animationDelay: `${index * 50}ms` }}
             onClick={() => openLightbox(index)}
             onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && openLightbox(index)}
             tabIndex={0}
@@ -76,7 +110,7 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({ images, className = 
       </div>
 
       <Lightbox
-        images={images}
+        images={filteredImages}
         currentIndex={lightboxIndex ?? 0}
         isOpen={lightboxIndex !== null}
         onClose={closeLightbox}

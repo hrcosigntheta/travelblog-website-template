@@ -11,6 +11,7 @@ const galleryImages: GalleryImage[] = destinations.flatMap((dest) =>
     src: img,
     alt: `${dest.title} - Photo ${index + 1}`,
     caption: dest.title,
+    category: dest.tags[0], // Use first tag as primary category for filtering
   }))
 );
 

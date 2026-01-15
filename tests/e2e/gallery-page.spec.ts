@@ -14,12 +14,13 @@ test.describe('Gallery Page', () => {
 
     // Should have images from all destinations
     // El Nido (5) + Siargao (2) + Bohol (1) + Boracay (1) = 9 images
-    await expect(gallery.getByRole('button')).toHaveCount(9);
+    // Filter buttons are also buttons, so we target image cards specifically
+    await expect(gallery.getByRole('button', { name: /View full size/ })).toHaveCount(9);
   });
 
   test('should open lightbox on image click', async ({ page }) => {
     const gallery = page.getByTestId('photo-gallery');
-    const firstImage = gallery.getByRole('button').first();
+    const firstImage = gallery.getByRole('button', { name: /View full size/ }).first();
 
     await firstImage.click();
 
@@ -44,5 +45,35 @@ test.describe('Gallery Page', () => {
     // Basic check for images in schema
     expect(Array.isArray(schema.image)).toBe(true);
     expect(schema.image.length).toBeGreaterThan(0);
+  });
+
+  test('should filter images by category', async ({ page }) => {
+    const gallery = page.getByTestId('photo-gallery');
+
+    // Initial count (All)
+    const initialCount = await gallery.getByRole('button', { name: /View full size/ }).count();
+    expect(initialCount).toBeGreaterThan(0);
+
+    // Click "Beach" filter (assuming it exists in data)
+    // El Nido, Siargao, Boracay have "Beach". Bohol has "Nature".
+    // So "Nature" should show fewer images than All.
+    const natureFilter = page.getByRole('button', { name: 'Nature', exact: true });
+
+    if (await natureFilter.isVisible()) {
+      await natureFilter.click();
+
+      // Wait for filtering (animation might delay it, but react update is fast)
+      // Playwright auto-waits for checks? Not for count reduction necessarily.
+      // But button click awaits action.
+
+      // Bohol (1) + El Nido (5) might have Nature?
+      // El Nido tags: ['Beach', 'Island Hopping', 'Nature'] -> Category is 'Beach' (first tag)
+      // Bohol tags: ['Nature', 'Hiking', 'Sightseeing'] -> Category is 'Nature'
+      // So filtering by 'Nature' should ONLY show Bohol images (1 image).
+
+      // Wait for count to stabilize?
+      // We can expect specific count.
+      await expect(gallery.getByRole('button', { name: /View full size/ })).toHaveCount(1);
+    }
   });
 });

@@ -7,6 +7,7 @@ export interface GalleryImage {
   width?: number;
   height?: number;
   caption?: string;
+  category?: string;
   placeholderSrc?: string;
 }
 
