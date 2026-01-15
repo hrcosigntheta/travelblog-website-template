@@ -49,3 +49,26 @@ export function generateDestinationSchema(destination: Destination, siteUrl: str
     '@graph': [destinationSchema, gallerySchema],
   };
 }
+
+export function generateCollectionPageSchema(
+  title: string,
+  description: string,
+  url: string | URL
+) {
+  const urlString = typeof url === 'string' ? url : url.href;
+
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: title,
+    description: description,
+    url: urlString,
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'Philippines Travel Blog',
+      url: new URL('/', urlString).href,
+    },
+  };
+
+  return schema;
+}

@@ -1,13 +1,16 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import DestinationsListing from '../../components/DestinationsListing';
+import { generateCollectionPageSchema } from '../../utils/schema';
 
 const title = 'Explore Destinations | Philippines Travel Blog';
 const description =
   'Discover the best beaches, islands, mountains, and cultural destinations in the Philippines. Filter by region, activity, and budget.';
+
+const schema = JSON.stringify(generateCollectionPageSchema(title, description, Astro.url));
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} schema={schema}>
   <div class="container mx-auto px-4 py-8 md:py-12">
     <header class="mb-8 md:mb-12 text-center max-w-3xl mx-auto">
       <h1 class="text-4xl md:text-5xl font-display font-bold text-text-primary mb-4">

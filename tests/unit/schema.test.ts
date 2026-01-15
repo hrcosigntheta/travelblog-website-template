@@ -1,8 +1,30 @@
 import { describe, it, expect } from 'vitest';
-import { generateDestinationSchema } from '../../src/utils/schema';
+import { generateDestinationSchema, generateCollectionPageSchema } from '../../src/utils/schema';
 import type { Destination } from '../../src/data/destinations';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
+describe('generateCollectionPageSchema', () => {
+  const title = 'Test Collection';
+  const description = 'Test Description';
+  const url = 'https://mysite.com/collection';
+
+  it('generates valid CollectionPage schema', () => {
+    const schema = generateCollectionPageSchema(title, description, url);
+    expect(schema['@context']).toBe('https://schema.org');
+    expect(schema['@type']).toBe('CollectionPage');
+    expect(schema.name).toBe(title);
+    expect(schema.description).toBe(description);
+    expect(schema.url).toBe(url);
+  });
+
+  it('includes isPartOf WebSite', () => {
+    const schema = generateCollectionPageSchema(title, description, url);
+    expect(schema.isPartOf).toBeDefined();
+    expect(schema.isPartOf['@type']).toBe('WebSite');
+    expect(schema.isPartOf.name).toBe('Philippines Travel Blog');
+  });
+});
 
 describe('generateDestinationSchema', () => {
   const mockDestination: Destination = {
