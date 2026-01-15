@@ -193,7 +193,7 @@ export default function DestinationsListing() {
 
       return true;
     });
-  }, [searchValue, activeFilters, searchIndex]);
+  }, [searchValue, activeFilters, searchIndex, isInitialized]);
 
   // Update counts in filters
   const filtersWithCounts = useMemo(() => {

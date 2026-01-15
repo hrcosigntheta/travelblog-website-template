@@ -45,7 +45,7 @@ describe('DestinationsListing Component', () => {
     expect(screen.getByText('Category')).toBeInTheDocument();
     // Use regex to match text content across elements
     expect(
-      screen.getByText((content, node) => {
+      screen.getByText((_, node) => {
         const hasText = (node: Element | null) => node?.textContent === 'Showing 4 destinations'; // Mock data has 4 items
         const nodeHasText = hasText(node);
         const childrenDontHaveText = Array.from(node?.children || []).every(
