@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Hero from '../../components/Hero.astro';
+import DestinationHero from '../../components/DestinationHero.astro';
 import ItineraryTimeline from '../../components/ItineraryTimeline';
 import MapWithMarkers from '../../components/MapWithMarkers';
 import { PhotoGallery } from '../../components/PhotoGallery';
@@ -63,12 +63,7 @@ const pageDescription = destination.description;
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
-  <Hero
-    title={destination.title}
-    tagline={destination.region}
-    image={destination.image}
-    primaryAction={{ label: 'View Itinerary', href: '#itinerary' }}
-  />
+  <DestinationHero destination={destination} />
 
   <main class="container mx-auto px-4 py-16 space-y-20">
     {/* Quick Stats & Highlights */}
