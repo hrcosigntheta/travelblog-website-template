@@ -69,6 +69,64 @@ const mapBudgetToLevel = (budgetStr: string): 'budget' | 'mid-range' | 'luxury' 
 export default function DestinationsListing() {
   const [searchValue, setSearchValue] = useState('');
   const [activeFilters, setActiveFilters] = useState<Record<string, string[]>>({});
+  const [isInitialized, setIsInitialized] = useState(false);
+
+  // Helper to parse URL params
+  const parseUrlParams = () => {
+    const params = new URLSearchParams(window.location.search);
+    const query = params.get('q') || '';
+    const newFilters: Record<string, string[]> = {};
+
+    ['category', 'region', 'difficulty', 'budget'].forEach((key) => {
+      const val = params.get(key);
+      if (val) newFilters[key] = val.split(',');
+    });
+
+    return { query, newFilters };
+  };
+
+  // Initialize state and listeners
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const { query, newFilters } = parseUrlParams();
+      setSearchValue(query);
+      setActiveFilters(newFilters);
+      setIsInitialized(true);
+
+      const handlePopState = () => {
+        const { query, newFilters } = parseUrlParams();
+        setSearchValue(query);
+        setActiveFilters(newFilters);
+      };
+
+      window.addEventListener('popstate', handlePopState);
+      return () => window.removeEventListener('popstate', handlePopState);
+    }
+  }, []);
+
+  // Sync state to URL
+  React.useEffect(() => {
+    if (!isInitialized) return;
+
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams();
+      if (searchValue) params.set('q', searchValue);
+
+      Object.entries(activeFilters).forEach(([key, values]) => {
+        if (values.length > 0) {
+          params.set(key, values.join(','));
+        }
+      });
+
+      const newQueryString = params.toString();
+      const newUrl = `${window.location.pathname}${newQueryString ? '?' + newQueryString : ''}`;
+
+      // Only push state if URL actually changed to avoid duplicate history entries
+      if (newUrl !== window.location.pathname + window.location.search) {
+        window.history.pushState({}, '', newUrl);
+      }
+    }
+  }, [searchValue, activeFilters, isInitialized]);
 
   const handleFilterChange = (groupId: string, newValues: string[]) => {
     setActiveFilters((prev) => ({
@@ -85,6 +143,9 @@ export default function DestinationsListing() {
   const searchIndex = useMemo(() => createSearchIndex(destinations), []);
 
   const filteredDestinations = useMemo(() => {
+    // Wait for initialization to avoid flash of wrong content
+    if (!isInitialized) return destinations;
+
     let results = destinations;
 
     // 1. Search Filter (Fuzzy)
