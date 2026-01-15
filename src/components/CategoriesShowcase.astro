@@ -1,0 +1,31 @@
+---
+import CategoryCard from './CategoryCard.astro';
+import { categories } from '../data/categories';
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+}
+
+const {
+  title = 'Browse by Category',
+  subtitle = 'Discover destinations based on your interests.',
+} = Astro.props;
+---
+
+<section class="py-16 md:py-24 bg-[var(--bg-default)]">
+  <div class="container mx-auto px-4">
+    <div class="mb-12 text-center max-w-3xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4 text-[var(--text-primary)]">
+        {title}
+      </h2>
+      <p class="text-[var(--text-secondary)] text-lg">
+        {subtitle}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {categories.map((category) => <CategoryCard category={category} />)}
+    </div>
+  </div>
+</section>
