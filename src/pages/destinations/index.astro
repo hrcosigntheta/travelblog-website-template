@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import DestinationsListing from '../../components/DestinationsListing';
+
+const title = 'Explore Destinations | Philippines Travel Blog';
+const description =
+  'Discover the best beaches, islands, mountains, and cultural destinations in the Philippines. Filter by region, activity, and budget.';
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="container mx-auto px-4 py-8 md:py-12">
+    <header class="mb-8 md:mb-12 text-center max-w-3xl mx-auto">
+      <h1 class="text-4xl md:text-5xl font-display font-bold text-text-primary mb-4">
+        Explore Destinations
+      </h1>
+      <p class="text-lg text-text-secondary">
+        Find your next adventure in the Philippines. From the pristine beaches of Palawan to the
+        surfing waves of Siargao.
+      </p>
+    </header>
+
+    <DestinationsListing client:load />
+  </div>
+</BaseLayout>

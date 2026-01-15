@@ -1,0 +1,210 @@
+import React, { useState, useMemo } from 'react';
+import SearchFilter from './SearchFilter';
+import { DestinationCard } from './DestinationCard';
+import { destinations } from '../data/destinations';
+import type { FilterConfig } from '../types/components';
+
+const FILTERS: FilterConfig[] = [
+  {
+    id: 'region',
+    label: 'Region',
+    options: [
+      { value: 'Palawan', label: 'Palawan' },
+      { value: 'Bohol', label: 'Bohol' },
+      { value: 'Cebu', label: 'Cebu' },
+      { value: 'Siargao', label: 'Siargao' },
+      { value: 'Visayas', label: 'Visayas' },
+      { value: 'Luzon', label: 'Luzon' },
+      { value: 'Mindanao', label: 'Mindanao' },
+    ],
+    type: 'checkbox',
+    defaultOpen: true,
+  },
+  {
+    id: 'category',
+    label: 'Category',
+    options: [
+      { value: 'Beach', label: 'Beach' },
+      { value: 'Nature', label: 'Nature' },
+      { value: 'Hiking', label: 'Hiking' },
+      { value: 'Surfing', label: 'Surfing' },
+      { value: 'Diving', label: 'Diving' },
+      { value: 'City', label: 'City' },
+      { value: 'Culture', label: 'Culture' },
+    ],
+    type: 'checkbox',
+    defaultOpen: true,
+  },
+  {
+    id: 'difficulty',
+    label: 'Difficulty',
+    options: [
+      { value: 'Easy', label: 'Easy' },
+      { value: 'Moderate', label: 'Moderate' },
+      { value: 'Challenging', label: 'Challenging' },
+    ],
+    type: 'checkbox',
+    defaultOpen: false,
+  },
+  {
+    id: 'budget',
+    label: 'Budget',
+    options: [
+      { value: '$', label: 'Budget ($)' },
+      { value: '$$', label: 'Mid-range ($$)' },
+      { value: '$$$', label: 'Luxury ($$$)' },
+    ],
+    type: 'checkbox',
+    defaultOpen: false,
+  },
+];
+
+const mapBudgetToLevel = (budgetStr: string): 'budget' | 'mid-range' | 'luxury' => {
+  if (budgetStr.includes('$$$$') || budgetStr.includes('$$$')) return 'luxury';
+  if (budgetStr.includes('$$')) return 'mid-range';
+  return 'budget';
+};
+
+export default function DestinationsListing() {
+  const [searchValue, setSearchValue] = useState('');
+  const [activeFilters, setActiveFilters] = useState<Record<string, string[]>>({});
+
+  const handleFilterChange = (groupId: string, newValues: string[]) => {
+    setActiveFilters((prev) => ({
+      ...prev,
+      [groupId]: newValues,
+    }));
+  };
+
+  const handleClearAll = () => {
+    setSearchValue('');
+    setActiveFilters({});
+  };
+
+  const filteredDestinations = useMemo(() => {
+    return destinations.filter((dest) => {
+      // 1. Search Filter
+      if (searchValue) {
+        const query = searchValue.toLowerCase();
+        const matchesTitle = dest.title.toLowerCase().includes(query);
+        const matchesRegion = dest.region.toLowerCase().includes(query);
+        const matchesDesc = dest.description.toLowerCase().includes(query);
+        if (!matchesTitle && !matchesRegion && !matchesDesc) {
+          return false;
+        }
+      }
+
+      // 2. Facet Filters
+      for (const [groupId, selectedValues] of Object.entries(activeFilters)) {
+        if (selectedValues.length === 0) continue;
+
+        if (groupId === 'region') {
+          // Region matching (exact or partial if needed, but usually exact for filters)
+          // The data region might be "Surigao del Norte" vs filter "Siargao" or "Mindanao".
+          // For simplicity, we check if destination region *contains* the filter value or equals it.
+          // Or we update data to match. Let's assume partial match for flexibility.
+          const matchesRegion = selectedValues.some(
+            (val) => dest.region.includes(val) || val.includes(dest.region)
+          );
+          if (!matchesRegion) return false;
+        }
+
+        if (groupId === 'category') {
+          // Check if ANY selected category is present in dest.tags
+          const hasCategory = selectedValues.some((cat) => dest.tags.includes(cat));
+          if (!hasCategory) return false;
+        }
+
+        if (groupId === 'difficulty') {
+          // dest.stats.difficulty: 'Easy', 'Moderate'
+          const matchesDiff = selectedValues.includes(dest.stats.difficulty);
+          if (!matchesDiff) return false;
+        }
+
+        if (groupId === 'budget') {
+          // dest.stats.budget: '$$ - $$$'
+          // We check if the destination budget string contains the filter symbol
+          const matchesBudget = selectedValues.some((b) => dest.stats.budget.includes(b));
+          if (!matchesBudget) return false;
+        }
+      }
+
+      return true;
+    });
+  }, [searchValue, activeFilters]);
+
+  // Update counts in filters
+  const filtersWithCounts = useMemo(() => {
+    return FILTERS.map((filter) => ({
+      ...filter,
+      options: filter.options.map((opt) => {
+        // Calculate count for this option being applied alone (or within current context?)
+        // Standard UX is usually "global count" or "count within current other filters".
+        // Let's do simple global count for now to avoid perf issues, or filtered count.
+        // Let's just pass options as is for now, Component doesn't seemingly use counts in UI yet (SearchFilter.tsx doesn't show them explicitly in options render, only total badge).
+        return opt;
+      }),
+    }));
+  }, []);
+
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      {/* Sidebar Filters */}
+      <aside className="lg:col-span-1">
+        <div className="sticky top-24">
+          <SearchFilter
+            searchValue={searchValue}
+            onSearchChange={setSearchValue}
+            availableFilters={filtersWithCounts}
+            activeFilters={activeFilters}
+            onFilterChange={handleFilterChange}
+            onClearAll={handleClearAll}
+          />
+        </div>
+      </aside>
+
+      {/* Main Content */}
+      <main className="lg:col-span-3">
+        <div className="mb-6 flex justify-between items-center">
+          <p className="text-text-secondary">
+            Showing{' '}
+            <span className="font-bold text-text-primary">{filteredDestinations.length}</span>{' '}
+            destinations
+          </p>
+          {/* Sort control could go here */}
+        </div>
+
+        {filteredDestinations.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            {filteredDestinations.map((dest) => (
+              <DestinationCard
+                key={dest.id}
+                id={dest.id}
+                slug={dest.slug}
+                title={dest.title}
+                location={dest.region}
+                image={dest.image}
+                category={dest.tags[0] || 'Travel'}
+                description={dest.description}
+                priceLevel={mapBudgetToLevel(dest.stats.budget)}
+                difficulty={
+                  dest.stats.difficulty.toLowerCase() as 'easy' | 'moderate' | 'challenging'
+                }
+                bestSeason={dest.stats.bestTime}
+                rating={dest.rating}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-12 bg-background-surface rounded-lg border border-border-subtle">
+            <h3 className="text-lg font-medium text-text-primary mb-2">No destinations found</h3>
+            <p className="text-text-secondary mb-4">Try adjusting your filters or search terms.</p>
+            <button onClick={handleClearAll} className="text-primary font-medium hover:underline">
+              Clear all filters
+            </button>
+          </div>
+        )}
+      </main>
+    </div>
+  );
+}
