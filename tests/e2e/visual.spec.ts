@@ -50,4 +50,38 @@ test.describe('Visual Regression', () => {
     await expect(footer).toBeVisible();
     await expect(footer).toHaveScreenshot('footer-component.png');
   });
+
+  test('Destination Page - Light Mode', async ({ page }) => {
+    await page.goto('/destinations/el-nido-palawan');
+
+    // Ensure we are in light mode
+    const isDark = await isDarkMode(page);
+    if (isDark) {
+      await toggleTheme(page);
+    }
+    await expect(page.locator('html')).not.toHaveClass(/dark/);
+
+    // Wait for map and images to stabilize
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(1000); // Extra buffer for animations
+
+    await expect(page).toHaveScreenshot('destination-page-light.png', { fullPage: true });
+  });
+
+  test('Destination Page - Dark Mode', async ({ page }) => {
+    await page.goto('/destinations/el-nido-palawan');
+
+    // Switch to dark mode
+    const isDark = await isDarkMode(page);
+    if (!isDark) {
+      await toggleTheme(page);
+    }
+    await expect(page.locator('html')).toHaveClass(/dark/);
+
+    // Wait for transition and map
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(1000);
+
+    await expect(page).toHaveScreenshot('destination-page-dark.png', { fullPage: true });
+  });
 });
