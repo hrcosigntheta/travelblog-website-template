@@ -1,6 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import SearchFilter from './SearchFilter';
 import { DestinationCard } from './DestinationCard';
+import { EmptyState } from './EmptyState';
+import { DestinationCardSkeleton } from './Skeleton/DestinationCardSkeleton';
 import { destinations } from '../data/destinations';
 import { createSearchIndex, searchDestinations } from '../utils/search';
 import type { FilterConfig } from '../types/components';
@@ -227,15 +229,27 @@ export default function DestinationsListing() {
       <main className="lg:col-span-3">
         <div className="mb-6 flex justify-between items-center">
           <p className="text-text-secondary">
-            Showing{' '}
-            <span className="font-bold text-text-primary">{filteredDestinations.length}</span>{' '}
-            destinations
+            {isInitialized ? (
+              <>
+                Showing{' '}
+                <span className="font-bold text-text-primary">{filteredDestinations.length}</span>{' '}
+                destinations
+              </>
+            ) : (
+              <span className="animate-pulse bg-surface-neutral-subtle h-5 w-48 rounded inline-block" />
+            )}
           </p>
           {/* Sort control could go here */}
         </div>
 
-        {filteredDestinations.length > 0 ? (
+        {!isInitialized ? (
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <DestinationCardSkeleton key={i} />
+            ))}
+          </div>
+        ) : filteredDestinations.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
             {filteredDestinations.map((dest) => (
               <DestinationCard
                 key={dest.id}
@@ -256,13 +270,7 @@ export default function DestinationsListing() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-12 bg-background-surface rounded-lg border border-border-subtle">
-            <h3 className="text-lg font-medium text-text-primary mb-2">No destinations found</h3>
-            <p className="text-text-secondary mb-4">Try adjusting your filters or search terms.</p>
-            <button onClick={handleClearAll} className="text-primary font-medium hover:underline">
-              Clear all filters
-            </button>
-          </div>
+          <EmptyState onAction={handleClearAll} />
         )}
       </main>
     </div>

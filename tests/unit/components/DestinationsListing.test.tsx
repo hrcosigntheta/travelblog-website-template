@@ -144,4 +144,49 @@ describe('DestinationsListing Component', () => {
       expect(screen.getByText('Chocolate Hills, Bohol')).toBeInTheDocument();
     });
   });
+
+  it('shows empty state when no results found', async () => {
+    render(<DestinationsListing />);
+
+    // Wait for init
+    await waitFor(() =>
+      expect(screen.getByPlaceholderText('Search destinations...')).toBeInTheDocument()
+    );
+
+    // Search for something that doesn't exist
+    const input = screen.getByPlaceholderText('Search destinations...');
+    fireEvent.change(input, { target: { value: 'NonExistentPlaceXYZ' } });
+
+    await waitFor(() => {
+      expect(screen.getByText('No results found')).toBeInTheDocument();
+      expect(screen.getByText('Clear all filters')).toBeInTheDocument();
+    });
+  });
+
+  it('clears filters from empty state', async () => {
+    render(<DestinationsListing />);
+
+    // Wait for init
+    await waitFor(() =>
+      expect(screen.getByPlaceholderText('Search destinations...')).toBeInTheDocument()
+    );
+
+    // Search for something that doesn't exist
+    const input = screen.getByPlaceholderText('Search destinations...');
+    fireEvent.change(input, { target: { value: 'NonExistentPlaceXYZ' } });
+
+    await waitFor(() => {
+      expect(screen.getByText('No results found')).toBeInTheDocument();
+    });
+
+    // Click clear
+    const clearButton = screen.getByText('Clear all filters');
+    fireEvent.click(clearButton);
+
+    await waitFor(() => {
+      expect(screen.queryByText('No results found')).not.toBeInTheDocument();
+      expect(screen.getByText('El Nido, Palawan')).toBeInTheDocument();
+      expect((input as HTMLInputElement).value).toBe('');
+    });
+  });
 });
