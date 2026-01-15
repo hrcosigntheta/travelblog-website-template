@@ -2,8 +2,8 @@ export default {
   ci: {
     collect: {
       staticDistDir: './dist',
-      url: ['http://localhost/'],
-      numberOfRuns: 3,
+      url: ['http://localhost/', 'http://localhost/destinations/el-nido-palawan/'],
+      numberOfRuns: 1,
     },
     upload: {
       target: 'temporary-public-storage',
