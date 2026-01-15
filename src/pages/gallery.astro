@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { PhotoGallery } from '../components/PhotoGallery';
 import { destinations } from '../data/destinations';
 import type { GalleryImage } from '../components/Lightbox';
+import { generateGalleryPageSchema } from '../utils/schema';
 
 // Aggregate images from all destinations
 const galleryImages: GalleryImage[] = destinations.flatMap((dest) =>
@@ -21,12 +22,15 @@ const galleryImages: GalleryImage[] = destinations.flatMap((dest) =>
 // But Math.random() in frontmatter runs at build time.
 // So it's static.
 const shuffledImages = [...galleryImages].sort(() => 0.5 - Math.random());
+
+const title = 'Photo Gallery | Philippines Travel Blog';
+const description =
+  'Explore the stunning landscapes and moments from our travels across the Philippines.';
+const schema = generateGalleryPageSchema(title, description, Astro.url, shuffledImages);
 ---
 
-<BaseLayout
-  title="Photo Gallery | Philippines Travel Blog"
-  description="Explore the stunning landscapes and moments from our travels across the Philippines."
->
+<BaseLayout title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   <div class="container mx-auto px-4 py-12">
     <div class="text-center mb-12">
       <h1 class="text-4xl md:text-5xl font-bold text-text-primary mb-4">Travel Gallery</h1>

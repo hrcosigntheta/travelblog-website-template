@@ -31,4 +31,18 @@ test.describe('Gallery Page', () => {
     await closeButton.click();
     await expect(lightbox).not.toBeVisible();
   });
+
+  test('should include structured data schema', async ({ page }) => {
+    const schemaScript = page.locator('script[type="application/ld+json"]');
+    await expect(schemaScript).toHaveCount(1);
+
+    const schemaContent = await schemaScript.textContent();
+    const schema = JSON.parse(schemaContent || '{}');
+
+    expect(schema['@type']).toBe('ImageGallery');
+    expect(schema.name).toBe('Photo Gallery | Philippines Travel Blog');
+    // Basic check for images in schema
+    expect(Array.isArray(schema.image)).toBe(true);
+    expect(schema.image.length).toBeGreaterThan(0);
+  });
 });

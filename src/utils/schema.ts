@@ -72,3 +72,28 @@ export function generateCollectionPageSchema(
 
   return schema;
 }
+
+export function generateGalleryPageSchema(
+  title: string,
+  description: string,
+  url: string | URL,
+  images: Array<{ src: string; caption?: string }>
+) {
+  const urlString = typeof url === 'string' ? url : url.href;
+
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'ImageGallery',
+    name: title,
+    description: description,
+    url: urlString,
+    image: images.map((img) => img.src),
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'Philippines Travel Blog',
+      url: new URL('/', urlString).href,
+    },
+  };
+
+  return schema;
+}
