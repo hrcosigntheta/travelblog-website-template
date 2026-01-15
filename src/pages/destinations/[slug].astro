@@ -204,7 +204,14 @@ const pageDescription = destination.description;
     {
       galleryImages.length > 0 && (
         <section>
-          <h2 class="text-3xl font-bold mb-8 text-center">Photo Gallery</h2>
+          <div class="flex items-center justify-between mb-8">
+            <h2 class="text-3xl font-bold text-center w-full relative">
+              Photo Gallery
+              <span class="absolute right-0 top-1/2 -translate-y-1/2 text-lg font-normal text-[var(--text-muted)] hidden md:inline-block">
+                {galleryImages.length} Photos
+              </span>
+            </h2>
+          </div>
           <PhotoGallery client:visible images={galleryImages} />
         </section>
       )
@@ -229,7 +236,7 @@ const pageDescription = destination.description;
         class="h-[500px] rounded-[var(--radius-lg)] overflow-hidden shadow-md border border-[var(--border-subtle)]"
       >
         <MapWithMarkers
-          client:visible
+          client:only="react"
           destinations={[destination]}
           center={[destination.coordinates.lat, destination.coordinates.lng]}
           zoom={12}

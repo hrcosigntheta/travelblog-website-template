@@ -30,7 +30,7 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({ images, className = 
         {images.map((image, index) => (
           <div
             key={`${image.src}-${index}`}
-            className="break-inside-avoid mb-4 group cursor-zoom-in relative overflow-hidden rounded-xl bg-gray-100 dark:bg-gray-800 shadow-sm hover:shadow-md transition-all duration-300"
+            className="break-inside-avoid mb-4 group cursor-zoom-in relative overflow-hidden rounded-xl bg-gray-100 dark:bg-gray-800 shadow-sm hover:shadow-md transition-all duration-300 min-h-[150px]"
             onClick={() => openLightbox(index)}
             onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && openLightbox(index)}
             tabIndex={0}
