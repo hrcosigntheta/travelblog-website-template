@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import SearchFilter from './SearchFilter';
 import { DestinationCard } from './DestinationCard';
 import { destinations } from '../data/destinations';
+import { createSearchIndex, searchDestinations } from '../utils/search';
 import type { FilterConfig } from '../types/components';
 
 const FILTERS: FilterConfig[] = [
@@ -81,19 +82,17 @@ export default function DestinationsListing() {
     setActiveFilters({});
   };
 
-  const filteredDestinations = useMemo(() => {
-    return destinations.filter((dest) => {
-      // 1. Search Filter
-      if (searchValue) {
-        const query = searchValue.toLowerCase();
-        const matchesTitle = dest.title.toLowerCase().includes(query);
-        const matchesRegion = dest.region.toLowerCase().includes(query);
-        const matchesDesc = dest.description.toLowerCase().includes(query);
-        if (!matchesTitle && !matchesRegion && !matchesDesc) {
-          return false;
-        }
-      }
+  const searchIndex = useMemo(() => createSearchIndex(destinations), []);
 
+  const filteredDestinations = useMemo(() => {
+    let results = destinations;
+
+    // 1. Search Filter (Fuzzy)
+    if (searchValue) {
+      results = searchDestinations(searchIndex, searchValue);
+    }
+
+    return results.filter((dest) => {
       // 2. Facet Filters
       for (const [groupId, selectedValues] of Object.entries(activeFilters)) {
         if (selectedValues.length === 0) continue;
@@ -131,7 +130,7 @@ export default function DestinationsListing() {
 
       return true;
     });
-  }, [searchValue, activeFilters]);
+  }, [searchValue, activeFilters, searchIndex]);
 
   // Update counts in filters
   const filtersWithCounts = useMemo(() => {

@@ -10,6 +10,7 @@ describe('QuickSearch Component', () => {
     Object.defineProperty(window, 'location', {
       value: {
         href: '',
+        assign: vi.fn(),
       },
       writable: true,
     });
@@ -48,7 +49,7 @@ describe('QuickSearch Component', () => {
 
     fireEvent.click(button);
 
-    expect(window.location.href).toBe('/destinations?q=Palawan');
+    expect(window.location.assign).toHaveBeenCalledWith('/destinations?q=Palawan');
     vi.useRealTimers();
   });
 
@@ -58,7 +59,7 @@ describe('QuickSearch Component', () => {
 
     fireEvent.click(tag);
 
-    expect(window.location.href).toBe('/destinations?category=beach');
+    expect(window.location.assign).toHaveBeenCalledWith('/destinations?category=beach');
   });
 
   it('renders advanced search link', () => {

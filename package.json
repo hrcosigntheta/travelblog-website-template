@@ -41,6 +41,7 @@
     "@nanostores/react": "^1.0.0",
     "@tailwindcss/vite": "^4.1.18",
     "astro": "^5.16.9",
+    "fuse.js": "^7.1.0",
     "leaflet": "^1.9.4",
     "leaflet.markercluster": "^1.5.3",
     "nanostores": "^1.1.0",
