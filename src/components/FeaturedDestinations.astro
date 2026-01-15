@@ -1,0 +1,47 @@
+---
+import DestinationCard from './DestinationCard.astro';
+import { destinations } from '../data/destinations';
+
+const featuredDestinations = destinations.filter((d) => d.featured).slice(0, 3);
+---
+
+<section class="py-16 md:py-24 bg-[var(--bg-default)]">
+  <div class="container mx-auto px-4">
+    <div class="mb-12 text-center max-w-3xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4 text-[var(--text-primary)]">
+        Featured Destinations
+      </h2>
+      <p class="text-[var(--text-secondary)] text-lg">
+        Explore our hand-picked selection of the most breathtaking spots in the Philippines.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {featuredDestinations.map((destination) => <DestinationCard destination={destination} />)}
+    </div>
+
+    <div class="mt-12 text-center">
+      <a
+        href="/destinations"
+        class="inline-flex items-center font-semibold text-[var(--color-primary)] hover:text-[var(--color-primary-hover)] transition-colors group"
+      >
+        View all destinations
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="ml-2 transition-transform group-hover:translate-x-1"
+        >
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,65 @@
+---
+import type { Destination } from '../data/destinations';
+
+interface Props {
+  destination: Destination;
+}
+
+const { destination } = Astro.props;
+---
+
+<a
+  href={`/destinations/${destination.slug}`}
+  class="group block h-full overflow-hidden rounded-[var(--radius-lg)] bg-[var(--card-bg)] shadow-[var(--card-shadow)] border border-[var(--card-border)] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+>
+  <div class="relative aspect-[4/3] overflow-hidden">
+    <img
+      src={destination.image}
+      alt={destination.title}
+      class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+      loading="lazy"
+    />
+    <div class="absolute top-3 left-3">
+      <span
+        class="inline-block rounded-full bg-white/90 px-3 py-1 text-xs font-bold uppercase tracking-wider text-[var(--color-primary)] shadow-sm backdrop-blur-sm dark:bg-black/80"
+      >
+        {destination.region}
+      </span>
+    </div>
+  </div>
+  <div class="p-5">
+    <h3
+      class="mb-2 text-xl font-bold text-[var(--text-primary)] group-hover:text-[var(--color-primary)] transition-colors"
+    >
+      {destination.title}
+    </h3>
+    <div class="flex flex-wrap gap-2 mb-3">
+      {
+        destination.tags
+          .slice(0, 3)
+          .map((tag) => (
+            <span class="text-xs text-[var(--text-secondary)] bg-[var(--bg-default)] px-2 py-0.5 rounded-full border border-[var(--border-subtle)]">
+              {tag}
+            </span>
+          ))
+      }
+    </div>
+    <div class="flex items-center text-sm text-[var(--text-secondary)]">
+      <span class="flex items-center gap-1 text-amber-500 font-medium">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          stroke="none"
+        >
+          <polygon
+            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+          ></polygon>
+        </svg>
+        {destination.rating}
+      </span>
+    </div>
+  </div>
+</a>
