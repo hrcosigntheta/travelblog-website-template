@@ -65,7 +65,8 @@ describe('SearchFilter Component', () => {
 
   it('toggles mobile filter panel', () => {
     render(<SearchFilter {...defaultProps} />);
-    const toggleButton = screen.getByRole('button', { name: /Filters/i });
+    // Select by aria-expanded attribute which is specific to the toggle button
+    const toggleButton = screen.getByRole('button', { expanded: false });
 
     // Initially hidden on mobile (by class), visible on desktop.
     // Testing library sees DOM, but class visibility depends on CSS which isn't fully calculated in basic jsdom setup without specific checks.

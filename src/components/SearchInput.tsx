@@ -85,7 +85,7 @@ export default function SearchInput({
       <input
         type="search"
         id={id}
-        className="block w-full h-[48px] pl-10 pr-10 rounded-[var(--radius-md)] bg-[var(--input-bg)] border border-[var(--input-border)] text-[var(--text-primary)] placeholder-[var(--text-secondary)] focus:ring-2 focus:ring-[var(--input-focus)] focus:border-transparent outline-none transition-all"
+        className="block w-full h-[48px] pl-10 pr-10 rounded-[var(--radius-md)] bg-[var(--input-bg)] border border-[var(--input-border)] text-[var(--text-primary)] placeholder-[var(--text-secondary)] focus:ring-2 focus:ring-[var(--input-focus)] focus:border-transparent outline-none transition-all shadow-[var(--shadow-sm)] focus:shadow-[var(--shadow-md)]"
         placeholder={placeholder}
         value={localValue}
         onChange={handleChange}

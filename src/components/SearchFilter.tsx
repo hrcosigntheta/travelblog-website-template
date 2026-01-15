@@ -57,7 +57,7 @@ export default function SearchFilter({
       <div className="lg:hidden flex justify-between items-center">
         <button
           onClick={() => setIsMobileFiltersOpen(!isMobileFiltersOpen)}
-          className="flex items-center gap-2 text-[var(--text-primary)] font-medium border border-[var(--border-default)] px-4 py-2 rounded-[var(--radius-md)] bg-[var(--bg-card)]"
+          className="flex items-center gap-2 text-[var(--text-primary)] font-medium border border-[var(--border-default)] px-4 py-2 rounded-[var(--radius-md)] bg-[var(--bg-surface)] shadow-[var(--shadow-sm)] hover:bg-[var(--bg-surface-raised)] transition-colors"
           aria-expanded={isMobileFiltersOpen}
           aria-controls="filter-panel"
         >
@@ -100,23 +100,63 @@ export default function SearchFilter({
         )}
       </div>
 
-      {/* Filter Panel (Desktop: Always visible / Mobile: Collapsible) */}
+      {/* Mobile Backdrop */}
+      {isMobileFiltersOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40 lg:hidden animate-in fade-in duration-200"
+          onClick={() => setIsMobileFiltersOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+
+      {/* Filter Panel */}
       <div
         id="filter-panel"
-        className={`${isMobileFiltersOpen ? 'block' : 'hidden'} lg:block space-y-1`}
+        className={`
+          space-y-1
+          lg:block
+          ${
+            isMobileFiltersOpen
+              ? 'fixed inset-x-0 bottom-0 z-50 bg-[var(--bg-surface)] p-6 rounded-t-2xl shadow-[var(--shadow-lg)] max-h-[85vh] overflow-y-auto animate-in slide-in-from-bottom duration-300'
+              : 'hidden'
+          }
+        `}
       >
-        <div className="hidden lg:flex justify-between items-center mb-4">
+        <div className="flex justify-between items-center mb-6 lg:mb-4">
           <h2 className="text-[length:var(--text-lg)] font-bold text-[var(--text-primary)]">
             Filters
           </h2>
-          {activeFilterCount > 0 && (
+          <div className="flex items-center gap-4">
+            {activeFilterCount > 0 && (
+              <button
+                onClick={onClearAll}
+                className="hidden lg:block text-[length:var(--text-sm)] text-[var(--text-secondary)] hover:text-[var(--color-primary)] transition-colors"
+              >
+                Clear all
+              </button>
+            )}
+            {/* Mobile Close Button */}
             <button
-              onClick={onClearAll}
-              className="text-[length:var(--text-sm)] text-[var(--text-secondary)] hover:text-[var(--color-primary)] transition-colors"
+              onClick={() => setIsMobileFiltersOpen(false)}
+              className="lg:hidden p-2 -mr-2 text-[var(--text-secondary)] hover:text-[var(--text-primary)] rounded-full hover:bg-[var(--bg-default)] transition-colors"
+              aria-label="Close filters"
             >
-              Clear all
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
             </button>
-          )}
+          </div>
         </div>
 
         {availableFilters.map((filter) => (

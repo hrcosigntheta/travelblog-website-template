@@ -51,7 +51,7 @@ export default function FilterGroup({
   return (
     <div className={`border-b border-[var(--border-subtle)] py-4 ${className}`}>
       <details className="group" open={defaultOpen}>
-        <summary className="flex items-center justify-between cursor-pointer list-none outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] rounded-[var(--radius-sm)]">
+        <summary className="flex items-center justify-between cursor-pointer list-none outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] rounded-[var(--radius-sm)] hover:text-[var(--color-primary)] transition-colors p-1 -ml-1">
           <h3 className="text-[var(--text-primary)] font-semibold text-[length:var(--text-base)]">
             {label}
           </h3>
@@ -76,7 +76,10 @@ export default function FilterGroup({
           {options.map((option) => {
             const isSelected = selectedValues.includes(option.value);
             return (
-              <label key={option.value} className="flex items-center group/option cursor-pointer">
+              <label
+                key={option.value}
+                className="flex items-center group/option cursor-pointer py-1"
+              >
                 <div className="relative flex items-center">
                   <input
                     type={type}
@@ -84,7 +87,7 @@ export default function FilterGroup({
                     value={option.value}
                     checked={isSelected}
                     onChange={() => handleChange(option.value)}
-                    className="peer appearance-none w-5 h-5 border border-[var(--border-default)] rounded-[var(--radius-sm)] bg-[var(--bg-default)] checked:bg-[var(--color-primary)] checked:border-[var(--color-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:ring-offset-1 transition-all"
+                    className="peer appearance-none w-5 h-5 border border-[var(--border-default)] rounded-[var(--radius-sm)] bg-[var(--bg-default)] checked:bg-[var(--color-primary)] checked:border-[var(--color-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:ring-offset-1 transition-all group-hover/option:border-[var(--color-primary)]"
                   />
                   {/* Checkmark for checkbox */}
                   {type === 'checkbox' && (
