@@ -11,6 +11,7 @@
   --color-primary: var(--color-primary);
   --color-primary-hover: var(--color-primary-hover);
   --color-secondary: var(--color-secondary);
+  --color-jungle: var(--palette-jungle-500);
 
   --color-background: var(--bg-default);
   --color-background-surface: var(--bg-surface);
