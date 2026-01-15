@@ -1,0 +1,54 @@
+---
+import AdventureCard from './AdventureCard.astro';
+import { adventures } from '../data/adventures';
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+}
+
+const { title = 'Recent Adventures', subtitle = 'Stories and tips from our latest travels.' } =
+  Astro.props;
+const recentAdventures = adventures.slice(0, 4);
+---
+
+<section class="py-16 bg-[var(--bg-surface)]">
+  <div class="container mx-auto px-4">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+      <div class="max-w-2xl">
+        <h2 class="text-3xl md:text-4xl font-bold mb-3 text-[var(--text-primary)]">
+          {title}
+        </h2>
+        <p class="text-[var(--text-secondary)] text-lg">
+          {subtitle}
+        </p>
+      </div>
+
+      <a
+        href="/blog"
+        class="text-[var(--color-primary)] font-semibold hover:underline inline-flex items-center"
+      >
+        View all adventures
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="ml-1"
+        >
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {recentAdventures.map((adventure) => <AdventureCard adventure={adventure} />)}
+    </div>
+  </div>
+</section>
