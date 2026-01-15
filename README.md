@@ -10,4 +10,12 @@ To install dependencies:
 bun install
 ```
 
+## Development
+
+To populate placeholder images:
+
+```bash
+bun run images:fetch
+```
+
 This project was initialized using `bun init`.

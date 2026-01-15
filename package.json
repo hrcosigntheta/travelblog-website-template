@@ -20,6 +20,7 @@
     "test:a11y": "playwright test tests/e2e/a11y.spec.ts",
     "test:lighthouse": "lhci autorun",
     "test:run": "vitest run",
+    "images:fetch": "bun run scripts/fetch-placeholder-images.ts",
     "prepare": "husky"
   },
   "lint-staged": {
