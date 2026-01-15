@@ -6,6 +6,14 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   output: 'static',
 
+  i18n: {
+    defaultLocale: "en",
+    locales: ["en"],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
+
   image: {
     service: {
       entrypoint: 'astro/assets/services/sharp',
