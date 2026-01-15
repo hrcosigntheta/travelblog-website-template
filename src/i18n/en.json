@@ -39,5 +39,9 @@
     "filter": "Filter",
     "categories": "Categories",
     "all": "All"
+  },
+  "map": {
+    "loading": "Loading map...",
+    "error": "Failed to load map"
   }
 }
