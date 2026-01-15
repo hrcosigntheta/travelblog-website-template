@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
 import React from 'react';
 import { DemoLinkModal } from '../../../src/components/DemoLinkModal';
 import { openDemoModal, isDemoModalOpen, demoLinkData } from '../../../src/store/demo-modal';
@@ -23,10 +23,12 @@ describe('DemoLinkModal', () => {
   });
 
   it('renders correctly when open', () => {
-    openDemoModal({
-      url: 'https://example.com',
-      label: 'Example Link',
-      category: 'External',
+    act(() => {
+      openDemoModal({
+        url: 'https://example.com',
+        label: 'Example Link',
+        category: 'External',
+      });
     });
 
     render(<DemoLinkModal />);
@@ -38,10 +40,12 @@ describe('DemoLinkModal', () => {
   });
 
   it('closes when close button is clicked', async () => {
-    openDemoModal({
-      url: 'https://example.com',
-      label: 'Example Link',
-      category: 'External',
+    act(() => {
+      openDemoModal({
+        url: 'https://example.com',
+        label: 'Example Link',
+        category: 'External',
+      });
     });
 
     render(<DemoLinkModal />);
