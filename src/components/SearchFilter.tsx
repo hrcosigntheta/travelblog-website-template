@@ -103,6 +103,7 @@ export default function SearchFilter({
       {/* Mobile Backdrop */}
       {isMobileFiltersOpen && (
         <div
+          data-testid="mobile-backdrop"
           className="fixed inset-0 bg-black/50 z-40 lg:hidden animate-in fade-in duration-200"
           onClick={() => setIsMobileFiltersOpen(false)}
           aria-hidden="true"

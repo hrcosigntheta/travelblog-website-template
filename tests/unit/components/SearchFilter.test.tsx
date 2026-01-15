@@ -99,4 +99,39 @@ describe('SearchFilter Component', () => {
     fireEvent.click(clearButtons[0]);
     expect(defaultProps.onClearAll).toHaveBeenCalled();
   });
+
+  it('reflects active filter state in checkboxes', () => {
+    render(
+      <SearchFilter {...defaultProps} activeFilters={{ category: ['beach'], difficulty: [] }} />
+    );
+
+    // "Beach" should be checked
+    const beachCheckbox = screen.getByRole('checkbox', { name: /Beach/ });
+    expect(beachCheckbox).toBeChecked();
+
+    const mountainCheckbox = screen.getByRole('checkbox', { name: /Mountain/ });
+    expect(mountainCheckbox).not.toBeChecked();
+  });
+
+  it('closes mobile filter panel when close button is clicked', () => {
+    render(<SearchFilter {...defaultProps} />);
+    const toggleButton = screen.getByRole('button', { name: /Filters/ });
+    fireEvent.click(toggleButton);
+    expect(toggleButton).toHaveAttribute('aria-expanded', 'true');
+
+    const closeButton = screen.getByLabelText('Close filters');
+    fireEvent.click(closeButton);
+    expect(toggleButton).toHaveAttribute('aria-expanded', 'false');
+  });
+
+  it('closes mobile filter panel when backdrop is clicked', () => {
+    render(<SearchFilter {...defaultProps} />);
+    const toggleButton = screen.getByRole('button', { name: /Filters/ });
+    fireEvent.click(toggleButton);
+    expect(toggleButton).toHaveAttribute('aria-expanded', 'true');
+
+    const backdrop = screen.getByTestId('mobile-backdrop');
+    fireEvent.click(backdrop);
+    expect(toggleButton).toHaveAttribute('aria-expanded', 'false');
+  });
 });
