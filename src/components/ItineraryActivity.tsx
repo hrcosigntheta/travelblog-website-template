@@ -32,11 +32,11 @@ export default function ItineraryActivity({
   tips,
 }: ItineraryActivityProps) {
   return (
-    <div className="relative pl-8 pb-8 last:pb-0 group">
+    <div className="relative pl-8 pb-8 last:pb-0 group print:break-inside-avoid print:pb-4">
       {/* Connector Line (Activity level) - Optional, mainly handled by Day/Timeline */}
 
       {/* Activity Icon/Dot */}
-      <div className="absolute left-0 top-0 mt-1 w-4 h-4 rounded-full bg-[var(--bg-surface)] border-2 border-[var(--color-primary)] flex items-center justify-center z-10 overflow-hidden">
+      <div className="absolute left-0 top-0 mt-1 w-4 h-4 rounded-full bg-[var(--bg-surface)] border-2 border-[var(--color-primary)] flex items-center justify-center z-10 overflow-hidden print:bg-white">
         {/* We could put an icon inside, or just use it as a dot */}
         {icon && (
           <span className="text-[10px] flex items-center justify-center w-full h-full">{icon}</span>
@@ -84,7 +84,7 @@ export default function ItineraryActivity({
           )}
 
           {tips && (
-            <div className="mt-3 bg-[var(--bg-surface-raised)] p-3 rounded-[var(--radius-sm)] border-l-4 border-[var(--color-accent)] text-[length:var(--text-sm)] text-[var(--text-secondary)]">
+            <div className="mt-3 bg-[var(--bg-surface-raised)] p-3 rounded-[var(--radius-sm)] border-l-4 border-[var(--color-accent)] text-[length:var(--text-sm)] text-[var(--text-secondary)] print:bg-transparent print:border-2 print:border-[var(--color-accent)]">
               <span className="font-bold text-[var(--text-primary)] block mb-1">
                 💡 Insider Tip:
               </span>

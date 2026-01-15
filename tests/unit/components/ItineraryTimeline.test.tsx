@@ -56,4 +56,20 @@ describe('ItineraryTimeline Component', () => {
     expect(screen.getByText('💡 Insider Tip:')).toBeInTheDocument();
     expect(screen.getByText('Bring sunscreen!')).toBeInTheDocument();
   });
+
+  it('applies print-friendly classes', () => {
+    const { container } = render(<ItineraryTimeline days={mockDays} />);
+
+    // Check for print:break-inside-avoid on Day component
+    const dayElements = container.querySelectorAll('.print\\:break-inside-avoid');
+    expect(dayElements.length).toBeGreaterThan(0);
+
+    // Check for print:hidden on toggle chevron
+    const hiddenElements = container.querySelectorAll('.print\\:hidden');
+    expect(hiddenElements.length).toBeGreaterThan(0);
+
+    // Check for print:max-h-none on content wrapper (force expansion)
+    const expandedElements = container.querySelectorAll('.print\\:max-h-none');
+    expect(expandedElements.length).toBeGreaterThan(0);
+  });
 });
