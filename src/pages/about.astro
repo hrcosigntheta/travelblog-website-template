@@ -2,9 +2,27 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { ImageWithFallback } from '../components/ImageWithFallback';
 
-const title = 'About Us | Philippines Travel Blog';
+const title = 'About MasuRii | Philippine Travel Blog';
 const description =
   'Meet the explorers behind the guide. Learn about our travel philosophy, gear, and mission to showcase the Philippines.';
+
+const schema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'MasuRii',
+  url: new URL('/about', Astro.site),
+  image: new URL('/images/author-portrait.jpg', Astro.site),
+  jobTitle: 'Travel Blogger',
+  description: description,
+  sameAs: [
+    'https://instagram.com/masurii',
+    'https://twitter.com/masurii',
+    'https://facebook.com/masurii',
+    'https://youtube.com/@masurii',
+    'https://pinterest.com/masurii',
+    'https://tiktok.com/@masurii',
+  ],
+});
 
 const stats = [
   { label: 'Islands Visited', value: '45+' },
@@ -21,7 +39,7 @@ const gear = [
 ];
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} schema={schema}>
   {/* Hero Section */}
   <section class="relative h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 z-0">
