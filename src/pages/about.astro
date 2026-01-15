@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { ImageWithFallback } from '../components/ImageWithFallback';
+import { BloggerHero } from '../components/BloggerHero';
 
 const title = 'About MasuRii | Philippine Travel Blog';
 const description =
@@ -30,6 +31,15 @@ const stats = [
   { label: 'Provinces Explored', value: '32' },
   { label: 'Photo Stories', value: '500+' },
 ];
+
+const socialLinks = [
+  { platform: 'instagram', url: 'https://instagram.com/masurii', label: 'Instagram' },
+  { platform: 'twitter', url: 'https://twitter.com/masurii', label: 'Twitter' },
+  { platform: 'facebook', url: 'https://facebook.com/masurii', label: 'Facebook' },
+  { platform: 'youtube', url: 'https://youtube.com/@masurii', label: 'YouTube' },
+  { platform: 'pinterest', url: 'https://pinterest.com/masurii', label: 'Pinterest' },
+  { platform: 'tiktok', url: 'https://tiktok.com/@masurii', label: 'TikTok' },
+] as const;
 
 const gear = [
   { name: 'Sony A7IV', category: 'Camera', icon: 'camera' },
@@ -66,62 +76,31 @@ const gear = [
   </section>
 
   {/* Bio Section */}
-  <section class="py-20 bg-[var(--color-surface)]">
-    <div class="container mx-auto px-4">
-      <div class="flex flex-col md:flex-row items-center gap-12">
-        <div class="w-full md:w-1/2">
-          <div
-            class="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500"
-          >
-            <ImageWithFallback
-              src="/images/author-portrait.jpg"
-              alt="Portrait of the travel blogger"
-              className="w-full h-full object-cover"
-              client:visible
-            />
-          </div>
-        </div>
-        <div class="w-full md:w-1/2">
-          <span class="text-[var(--color-primary)] font-bold tracking-wider uppercase mb-2 block"
-            >Our Story</span
-          >
-          <h2 class="text-3xl md:text-4xl font-bold text-[var(--color-text-primary)] mb-6">
-            Hi, I'm the Explorer
-          </h2>
-          <div class="prose prose-lg text-[var(--color-text-secondary)]">
-            <p class="mb-4">
-              It started with a single backpack and a one-way ticket to Cebu. Seven years later, I'm
-              still discovering hidden lagoons, mountain peaks, and cultural treasures across the
-              Philippines.
-            </p>
-            <p class="mb-4">
-              My mission is simple: to show you that the Philippines is more than just Boracay and
-              Palawan. There are thousands of islands waiting to be explored, each with its own
-              story, flavor, and rhythm.
-            </p>
-            <p>
-              Whether you're a luxury traveler or a budget backpacker, this blog is your guide to
-              authentic experiences, responsible tourism, and unforgettable memories.
-            </p>
-          </div>
-
-          <div class="mt-8 grid grid-cols-2 gap-4">
-            {
-              stats.map((stat) => (
-                <div class="p-4 bg-[var(--color-surface-elevated)] rounded-xl border border-[var(--color-border)]">
-                  <div class="text-3xl font-bold text-[var(--color-primary)]">{stat.value}</div>
-                  <div class="text-sm text-[var(--color-text-secondary)]">{stat.label}</div>
-                </div>
-              ))
-            }
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <BloggerHero
+    name="MasuRii"
+    tagline="Our Story"
+    portraitSrc="/images/author-portrait.jpg"
+    stats={stats}
+    socialLinks={socialLinks}
+    client:visible
+  >
+    <p class="mb-4">
+      It started with a single backpack and a one-way ticket to Cebu. Seven years later, I'm still
+      discovering hidden lagoons, mountain peaks, and cultural treasures across the Philippines.
+    </p>
+    <p class="mb-4">
+      My mission is simple: to show you that the Philippines is more than just Boracay and Palawan.
+      There are thousands of islands waiting to be explored, each with its own story, flavor, and
+      rhythm.
+    </p>
+    <p>
+      Whether you're a luxury traveler or a budget backpacker, this blog is your guide to authentic
+      experiences, responsible tourism, and unforgettable memories.
+    </p>
+  </BloggerHero>
 
   {/* Philosophy Section */}
-  <section class="py-20 bg-[var(--color-surface-raised)] border-y border-[var(--color-border)]">
+  <section class="py-20 bg-[var(--bg-surface-raised)] border-y border-[var(--border-default)]">
     <div class="container mx-auto px-4 text-center max-w-4xl">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -138,10 +117,10 @@ const gear = [
         <circle cx="12" cy="12" r="10"></circle>
         <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
       </svg>
-      <h2 class="text-3xl md:text-4xl font-bold text-[var(--color-text-primary)] mb-8">
+      <h2 class="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-8">
         Travel Philosophy
       </h2>
-      <p class="text-xl text-[var(--color-text-secondary)] leading-relaxed italic">
+      <p class="text-xl text-[var(--text-secondary)] leading-relaxed italic">
         "We believe in slow travel, respecting local cultures, and leaving places better than we
         found them. It's not about checking items off a bucket list, but about the connections we
         make and the understanding we gain along the way."
@@ -150,22 +129,20 @@ const gear = [
   </section>
 
   {/* Gear Section */}
-  <section class="py-20 bg-[var(--color-surface)]">
+  <section class="py-20 bg-[var(--bg-surface)]">
     <div class="container mx-auto px-4">
       <div class="text-center mb-12">
         <span class="text-[var(--color-primary)] font-bold tracking-wider uppercase mb-2 block"
           >What's in the bag</span
         >
-        <h2 class="text-3xl md:text-4xl font-bold text-[var(--color-text-primary)]">
-          Essential Gear
-        </h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-[var(--text-primary)]">Essential Gear</h2>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {
           gear.map((item) => (
-            <div class="p-6 bg-[var(--color-surface-elevated)] rounded-2xl border border-[var(--color-border)] hover:border-[var(--color-primary)] transition-colors group text-center">
-              <div class="w-12 h-12 bg-[var(--color-surface)] rounded-full flex items-center justify-center mx-auto mb-4 text-[var(--color-primary)] group-hover:scale-110 transition-transform">
+            <div class="p-6 bg-[var(--bg-surface-raised)] rounded-2xl border border-[var(--border-default)] hover:border-[var(--color-primary)] transition-colors group text-center">
+              <div class="w-12 h-12 bg-[var(--bg-surface)] rounded-full flex items-center justify-center mx-auto mb-4 text-[var(--color-primary)] group-hover:scale-110 transition-transform">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -208,8 +185,8 @@ const gear = [
                   )}
                 </svg>
               </div>
-              <h3 class="font-bold text-[var(--color-text-primary)] mb-1">{item.name}</h3>
-              <p class="text-sm text-[var(--color-text-secondary)]">{item.category}</p>
+              <h3 class="font-bold text-[var(--text-primary)] mb-1">{item.name}</h3>
+              <p class="text-sm text-[var(--text-secondary)]">{item.category}</p>
             </div>
           ))
         }
