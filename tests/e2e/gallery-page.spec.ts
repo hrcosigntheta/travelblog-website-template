@@ -47,6 +47,28 @@ test.describe('Gallery Page', () => {
     expect(schema.image.length).toBeGreaterThan(0);
   });
 
+  test('should trigger download modal from lightbox', async ({ page }) => {
+    const gallery = page.getByTestId('photo-gallery');
+    const firstImage = gallery.getByRole('button', { name: /View full size/ }).first();
+    await firstImage.click();
+
+    const lightbox = page.getByRole('dialog', { name: /Image lightbox/i });
+    await expect(lightbox).toBeVisible();
+
+    const downloadButton = lightbox.getByLabel('Download image');
+    await downloadButton.click();
+
+    // Verify modal appears
+    // The demo modal has role dialog or just text "Demo Link Intercepted"
+    await expect(page.getByText('Demo Link Intercepted')).toBeVisible();
+    await expect(page.getByText('Download: ')).toBeVisible();
+
+    // Close modal
+    const closeModal = page.getByRole('button', { name: 'Close', exact: true });
+    await closeModal.click();
+    await expect(page.getByText('Demo Link Intercepted')).not.toBeVisible();
+  });
+
   test('should filter images by category', async ({ page }) => {
     const gallery = page.getByTestId('photo-gallery');
 

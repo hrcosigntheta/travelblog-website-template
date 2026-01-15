@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { ImageWithFallback } from './ImageWithFallback';
+import { openDemoModal } from '../store/demo-modal';
 
 export interface GalleryImage {
   src: string;
@@ -55,6 +56,29 @@ export const Lightbox: React.FC<LightboxProps> = ({
     if (isRightSwipe) onPrev();
   };
 
+  const handleDownload = () => {
+    openDemoModal({
+      url: currentImage.src,
+      label: `Download: ${currentImage.caption || 'Image'}`,
+      category: 'download',
+    });
+  };
+
+  // Preload adjacent images
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const preloadImage = (index: number) => {
+      if (index >= 0 && index < images.length) {
+        const img = new Image();
+        img.src = images[index].src;
+      }
+    };
+
+    preloadImage((currentIndex + 1) % images.length);
+    preloadImage((currentIndex - 1 + images.length) % images.length);
+  }, [currentIndex, isOpen, images]);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!isOpen) return;
@@ -87,27 +111,52 @@ export const Lightbox: React.FC<LightboxProps> = ({
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
     >
-      {/* Close Button */}
-      <button
-        onClick={onClose}
-        className="absolute top-4 right-4 z-50 p-2 text-white/70 hover:text-white transition-colors rounded-full hover:bg-white/10"
-        aria-label="Close lightbox"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="32"
-          height="32"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
+      <div className="absolute top-4 right-4 z-50 flex gap-2">
+        {/* Download Button */}
+        <button
+          onClick={handleDownload}
+          className="p-2 text-white/70 hover:text-white transition-colors rounded-full hover:bg-white/10"
+          aria-label="Download image"
         >
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
-        </svg>
-      </button>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+        </button>
+
+        {/* Close Button */}
+        <button
+          onClick={onClose}
+          className="p-2 text-white/70 hover:text-white transition-colors rounded-full hover:bg-white/10"
+          aria-label="Close lightbox"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
 
       {/* Navigation Buttons */}
       {images.length > 1 && (
