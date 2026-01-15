@@ -111,4 +111,19 @@ describe('PhotoGallery Component', () => {
     fireEvent.keyDown(window, { key: 'Escape' });
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   });
+
+  it('sets priority loading for the first few images', () => {
+    render(<PhotoGallery images={Array(10).fill({ src: '/img.jpg', alt: 'Test' })} />);
+    const images = screen.getAllByTestId('mock-image');
+
+    // First image: eager loading + high fetch priority
+    expect(images[0]).toHaveAttribute('loading', 'eager');
+    expect(images[0]).toHaveAttribute('fetchpriority', 'high');
+
+    // 6th image (index 5): eager loading
+    expect(images[5]).toHaveAttribute('loading', 'eager');
+
+    // 7th image (index 6): lazy loading
+    expect(images[6]).toHaveAttribute('loading', 'lazy');
+  });
 });

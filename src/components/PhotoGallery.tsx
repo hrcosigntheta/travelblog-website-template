@@ -72,6 +72,8 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({ images, className = 
               alt={image.alt}
               placeholderSrc={image.placeholderSrc}
               className="w-full h-auto transform transition-transform duration-700 group-hover:scale-105"
+              loading={index < 6 ? 'eager' : 'lazy'}
+              fetchPriority={index === 0 ? 'high' : 'auto'}
             />
 
             {/* Hover Overlay with Info */}

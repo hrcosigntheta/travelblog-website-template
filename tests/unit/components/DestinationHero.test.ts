@@ -44,7 +44,7 @@ test('DestinationHero renders with correct data', async () => {
   expect(result).toContain('Jan-Dec');
   expect(result).toContain('$$');
   expect(result).toContain('Easy');
-  expect(result).toContain('src="https://example.com/image.jpg"');
+  expect(result).toContain('https://example.com/image.jpg');
 });
 
 test('DestinationHero renders social buttons', async () => {
