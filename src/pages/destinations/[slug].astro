@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import DestinationHero from '../../components/DestinationHero.astro';
 import ItineraryTimeline from '../../components/ItineraryTimeline';
-import MapWithMarkers from '../../components/MapWithMarkers';
+import LazyMap from '../../components/LazyMap';
 import PracticalInfo from '../../components/PracticalInfo';
 import { PhotoGallery } from '../../components/PhotoGallery';
 import { destinations } from '../../data/destinations';
@@ -259,7 +259,7 @@ const schema = JSON.stringify(generateDestinationSchema(destination, Astro.url))
       <div
         class="h-[500px] rounded-[var(--radius-lg)] overflow-hidden shadow-md border border-[var(--border-subtle)]"
       >
-        <MapWithMarkers
+        <LazyMap
           client:only="react"
           destinations={[destination]}
           center={[destination.coordinates.lat, destination.coordinates.lng]}

@@ -34,7 +34,16 @@ const stats = [
   <div class="absolute inset-0 z-0">
     <img
       src={destination.image}
-      alt={destination.title}
+      srcset={`
+        ${destination.image}?w=640&q=80&fm=webp 640w,
+        ${destination.image}?w=768&q=80&fm=webp 768w,
+        ${destination.image}?w=1024&q=80&fm=webp 1024w,
+        ${destination.image}?w=1280&q=80&fm=webp 1280w,
+        ${destination.image}?w=1536&q=80&fm=webp 1536w,
+        ${destination.image}?w=1920&q=80&fm=webp 1920w
+      `}
+      sizes="100vw"
+      alt=""
       class="w-full h-full object-cover"
       fetchpriority="high"
     />

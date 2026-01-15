@@ -1,5 +1,5 @@
 ---
-import MapWithMarkers from './MapWithMarkers';
+import LazyMap from './LazyMap';
 import { destinations } from '../data/destinations';
 
 interface Props {
@@ -55,7 +55,7 @@ const {
     <div
       class="h-[500px] w-full rounded-[var(--radius-lg)] overflow-hidden shadow-[var(--shadow-lg)] border border-[var(--border-default)]"
     >
-      <MapWithMarkers client:only="react" destinations={destinations} className="h-full w-full" />
+      <LazyMap client:only="react" destinations={destinations} className="h-full w-full" />
     </div>
   </div>
 </section>

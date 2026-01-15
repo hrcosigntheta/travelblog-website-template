@@ -22,6 +22,7 @@ export default defineConfig({
     service: {
       entrypoint: 'astro/assets/services/sharp',
     },
+    domains: ['images.unsplash.com'],
   },
 
   vite: {
