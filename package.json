@@ -22,6 +22,7 @@
     "test:run": "vitest run",
     "images:fetch": "bun run scripts/fetch-placeholder-images.ts",
     "images:validate": "bun run scripts/validate-image-diversity.ts",
+    "images:verify": "bun run scripts/verify-image-processing.ts",
     "prepare": "husky"
   },
   "lint-staged": {

@@ -24,4 +24,10 @@ To validate image diversity and placeholders:
 bun run images:validate
 ```
 
+To verify image processing pipeline (Sharp/ThumbHash):
+
+```bash
+bun run images:verify
+```
+
 This project was initialized using `bun init`.
