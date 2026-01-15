@@ -48,7 +48,7 @@ export default function ItineraryActivity({
         <div className="flex-1 space-y-2">
           <div className="flex items-baseline gap-2">
             {time && (
-              <span className="text-[length:var(--text-sm)] font-bold text-[var(--color-secondary)]">
+              <span className="text-[length:var(--text-sm)] font-bold text-[var(--color-primary)]">
                 {time}
               </span>
             )}

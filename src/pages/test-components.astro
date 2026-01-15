@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SearchFilter from '../components/SearchFilter';
+import ItineraryTimeline from '../components/ItineraryTimeline';
+import { PhotoGallery } from '../components/PhotoGallery';
+import type { FilterConfig } from '../types/components';
+
+const mockDays = [
+  {
+    title: 'Day 1: Arrival',
+    activities: [
+      { title: 'Airport Transfer', time: '10:00 AM', description: 'Pick up from airport.' },
+      { title: 'Hotel Check-in', time: '12:00 PM', duration: '1 hour' },
+    ],
+  },
+  {
+    title: 'Day 2: Exploration',
+    activities: [{ title: 'City Tour', time: '09:00 AM', tips: 'Wear comfortable shoes.' }],
+  },
+];
+
+const mockPhotos = [
+  {
+    src: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e',
+    alt: 'Beach',
+    width: 800,
+    height: 600,
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1540206351-d6465b3ac5c1',
+    alt: 'Mountain',
+    width: 800,
+    height: 600,
+  },
+];
+
+const mockFilters: FilterConfig[] = [
+  {
+    id: 'category',
+    label: 'Category',
+    options: [
+      { value: 'beach', label: 'Beach', count: 5 },
+      { value: 'mountain', label: 'Mountain', count: 3 },
+    ],
+    type: 'checkbox',
+  },
+];
+---
+
+<BaseLayout title="Components Accessibility Test">
+  <main class="container mx-auto px-4 py-8 space-y-12">
+    <h1 class="text-3xl font-bold mb-8">Component Library Test</h1>
+
+    <section aria-labelledby="search-filter-heading">
+      <h2 id="search-filter-heading" class="text-2xl font-bold mb-4">SearchFilter</h2>
+      <SearchFilter
+        client:load
+        searchValue=""
+        onSearchChange={() => {}}
+        availableFilters={mockFilters}
+        activeFilters={{}}
+        onFilterChange={() => {}}
+        onClearAll={() => {}}
+      />
+    </section>
+
+    <section aria-labelledby="timeline-heading">
+      <h2 id="timeline-heading" class="text-2xl font-bold mb-4">ItineraryTimeline</h2>
+      <ItineraryTimeline days={mockDays} client:visible />
+    </section>
+
+    <section aria-labelledby="gallery-heading">
+      <h2 id="gallery-heading" class="text-2xl font-bold mb-4">PhotoGallery</h2>
+      <PhotoGallery images={mockPhotos} client:visible />
+    </section>
+  </main>
+</BaseLayout>

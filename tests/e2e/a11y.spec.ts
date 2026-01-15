@@ -12,4 +12,13 @@ test.describe('Accessibility', () => {
     // Check if there are any violations
     expect(results.violations).toEqual([]);
   });
+
+  test('component library page should not have accessibility violations', async ({
+    page,
+  }, testInfo) => {
+    await page.goto('/test-components');
+    await page.waitForLoadState('networkidle');
+    const results = await checkA11y(page, testInfo);
+    expect(results.violations).toEqual([]);
+  });
 });
