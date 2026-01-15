@@ -1,0 +1,201 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { ImageWithFallback } from '../components/ImageWithFallback';
+
+const title = 'About Us | Philippines Travel Blog';
+const description =
+  'Meet the explorers behind the guide. Learn about our travel philosophy, gear, and mission to showcase the Philippines.';
+
+const stats = [
+  { label: 'Islands Visited', value: '45+' },
+  { label: 'Years Traveling', value: '7' },
+  { label: 'Provinces Explored', value: '32' },
+  { label: 'Photo Stories', value: '500+' },
+];
+
+const gear = [
+  { name: 'Sony A7IV', category: 'Camera', icon: 'camera' },
+  { name: 'DJI Mavic 3', category: 'Drone', icon: 'aperture' },
+  { name: 'GoPro Hero 11', category: 'Action', icon: 'video' },
+  { name: 'Osprey 40L', category: 'Backpack', icon: 'briefcase' },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  {/* Hero Section */}
+  <section class="relative h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <ImageWithFallback
+        src="/images/about-hero.jpg"
+        alt="Travel blogger looking at a landscape"
+        className="w-full h-full object-cover"
+        loading="eager"
+        client:load
+      />
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-[var(--color-surface)]"
+      >
+      </div>
+    </div>
+    <div class="container mx-auto px-4 relative z-10 text-center">
+      <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 drop-shadow-lg">
+        Exploring the Pearl of the Orient
+      </h1>
+      <p class="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto drop-shadow-md">
+        Sharing stories, guides, and inspiration from 7,641 islands.
+      </p>
+    </div>
+  </section>
+
+  {/* Bio Section */}
+  <section class="py-20 bg-[var(--color-surface)]">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row items-center gap-12">
+        <div class="w-full md:w-1/2">
+          <div
+            class="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500"
+          >
+            <ImageWithFallback
+              src="/images/author-portrait.jpg"
+              alt="Portrait of the travel blogger"
+              className="w-full h-full object-cover"
+              client:visible
+            />
+          </div>
+        </div>
+        <div class="w-full md:w-1/2">
+          <span class="text-[var(--color-primary)] font-bold tracking-wider uppercase mb-2 block"
+            >Our Story</span
+          >
+          <h2 class="text-3xl md:text-4xl font-bold text-[var(--color-text-primary)] mb-6">
+            Hi, I'm the Explorer
+          </h2>
+          <div class="prose prose-lg text-[var(--color-text-secondary)]">
+            <p class="mb-4">
+              It started with a single backpack and a one-way ticket to Cebu. Seven years later, I'm
+              still discovering hidden lagoons, mountain peaks, and cultural treasures across the
+              Philippines.
+            </p>
+            <p class="mb-4">
+              My mission is simple: to show you that the Philippines is more than just Boracay and
+              Palawan. There are thousands of islands waiting to be explored, each with its own
+              story, flavor, and rhythm.
+            </p>
+            <p>
+              Whether you're a luxury traveler or a budget backpacker, this blog is your guide to
+              authentic experiences, responsible tourism, and unforgettable memories.
+            </p>
+          </div>
+
+          <div class="mt-8 grid grid-cols-2 gap-4">
+            {
+              stats.map((stat) => (
+                <div class="p-4 bg-[var(--color-surface-elevated)] rounded-xl border border-[var(--color-border)]">
+                  <div class="text-3xl font-bold text-[var(--color-primary)]">{stat.value}</div>
+                  <div class="text-sm text-[var(--color-text-secondary)]">{stat.label}</div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Philosophy Section */}
+  <section class="py-20 bg-[var(--color-surface-raised)] border-y border-[var(--color-border)]">
+    <div class="container mx-auto px-4 text-center max-w-4xl">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="48"
+        height="48"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="mx-auto mb-6 text-[var(--color-primary)]"
+      >
+        <circle cx="12" cy="12" r="10"></circle>
+        <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+      </svg>
+      <h2 class="text-3xl md:text-4xl font-bold text-[var(--color-text-primary)] mb-8">
+        Travel Philosophy
+      </h2>
+      <p class="text-xl text-[var(--color-text-secondary)] leading-relaxed italic">
+        "We believe in slow travel, respecting local cultures, and leaving places better than we
+        found them. It's not about checking items off a bucket list, but about the connections we
+        make and the understanding we gain along the way."
+      </p>
+    </div>
+  </section>
+
+  {/* Gear Section */}
+  <section class="py-20 bg-[var(--color-surface)]">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <span class="text-[var(--color-primary)] font-bold tracking-wider uppercase mb-2 block"
+          >What's in the bag</span
+        >
+        <h2 class="text-3xl md:text-4xl font-bold text-[var(--color-text-primary)]">
+          Essential Gear
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {
+          gear.map((item) => (
+            <div class="p-6 bg-[var(--color-surface-elevated)] rounded-2xl border border-[var(--color-border)] hover:border-[var(--color-primary)] transition-colors group text-center">
+              <div class="w-12 h-12 bg-[var(--color-surface)] rounded-full flex items-center justify-center mx-auto mb-4 text-[var(--color-primary)] group-hover:scale-110 transition-transform">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  {item.icon === 'camera' && (
+                    <>
+                      <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+                      <circle cx="12" cy="13" r="4" />
+                    </>
+                  )}
+                  {item.icon === 'aperture' && (
+                    <>
+                      <circle cx="12" cy="12" r="10" />
+                      <line x1="14.31" y1="8" x2="20.05" y2="17.94" />
+                      <line x1="9.69" y1="8" x2="21.17" y2="8" />
+                      <line x1="7.38" y1="12" x2="13.12" y2="2.06" />
+                      <line x1="9.69" y1="16" x2="3.95" y2="6.06" />
+                      <line x1="14.31" y1="16" x2="2.83" y2="16" />
+                      <line x1="16.62" y1="12" x2="10.88" y2="21.94" />
+                    </>
+                  )}
+                  {item.icon === 'video' && (
+                    <>
+                      <polygon points="23 7 16 12 23 17 23 7" />
+                      <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
+                    </>
+                  )}
+                  {item.icon === 'briefcase' && (
+                    <>
+                      <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                    </>
+                  )}
+                </svg>
+              </div>
+              <h3 class="font-bold text-[var(--color-text-primary)] mb-1">{item.name}</h3>
+              <p class="text-sm text-[var(--color-text-secondary)]">{item.category}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>
