@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
+import { useStore } from '@nanostores/react';
 import { useTranslations } from '../i18n/utils';
+import { themeStore } from '../store/theme';
 import type { ui } from '../i18n/ui';
 
 export interface MapWrapperProps {
@@ -83,11 +85,34 @@ export default function MapWrapper({
   lang = 'en',
 }: MapWrapperProps) {
   const [isMounted, setIsMounted] = useState(false);
+  const theme = useStore(themeStore);
+  const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>('light');
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (theme === 'system') {
+      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setResolvedTheme(mediaQuery.matches ? 'dark' : 'light');
+
+      const handler = (e: MediaQueryListEvent) => {
+        setResolvedTheme(e.matches ? 'dark' : 'light');
+      };
+      mediaQuery.addEventListener('change', handler);
+      return () => mediaQuery.removeEventListener('change', handler);
+    } else {
+      setResolvedTheme(theme);
+    }
+  }, [theme]);
+
+  const tileLayerUrl =
+    resolvedTheme === 'dark'
+      ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
+      : 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
 
   if (!isMounted) {
     return <MapSkeleton className={className} lang={lang} />;
@@ -103,8 +128,8 @@ export default function MapWrapper({
           className="h-full w-full rounded-lg"
         >
           <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+            url={tileLayerUrl}
           />
           {children}
         </MapContainer>
