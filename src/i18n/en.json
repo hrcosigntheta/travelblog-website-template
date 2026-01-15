@@ -1,0 +1,37 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "readMore": "Read more",
+    "viewAll": "View all",
+    "back": "Back"
+  },
+  "nav": {
+    "home": "Home",
+    "destinations": "Destinations",
+    "gallery": "Gallery",
+    "itineraries": "Itineraries",
+    "about": "About",
+    "contact": "Contact",
+    "search": "Search"
+  },
+  "footer": {
+    "copyright": "© {year} Travel Blog. All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "followUs": "Follow Us"
+  },
+  "home": {
+    "heroTitle": "Explore the World",
+    "heroSubtitle": "Discover hidden gems and unforgettable experiences",
+    "featuredDestinations": "Featured Destinations",
+    "latestStories": "Latest Stories",
+    "newsletterTitle": "Join the Adventure",
+    "newsletterDesc": "Get travel tips and inspiration delivered to your inbox."
+  },
+  "destinations": {
+    "filter": "Filter",
+    "categories": "Categories",
+    "all": "All"
+  }
+}
