@@ -58,7 +58,7 @@ const { title, tagline, image, primaryAction } = Astro.props;
       primaryAction && (
         <a
           href={primaryAction.href}
-          class="inline-flex items-center justify-center h-12 px-8 rounded-[var(--radius-md)] bg-[var(--color-primary)] text-white font-semibold uppercase tracking-wide transition-transform hover:scale-105 hover:bg-[var(--color-primary-hover)] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+          class="inline-flex items-center justify-center h-12 px-8 rounded-[var(--radius-md)] bg-[var(--color-primary)] text-[var(--color-btn-primary-text)] font-semibold uppercase tracking-wide transition-transform hover:scale-105 hover:bg-[var(--color-primary-hover)] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
         >
           {primaryAction.label}
         </a>

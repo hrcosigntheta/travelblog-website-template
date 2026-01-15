@@ -162,6 +162,8 @@
     --nav-bg: rgba(255, 255, 255, 0.8);
     --nav-text: var(--text-primary);
     --nav-border: transparent;
+
+    --color-text-rating: #b45309; /* amber-700 */
   }
 
   [data-theme='dark'] {
@@ -170,7 +172,7 @@
     --bg-surface-raised: #2a3855;
 
     --text-primary: #f8fafc;
-    --text-secondary: #94a3b8;
+    --text-secondary: #e2e8f0;
     --text-inverse: var(--palette-navy-900);
 
     --color-primary: #4fd1c5;
@@ -203,6 +205,8 @@
     --nav-bg: rgba(15, 23, 42, 0.8);
     --nav-text: var(--text-primary);
     --nav-border: var(--border-subtle);
+
+    --color-text-rating: #fbbf24; /* amber-400 */
   }
 
   body {

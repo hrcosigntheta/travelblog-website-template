@@ -38,7 +38,7 @@ export default function QuickSearch({
         </div>
         <button
           onClick={handleSearch}
-          className="h-[48px] px-8 bg-[var(--color-primary)] text-white font-semibold rounded-[var(--radius-md)] hover:bg-[var(--color-primary-hover)] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] focus-visible:ring-offset-2"
+          className="h-[48px] px-8 bg-[var(--color-primary)] text-[var(--color-btn-primary-text)] font-semibold rounded-[var(--radius-md)] hover:bg-[var(--color-primary-hover)] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] focus-visible:ring-offset-2"
         >
           Search
         </button>

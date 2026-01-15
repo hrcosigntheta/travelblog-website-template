@@ -101,7 +101,7 @@ export const ContactForm: React.FC = () => {
 
       <button
         type="submit"
-        className="w-full md:w-auto px-8 py-3 rounded-[var(--radius-md)] bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary-hover)] transition-colors font-bold shadow-lg shadow-[var(--color-primary)]/20"
+        className="w-full md:w-auto px-8 py-3 rounded-[var(--radius-md)] bg-[var(--color-primary)] text-[var(--color-btn-primary-text)] hover:bg-[var(--color-primary-hover)] transition-colors font-bold shadow-lg shadow-[var(--color-primary)]/20"
       >
         Send Message
       </button>

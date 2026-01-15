@@ -84,7 +84,7 @@ export default function SearchFilter({
           </svg>
           Filters
           {activeFilterCount > 0 && (
-            <span className="ml-1 bg-[var(--color-primary)] text-white text-xs px-2 py-0.5 rounded-full">
+            <span className="ml-1 bg-[var(--color-primary)] text-[var(--color-btn-primary-text)] text-xs px-2 py-0.5 rounded-full">
               {activeFilterCount}
             </span>
           )}

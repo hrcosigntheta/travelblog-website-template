@@ -88,7 +88,7 @@ const NewsletterSignup: React.FC = () => {
             </div>
             <button
               type="submit"
-              className="h-12 px-8 rounded-[var(--radius-md)] bg-[var(--color-primary)] text-white font-semibold hover:bg-[var(--color-primary-hover)] transition-colors whitespace-nowrap shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 active:translate-y-0"
+              className="h-12 px-8 rounded-[var(--radius-md)] bg-[var(--color-primary)] text-[var(--color-btn-primary-text)] font-semibold hover:bg-[var(--color-primary-hover)] transition-colors whitespace-nowrap shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 active:translate-y-0"
             >
               Subscribe
             </button>

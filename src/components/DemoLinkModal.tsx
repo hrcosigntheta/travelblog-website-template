@@ -125,7 +125,7 @@ export const DemoLinkModal: React.FC = () => {
             </button>
             <button
               onClick={handleCopy}
-              className="flex-1 px-4 py-2 rounded-[var(--radius-md)] bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary-hover)] transition-colors font-medium flex items-center justify-center gap-2"
+              className="flex-1 px-4 py-2 rounded-[var(--radius-md)] bg-[var(--color-primary)] text-[var(--color-btn-primary-text)] hover:bg-[var(--color-primary-hover)] transition-colors font-medium flex items-center justify-center gap-2"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

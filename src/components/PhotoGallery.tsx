@@ -48,8 +48,8 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({ images, className = 
               }}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                 selectedCategory === cat
-                  ? 'bg-primary text-white shadow-md transform scale-105'
-                  : 'bg-gray-100 dark:bg-gray-800 text-text-secondary hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-text-primary'
+                  ? 'bg-primary text-[var(--color-btn-primary-text)] shadow-md transform scale-105'
+                  : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-text-primary'
               }`}
             >
               {cat as string}
