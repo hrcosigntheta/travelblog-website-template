@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { ImageWithFallback } from '../components/ImageWithFallback';
 import { BloggerHero, type SocialLink } from '../components/BloggerHero';
 import { TravelPhilosophy } from '../components/TravelPhilosophy';
+import { TravelStats } from '../components/TravelStats';
 
 const title = 'About MasuRii | Philippine Travel Blog';
 const description =
@@ -31,6 +32,15 @@ const stats = [
   { label: 'Years Traveling', value: '7' },
   { label: 'Provinces Explored', value: '32' },
   { label: 'Photo Stories', value: '500+' },
+];
+
+const travelStats = [
+  { label: 'Countries Visited', value: 12, icon: 'globe' as const },
+  { label: 'Destinations', value: 81, icon: 'map' as const },
+  { label: 'Islands Visited', value: 45, suffix: '+', icon: 'compass' as const },
+  { label: 'Years Traveling', value: 7, icon: 'calendar' as const },
+  { label: 'Photos Taken', value: 15000, suffix: '+', icon: 'camera' as const },
+  { label: 'Km Traveled', value: 50000, suffix: '+', icon: 'navigation' as const },
 ];
 
 const socialLinks: SocialLink[] = [
@@ -107,6 +117,9 @@ const gear = [
     missionStatement="My mission is to promote responsible tourism and help you discover the authentic beauty of the Philippines, one island at a time."
     client:visible
   />
+
+  {/* Travel Stats Section */}
+  <TravelStats stats={travelStats} client:visible />
 
   {/* Gear Section */}
   <section class="py-20 bg-[var(--bg-surface)]">
