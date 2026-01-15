@@ -70,9 +70,11 @@
     --palette-coral-50: #fdf4f1;
     --palette-coral-500: #e29578;
     --palette-coral-600: #d07d5d;
+    --palette-coral-700: #9a5035;
 
     /* Jungle Green */
     --palette-jungle-500: #83c5be;
+    --palette-jungle-700: #35615d;
 
     /* Midnight Navy */
     --palette-navy-900: #0f172a;
@@ -132,6 +134,8 @@
     --color-primary: var(--palette-ocean-500);
     --color-primary-hover: var(--palette-ocean-600);
     --color-secondary: var(--palette-coral-500);
+    --color-secondary-text: var(--palette-coral-700);
+    --color-jungle-text: var(--palette-jungle-700);
 
     --border-subtle: var(--palette-neutral-200);
     --border-default: var(--palette-neutral-200);
@@ -176,6 +180,8 @@
     --color-primary: #4fd1c5;
     --color-primary-hover: #38b2ac;
     --color-secondary: #f6ad55;
+    --color-secondary-text: #f6ad55;
+    --color-jungle-text: var(--palette-jungle-500);
 
     --border-subtle: #334155;
     --border-default: #334155;

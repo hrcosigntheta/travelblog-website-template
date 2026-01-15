@@ -15,9 +15,9 @@ export const TagBadge: React.FC<TagBadgeProps> = ({
   const variantStyles: Record<TagBadgeVariant, string> = {
     default: 'bg-background-surface border border-border-default text-text-secondary',
     category: 'bg-primary/10 text-primary border border-primary/20',
-    activity: 'bg-secondary/10 text-secondary border border-secondary/20',
+    activity: 'bg-secondary/10 text-[var(--color-secondary-text)] border border-secondary/20',
     difficulty: 'bg-background-raised text-text-primary border border-border-default',
-    budget: 'bg-jungle/10 text-jungle border border-jungle/20',
+    budget: 'bg-jungle/10 text-[var(--color-jungle-text)] border border-jungle/20',
   };
 
   const clickableStyles = onClick

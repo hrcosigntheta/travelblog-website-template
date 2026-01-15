@@ -3,7 +3,39 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import SearchFilter from '../components/SearchFilter';
 import ItineraryTimeline from '../components/ItineraryTimeline';
 import { PhotoGallery } from '../components/PhotoGallery';
+import DestinationCard from '../components/DestinationCard.astro';
+import MapWrapper from '../components/MapWrapper';
+import NewsletterSignup from '../components/NewsletterSignup';
+import { TagBadge } from '../components/TagBadge';
 import type { FilterConfig } from '../types/components';
+import type { Destination } from '../data/destinations';
+
+const mockDestination: Destination = {
+  id: 'test-dest',
+  slug: 'test-dest',
+  title: 'Test Destination',
+  description: 'A beautiful place for testing.',
+  region: 'Test Region',
+  image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e',
+  rating: 4.8,
+  tags: ['Beach', 'Relaxation'],
+  featured: true,
+  images: ['https://images.unsplash.com/photo-1507525428034-b723cf961d3e'],
+  coordinates: { lat: 10, lng: 10 },
+  stats: {
+    bestTime: 'Jan-Apr',
+    budget: '$$',
+    difficulty: 'Easy',
+  },
+  content: '<p>Test content</p>',
+  highlights: ['Highlight 1', 'Highlight 2'],
+  itinerary: [],
+  practicalInfo: {
+    gettingThere: 'Fly there',
+    accommodation: 'Stay there',
+    tips: 'Be careful',
+  },
+};
 
 const mockDays = [
   {
@@ -72,6 +104,35 @@ const mockFilters: FilterConfig[] = [
     <section aria-labelledby="gallery-heading">
       <h2 id="gallery-heading" class="text-2xl font-bold mb-4">PhotoGallery</h2>
       <PhotoGallery images={mockPhotos} client:visible />
+    </section>
+
+    <section aria-labelledby="card-heading">
+      <h2 id="card-heading" class="text-2xl font-bold mb-4">DestinationCard</h2>
+      <div class="max-w-sm">
+        <DestinationCard destination={mockDestination} />
+      </div>
+    </section>
+
+    <section aria-labelledby="badges-heading">
+      <h2 id="badges-heading" class="text-2xl font-bold mb-4">TagBadge</h2>
+      <div class="flex flex-wrap gap-4">
+        <TagBadge label="Default" variant="default" />
+        <TagBadge label="Category" variant="category" />
+        <TagBadge label="Activity" variant="activity" />
+        <TagBadge label="Difficulty" variant="difficulty" />
+        <TagBadge label="Budget" variant="budget" />
+        <TagBadge label="Clickable" variant="default" onClick={() => {}} client:visible />
+      </div>
+    </section>
+
+    <section aria-labelledby="newsletter-heading">
+      <h2 id="newsletter-heading" class="text-2xl font-bold mb-4">NewsletterSignup</h2>
+      <NewsletterSignup client:visible />
+    </section>
+
+    <section aria-labelledby="map-heading">
+      <h2 id="map-heading" class="text-2xl font-bold mb-4">MapWrapper</h2>
+      <MapWrapper client:only="react" />
     </section>
   </main>
 </BaseLayout>
