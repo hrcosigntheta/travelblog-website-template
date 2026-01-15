@@ -7,6 +7,7 @@ import PracticalInfo from '../../components/PracticalInfo';
 import { PhotoGallery } from '../../components/PhotoGallery';
 import { destinations } from '../../data/destinations';
 import type { Destination, ItineraryActivityData } from '../../data/destinations';
+import { RelatedDestinations } from '../../components/RelatedDestinations';
 
 export async function getStaticPaths() {
   return destinations.map((destination) => ({
@@ -59,6 +60,21 @@ const galleryImages =
     caption: destination.title, // We could add specific captions if data supported it
   })) || [];
 
+// Logic to find related destinations
+// 1. Same region
+// 2. Fallback to others if not enough
+let relatedDestinations = destinations.filter(
+  (d) => d.id !== destination.id && d.region === destination.region
+);
+
+if (relatedDestinations.length < 3) {
+  const others = destinations.filter(
+    (d) => d.id !== destination.id && d.region !== destination.region
+  );
+  // Simple shuffle or just take next available
+  relatedDestinations = [...relatedDestinations, ...others].slice(0, 3);
+}
+
 const pageTitle = `${destination.title} | Philippines Travel Blog`;
 const pageDescription = destination.description;
 ---
@@ -94,109 +110,113 @@ const pageDescription = destination.description;
       </div>
 
       <div class="lg:col-span-1">
-        <div
-          class="bg-[var(--bg-card)] border border-[var(--border-subtle)] rounded-[var(--radius-lg)] p-6 shadow-sm sticky top-24"
-        >
-          <h3 class="text-xl font-bold mb-6">Trip Essentials</h3>
-          <div class="space-y-6">
-            <div class="flex items-start gap-4">
-              <div
-                class="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-full text-blue-600 dark:text-blue-400"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  ><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"
-                  ></polyline></svg
+        <div class="sticky top-24 space-y-8">
+          <div
+            class="bg-[var(--bg-card)] border border-[var(--border-subtle)] rounded-[var(--radius-lg)] p-6 shadow-sm"
+          >
+            <h3 class="text-xl font-bold mb-6">Trip Essentials</h3>
+            <div class="space-y-6">
+              <div class="flex items-start gap-4">
+                <div
+                  class="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-full text-blue-600 dark:text-blue-400"
                 >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    ><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"
+                    ></polyline></svg
+                  >
+                </div>
+                <div>
+                  <span
+                    class="block text-sm font-bold text-[var(--text-secondary)] uppercase tracking-wide"
+                    >Best Time</span
+                  >
+                  <span class="text-[var(--text-primary)] font-medium"
+                    >{destination.stats.bestTime}</span
+                  >
+                </div>
               </div>
-              <div>
-                <span
-                  class="block text-sm font-bold text-[var(--text-secondary)] uppercase tracking-wide"
-                  >Best Time</span
-                >
-                <span class="text-[var(--text-primary)] font-medium"
-                  >{destination.stats.bestTime}</span
-                >
-              </div>
-            </div>
 
-            <div class="flex items-start gap-4">
-              <div
-                class="p-2 bg-green-100 dark:bg-green-900/30 rounded-full text-green-600 dark:text-green-400"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  ><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg
+              <div class="flex items-start gap-4">
+                <div
+                  class="p-2 bg-green-100 dark:bg-green-900/30 rounded-full text-green-600 dark:text-green-400"
                 >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    ><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+                    ></path></svg
+                  >
+                </div>
+                <div>
+                  <span
+                    class="block text-sm font-bold text-[var(--text-secondary)] uppercase tracking-wide"
+                    >Budget</span
+                  >
+                  <span class="text-[var(--text-primary)] font-medium"
+                    >{destination.stats.budget}</span
+                  >
+                </div>
               </div>
-              <div>
-                <span
-                  class="block text-sm font-bold text-[var(--text-secondary)] uppercase tracking-wide"
-                  >Budget</span
-                >
-                <span class="text-[var(--text-primary)] font-medium"
-                  >{destination.stats.budget}</span
-                >
-              </div>
-            </div>
 
-            <div class="flex items-start gap-4">
-              <div
-                class="p-2 bg-orange-100 dark:bg-orange-900/30 rounded-full text-orange-600 dark:text-orange-400"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  ><path d="M6.5 6.5l11 11M21 21l-1-1M3 3l1 1M21 3l-1 1M3 21l1-1M17 7v10M7 7v10"
-                  ></path></svg
+              <div class="flex items-start gap-4">
+                <div
+                  class="p-2 bg-orange-100 dark:bg-orange-900/30 rounded-full text-orange-600 dark:text-orange-400"
                 >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    ><path d="M6.5 6.5l11 11M21 21l-1-1M3 3l1 1M21 3l-1 1M3 21l1-1M17 7v10M7 7v10"
+                    ></path></svg
+                  >
+                </div>
+                <div>
+                  <span
+                    class="block text-sm font-bold text-[var(--text-secondary)] uppercase tracking-wide"
+                    >Difficulty</span
+                  >
+                  <span class="text-[var(--text-primary)] font-medium"
+                    >{destination.stats.difficulty}</span
+                  >
+                </div>
               </div>
-              <div>
-                <span
-                  class="block text-sm font-bold text-[var(--text-secondary)] uppercase tracking-wide"
-                  >Difficulty</span
-                >
-                <span class="text-[var(--text-primary)] font-medium"
-                  >{destination.stats.difficulty}</span
-                >
-              </div>
-            </div>
 
-            <div class="pt-6 border-t border-[var(--border-subtle)]">
-              <div class="flex flex-wrap gap-2">
-                {
-                  destination.tags.map((tag) => (
-                    <span class="px-3 py-1 bg-[var(--bg-surface-raised)] border border-[var(--border-subtle)] rounded-full text-sm text-[var(--text-secondary)]">
-                      {tag}
-                    </span>
-                  ))
-                }
+              <div class="pt-6 border-t border-[var(--border-subtle)]">
+                <div class="flex flex-wrap gap-2">
+                  {
+                    destination.tags.map((tag) => (
+                      <span class="px-3 py-1 bg-[var(--bg-surface-raised)] border border-[var(--border-subtle)] rounded-full text-sm text-[var(--text-secondary)]">
+                        {tag}
+                      </span>
+                    ))
+                  }
+                </div>
               </div>
             </div>
           </div>
+          <RelatedDestinations client:load destinations={relatedDestinations} />
         </div>
       </div>
     </section>
