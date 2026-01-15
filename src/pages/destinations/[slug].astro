@@ -1,0 +1,275 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import ItineraryTimeline from '../../components/ItineraryTimeline';
+import MapWithMarkers from '../../components/MapWithMarkers';
+import { PhotoGallery } from '../../components/PhotoGallery';
+import { destinations } from '../../data/destinations';
+import type { Destination, ItineraryActivityData } from '../../data/destinations';
+
+export async function getStaticPaths() {
+  return destinations.map((destination) => ({
+    params: { slug: destination.slug },
+    props: { destination },
+  }));
+}
+
+interface Props {
+  destination: Destination;
+}
+
+const { destination } = Astro.props;
+
+// Helper to map icon types to React Nodes (simple SVGs for now)
+const getIcon = (type?: string) => {
+  // We can return simple emoji or SVG strings for now as placeholders
+  // In a real app, these would be proper SVG components
+  switch (type) {
+    case 'transport':
+      return '✈️';
+    case 'food':
+      return '🍽️';
+    case 'activity':
+      return '🏄';
+    case 'nature':
+      return '🌴';
+    case 'relax':
+      return '🍹';
+    default:
+      return '📍';
+  }
+};
+
+// Transform itinerary data for the component
+const itineraryDays =
+  destination.itinerary?.map((day) => ({
+    title: day.title,
+    activities: day.activities.map((activity: ItineraryActivityData) => ({
+      ...activity,
+      icon: getIcon(activity.iconType),
+    })),
+  })) || [];
+
+// Transform images for the gallery
+const galleryImages =
+  destination.images?.map((src) => ({
+    src,
+    alt: destination.title,
+    caption: destination.title, // We could add specific captions if data supported it
+  })) || [];
+
+const pageTitle = `${destination.title} | Philippines Travel Blog`;
+const pageDescription = destination.description;
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <Hero
+    title={destination.title}
+    tagline={destination.region}
+    image={destination.image}
+    primaryAction={{ label: 'View Itinerary', href: '#itinerary' }}
+  />
+
+  <main class="container mx-auto px-4 py-16 space-y-20">
+    {/* Quick Stats & Highlights */}
+    <section class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+      <div class="lg:col-span-2 space-y-8">
+        <h2 class="text-3xl font-bold text-[var(--text-primary)]">About {destination.title}</h2>
+        <div
+          class="prose dark:prose-invert max-w-none text-lg text-[var(--text-secondary)]"
+          set:html={destination.content}
+        />
+
+        {
+          destination.highlights && (
+            <div class="mt-8">
+              <h3 class="text-xl font-bold mb-4">Highlights</h3>
+              <ul class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {destination.highlights.map((highlight) => (
+                  <li class="flex items-center gap-3 text-[var(--text-secondary)]">
+                    <span class="text-[var(--color-primary)]">✓</span>
+                    {highlight}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
+      </div>
+
+      <div class="lg:col-span-1">
+        <div
+          class="bg-[var(--bg-card)] border border-[var(--border-subtle)] rounded-[var(--radius-lg)] p-6 shadow-sm sticky top-24"
+        >
+          <h3 class="text-xl font-bold mb-6">Trip Essentials</h3>
+          <div class="space-y-6">
+            <div class="flex items-start gap-4">
+              <div
+                class="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-full text-blue-600 dark:text-blue-400"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"
+                  ></polyline></svg
+                >
+              </div>
+              <div>
+                <span
+                  class="block text-sm font-bold text-[var(--text-secondary)] uppercase tracking-wide"
+                  >Best Time</span
+                >
+                <span class="text-[var(--text-primary)] font-medium"
+                  >{destination.stats.bestTime}</span
+                >
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div
+                class="p-2 bg-green-100 dark:bg-green-900/30 rounded-full text-green-600 dark:text-green-400"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg
+                >
+              </div>
+              <div>
+                <span
+                  class="block text-sm font-bold text-[var(--text-secondary)] uppercase tracking-wide"
+                  >Budget</span
+                >
+                <span class="text-[var(--text-primary)] font-medium"
+                  >{destination.stats.budget}</span
+                >
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div
+                class="p-2 bg-orange-100 dark:bg-orange-900/30 rounded-full text-orange-600 dark:text-orange-400"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><path d="M6.5 6.5l11 11M21 21l-1-1M3 3l1 1M21 3l-1 1M3 21l1-1M17 7v10M7 7v10"
+                  ></path></svg
+                >
+              </div>
+              <div>
+                <span
+                  class="block text-sm font-bold text-[var(--text-secondary)] uppercase tracking-wide"
+                  >Difficulty</span
+                >
+                <span class="text-[var(--text-primary)] font-medium"
+                  >{destination.stats.difficulty}</span
+                >
+              </div>
+            </div>
+
+            <div class="pt-6 border-t border-[var(--border-subtle)]">
+              <div class="flex flex-wrap gap-2">
+                {
+                  destination.tags.map((tag) => (
+                    <span class="px-3 py-1 bg-[var(--bg-surface-raised)] border border-[var(--border-subtle)] rounded-full text-sm text-[var(--text-secondary)]">
+                      {tag}
+                    </span>
+                  ))
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* Photo Gallery */}
+    {
+      galleryImages.length > 0 && (
+        <section>
+          <h2 class="text-3xl font-bold mb-8 text-center">Photo Gallery</h2>
+          <PhotoGallery client:visible images={galleryImages} />
+        </section>
+      )
+    }
+
+    {/* Itinerary */}
+    {
+      itineraryDays.length > 0 && (
+        <section id="itinerary" class="scroll-mt-24">
+          <h2 class="text-3xl font-bold mb-8 text-center">Suggested Itinerary</h2>
+          <div class="max-w-4xl mx-auto">
+            <ItineraryTimeline client:visible days={itineraryDays} />
+          </div>
+        </section>
+      )
+    }
+
+    {/* Map */}
+    <section>
+      <h2 class="text-3xl font-bold mb-8 text-center">Location</h2>
+      <div
+        class="h-[500px] rounded-[var(--radius-lg)] overflow-hidden shadow-md border border-[var(--border-subtle)]"
+      >
+        <MapWithMarkers
+          client:visible
+          destinations={[destination]}
+          center={[destination.coordinates.lat, destination.coordinates.lng]}
+          zoom={12}
+          className="h-full w-full"
+        />
+      </div>
+    </section>
+
+    {/* Practical Info */}
+    {
+      destination.practicalInfo && (
+        <section class="bg-[var(--bg-surface-raised)] rounded-[var(--radius-xl)] p-8 md:p-12 border border-[var(--border-subtle)]">
+          <h2 class="text-3xl font-bold mb-8 text-center">Practical Information</h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+              <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                <span>✈️</span> Getting There
+              </h3>
+              <p class="text-[var(--text-secondary)]">{destination.practicalInfo.gettingThere}</p>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                <span>🏨</span> Where to Stay
+              </h3>
+              <p class="text-[var(--text-secondary)]">{destination.practicalInfo.accommodation}</p>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                <span>💡</span> Tips
+              </h3>
+              <p class="text-[var(--text-secondary)]">{destination.practicalInfo.tips}</p>
+            </div>
+          </div>
+        </section>
+      )
+    }
+  </main>
+</BaseLayout>

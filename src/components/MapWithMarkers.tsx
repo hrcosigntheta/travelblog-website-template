@@ -29,16 +29,18 @@ export default function MapWithMarkers({
     return 'default';
   };
 
-  // Mock coordinates map since mock data doesn't have lat/lng
-  // In a real app, Destination would have coordinates
-  const getCoordinates = (id: string): [number, number] => {
+  // Use destination coordinates if available, otherwise fall back to mock map
+  const getCoordinates = (dest: Destination): [number, number] => {
+    if (dest.coordinates) {
+      return [dest.coordinates.lat, dest.coordinates.lng];
+    }
     const coords: Record<string, [number, number]> = {
       '1': [11.1667, 119.3833], // El Nido
       '2': [9.9167, 126.05], // Siargao
       '3': [9.8167, 124.0667], // Bohol
       '4': [11.9674, 121.9248], // Boracay
     };
-    return coords[id] || [12.8797, 121.774];
+    return coords[dest.id] || [12.8797, 121.774];
   };
 
   return (
@@ -47,7 +49,7 @@ export default function MapWithMarkers({
         {destinations.map((dest) => (
           <MapMarker
             key={dest.id}
-            position={getCoordinates(dest.id)}
+            position={getCoordinates(dest)}
             title={dest.title}
             category={getCategory(dest.tags)}
             image={dest.image}
