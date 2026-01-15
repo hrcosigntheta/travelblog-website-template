@@ -21,6 +21,7 @@
     "test:lighthouse": "lhci autorun",
     "test:run": "vitest run",
     "images:fetch": "bun run scripts/fetch-placeholder-images.ts",
+    "images:validate": "bun run scripts/validate-image-diversity.ts",
     "prepare": "husky"
   },
   "lint-staged": {

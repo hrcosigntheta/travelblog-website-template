@@ -18,4 +18,10 @@ To populate placeholder images:
 bun run images:fetch
 ```
 
+To validate image diversity and placeholders:
+
+```bash
+bun run images:validate
+```
+
 This project was initialized using `bun init`.
