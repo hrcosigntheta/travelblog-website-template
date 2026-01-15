@@ -1,6 +1,9 @@
 ---
 import '../styles/global.css';
+import Navigation from '../components/Navigation';
+import Footer from '../components/Footer';
 import { DemoLinkModal } from '../components/DemoLinkModal';
+import { ui } from '../i18n/ui';
 
 interface Props {
   title: string;
@@ -17,6 +20,7 @@ const {
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const currentPath = Astro.url.pathname;
 ---
 
 <!doctype html>
@@ -74,7 +78,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   <body
     class="bg-background text-text-primary min-h-screen flex flex-col transition-colors duration-300"
   >
-    <slot />
+    <Navigation client:load currentPath={currentPath} lang={lang as keyof typeof ui} />
+
+    <main class="flex-grow pt-20">
+      <slot />
+    </main>
+
+    <Footer client:visible lang={lang as keyof typeof ui} />
 
     <DemoLinkModal client:idle />
 

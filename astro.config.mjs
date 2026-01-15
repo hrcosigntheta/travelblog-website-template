@@ -5,7 +5,9 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://travelblog-template.vercel.app', // Placeholder URL
   output: 'static',
+
   integrations: [react()],
 
   i18n: {
