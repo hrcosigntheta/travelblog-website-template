@@ -1,11 +1,20 @@
 import type { ItineraryDayProps } from './ItineraryDay';
 import ItineraryDay from './ItineraryDay';
 
+/**
+ * Props for the ItineraryTimeline component
+ */
 export interface ItineraryTimelineProps {
-  days: Omit<ItineraryDayProps, 'dayNumber'>[]; // dayNumber is auto-assigned
+  /** List of days to display (dayNumber is auto-assigned based on index) */
+  days: Omit<ItineraryDayProps, 'dayNumber'>[];
+  /** Additional CSS classes */
   className?: string;
 }
 
+/**
+ * A vertical timeline component for displaying travel itineraries.
+ * Automatically numbers days and handles layout.
+ */
 export default function ItineraryTimeline({ days, className = '' }: ItineraryTimelineProps) {
   return (
     <div className={`relative ${className}`}>

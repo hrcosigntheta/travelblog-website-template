@@ -2,13 +2,24 @@ import { useState } from 'react';
 import type { ItineraryActivityProps } from './ItineraryActivity';
 import ItineraryActivity from './ItineraryActivity';
 
+/**
+ * Props for the ItineraryDay component
+ */
 export interface ItineraryDayProps {
+  /** The day number (1, 2, 3...) */
   dayNumber: number;
+  /** Title/Theme of the day */
   title: string;
+  /** List of activities for this day */
   activities: ItineraryActivityProps[];
+  /** Whether the day details are expanded by default */
   defaultOpen?: boolean;
 }
 
+/**
+ * A collapsible section representing a single day in an itinerary.
+ * Contains a list of activities.
+ */
 export default function ItineraryDay({
   dayNumber,
   title,

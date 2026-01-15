@@ -1,6 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
-import SearchFilter, { type FilterConfig } from '../../../src/components/SearchFilter';
+import SearchFilter from '../../../src/components/SearchFilter';
+import type { FilterConfig } from '../../../src/types/components';
 
 describe('SearchFilter Component', () => {
   const mockFilterConfig: FilterConfig[] = [
