@@ -229,3 +229,27 @@
     }
   }
 }
+
+@layer components {
+  /* Leaflet Dark Mode Overrides */
+  [data-theme='dark'] .leaflet-popup-content-wrapper,
+  [data-theme='dark'] .leaflet-popup-tip {
+    background-color: var(--bg-surface);
+    color: var(--text-primary);
+  }
+
+  [data-theme='dark'] .leaflet-control-zoom a {
+    background-color: var(--bg-surface);
+    color: var(--text-primary);
+    border-color: var(--border-subtle);
+  }
+
+  [data-theme='dark'] .leaflet-control-zoom a:hover {
+    background-color: var(--bg-default);
+  }
+
+  /* Prevent white flash */
+  .leaflet-container {
+    background-color: var(--bg-default);
+  }
+}
