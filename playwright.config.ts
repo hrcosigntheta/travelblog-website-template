@@ -47,13 +47,51 @@ export default defineConfig({
       use: { ...devices['Desktop Safari'] },
     },
 
-    /* Test against mobile viewports. */
+    /* Responsive Viewports - Mobile */
     {
-      name: 'Mobile Chrome',
+      name: 'Mobile Small (320px)',
+      use: { ...devices['Pixel 5'], viewport: { width: 320, height: 568 } }, // Using Pixel 5 device props but overriding viewport
+    },
+    {
+      name: 'Mobile Medium (375px)',
+      use: { ...devices['iPhone SE'], viewport: { width: 375, height: 667 } },
+    },
+    {
+      name: 'Mobile Large (414px)',
+      use: { ...devices['iPhone 12 Pro Max'], viewport: { width: 414, height: 896 } },
+    },
+
+    /* Responsive Viewports - Tablet */
+    {
+      name: 'Tablet Portrait (768px)',
+      use: { ...devices['iPad Mini'], viewport: { width: 768, height: 1024 } },
+    },
+    {
+      name: 'Tablet Landscape (1024px)',
+      use: { ...devices['iPad Pro 11'], viewport: { width: 1024, height: 768 } },
+    },
+
+    /* Responsive Viewports - Desktop */
+    {
+      name: 'Desktop Standard (1280px)',
+      use: { ...devices['Desktop Chrome'], viewport: { width: 1280, height: 720 } },
+    },
+    {
+      name: 'Desktop Large (1440px)',
+      use: { ...devices['Desktop Chrome'], viewport: { width: 1440, height: 900 } },
+    },
+    {
+      name: 'Desktop Wide (1920px)',
+      use: { ...devices['Desktop Chrome'], viewport: { width: 1920, height: 1080 } },
+    },
+
+    /* Original Mobile Viewports (kept for reference or specific device checks) */
+    {
+      name: 'Pixel 5',
       use: { ...devices['Pixel 5'] },
     },
     {
-      name: 'Mobile Safari',
+      name: 'iPhone 12',
       use: { ...devices['iPhone 12'] },
     },
   ],
