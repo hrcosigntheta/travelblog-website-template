@@ -1,12 +1,38 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import QuickSearch from '../components/QuickSearch';
+import FeaturedDestinations from '../components/FeaturedDestinations.astro';
+import MapPreview from '../components/MapPreview.astro';
+import CategoriesShowcase from '../components/CategoriesShowcase.astro';
+import RecentAdventures from '../components/RecentAdventures.astro';
+import NewsletterSignup from '../components/NewsletterSignup';
+
+const heroImage = '/images/placeholders/beaches/beaches-1.jpg';
 ---
 
-<BaseLayout title="Travel Blog Website Template">
-  <section class="py-20 text-center">
-    <h1 class="text-4xl font-display font-bold mb-4">Travel Blog Website Template</h1>
-    <p class="text-lg text-[var(--color-text-secondary)]">
-      A high-performance, SEO-optimized travel blog template.
-    </p>
-  </section>
+<BaseLayout
+  title="TravelBlog - Explore the Philippines"
+  description="Discover the best destinations, tips, and adventures in the Philippines."
+>
+  <Hero
+    title="Discover the Philippines"
+    tagline="Explore pristine beaches, majestic mountains, and vibrant culture."
+    image={heroImage}
+    primaryAction={{ label: 'Start Exploring', href: '/destinations' }}
+  />
+
+  <div class="relative z-20 container mx-auto px-4 -mt-8 mb-16 sm:-mt-12 md:-mt-16">
+    <QuickSearch client:load className="max-w-4xl mx-auto shadow-xl" />
+  </div>
+
+  <FeaturedDestinations />
+
+  <CategoriesShowcase />
+
+  <MapPreview />
+
+  <RecentAdventures />
+
+  <NewsletterSignup client:visible />
 </BaseLayout>
