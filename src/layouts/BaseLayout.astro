@@ -10,6 +10,7 @@ interface Props {
   description?: string;
   image?: string;
   lang?: string;
+  schema?: string;
 }
 
 const {
@@ -17,6 +18,7 @@ const {
   description = 'A high-performance travel blog featuring immersive stories and guides.',
   image = '/images/og-default.jpg',
   lang = 'en',
+  schema,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -50,6 +52,8 @@ const currentPath = Astro.url.pathname;
     <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
     <title>{title}</title>
+
+    {schema && <script type="application/ld+json" set:html={schema} is:inline />}
 
     <script is:inline>
       // Immediate theme application to prevent FOUC

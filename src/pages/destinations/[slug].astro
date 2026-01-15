@@ -77,9 +77,29 @@ if (relatedDestinations.length < 3) {
 
 const pageTitle = `${destination.title} | Philippines Travel Blog`;
 const pageDescription = destination.description;
+
+const schema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'TouristDestination',
+  name: destination.title,
+  description: destination.description,
+  url: Astro.url.href,
+  image: destination.images?.map((img) => new URL(img, Astro.url).href),
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: destination.coordinates.lat,
+    longitude: destination.coordinates.lng,
+  },
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: destination.region,
+    addressCountry: 'PH',
+  },
+  touristType: destination.tags,
+});
 ---
 
-<BaseLayout title={pageTitle} description={pageDescription}>
+<BaseLayout title={pageTitle} description={pageDescription} schema={schema}>
   <DestinationHero destination={destination} />
 
   <main class="container mx-auto px-4 py-16 space-y-20">
