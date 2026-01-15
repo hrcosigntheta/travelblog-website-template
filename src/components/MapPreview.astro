@@ -1,0 +1,61 @@
+---
+import MapWithMarkers from './MapWithMarkers';
+import { destinations } from '../data/destinations';
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  ctaText?: string;
+  ctaLink?: string;
+}
+
+const {
+  title = 'Explore the Map',
+  subtitle = 'Find your next adventure across the islands.',
+  ctaText = 'Explore Full Map',
+  ctaLink = '/map',
+} = Astro.props;
+---
+
+<section class="py-16 bg-[var(--bg-surface)] border-y border-[var(--border-subtle)]">
+  <div class="container mx-auto px-4">
+    <div class="flex flex-col md:flex-row items-end justify-between mb-8 gap-4">
+      <div class="max-w-2xl">
+        <h2 class="text-3xl md:text-4xl font-bold mb-3 text-[var(--text-primary)]">
+          {title}
+        </h2>
+        <p class="text-[var(--text-secondary)] text-lg">
+          {subtitle}
+        </p>
+      </div>
+
+      <a
+        href={ctaLink}
+        class="inline-flex items-center px-6 py-3 rounded-[var(--radius-md)] border-2 border-[var(--color-primary)] text-[var(--color-primary)] font-semibold hover:bg-[var(--color-primary)] hover:text-white transition-colors"
+      >
+        {ctaText}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="ml-2"
+        >
+          <circle cx="12" cy="12" r="10"></circle>
+          <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+        </svg>
+      </a>
+    </div>
+
+    <div
+      class="h-[500px] w-full rounded-[var(--radius-lg)] overflow-hidden shadow-[var(--shadow-lg)] border border-[var(--border-default)]"
+    >
+      <MapWithMarkers client:only="react" destinations={destinations} className="h-full w-full" />
+    </div>
+  </div>
+</section>
