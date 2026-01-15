@@ -19,7 +19,13 @@
     "copyright": "© {year} Travel Blog. All rights reserved.",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
-    "followUs": "Follow Us"
+    "followUs": "Follow Us",
+    "bio": "Sharing stories of adventure, culture, and sustainable travel. Join us as we explore the hidden corners of the world.",
+    "explore": "Explore",
+    "company": "Company",
+    "newsletter": "Newsletter",
+    "newsletterPlaceholder": "Enter your email",
+    "subscribe": "Subscribe"
   },
   "home": {
     "heroTitle": "Explore the World",
