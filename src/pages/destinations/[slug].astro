@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import DestinationHero from '../../components/DestinationHero.astro';
 import ItineraryTimeline from '../../components/ItineraryTimeline';
 import MapWithMarkers from '../../components/MapWithMarkers';
+import PracticalInfo from '../../components/PracticalInfo';
 import { PhotoGallery } from '../../components/PhotoGallery';
 import { destinations } from '../../data/destinations';
 import type { Destination, ItineraryActivityData } from '../../data/destinations';
@@ -246,32 +247,6 @@ const pageDescription = destination.description;
     </section>
 
     {/* Practical Info */}
-    {
-      destination.practicalInfo && (
-        <section class="bg-[var(--bg-surface-raised)] rounded-[var(--radius-xl)] p-8 md:p-12 border border-[var(--border-subtle)]">
-          <h2 class="text-3xl font-bold mb-8 text-center">Practical Information</h2>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div>
-              <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
-                <span>✈️</span> Getting There
-              </h3>
-              <p class="text-[var(--text-secondary)]">{destination.practicalInfo.gettingThere}</p>
-            </div>
-            <div>
-              <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
-                <span>🏨</span> Where to Stay
-              </h3>
-              <p class="text-[var(--text-secondary)]">{destination.practicalInfo.accommodation}</p>
-            </div>
-            <div>
-              <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
-                <span>💡</span> Tips
-              </h3>
-              <p class="text-[var(--text-secondary)]">{destination.practicalInfo.tips}</p>
-            </div>
-          </div>
-        </section>
-      )
-    }
+    {destination.practicalInfo && <PracticalInfo client:visible info={destination.practicalInfo} />}
   </main>
 </BaseLayout>
