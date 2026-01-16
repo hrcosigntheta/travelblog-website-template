@@ -3,14 +3,17 @@
     "collect": {
       "staticDistDir": "./dist",
       "url": [
-        "http://localhost/",
-        "http://localhost/destinations/el-nido-palawan/",
-        "http://localhost/gallery/",
-        "http://localhost/about/",
-        "http://localhost/contact/",
-        "http://localhost/map/"
+        "http://localhost:4325/",
+        "http://localhost:4325/destinations/el-nido-palawan/",
+        "http://localhost:4325/gallery/",
+        "http://localhost:4325/about/",
+        "http://localhost:4325/contact/",
+        "http://localhost:4325/map/"
       ],
-      "numberOfRuns": 1
+      "numberOfRuns": 1,
+      "settings": {
+        "chromeFlags": "--no-sandbox --disable-setuid-sandbox"
+      }
     },
     "upload": {
       "target": "temporary-public-storage"
