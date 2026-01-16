@@ -1,10 +1,12 @@
 ---
 import { Picture, getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { ImageWithFallback } from '../components/ImageWithFallback';
 import { BloggerHero } from '../components/BloggerHero';
 import { TravelPhilosophy } from '../components/TravelPhilosophy';
 import { TravelStats } from '../components/TravelStats';
+import ReadingProgress from '../components/ReadingProgress';
 
 import { EquipmentShowcase } from '../components/EquipmentShowcase';
 import { TravelTimeline } from '../components/TravelTimeline';
@@ -13,6 +15,7 @@ import Breadcrumb from '../components/Breadcrumb.astro';
 
 import { bloggerProfile } from '../data/blogger';
 import { generatePersonSchema } from '../utils/schema';
+import { ROUTES } from '../config/paths';
 
 const title = `${bloggerProfile.name} | Philippine Travel Blog`;
 const description = bloggerProfile.shortBio;
@@ -32,7 +35,11 @@ const portraitImageLoader = images[portraitAssetPath];
 
 let optimizedPortrait = bloggerProfile.portraitSrc;
 if (portraitImageLoader) {
-  const img = await getImage({ src: (portraitImageLoader() as any), width: 400, height: 400 });
+  const img = await getImage({
+    src: (await portraitImageLoader()).default,
+    width: 400,
+    height: 400,
+  });
   optimizedPortrait = img.src;
 }
 
@@ -51,15 +58,16 @@ const equipmentItems = bloggerProfile.equipment;
 
 <BaseLayout title={title} description={description} schema={schema}>
   <div class="container mx-auto px-4 pt-4">
-    <Breadcrumb items={[{ label: 'About', href: '/about' }]} />
+    <Breadcrumb items={[{ label: 'About', href: ROUTES.ABOUT }]} />
   </div>
+  <ReadingProgress client:idle />
   {/* Hero Section */}
   <section class="relative h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 z-0">
       {
         heroImageLoader ? (
           <Picture
-            src={heroImageLoader() as any}
+            src={(await heroImageLoader()).default}
             alt="Travel blogger looking at a landscape"
             widths={[640, 768, 1024, 1280, 1536, 1920]}
             sizes="100vw"

@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AdventureCard from '../../components/AdventureCard.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import { adventures } from '../../data/adventures';
+import { ROUTES } from '../../config/paths';
+
+const title = 'Travel Adventures & Stories | Philippines Travel Blog';
+const description =
+  'Read our latest travel stories, guides, and adventures from around the Philippines.';
+
+// Sort by date descending
+const sortedAdventures = [...adventures].sort(
+  (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+);
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="container mx-auto px-4 pt-4">
+    <Breadcrumb items={[{ label: 'Blog', href: ROUTES.BLOG }]} />
+  </div>
+
+  <div class="container mx-auto px-4 py-12">
+    <div class="max-w-3xl mb-12">
+      <h1 class="text-4xl md:text-5xl font-bold text-[var(--text-primary)] mb-4">
+        Travel Adventures
+      </h1>
+      <p class="text-xl text-[var(--text-secondary)]">
+        In-depth stories, practical guides, and inspiration from our latest journeys across the
+        7,641 islands.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {sortedAdventures.map((adventure) => <AdventureCard adventure={adventure} />)}
+    </div>
+  </div>
+</BaseLayout>
