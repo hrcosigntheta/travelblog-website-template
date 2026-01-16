@@ -1,13 +1,14 @@
 import { MapContainer, TileLayer, ZoomControl, Marker, Popup, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { destinations } from '../../data/destinations';
-import { useMemo, useEffect, useState } from 'react';
+import React, { useMemo, useEffect, useState, Suspense } from 'react';
 import { createCustomIcon, getCategoryFromTags } from './MapIcons';
-import MarkerPopup from './MarkerPopup';
 import MapCluster from './MapCluster';
-import MapFilterPanel from './MapFilterPanel';
 import { useStore } from '@nanostores/react';
 import { themeStore } from '../../store/theme';
+
+const MapFilterPanel = React.lazy(() => import('./MapFilterPanel'));
+const MarkerPopup = React.lazy(() => import('./MarkerPopup'));
 
 function MapEvents() {
   const map = useMap();
@@ -126,17 +127,19 @@ export default function FullPageMap() {
 
   return (
     <div className="w-full h-full relative z-0">
-      <MapFilterPanel
-        categories={categories}
-        regions={regions}
-        selectedCategories={selectedCategories}
-        selectedRegions={selectedRegions}
-        onCategoryChange={handleCategoryChange}
-        onRegionChange={handleRegionChange}
-        onClear={handleClear}
-        filteredCount={filteredDestinations.length}
-        totalCount={destinations.length}
-      />
+      <Suspense fallback={null}>
+        <MapFilterPanel
+          categories={categories}
+          regions={regions}
+          selectedCategories={selectedCategories}
+          selectedRegions={selectedRegions}
+          onCategoryChange={handleCategoryChange}
+          onRegionChange={handleRegionChange}
+          onClear={handleClear}
+          filteredCount={filteredDestinations.length}
+          totalCount={destinations.length}
+        />
+      </Suspense>
 
       <MapContainer
         center={phCoordinates}
@@ -159,7 +162,11 @@ export default function FullPageMap() {
               icon={destinationIcons.get(destination.id)}
             >
               <Popup className="custom-popup-wrapper" minWidth={300} maxWidth={300}>
-                <MarkerPopup destination={destination} />
+                <Suspense
+                  fallback={<div className="h-40 flex items-center justify-center">Loading...</div>}
+                >
+                  <MarkerPopup destination={destination} />
+                </Suspense>
               </Popup>
             </Marker>
           ))}

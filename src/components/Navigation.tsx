@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { ROUTES } from '../config/paths';
 import { ui, defaultLang } from '../i18n/ui';
 import { useTranslations } from '../i18n/utils';
 import ThemeToggle from './ThemeToggle';
-import MobileMenu from './MobileMenu';
+
+const MobileMenu = React.lazy(() => import('./MobileMenu'));
 
 export default function Navigation({
   currentPath = '',
@@ -120,12 +121,14 @@ export default function Navigation({
         style={{ width: `${scrollProgress * 100}%`, opacity: isScrolled ? 1 : 0 }}
       ></div>
 
-      <MobileMenu
-        isOpen={isMobileOpen}
-        onClose={() => setIsMobileOpen(false)}
-        t={t}
-        currentPath={currentPath}
-      />
+      <Suspense fallback={null}>
+        <MobileMenu
+          isOpen={isMobileOpen}
+          onClose={() => setIsMobileOpen(false)}
+          t={t}
+          currentPath={currentPath}
+        />
+      </Suspense>
     </header>
   );
 }

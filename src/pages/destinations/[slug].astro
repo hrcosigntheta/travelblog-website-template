@@ -241,13 +241,13 @@ const allTips = [...(destination.travelTips || []), ...generalTravelTips].slice(
               </div>
             </div>
           </div>
-          <RelatedDestinations client:load destinations={relatedDestinations} />
+          <RelatedDestinations client:visible destinations={relatedDestinations} />
 
           <div
             class="bg-[var(--bg-card)] border border-[var(--border-subtle)] rounded-[var(--radius-lg)] p-6 shadow-sm"
           >
             <ShareButtons
-              client:load
+              client:visible
               title={destination.title}
               description={destination.description}
               image={destination.images?.[0]?.src}

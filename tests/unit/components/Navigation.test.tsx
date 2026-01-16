@@ -15,14 +15,15 @@ describe('Navigation', () => {
     expect(screen.getAllByText('Contact')).toBeDefined();
   });
 
-  it('opens mobile menu on click', () => {
+  it('opens mobile menu on click', async () => {
     render(<Navigation />);
     const menuButton = screen.getByLabelText('Open menu');
     fireEvent.click(menuButton);
 
     // Mobile menu should be visible (dialog role)
-    expect(screen.getByRole('dialog')).toBeDefined();
+    // We use findByRole because MobileMenu is lazy-loaded
+    expect(await screen.findByRole('dialog')).toBeDefined();
     // Check for mobile-specific content
-    expect(screen.getByText('Switch Theme')).toBeDefined();
+    expect(await screen.findByText('Switch Theme')).toBeDefined();
   });
 });
