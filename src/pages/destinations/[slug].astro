@@ -89,7 +89,13 @@ const schema = JSON.stringify(generateDestinationSchema(destination, Astro.url))
 const allTips = [...(destination.travelTips || []), ...generalTravelTips].slice(0, 6); // Limit to 6 tips for layout balance
 ---
 
-<BaseLayout title={pageTitle} description={pageDescription} schema={schema}>
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  image={destination.image}
+  schema={schema}
+  ogType="article"
+>
   <ReadingProgress client:idle />
   <DestinationHero destination={destination} />
 
