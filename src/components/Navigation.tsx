@@ -43,7 +43,7 @@ export default function Navigation({
 
   return (
     <header
-      className={`fixed top-0 w-full z-40 transition-all duration-300 ${isScrolled ? 'bg-[var(--color-surface)]/95 backdrop-blur-md shadow-sm py-2' : 'bg-transparent py-4'}`}
+      className={`fixed top-0 w-full z-40 transition-all duration-300 ${isScrolled ? 'bg-[var(--nav-bg)] backdrop-blur-md shadow-sm py-2 border-b border-[var(--nav-border)]' : 'bg-transparent py-4'}`}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
         {/* Logo */}
@@ -60,7 +60,7 @@ export default function Navigation({
             <a
               key={link.href}
               href={link.href}
-              className={`text-sm font-medium transition-colors hover:text-[var(--color-primary)] relative py-1 group ${currentPath === link.href ? 'text-[var(--color-primary)]' : 'text-[var(--color-text-primary)]'}`}
+              className={`text-sm font-medium transition-colors hover:text-[var(--color-primary)] relative py-1 group ${currentPath === link.href ? 'text-[var(--color-primary)]' : 'text-[var(--text-primary)]'}`}
             >
               {link.label}
               <span
@@ -68,13 +68,13 @@ export default function Navigation({
               ></span>
             </a>
           ))}
-          <div className="w-px h-6 bg-[var(--color-border)] mx-2"></div>
+          <div className="w-px h-6 bg-[var(--border-subtle)] mx-2"></div>
           <ThemeToggle />
         </nav>
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden p-2 text-[var(--color-text-primary)] hover:text-[var(--color-primary)] transition-colors group"
+          className="md:hidden p-2 text-[var(--text-primary)] hover:text-[var(--color-primary)] transition-colors group"
           onClick={() => setIsMobileOpen(true)}
           aria-label="Open menu"
         >
