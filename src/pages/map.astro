@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FullPageMap from '../components/Map/FullPageMap';
+
+const title = 'Explore Destinations Map | Philippine Travel Blog';
+const description =
+  'Interactive map of top Philippine travel destinations. Explore beaches, mountains, and cultural sites across the archipelago.';
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  mainClass="h-screen w-full pt-0"
+  hideFooter={true}
+>
+  <FullPageMap client:only="react" />
+</BaseLayout>

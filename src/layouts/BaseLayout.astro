@@ -11,6 +11,8 @@ interface Props {
   image?: string;
   lang?: string;
   schema?: string;
+  mainClass?: string;
+  hideFooter?: boolean;
 }
 
 const {
@@ -19,6 +21,8 @@ const {
   image = '/images/og-default.jpg',
   lang = 'en',
   schema,
+  mainClass = 'flex-grow pt-20',
+  hideFooter = false,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -91,11 +95,11 @@ const currentPath = Astro.url.pathname;
   >
     <Navigation client:load currentPath={currentPath} lang={lang as keyof typeof ui} />
 
-    <main class="flex-grow pt-20">
+    <main class={mainClass}>
       <slot />
     </main>
 
-    <Footer client:visible lang={lang as keyof typeof ui} />
+    {!hideFooter && <Footer client:visible lang={lang as keyof typeof ui} />}
 
     <DemoLinkModal client:load />
 

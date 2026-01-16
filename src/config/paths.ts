@@ -10,6 +10,7 @@ export const ROUTES = {
   DESTINATION_DETAIL: (slug: string) => `/destinations/${slug}`,
   GALLERY: '/gallery',
   ITINERARIES: '/itineraries',
+  MAP: '/map',
   ABOUT: '/about',
   CONTACT: '/contact',
   PRIVACY: '/privacy',
