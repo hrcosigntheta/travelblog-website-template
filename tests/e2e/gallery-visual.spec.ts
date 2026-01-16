@@ -5,7 +5,7 @@ test.describe('Visual Regression - Gallery', () => {
   test.use({ viewport: { width: 1280, height: 720 } });
 
   test('Gallery Page - Light Mode', async ({ page }) => {
-    await page.goto('/gallery');
+    await page.goto('./gallery/');
 
     // Ensure Light Mode
     const isDark = await isDarkMode(page);
@@ -20,7 +20,7 @@ test.describe('Visual Regression - Gallery', () => {
   });
 
   test('Gallery Page - Dark Mode', async ({ page }) => {
-    await page.goto('/gallery');
+    await page.goto('./gallery/');
 
     // Ensure Dark Mode
     const isDark = await isDarkMode(page);
@@ -35,7 +35,7 @@ test.describe('Visual Regression - Gallery', () => {
   });
 
   test('Lightbox - Open State', async ({ page }) => {
-    await page.goto('/gallery');
+    await page.goto('./gallery/');
 
     // Ensure Light Mode for consistency
     const isDark = await isDarkMode(page);

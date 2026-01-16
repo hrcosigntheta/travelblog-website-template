@@ -1,5 +1,6 @@
 import type { Destination } from '../../data/destinations';
 import { getCategoryFromTags, type MarkerCategory } from './MapIcons';
+import { ROUTES } from '../../config/paths';
 import './MarkerPopup.css';
 
 interface MarkerPopupProps {
@@ -26,6 +27,8 @@ export default function MarkerPopup({ destination }: MarkerPopupProps) {
     }
   };
 
+  const destinationDetailUrl = ROUTES.DESTINATION_DETAIL(destination.slug);
+
   return (
     <div className="flex flex-col">
       {/* Thumbnail Image */}
@@ -49,10 +52,7 @@ export default function MarkerPopup({ destination }: MarkerPopupProps) {
       {/* Content */}
       <div className="p-4 bg-white dark:bg-gray-800">
         <h3 className="text-lg font-bold text-gray-900 dark:text-white leading-tight mb-1">
-          <a
-            href={`/destinations/${destination.slug}`}
-            className="hover:text-primary transition-colors"
-          >
+          <a href={destinationDetailUrl} className="hover:text-primary transition-colors">
             {destination.title}
           </a>
         </h3>
@@ -92,7 +92,7 @@ export default function MarkerPopup({ destination }: MarkerPopupProps) {
 
         {/* Button */}
         <a
-          href={`/destinations/${destination.slug}`}
+          href={destinationDetailUrl}
           className="block w-full text-center bg-primary hover:bg-primary-hover text-white font-medium py-2 rounded-lg transition-colors duration-200"
         >
           View Details

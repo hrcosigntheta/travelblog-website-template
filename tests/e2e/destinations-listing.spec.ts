@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Destinations Listing Page', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/destinations');
+    await page.goto('./destinations/');
   });
 
   test('should render page title and destinations grid', async ({ page }) => {
@@ -79,9 +79,9 @@ test.describe('Destinations Listing Page', () => {
 
   test('should include structured data schema', async ({ page }) => {
     const schemaScript = page.locator('script[type="application/ld+json"]');
-    await expect(schemaScript).toHaveCount(1);
+    await expect(schemaScript).not.toHaveCount(0);
 
-    const schemaContent = await schemaScript.textContent();
+    const schemaContent = await schemaScript.first().textContent();
     const schema = JSON.parse(schemaContent || '{}');
 
     expect(schema['@type']).toBe('CollectionPage');
@@ -146,7 +146,7 @@ test.describe('Destinations Listing Page', () => {
     await expect(page.getByTestId('destination-card')).not.toHaveCount(0);
 
     // 3. Navigate back
-    await page.goto('/destinations'); // Reset
+    await page.goto('./destinations/'); // Reset
     await searchInput.fill('Bohol');
     await expect(page).toHaveURL(/q=Bohol/);
 
@@ -158,14 +158,14 @@ test.describe('Destinations Listing Page', () => {
     // Go Back -> /destinations (or previous /destinations?q=El Nido if history preserved)
     // The previous state was /destinations?q=El Nido (from step 1, assuming reload kept it)
 
-    // Actually, page.goto('/destinations') pushes a new entry or replaces?
+    // Actually, page.goto('./destinations/') pushes a new entry or replaces?
     // Let's test a cleaner flow:
     // 1. goto /destinations
     // 2. Search 'A' -> URL ?q=A
     // 3. Search 'B' -> URL ?q=B
     // 4. Back -> URL ?q=A, Input 'A'
 
-    await page.goto('/destinations');
+    await page.goto('./destinations/');
     await searchInput.fill('Alpha');
     await expect(page).toHaveURL(/q=Alpha/);
 

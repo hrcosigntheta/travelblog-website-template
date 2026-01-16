@@ -24,7 +24,7 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: 'http://localhost:4321',
+    baseURL: 'http://localhost:4321/travelblog-website-template/',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
@@ -52,6 +52,11 @@ export default defineConfig({
     {
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
+    },
+
+    {
+      name: 'Microsoft Edge',
+      use: { ...devices['Desktop Edge'], channel: 'msedge' },
     },
 
     /* Responsive Viewports - Mobile */
@@ -106,7 +111,7 @@ export default defineConfig({
   /* Run your local dev server before starting the tests */
   webServer: {
     command: 'bun run preview',
-    url: 'http://localhost:4321',
+    url: 'http://localhost:4321/travelblog-website-template/',
     reuseExistingServer: !process.env.CI,
     timeout: 120 * 1000,
   },

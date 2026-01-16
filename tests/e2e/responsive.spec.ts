@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Responsive Layout', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+    await page.goto('./');
   });
 
   test('Navigation adapts to viewport', async ({ page, viewport }) => {

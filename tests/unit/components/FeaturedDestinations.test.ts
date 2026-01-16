@@ -29,7 +29,7 @@ describe('FeaturedDestinations Component', () => {
     const container = await AstroContainer.create();
     const result = await container.renderToString(FeaturedDestinations);
 
-    expect(result).toContain('href="/destinations"');
+    expect(result).toContain('href="/destinations/"');
     expect(result).toContain('View all destinations');
   });
 });

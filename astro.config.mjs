@@ -5,7 +5,8 @@ import { visualizer } from 'rollup-plugin-visualizer';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://travelblog-template.vercel.app', // Placeholder URL
+  site: 'https://MasuRii.github.io',
+  base: '/travelblog-website-template/',
   output: 'static',
 
   integrations: [react()],

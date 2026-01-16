@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test.describe('Destination Gallery', () => {
   test('should display the gallery and lightbox correctly', async ({ page }) => {
     // Navigate to a destination page that has multiple images (El Nido)
-    await page.goto('/destinations/el-nido-palawan');
+    await page.goto('./destinations/el-nido-palawan/');
 
     // Check for the Gallery Heading
     const galleryHeading = page.getByRole('heading', { name: /Photo Gallery/i });

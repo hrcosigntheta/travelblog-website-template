@@ -7,8 +7,9 @@ import { ImageWithFallback } from '../components/ImageWithFallback';
 import { CONTACT_FAQS } from '../data/faqs';
 import Breadcrumb from '../components/Breadcrumb.astro';
 import { bloggerProfile } from '../data/blogger';
+import { ROUTES } from '../config/paths';
 
-const title = `Contact | ${bloggerProfile.name}`;
+const title = `Contact | Philippine Travel Blog`;
 const description =
   'Get in touch with us for collaborations, questions, or just to say hello. We love hearing from fellow travelers!';
 
@@ -19,13 +20,13 @@ const schema = JSON.stringify({
       '@type': 'ContactPage',
       name: title,
       description: description,
-      url: new URL('/contact', Astro.site),
+      url: new URL(ROUTES.CONTACT, Astro.site),
       mainEntity: {
         '@type': 'Person',
         name: bloggerProfile.name,
         image: new URL(bloggerProfile.portraitSrc, Astro.site),
         jobTitle: 'Travel Blogger',
-        url: new URL('/about', Astro.site),
+        url: new URL(ROUTES.ABOUT, Astro.site),
         sameAs: bloggerProfile.socialLinks.map((link) => link.url),
       },
     },
@@ -46,7 +47,7 @@ const schema = JSON.stringify({
 
 <BaseLayout title={title} description={description} schema={schema}>
   <div class="container mx-auto px-4 pt-4">
-    <Breadcrumb items={[{ label: 'Contact', href: '/contact' }]} />
+    <Breadcrumb items={[{ label: 'Contact', href: ROUTES.CONTACT }]} />
   </div>
   {/* Hero Section */}
   <section class="relative h-[40vh] min-h-[400px] flex items-center justify-center overflow-hidden">

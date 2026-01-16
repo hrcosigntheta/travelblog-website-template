@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Map Page Functionality', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/map');
+    await page.goto('./map/');
     await expect(page.locator('.leaflet-container')).toBeVisible();
 
     // Close filter panel if it's open and covering content (mobile)

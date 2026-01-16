@@ -49,7 +49,7 @@ describe('QuickSearch Component', () => {
 
     fireEvent.click(button);
 
-    expect(window.location.assign).toHaveBeenCalledWith('/destinations?q=Palawan');
+    expect(window.location.assign).toHaveBeenCalledWith('/destinations/?q=Palawan');
     vi.useRealTimers();
   });
 
@@ -59,12 +59,12 @@ describe('QuickSearch Component', () => {
 
     fireEvent.click(tag);
 
-    expect(window.location.assign).toHaveBeenCalledWith('/destinations?category=beach');
+    expect(window.location.assign).toHaveBeenCalledWith('/destinations/?category=beach');
   });
 
   it('renders advanced search link', () => {
     render(<QuickSearch />);
     const link = screen.getByText('Advanced Search →');
-    expect(link).toHaveAttribute('href', '/destinations');
+    expect(link).toHaveAttribute('href', '/destinations/');
   });
 });

@@ -21,7 +21,7 @@ describe('Path Utilities', () => {
   describe('getRoutePath', () => {
     it('should resolve static routes', () => {
       expect(getRoutePath('HOME')).toBe('/');
-      expect(getRoutePath('ABOUT')).toBe('/about');
+      expect(getRoutePath('ABOUT')).toBe('/about/');
     });
 
     it('should throw error for dynamic routes if called incorrectly', () => {

@@ -11,7 +11,7 @@ const pageDescription =
 const suggestedDestinations = [...destinations].sort(() => 0.5 - Math.random()).slice(0, 3);
 
 const homeUrl = import.meta.env.BASE_URL;
-const searchUrl = `${import.meta.env.BASE_URL}destinations`.replace('//', '/');
+const searchUrl = `${import.meta.env.BASE_URL}destinations/`.replace('//', '/');
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>

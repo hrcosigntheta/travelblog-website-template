@@ -5,7 +5,7 @@ test.describe('Accessibility', () => {
   const pages = [
     { url: '/', name: 'homepage' },
     { url: '/destinations', name: 'destinations-listing' },
-    { url: '/destinations/el-nido-palawan', name: 'destination-detail' },
+    { url: '/destinations/el-nido-palawan/', name: 'destination-detail' },
     { url: '/gallery', name: 'gallery' },
     { url: '/about', name: 'about' },
     { url: '/contact', name: 'contact' },

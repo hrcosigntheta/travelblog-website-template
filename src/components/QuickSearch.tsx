@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import SearchInput from './SearchInput';
+import { ROUTES } from '../config/paths';
 
 export interface QuickSearchProps {
   popularTags?: string[];
@@ -14,12 +15,14 @@ export default function QuickSearch({
 
   const handleSearch = () => {
     if (searchValue.trim()) {
-      window.location.assign(`/destinations?q=${encodeURIComponent(searchValue)}`);
+      window.location.assign(`${ROUTES.DESTINATIONS}?q=${encodeURIComponent(searchValue)}`);
     }
   };
 
   const handleTagClick = (tag: string) => {
-    window.location.assign(`/destinations?category=${encodeURIComponent(tag.toLowerCase())}`);
+    window.location.assign(
+      `${ROUTES.DESTINATIONS}?category=${encodeURIComponent(tag.toLowerCase())}`
+    );
   };
 
   return (
@@ -61,7 +64,7 @@ export default function QuickSearch({
 
       <div className="mt-4 text-center md:text-right">
         <a
-          href="/destinations"
+          href={ROUTES.DESTINATIONS}
           className="text-[length:var(--text-sm)] font-medium text-[var(--color-primary)] hover:underline"
         >
           Advanced Search →

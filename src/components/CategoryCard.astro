@@ -1,12 +1,15 @@
 ---
 import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import type { Category } from '../data/categories';
+import { ROUTES } from '../config/paths';
 
 interface Props {
   category: Category;
 }
 
 const { category } = Astro.props;
+const categoryUrl = `${ROUTES.DESTINATIONS}?category=${category.slug}`;
 
 // Use import.meta.glob to dynamically load optimized images from assets
 const images = import.meta.glob<{ default: ImageMetadata }>(
@@ -19,7 +22,7 @@ const imageLoader = images[assetPath];
 ---
 
 <a
-  href={`/destinations?category=${category.slug}`}
+  href={categoryUrl}
   class="group relative block aspect-[4/5] w-full overflow-hidden rounded-[var(--radius-lg)] bg-[var(--card-bg)] shadow-md transition-all duration-200 ease-out hover:shadow-xl hover:-translate-y-1"
 >
   {

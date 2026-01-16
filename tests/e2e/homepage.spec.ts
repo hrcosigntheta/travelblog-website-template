@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Homepage', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+    await page.goto('./');
   });
 
   test('has correct title and metadata', async ({ page }) => {
@@ -17,7 +17,8 @@ test.describe('Homepage', () => {
   test('hero CTA navigates to destinations', async ({ page }) => {
     const cta = page.getByRole('link', { name: /Start Exploring/i });
     await expect(cta).toBeVisible();
-    await expect(cta).toHaveAttribute('href', '/destinations');
+    const href = await cta.getAttribute('href');
+    expect(href).toContain('/destinations');
 
     await cta.click();
     await expect(page).toHaveURL(/\/destinations/);
@@ -53,7 +54,7 @@ test.describe('Homepage', () => {
     await expect(page.getByRole('heading', { name: /Featured Destinations/i })).toBeVisible();
 
     // Check for destination cards - they are links
-    const cards = page.locator('a[href^="/destinations/"]');
+    const cards = page.locator('a[href*="/destinations/"]');
     // We expect at least a few cards (3 featured)
     // Filter out the "View all destinations" link which is also an anchor to /destinations
     const destinationCards = cards.filter({ has: page.locator('img') });

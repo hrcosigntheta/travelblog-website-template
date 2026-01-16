@@ -6,7 +6,7 @@ test.describe('Visual Regression', () => {
   test.use({ viewport: { width: 1280, height: 720 } });
 
   test('Homepage - Light Mode', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('./');
 
     // Ensure we are in light mode (default, but good to be explicit/check)
     const isDark = await isDarkMode(page);
@@ -22,7 +22,7 @@ test.describe('Visual Regression', () => {
   });
 
   test('Homepage - Dark Mode', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('./');
 
     // Switch to dark mode
     const isDark = await isDarkMode(page);
@@ -38,21 +38,21 @@ test.describe('Visual Regression', () => {
   });
 
   test('Components - Header', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('./');
     const header = page.locator('header');
     await expect(header).toBeVisible();
     await expect(header).toHaveScreenshot('header-component.png');
   });
 
   test('Components - Footer', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('./');
     const footer = page.locator('footer');
     await expect(footer).toBeVisible();
     await expect(footer).toHaveScreenshot('footer-component.png');
   });
 
   test('Destination Page - Light Mode', async ({ page }) => {
-    await page.goto('/destinations/el-nido-palawan');
+    await page.goto('./destinations/el-nido-palawan/');
 
     // Ensure we are in light mode
     const isDark = await isDarkMode(page);
@@ -69,7 +69,7 @@ test.describe('Visual Regression', () => {
   });
 
   test('Destination Page - Dark Mode', async ({ page }) => {
-    await page.goto('/destinations/el-nido-palawan');
+    await page.goto('./destinations/el-nido-palawan/');
 
     // Switch to dark mode
     const isDark = await isDarkMode(page);
@@ -86,7 +86,7 @@ test.describe('Visual Regression', () => {
   });
 
   test('About Page - Light Mode', async ({ page }) => {
-    await page.goto('/about');
+    await page.goto('./about/');
 
     // Ensure we are in light mode
     const isDark = await isDarkMode(page);
@@ -103,7 +103,7 @@ test.describe('Visual Regression', () => {
   });
 
   test('About Page - Dark Mode', async ({ page }) => {
-    await page.goto('/about');
+    await page.goto('./about/');
 
     // Switch to dark mode
     const isDark = await isDarkMode(page);
@@ -120,7 +120,7 @@ test.describe('Visual Regression', () => {
   });
 
   test('Contact Page - Light Mode', async ({ page }) => {
-    await page.goto('/contact');
+    await page.goto('./contact/');
 
     // Ensure we are in light mode
     const isDark = await isDarkMode(page);
@@ -137,7 +137,7 @@ test.describe('Visual Regression', () => {
   });
 
   test('Contact Page - Dark Mode', async ({ page }) => {
-    await page.goto('/contact');
+    await page.goto('./contact/');
 
     // Switch to dark mode
     const isDark = await isDarkMode(page);

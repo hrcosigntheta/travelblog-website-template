@@ -1,12 +1,15 @@
 ---
 import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import type { Adventure } from '../data/adventures';
+import { ROUTES } from '../config/paths';
 
 interface Props {
   adventure: Adventure;
 }
 
 const { adventure } = Astro.props;
+const adventureUrl = ROUTES.BLOG_DETAIL(adventure.slug);
 
 // Use import.meta.glob to dynamically load optimized images from assets
 const images = import.meta.glob<{ default: ImageMetadata }>(
@@ -19,7 +22,7 @@ const imageLoader = images[assetPath];
 ---
 
 <a
-  href={`/blog/${adventure.slug}`}
+  href={adventureUrl}
   class="group flex flex-col h-full overflow-hidden rounded-[var(--radius-lg)] bg-[var(--card-bg)] border border-[var(--border-subtle)] hover:shadow-xl hover:-translate-y-1 transition-all duration-200 ease-out"
 >
   <div class="relative aspect-video overflow-hidden">

@@ -6,6 +6,7 @@ import type { GalleryImage } from '../types/gallery';
 import { generateGalleryPageSchema } from '../utils/schema';
 import { getUnsplashPlaceholder } from '../utils/images';
 import Breadcrumb from '../components/Breadcrumb.astro';
+import { ROUTES } from '../config/paths';
 
 // Aggregate images from all destinations
 const galleryImages: GalleryImage[] = destinations.flatMap((dest) =>
@@ -35,7 +36,7 @@ const schema = generateGalleryPageSchema(title, description, Astro.url, shuffled
 
 <BaseLayout title={title} description={description}>
   <div class="container mx-auto px-4 pt-4">
-    <Breadcrumb items={[{ label: 'Gallery', href: '/gallery' }]} />
+    <Breadcrumb items={[{ label: 'Gallery', href: ROUTES.GALLERY }]} />
   </div>
   <script type="application/ld+json" set:html={JSON.stringify(schema)} is:inline />
   <div class="container mx-auto px-4 py-12">

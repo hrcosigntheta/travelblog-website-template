@@ -14,6 +14,8 @@ import { TravelTips } from '../../components/TravelTips';
 import { generalTravelTips } from '../../data/travelTips';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 
+import { ROUTES } from '../../config/paths';
+
 export async function getStaticPaths() {
   return destinations.map((destination) => ({
     params: { slug: destination.slug },
@@ -99,8 +101,8 @@ const allTips = [...(destination.travelTips || []), ...generalTravelTips].slice(
   <div class="container mx-auto px-4 pt-4">
     <Breadcrumb
       items={[
-        { label: 'Destinations', href: '/destinations' },
-        { label: destination.title, href: `/destinations/${destination.slug}` },
+        { label: 'Destinations', href: ROUTES.DESTINATIONS },
+        { label: destination.title, href: ROUTES.DESTINATION_DETAIL(destination.slug) },
       ]}
     />
   </div>

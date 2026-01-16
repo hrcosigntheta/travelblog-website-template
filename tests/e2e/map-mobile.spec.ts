@@ -5,7 +5,7 @@ test.describe('Mobile Map Experience', () => {
   test.use({ viewport: { width: 375, height: 667 }, hasTouch: true });
 
   test.beforeEach(async ({ page }) => {
-    await page.goto('/map');
+    await page.goto('./map/');
     // Wait for map to load
     await expect(page.locator('.leaflet-container')).toBeVisible();
   });

@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import DestinationsListing from '../../components/DestinationsListing';
 import { generateCollectionPageSchema } from '../../utils/schema';
 import Breadcrumb from '../../components/Breadcrumb.astro';
+import { ROUTES } from '../../config/paths';
 
 const title = 'Explore Destinations | Philippines Travel Blog';
 const description =
@@ -13,7 +14,7 @@ const schema = JSON.stringify(generateCollectionPageSchema(title, description, A
 
 <BaseLayout title={title} description={description} schema={schema}>
   <div class="container mx-auto px-4 pt-4">
-    <Breadcrumb items={[{ label: 'Destinations', href: '/destinations' }]} />
+    <Breadcrumb items={[{ label: 'Destinations', href: ROUTES.DESTINATIONS }]} />
   </div>
   <div class="container mx-auto px-4 py-8 md:py-12">
     <header class="mb-8 md:mb-12 text-center max-w-3xl mx-auto">

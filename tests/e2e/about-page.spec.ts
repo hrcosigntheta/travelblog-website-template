@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('About Page', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/about');
+    await page.goto('./about/');
   });
 
   test('renders about page content with correct metadata and sections', async ({ page }) => {
@@ -97,28 +97,18 @@ test.describe('About Page', () => {
     // Check default theme
     const html = page.locator('html');
 
-    // Check if desktop toggle is visible
-    const desktopToggle = page.getByRole('button', { name: /Switch to .* mode/ });
-    let themeToggle = desktopToggle.first();
+    const desktopToggle = page.getByRole('button', { name: /Switch to .* mode/ }).first();
+    const menuButton = page.getByLabel('Open menu');
+    let themeToggle;
 
-    if (!(await desktopToggle.first().isVisible())) {
+    if (await menuButton.isVisible()) {
       // We are on mobile, open menu first
-      const menuButton = page.getByLabel('Open menu');
       await menuButton.click();
       await expect(page.getByRole('dialog')).toBeVisible(); // Menu is a dialog
-      // Locate toggle inside menu (it might be the same selector, but now visible)
-      themeToggle = page.getByRole('button', { name: /Switch to .* mode/ }).last(); // Last because desktop one still exists in DOM but hidden? Or first visible?
-      // Actually, if desktop nav is hidden, the button might still be in DOM but hidden.
-      // Playwright's click requires visibility.
-      // Let's filter by visibility.
-      const toggles = page.getByRole('button', { name: /Switch to .* mode/ });
-      const count = await toggles.count();
-      for (let i = 0; i < count; ++i) {
-        if (await toggles.nth(i).isVisible()) {
-          themeToggle = toggles.nth(i);
-          break;
-        }
-      }
+      // Locate toggle inside menu
+      themeToggle = page.getByRole('button', { name: /Switch to .* mode/ }).last();
+    } else {
+      themeToggle = desktopToggle;
     }
 
     await expect(themeToggle).toBeVisible();

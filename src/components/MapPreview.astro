@@ -2,6 +2,8 @@
 import LazyMap from './LazyMap';
 import { destinations } from '../data/destinations';
 
+import { ROUTES } from '../config/paths';
+
 interface Props {
   title?: string;
   subtitle?: string;
@@ -13,7 +15,7 @@ const {
   title = 'Explore the Map',
   subtitle = 'Find your next adventure across the islands.',
   ctaText = 'Explore Full Map',
-  ctaLink = '/map',
+  ctaLink = ROUTES.MAP,
 } = Astro.props;
 ---
 

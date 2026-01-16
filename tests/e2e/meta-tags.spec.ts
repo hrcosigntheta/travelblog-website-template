@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Meta Tags', () => {
   test('homepage has required meta tags', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('./');
 
     // Title
     await expect(page).toHaveTitle(/TravelBlog - Explore the Philippines/);
@@ -31,7 +31,7 @@ test.describe('Meta Tags', () => {
 
   test('destination page has article meta tags', async ({ page }) => {
     // Navigate to a destination page (we know El Nido exists from data)
-    await page.goto('/destinations/el-nido-palawan');
+    await page.goto('./destinations/el-nido-palawan/');
 
     // Title
     await expect(page).toHaveTitle(/El Nido/);
@@ -44,6 +44,6 @@ test.describe('Meta Tags', () => {
     expect(ogImage).toBeTruthy();
     expect(ogImage).not.toContain('og-default.jpg');
     // It should be the destination image
-    expect(ogImage).toContain('images.unsplash.com');
+    expect(ogImage).toContain('el-nido-palawan');
   });
 });

@@ -2,11 +2,11 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Contact Page', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/contact');
+    await page.goto('./contact/');
   });
 
   test('should render contact page correctly', async ({ page }) => {
-    await expect(page).toHaveTitle(/Contact Us/);
+    await expect(page).toHaveTitle(/Contact/);
     await expect(page.getByRole('heading', { name: 'Get in Touch' })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Send us a Message' })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Frequently Asked Questions' })).toBeVisible();

@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test.describe('Destination Map', () => {
   test('should display the map and markers correctly', async ({ page }) => {
     // Navigate to a destination page (El Nido)
-    await page.goto('/destinations/el-nido-palawan');
+    await page.goto('./destinations/el-nido-palawan/');
 
     // Check for the Map Section Heading
     const mapHeading = page.getByRole('heading', { name: /Location/i });

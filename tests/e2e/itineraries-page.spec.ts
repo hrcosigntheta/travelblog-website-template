@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Itineraries Page', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/itineraries');
+    await page.goto('./itineraries/');
   });
 
   test('should render page title and description', async ({ page }) => {
@@ -19,10 +19,10 @@ test.describe('Itineraries Page', () => {
     await expect(cards.first()).toBeVisible();
 
     // Check for duration badge
-    await expect(page.getByText(/\d+ Days/)).toBeVisible();
+    await expect(page.getByText(/\d+ Days/).first()).toBeVisible();
 
     // Check for activities count
-    await expect(page.getByText(/Activities/)).toBeVisible();
+    await expect(page.getByText(/Activities/).first()).toBeVisible();
   });
 
   test('should navigate to destination itinerary', async ({ page }) => {

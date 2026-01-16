@@ -84,6 +84,7 @@ const NewsletterSignup: React.FC = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 error={error}
                 placeholder="Enter your email"
+                aria-label="Email address"
                 className="h-12"
               />
               {status === 'success' && (

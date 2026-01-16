@@ -1,5 +1,6 @@
 ---
 import { generateBreadcrumbSchema } from '../utils/schema';
+import { ROUTES } from '../config/paths';
 
 interface BreadcrumbItem {
   label: string;
@@ -18,7 +19,7 @@ const schema = generateBreadcrumbSchema(items, Astro.site || Astro.url);
 <nav aria-label="Breadcrumb" class="mb-4">
   <ol class="flex items-center space-x-2 text-sm text-[var(--text-secondary)]">
     <li>
-      <a href="/" class="hover:text-[var(--color-primary)] transition-colors">Home</a>
+      <a href={ROUTES.HOME} class="hover:text-[var(--color-primary)] transition-colors">Home</a>
     </li>
     {
       items.map((item, index) => (

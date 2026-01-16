@@ -17,7 +17,7 @@ import { bloggerProfile } from '../data/blogger';
 import { generatePersonSchema } from '../utils/schema';
 import { ROUTES } from '../config/paths';
 
-const title = `${bloggerProfile.name} | Philippine Travel Blog`;
+const title = `About ${bloggerProfile.name} | Philippine Travel Blog`;
 const description = bloggerProfile.shortBio;
 
 const schema = JSON.stringify(generatePersonSchema(bloggerProfile, Astro.site!));

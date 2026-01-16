@@ -2,12 +2,12 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Schema.org Validation', () => {
   const pages = [
-    '/',
-    '/about',
-    '/contact',
-    '/destinations',
-    '/destinations/el-nido-palawan', // Example destination
-    '/gallery',
+    './',
+    './about',
+    './contact',
+    './destinations',
+    './destinations/el-nido-palawan/', // Example destination
+    './gallery',
   ];
 
   for (const path of pages) {

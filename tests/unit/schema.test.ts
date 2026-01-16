@@ -100,7 +100,6 @@ describe('generateDestinationSchema', () => {
 
     expect(destSchema.image).toContain('https://example.com/image1.jpg');
     // Absolute URL resolution check
-    // new URL('/image2.jpg', 'https://mysite.com/destinations/test-dest') results in 'https://mysite.com/image2.jpg'
     expect(destSchema.image).toContain('https://mysite.com/image2.jpg');
   });
 });
@@ -137,7 +136,7 @@ describe('generatePersonSchema', () => {
     expect(schema['@context']).toBe('https://schema.org');
     expect(schema['@type']).toBe('Person');
     expect(schema.name).toBe(mockProfile.name);
-    expect(schema.url).toBe('https://mysite.com/about');
+    expect(schema.url).toBe('https://mysite.com/about/');
     expect(schema.image).toBe('https://mysite.com/test-portrait.jpg');
     expect(schema.description).toBe(mockProfile.shortBio);
     expect(schema.jobTitle).toBe('Travel Blogger');

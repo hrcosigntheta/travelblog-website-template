@@ -50,7 +50,7 @@ describe('MarkerPopup', () => {
   it('renders link to detail page', () => {
     render(<MarkerPopup destination={mockDestination} />);
     const link = screen.getByText('View Details').closest('a');
-    expect(link).toHaveAttribute('href', '/destinations/test-dest');
+    expect(link).toHaveAttribute('href', '/destinations/test-dest/');
   });
 
   it('truncates tags if more than 3', () => {

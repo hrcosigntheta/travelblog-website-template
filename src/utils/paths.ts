@@ -24,9 +24,7 @@ export function getRoutePath(routeKey: keyof typeof ROUTES): string {
     throw new Error(`Route ${routeKey} is a function, call it directly from ROUTES`);
   }
 
-  const cleanRoute = (route as string).startsWith('/') ? (route as string) : `/${route}`;
-  if (!BASE_PATH || BASE_PATH === '/') return cleanRoute;
-  return `${BASE_PATH}${cleanRoute}`;
+  return route as string;
 }
 
 /**

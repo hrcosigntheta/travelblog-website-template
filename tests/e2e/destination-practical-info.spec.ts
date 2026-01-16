@@ -6,7 +6,7 @@ test.describe('Destination Practical Info', () => {
     await page.setViewportSize({ width: 1280, height: 800 });
 
     // Navigate to a destination page (El Nido)
-    await page.goto('/destinations/el-nido-palawan');
+    await page.goto('./destinations/el-nido-palawan/');
 
     // Check for the Practical Info Section Heading
     const sectionHeading = page.getByRole('heading', { name: /Practical Information/i });
@@ -34,7 +34,7 @@ test.describe('Destination Practical Info', () => {
     // Set mobile viewport
     await page.setViewportSize({ width: 375, height: 667 });
 
-    await page.goto('/destinations/el-nido-palawan');
+    await page.goto('./destinations/el-nido-palawan/');
 
     const sectionHeading = page.getByRole('heading', { name: /Practical Information/i });
     await sectionHeading.scrollIntoViewIfNeeded();

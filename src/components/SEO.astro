@@ -17,7 +17,7 @@ const {
 
 // Ensure image is an absolute URL
 const socialImageURL = new URL(image, Astro.site || Astro.url);
-const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <meta charset="UTF-8" />

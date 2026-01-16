@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test.describe('Destination Sidebar', () => {
   test('should display trip essentials and related destinations', async ({ page }) => {
     // Navigate to a destination page (El Nido)
-    await page.goto('/destinations/el-nido-palawan');
+    await page.goto('./destinations/el-nido-palawan/');
 
     // 1. Check Trip Essentials
     const tripEssentialsHeading = page.getByRole('heading', { name: /Trip Essentials/i });

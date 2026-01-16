@@ -2,6 +2,8 @@
 import DestinationCard from './DestinationCard.astro';
 import { destinations } from '../data/destinations';
 
+import { ROUTES } from '../config/paths';
+
 const featuredDestinations = destinations.filter((d) => d.featured).slice(0, 3);
 ---
 
@@ -22,7 +24,7 @@ const featuredDestinations = destinations.filter((d) => d.featured).slice(0, 3);
 
     <div class="mt-12 text-center">
       <a
-        href="/destinations"
+        href={ROUTES.DESTINATIONS}
         class="inline-flex items-center font-semibold text-[var(--color-primary)] hover:text-[var(--color-primary-hover)] transition-colors group"
       >
         View all destinations

@@ -1,6 +1,7 @@
 import type { Destination } from '../data/destinations';
 import type { BloggerProfile } from '../data/blogger';
 import type { Adventure } from '../data/adventures';
+import { ROUTES, BASE_PATH } from '../config/paths';
 
 export function generateDestinationSchema(destination: Destination, siteUrl: string | URL) {
   const urlString = typeof siteUrl === 'string' ? siteUrl : siteUrl.href;
@@ -75,7 +76,7 @@ export function generateCollectionPageSchema(
     isPartOf: {
       '@type': 'WebSite',
       name: 'Philippines Travel Blog',
-      url: new URL('/', urlString).href,
+      url: new URL(ROUTES.HOME, urlString).href,
     },
   };
 
@@ -104,7 +105,7 @@ export function generateGalleryPageSchema(
     isPartOf: {
       '@type': 'WebSite',
       name: 'Philippines Travel Blog',
-      url: new URL('/', urlString).href,
+      url: new URL(ROUTES.HOME, urlString).href,
     },
   };
 
@@ -141,7 +142,7 @@ export function generateAdventureSchema(adventure: Adventure, siteUrl: string | 
       name: 'Philippines Travel Blog',
       logo: {
         '@type': 'ImageObject',
-        url: new URL('/favicon.svg', baseUrl).href,
+        url: new URL(`${BASE_PATH}/favicon.svg`, baseUrl).href,
       },
     },
     mainEntityOfPage: {
@@ -201,7 +202,7 @@ export function generatePersonSchema(profile: BloggerProfile, siteUrl: string | 
     '@context': 'https://schema.org',
     '@type': 'Person',
     name: profile.name,
-    url: new URL('/about', baseUrl).href,
+    url: new URL(ROUTES.ABOUT, baseUrl).href,
     image: new URL(profile.portraitSrc, baseUrl).href,
     description: profile.shortBio,
     jobTitle: 'Travel Blogger',

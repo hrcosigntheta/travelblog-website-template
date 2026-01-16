@@ -9,6 +9,7 @@ import RecentAdventures from '../components/RecentAdventures.astro';
 import NewsletterSignup from '../components/NewsletterSignup';
 import heroImage from '../assets/images/hero-homepage.jpg';
 import { generateCollectionPageSchema, generateWebSiteSchema } from '../utils/schema';
+import { ROUTES } from '../config/paths';
 
 const title = 'TravelBlog - Explore the Philippines';
 const description =
@@ -34,7 +35,7 @@ const schema = JSON.stringify({
     title="Discover the Philippines"
     tagline="Explore pristine beaches, majestic mountains, and vibrant culture."
     image={heroImage}
-    primaryAction={{ label: 'Start Exploring', href: '/destinations' }}
+    primaryAction={{ label: 'Start Exploring', href: ROUTES.DESTINATIONS }}
   />
 
   <div class="relative z-20 container mx-auto px-4 -mt-8 mb-16 sm:-mt-12 md:-mt-16">

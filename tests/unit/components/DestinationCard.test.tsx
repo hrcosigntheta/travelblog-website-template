@@ -41,8 +41,8 @@ describe('DestinationCard', () => {
     const links = screen.getAllByRole('link');
     // We expect 2 links: one for image, one for title
     expect(links).toHaveLength(2);
-    expect(links[0]).toHaveAttribute('href', '/destinations/el-nido');
-    expect(links[1]).toHaveAttribute('href', '/destinations/el-nido');
+    expect(links[0]).toHaveAttribute('href', '/destinations/el-nido/');
+    expect(links[1]).toHaveAttribute('href', '/destinations/el-nido/');
   });
 
   it('renders image with correct alt text', () => {

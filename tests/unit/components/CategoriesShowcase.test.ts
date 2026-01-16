@@ -21,6 +21,6 @@ describe('CategoriesShowcase Component', () => {
 
     expect(result).toContain('Beaches &amp; Islands');
     expect(result).toContain('Mountains &amp; Hiking');
-    expect(result).toContain('href="/destinations?category=beaches"');
+    expect(result).toContain('href="/destinations/?category=beaches"');
   });
 });

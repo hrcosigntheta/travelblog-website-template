@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslations } from '../i18n/utils';
 import { defaultLang, ui } from '../i18n/ui';
+import { ROUTES } from '../config/paths';
 
 interface FooterProps {
   lang?: string;
@@ -26,17 +27,17 @@ export default function Footer({ lang = defaultLang }: FooterProps) {
             <h3 className="font-bold text-lg mb-4">{t('footer.explore')}</h3>
             <ul className="space-y-2 text-sm text-text-secondary">
               <li>
-                <a href="/destinations" className="hover:text-primary transition-colors">
+                <a href={ROUTES.DESTINATIONS} className="hover:text-primary transition-colors">
                   {t('nav.destinations')}
                 </a>
               </li>
               <li>
-                <a href="/gallery" className="hover:text-primary transition-colors">
+                <a href={ROUTES.GALLERY} className="hover:text-primary transition-colors">
                   {t('nav.gallery')}
                 </a>
               </li>
               <li>
-                <a href="/itineraries" className="hover:text-primary transition-colors">
+                <a href={ROUTES.ITINERARIES} className="hover:text-primary transition-colors">
                   {t('nav.itineraries')}
                 </a>
               </li>
@@ -48,22 +49,22 @@ export default function Footer({ lang = defaultLang }: FooterProps) {
             <h3 className="font-bold text-lg mb-4">{t('footer.company')}</h3>
             <ul className="space-y-2 text-sm text-text-secondary">
               <li>
-                <a href="/about" className="hover:text-primary transition-colors">
+                <a href={ROUTES.ABOUT} className="hover:text-primary transition-colors">
                   {t('nav.about')}
                 </a>
               </li>
               <li>
-                <a href="/contact" className="hover:text-primary transition-colors">
+                <a href={ROUTES.CONTACT} className="hover:text-primary transition-colors">
                   {t('nav.contact')}
                 </a>
               </li>
               <li>
-                <a href="/privacy" className="hover:text-primary transition-colors">
+                <a href={ROUTES.PRIVACY} className="hover:text-primary transition-colors">
                   {t('footer.privacy')}
                 </a>
               </li>
               <li>
-                <a href="/terms" className="hover:text-primary transition-colors">
+                <a href={ROUTES.TERMS} className="hover:text-primary transition-colors">
                   {t('footer.terms')}
                 </a>
               </li>

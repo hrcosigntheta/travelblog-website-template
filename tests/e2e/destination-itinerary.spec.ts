@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test.describe('Destination Itinerary', () => {
   test('should display the itinerary correctly', async ({ page }) => {
     // Navigate to a destination page (El Nido)
-    await page.goto('/destinations/el-nido-palawan');
+    await page.goto('./destinations/el-nido-palawan/');
 
     // Check for the Itinerary Section Heading
     const itineraryHeading = page.getByRole('heading', { name: /Suggested Itinerary/i });

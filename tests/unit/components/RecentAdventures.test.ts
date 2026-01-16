@@ -21,14 +21,14 @@ describe('RecentAdventures Component', () => {
 
     expect(result).toContain('My First Cebu Adventure');
     expect(result).toContain('Island Hopping in Palawan');
-    expect(result).toContain('href="/blog/my-first-cebu-adventure"');
+    expect(result).toContain('href="/blog/my-first-cebu-adventure/"');
   });
 
   it('renders "View all" link', async () => {
     const container = await AstroContainer.create();
     const result = await container.renderToString(RecentAdventures);
 
-    expect(result).toContain('href="/blog"');
+    expect(result).toContain('href="/blog/"');
     expect(result).toContain('View all adventures');
   });
 });
