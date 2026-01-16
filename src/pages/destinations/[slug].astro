@@ -8,6 +8,7 @@ import { PhotoGallery } from '../../components/PhotoGallery';
 import { destinations } from '../../data/destinations';
 import type { Destination, ItineraryActivityData } from '../../data/destinations';
 import { RelatedDestinations } from '../../components/RelatedDestinations';
+import ReadingProgress from '../../components/ReadingProgress';
 
 export async function getStaticPaths() {
   return destinations.map((destination) => ({
@@ -83,6 +84,7 @@ const schema = JSON.stringify(generateDestinationSchema(destination, Astro.url))
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription} schema={schema}>
+  <ReadingProgress client:idle />
   <DestinationHero destination={destination} />
 
   <main class="container mx-auto px-4 py-16 space-y-20">
