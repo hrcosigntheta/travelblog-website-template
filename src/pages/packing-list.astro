@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { PackingList as PackingListComponent } from '../components/PackingList';
+import { generalPackingList, beachPackingList, hikingPackingList } from '../data/packingLists';
+
+// Combine lists for the demo page
+const allCategories = [
+  ...generalPackingList,
+  {
+    id: 'beach-gear',
+    title: 'Beach Essentials',
+    items: beachPackingList,
+  },
+  {
+    id: 'hiking-gear',
+    title: 'Hiking Gear',
+    items: hikingPackingList,
+  },
+];
+
+const pageTitle = 'Ultimate Travel Packing List | Philippines Travel Blog';
+const pageDescription =
+  "Don't forget a thing! Use our interactive packing list for your Philippines adventure. Customizable checklist for beach, hiking, and general travel.";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <div class="container mx-auto px-4 py-12">
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <h1 class="text-4xl font-bold mb-4 text-[var(--text-primary)]">Travel Packing List</h1>
+      <p class="text-xl text-[var(--text-secondary)]">
+        Get ready for your adventure with our interactive packing checklist. Your progress is saved
+        automatically!
+      </p>
+    </div>
+
+    <PackingListComponent client:load categories={allCategories} />
+
+    <div
+      class="max-w-2xl mx-auto mt-12 p-6 bg-[var(--bg-surface-raised)] rounded-[var(--radius-lg)] border border-[var(--border-subtle)]"
+    >
+      <h3 class="text-lg font-bold mb-4 text-[var(--text-primary)]">Packing Tips</h3>
+      <ul class="space-y-2 list-disc list-inside text-[var(--text-secondary)]">
+        <li>Roll your clothes to save space and reduce wrinkles.</li>
+        <li>Use packing cubes to organize items by category.</li>
+        <li>Keep essential documents and electronics in your carry-on.</li>
+        <li>Leave some space for souvenirs!</li>
+      </ul>
+    </div>
+  </div>
+</BaseLayout>
