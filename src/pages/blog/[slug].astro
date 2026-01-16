@@ -7,6 +7,7 @@ import type { ImageMetadata } from 'astro';
 import { adventures } from '../../data/adventures';
 import type { Adventure } from '../../data/adventures/types';
 import { ROUTES } from '../../config/paths';
+import { getAssetPath } from '../../utils/paths';
 import { Image } from 'astro:assets';
 
 export async function getStaticPaths() {
@@ -89,7 +90,7 @@ const schema = JSON.stringify({
             />
           ) : (
             <img
-              src={adventure.image}
+              src={getAssetPath(adventure.image)}
               alt={adventure.imageAlt}
               class="w-full h-full object-cover"
             />
@@ -109,7 +110,7 @@ const schema = JSON.stringify({
             {
               adventure.author?.image && (
                 <img
-                  src={adventure.author.image}
+                  src={getAssetPath(adventure.author.image)}
                   alt={adventure.author.name}
                   class="w-12 h-12 rounded-full object-cover"
                 />

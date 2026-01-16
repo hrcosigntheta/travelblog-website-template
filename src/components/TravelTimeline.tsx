@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { getAssetPath } from '../utils/paths';
 
 export interface Milestone {
   date: string;
@@ -109,7 +110,7 @@ export const TravelTimeline: React.FC<TravelTimelineProps> = ({ milestones }) =>
                     {milestone.image && (
                       <div className="rounded-lg overflow-hidden mt-4 aspect-video bg-[var(--bg-surface)]">
                         <img
-                          src={milestone.image.src}
+                          src={getAssetPath(milestone.image.src)}
                           alt={milestone.image.alt}
                           className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                           loading="lazy"

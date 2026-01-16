@@ -67,6 +67,6 @@ describe('ImageWithFallback', () => {
     // We expect the placeholder div to contain an img with this src
     const placeholderDiv = screen.getByTestId('loading-placeholder');
     const placeholderImg = placeholderDiv.querySelector('img');
-    expect(placeholderImg).toHaveAttribute('src', '/images/blur.jpg');
+    expect(placeholderImg).toHaveAttribute('src', '/mocked-base/images/blur.jpg');
   });
 });

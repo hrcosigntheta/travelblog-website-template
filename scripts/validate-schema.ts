@@ -1,6 +1,5 @@
 import fs from 'fs';
 import path from 'path';
-// @ts-expect-error - jsdom might not have types installed
 import { JSDOM } from 'jsdom';
 
 const DIST_DIR = './dist';

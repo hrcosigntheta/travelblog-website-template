@@ -12,12 +12,12 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
 }) => {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [currentSrc, setCurrentSrc] = useState<string>(src);
+  const [currentSrc, setCurrentSrc] = useState<string>(getAssetPath(src));
   const [lastSrc, setLastSrc] = useState<string>(src);
 
   if (src !== lastSrc) {
     setLastSrc(src);
-    setCurrentSrc(src);
+    setCurrentSrc(getAssetPath(src));
     setError(false);
     setLoading(true);
   }
@@ -51,7 +51,7 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
         >
           {placeholderSrc && (
             <img
-              src={placeholderSrc}
+              src={getAssetPath(placeholderSrc)}
               alt=""
               className="w-full h-full object-cover blur-sm transition-opacity duration-300"
             />

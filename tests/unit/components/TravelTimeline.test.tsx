@@ -72,7 +72,7 @@ describe('TravelTimeline', () => {
     const { container } = render(<TravelTimeline milestones={mockMilestones} />);
     const images = container.querySelectorAll('img');
     expect(images.length).toBe(1);
-    expect(images[0].getAttribute('src')).toBe('test.jpg');
+    expect(images[0].getAttribute('src')).toBe('/test.jpg');
     expect(images[0].getAttribute('alt')).toBe('Test Alt');
   });
 });

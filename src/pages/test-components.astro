@@ -9,39 +9,9 @@ import NewsletterSignup from '../components/NewsletterSignup';
 import { TagBadge } from '../components/TagBadge';
 import type { FilterConfig } from '../types/components';
 import type { Destination } from '../data/destinations';
+import { destinations } from '../data/destinations';
 
-const mockDestination: Destination = {
-  id: 'test-dest',
-  slug: 'test-dest',
-  title: 'Test Destination',
-  description: 'A beautiful place for testing.',
-  region: 'Test Region',
-  image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e',
-  imageAlt: 'Test Image Alt',
-  rating: 4.8,
-  tags: ['Beach', 'Relaxation'],
-  featured: true,
-  author: {
-    name: 'MasuRii',
-    url: '/about',
-    image: '/images/placeholders/people/people-1.jpg',
-  },
-  images: [{ src: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e', alt: 'Test' }],
-  coordinates: { lat: 10, lng: 10 },
-  stats: {
-    bestTime: 'Jan-Apr',
-    budget: '$$',
-    difficulty: 'Easy',
-  },
-  content: '<p>Test content</p>',
-  highlights: ['Highlight 1', 'Highlight 2'],
-  itinerary: [],
-  practicalInfo: {
-    gettingThere: 'Fly there',
-    accommodation: 'Stay there',
-    tips: 'Be careful',
-  },
-};
+const mockDestination: Destination = destinations[0];
 
 const mockDays = [
   {

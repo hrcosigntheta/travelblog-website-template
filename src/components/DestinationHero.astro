@@ -2,6 +2,7 @@
 import { Picture } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import type { Destination } from '../data/destinations';
+import { getAssetPath } from '../utils/paths';
 
 interface Props {
   destination: Destination;
@@ -58,7 +59,7 @@ const stats = [
         />
       ) : (
         <img
-          src={destination.image}
+          src={getAssetPath(destination.image)}
           alt={destination.imageAlt}
           class="w-full h-full object-cover"
           fetchpriority="high"

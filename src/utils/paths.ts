@@ -7,6 +7,8 @@ import { BASE_PATH, ROUTES, DEMO_LINKS } from '../config/paths';
  * @param path - The absolute path to the asset (e.g., '/images/logo.png')
  */
 export function getAssetPath(path: string): string {
+  if (!path) return '';
+  if (path.startsWith('http') || path.startsWith('//') || path.startsWith('data:')) return path;
   const cleanPath = path.startsWith('/') ? path : `/${path}`;
   if (!BASE_PATH || BASE_PATH === '/') return cleanPath;
   return `${BASE_PATH}${cleanPath}`;

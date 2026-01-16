@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Destination } from '../data/destinations';
 import { ImageWithFallback } from './ImageWithFallback';
-import { ROUTES, BASE_PATH } from '../config/paths';
+import { ROUTES } from '../config/paths';
 
 interface RelatedDestinationsProps {
   destinations: Destination[];
@@ -17,7 +17,7 @@ export const RelatedDestinations: React.FC<RelatedDestinationsProps> = ({ destin
         {destinations.map((dest) => (
           <a
             key={dest.id}
-            href={`${BASE_PATH}${ROUTES.DESTINATION_DETAIL(dest.slug)}`}
+            href={ROUTES.DESTINATION_DETAIL(dest.slug)}
             className="group flex gap-4 items-start"
           >
             <div className="relative w-20 h-20 flex-shrink-0 rounded-md overflow-hidden">

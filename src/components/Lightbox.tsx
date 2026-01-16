@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { ImageWithFallback } from './ImageWithFallback';
 import { openDemoModal } from '../store/demo-modal';
+import { getAssetPath } from '../utils/paths';
 import type { LightboxProps } from '../types/gallery';
 
 export const Lightbox: React.FC<LightboxProps> = ({
@@ -53,7 +54,7 @@ export const Lightbox: React.FC<LightboxProps> = ({
     const preloadImage = (index: number) => {
       if (index >= 0 && index < images.length) {
         const img = new Image();
-        img.src = images[index].src;
+        img.src = getAssetPath(images[index].src);
       }
     };
 
