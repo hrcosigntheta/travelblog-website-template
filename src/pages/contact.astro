@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { ContactForm } from '../components/ContactForm';
+import { SocialLinksSection } from '../components/SocialLinksSection';
 import { FAQAccordion } from '../components/FAQAccordion';
 import { ImageWithFallback } from '../components/ImageWithFallback';
 
@@ -28,14 +29,6 @@ const schema = JSON.stringify({
     ],
   },
 });
-
-// Social links data
-const socialLinks = [
-  { name: 'Instagram', icon: 'instagram', url: 'https://instagram.com', color: 'bg-pink-600' },
-  { name: 'Twitter', icon: 'twitter', url: 'https://twitter.com', color: 'bg-blue-600' },
-  { name: 'Facebook', icon: 'facebook', url: 'https://facebook.com', color: 'bg-blue-700' },
-  { name: 'Pinterest', icon: 'pinterest', url: 'https://pinterest.com', color: 'bg-red-600' },
-];
 ---
 
 <BaseLayout title={title} description={description} schema={schema}>
@@ -86,37 +79,7 @@ const socialLinks = [
       {/* Info & Social Column */}
       <div class="lg:col-span-5 space-y-12">
         {/* Social Connect */}
-        <div>
-          <h2 class="text-2xl font-display font-bold text-[var(--text-primary)] mb-6">
-            Connect with Us
-          </h2>
-          <p class="text-[var(--text-secondary)] mb-6">
-            Follow our adventures in real-time on social media. We post daily updates, stories, and
-            travel tips.
-          </p>
-          <div class="grid grid-cols-2 gap-4">
-            {
-              socialLinks.map((social) => (
-                <a
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class={`flex items-center gap-3 p-4 rounded-[var(--radius-lg)] text-white hover:opacity-90 transition-opacity shadow-md demo-link ${social.color}`}
-                >
-                  <span class="font-bold">{social.name}</span>
-                </a>
-              ))
-            }
-          </div>
-          {
-            /* Note: The Footer component handles demo link interception globally usually, 
-              but we might need to ensure it works here too. 
-              The DemoLinkModal logic typically attaches to document or specific elements. 
-              Let's ensure the class 'demo-link' is picked up if implemented that way.
-              Actually, the modal logic often uses event delegation.
-          */
-          }
-        </div>
+        <SocialLinksSection client:visible />
 
         {/* FAQ Section */}
         <div>
@@ -143,20 +106,3 @@ const socialLinks = [
     </div>
   </div>
 </BaseLayout>
-
-<script>
-  import { openDemoModal } from '../store/demo-modal';
-
-  // Handle demo links for social media
-  document.querySelectorAll('a.demo-link').forEach((link) => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const target = e.currentTarget as HTMLAnchorElement;
-      openDemoModal({
-        url: target.href,
-        label: target.textContent?.trim() || 'Social Link',
-        category: 'social',
-      });
-    });
-  });
-</script>
