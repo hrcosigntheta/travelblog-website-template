@@ -82,10 +82,10 @@ const currentPath = Astro.url.pathname;
       <slot />
     </main>
 
-    {!hideFooter && <Footer client:visible lang={lang as keyof typeof ui} />}
+    {!hideFooter && <Footer client:load lang={lang as keyof typeof ui} />}
 
     <BackToTop client:idle />
-    <DemoLinkModal client:idle />
+    <DemoLinkModal client:load />
 
     <script>
       // Initialize the theme store (which sets up listeners)

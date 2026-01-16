@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslations } from '../i18n/utils';
 import { defaultLang, ui } from '../i18n/ui';
 import { ROUTES } from '../config/paths';
+import { openDemoModal } from '../store/demo-modal';
 
 interface FooterProps {
   lang?: string;
@@ -11,6 +12,28 @@ export default function Footer({ lang = defaultLang }: FooterProps) {
   const currentLang = lang in ui ? (lang as keyof typeof ui) : defaultLang;
   const t = useTranslations(currentLang);
   const currentYear = new Date().getFullYear();
+  const [email, setEmail] = useState('');
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+
+    openDemoModal({
+      url: '#',
+      label: `Newsletter Subscription: ${email}`,
+      category: 'Newsletter',
+    });
+    setEmail('');
+  };
+
+  const handleSocialClick = (e: React.MouseEvent, platform: string, url: string) => {
+    e.preventDefault();
+    openDemoModal({
+      url,
+      label: `${platform} Profile`,
+      category: 'Social Media',
+    });
+  };
 
   return (
     <footer className="bg-surface-raised border-t border-subtle text-text-primary py-12 transition-colors duration-300">
@@ -75,10 +98,13 @@ export default function Footer({ lang = defaultLang }: FooterProps) {
           <div>
             <h3 className="font-bold text-lg mb-4">{t('footer.newsletter')}</h3>
             <p className="text-text-secondary text-sm mb-4">{t('home.newsletterDesc')}</p>
-            <form className="space-y-2" onSubmit={(e) => e.preventDefault()}>
+            <form className="space-y-2" onSubmit={handleSubscribe}>
               <input
                 type="email"
                 placeholder={t('footer.newsletterPlaceholder')}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
                 className="w-full px-4 py-2 bg-default border border-default rounded-md focus:outline-none focus:ring-2 focus:ring-primary transition-colors"
               />
               <button
@@ -99,12 +125,14 @@ export default function Footer({ lang = defaultLang }: FooterProps) {
             {/* Social Placeholders */}
             <a
               href="https://instagram.com"
+              onClick={(e) => handleSocialClick(e, 'Instagram', 'https://instagram.com')}
               className="text-text-secondary hover:text-primary transition-colors font-medium"
             >
               Instagram
             </a>
             <a
               href="https://twitter.com"
+              onClick={(e) => handleSocialClick(e, 'Twitter', 'https://twitter.com')}
               className="text-text-secondary hover:text-primary transition-colors font-medium"
             >
               Twitter
