@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import type { Category } from '../data/categories';
 
 interface Props {
@@ -6,19 +7,42 @@ interface Props {
 }
 
 const { category } = Astro.props;
+
+// Use import.meta.glob to dynamically load optimized images from assets
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/images/placeholders/**/*.{jpeg,jpg,png,webp,avif}'
+);
+
+// Map public path to asset path
+const assetPath = `/src/assets${category.image}`;
+const imageLoader = images[assetPath];
 ---
 
 <a
   href={`/destinations?category=${category.slug}`}
   class="group relative block aspect-[4/5] w-full overflow-hidden rounded-[var(--radius-lg)] bg-[var(--card-bg)] shadow-md transition-all duration-200 ease-out hover:shadow-xl hover:-translate-y-1"
 >
-  <img
-    src={category.image}
-    alt=""
-    class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-    loading="lazy"
-    decoding="async"
-  />
+  {
+    imageLoader ? (
+      <Image
+        src={imageLoader()}
+        alt=""
+        width={400}
+        height={500}
+        class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+        loading="lazy"
+        decoding="async"
+      />
+    ) : (
+      <img
+        src={category.image}
+        alt=""
+        class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+        loading="lazy"
+        decoding="async"
+      />
+    )
+  }
   <div
     class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent transition-opacity group-hover:via-black/50"
   >

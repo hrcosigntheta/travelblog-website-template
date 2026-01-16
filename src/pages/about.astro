@@ -1,4 +1,5 @@
 ---
+import { Picture, getImage } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { ImageWithFallback } from '../components/ImageWithFallback';
 import { BloggerHero } from '../components/BloggerHero';
@@ -17,6 +18,23 @@ const title = `${bloggerProfile.name} | Philippine Travel Blog`;
 const description = bloggerProfile.shortBio;
 
 const schema = JSON.stringify(generatePersonSchema(bloggerProfile, Astro.site!));
+
+// Use import.meta.glob to dynamically load optimized images from assets
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/images/placeholders/**/*.{jpeg,jpg,png,webp,avif}'
+);
+
+const heroAssetPath = `/src/assets${bloggerProfile.heroSrc}`;
+const heroImageLoader = images[heroAssetPath];
+
+const portraitAssetPath = `/src/assets${bloggerProfile.portraitSrc}`;
+const portraitImageLoader = images[portraitAssetPath];
+
+let optimizedPortrait = bloggerProfile.portraitSrc;
+if (portraitImageLoader) {
+  const img = await getImage({ src: (portraitImageLoader() as any), width: 400, height: 400 });
+  optimizedPortrait = img.src;
+}
 
 const stats = [
   { label: 'Islands Visited', value: '45+' },
@@ -38,14 +56,29 @@ const equipmentItems = bloggerProfile.equipment;
   {/* Hero Section */}
   <section class="relative h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 z-0">
-      <ImageWithFallback
-        src={bloggerProfile.heroSrc}
-        alt="Travel blogger looking at a landscape"
-        className="w-full h-full object-cover"
-        loading="eager"
-        fetchPriority="high"
-        client:load
-      />
+      {
+        heroImageLoader ? (
+          <Picture
+            src={heroImageLoader() as any}
+            alt="Travel blogger looking at a landscape"
+            widths={[640, 768, 1024, 1280, 1536, 1920]}
+            sizes="100vw"
+            formats={['avif', 'webp']}
+            class="w-full h-full object-cover"
+            loading="eager"
+            fetchpriority="high"
+          />
+        ) : (
+          <ImageWithFallback
+            src={bloggerProfile.heroSrc}
+            alt="Travel blogger looking at a landscape"
+            className="w-full h-full object-cover"
+            loading="eager"
+            fetchPriority="high"
+            client:load
+          />
+        )
+      }
       <div
         class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-[var(--color-surface)]"
       >
@@ -65,7 +98,7 @@ const equipmentItems = bloggerProfile.equipment;
   <BloggerHero
     name={bloggerProfile.name}
     tagline={bloggerProfile.tagline}
-    portraitSrc={bloggerProfile.portraitSrc}
+    portraitSrc={optimizedPortrait}
     stats={stats}
     socialLinks={socialLinks}
     client:visible

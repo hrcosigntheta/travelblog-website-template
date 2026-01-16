@@ -1,4 +1,5 @@
 ---
+import { Picture } from 'astro:assets';
 import type { Destination } from '../data/destinations';
 
 interface Props {
@@ -6,6 +7,15 @@ interface Props {
 }
 
 const { destination } = Astro.props;
+
+// Use import.meta.glob to dynamically load optimized images from assets
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/images/destinations/*.{jpeg,jpg,png,webp,avif}'
+);
+
+// Map public path to asset path
+const assetPath = `/src/assets${destination.image}`;
+const imageLoader = images[assetPath];
 
 const stats = [
   {
@@ -32,40 +42,30 @@ const stats = [
 <section class="relative h-[80vh] min-h-[600px] flex items-center justify-center overflow-hidden">
   {/* Background Image */}
   <div class="absolute inset-0 z-0">
-    <picture>
-      <source
-        srcset={`
-          ${destination.image}?w=640&q=70&fm=avif 640w,
-          ${destination.image}?w=768&q=70&fm=avif 768w,
-          ${destination.image}?w=1024&q=70&fm=avif 1024w,
-          ${destination.image}?w=1280&q=70&fm=avif 1280w,
-          ${destination.image}?w=1536&q=70&fm=avif 1536w,
-          ${destination.image}?w=1920&q=70&fm=avif 1920w
-        `}
-        type="image/avif"
-        sizes="100vw"
-      />
-      <source
-        srcset={`
-          ${destination.image}?w=640&q=70&fm=webp 640w,
-          ${destination.image}?w=768&q=70&fm=webp 768w,
-          ${destination.image}?w=1024&q=70&fm=webp 1024w,
-          ${destination.image}?w=1280&q=70&fm=webp 1280w,
-          ${destination.image}?w=1536&q=70&fm=webp 1536w,
-          ${destination.image}?w=1920&q=70&fm=webp 1920w
-        `}
-        type="image/webp"
-        sizes="100vw"
-      />
-      <img
-        src={`${destination.image}?w=1920&q=70&fm=jpg`}
-        alt={destination.imageAlt}
-        class="w-full h-full object-cover"
-        fetchpriority="high"
-        loading="eager"
-        decoding="async"
-      />
-    </picture>
+    {
+      imageLoader ? (
+        <Picture
+          src={imageLoader()}
+          alt={destination.imageAlt}
+          widths={[640, 768, 1024, 1280, 1536, 1920]}
+          sizes="100vw"
+          formats={['avif', 'webp']}
+          class="w-full h-full object-cover"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+      ) : (
+        <img
+          src={destination.image}
+          alt={destination.imageAlt}
+          class="w-full h-full object-cover"
+          fetchpriority="high"
+          loading="eager"
+          decoding="async"
+        />
+      )
+    }
     <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/80"></div>
   </div>
 
