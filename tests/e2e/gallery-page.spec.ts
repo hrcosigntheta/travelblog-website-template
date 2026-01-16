@@ -33,16 +33,26 @@ test.describe('Gallery Page', () => {
 
   test('should include structured data schema', async ({ page }) => {
     const schemaScript = page.locator('script[type="application/ld+json"]');
-    await expect(schemaScript).toHaveCount(1);
+    // Gallery page has 2 schemas: ImageGallery and BreadcrumbList
+    await expect(schemaScript).toHaveCount(2);
 
-    const schemaContent = await schemaScript.textContent();
-    const schema = JSON.parse(schemaContent || '{}');
+    const schemaContent = await schemaScript.first().textContent();
+    expect(schemaContent).toBeTruthy();
 
-    expect(schema['@type']).toBe('ImageGallery');
-    expect(schema.name).toBe('Photo Gallery | Philippines Travel Blog');
-    // Basic check for images in schema
-    expect(Array.isArray(schema.image)).toBe(true);
-    expect(schema.image.length).toBeGreaterThan(0);
+    // First script or second should be ImageGallery. Let's just check if any matches.
+    const allSchemas = await schemaScript.all();
+    let hasImageGallery = false;
+    for (const script of allSchemas) {
+      const content = await script.textContent();
+      const parsed = JSON.parse(content || '{}');
+      if (parsed['@type'] === 'ImageGallery') {
+        hasImageGallery = true;
+        expect(parsed.name).toBe('Photo Gallery | Philippines Travel Blog');
+        expect(Array.isArray(parsed.image)).toBe(true);
+        expect(parsed.image.length).toBeGreaterThan(0);
+      }
+    }
+    expect(hasImageGallery).toBe(true);
   });
 
   test('should trigger download modal from lightbox', async ({ page }) => {

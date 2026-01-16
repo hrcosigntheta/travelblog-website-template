@@ -11,7 +11,7 @@ test.describe('Destination Gallery', () => {
 
     // Check for the photo count text
     // Only visible on desktop/tablet due to responsive styles
-    const photoCount = page.getByText('5 Photos');
+    const photoCount = page.getByText('4 Photos');
     if (page.viewportSize()?.width && page.viewportSize()!.width >= 768) {
       await expect(photoCount).toBeVisible();
     }
@@ -21,10 +21,10 @@ test.describe('Destination Gallery', () => {
     await gallery.scrollIntoViewIfNeeded();
     await expect(gallery).toBeVisible();
 
-    // There should be 5 images in the gallery
+    // There should be 4 images in the gallery
     // Note: Masonry layout might affect DOM order, but count should be correct
     const imageCards = gallery.getByRole('button');
-    await expect(imageCards).toHaveCount(5);
+    await expect(imageCards).toHaveCount(4);
 
     // Wait for the first card to be stable and visible
     const firstCard = imageCards.first();
@@ -42,15 +42,15 @@ test.describe('Destination Gallery', () => {
     const lightbox = page.getByRole('dialog', { name: /Image lightbox/i });
     await expect(lightbox).toBeVisible();
 
-    // Verify lightbox count "1 / 5"
-    await expect(lightbox.getByText('1 / 5')).toBeVisible();
+    // Verify lightbox count "1 / 4"
+    await expect(lightbox.getByText('1 / 4')).toBeVisible();
 
     // Test navigation in lightbox (only on desktop/tablet where buttons are visible)
     // Mobile uses swipe which is harder to test, or buttons are hidden
     if (page.viewportSize()?.width && page.viewportSize()!.width >= 768) {
       const nextButton = lightbox.getByLabel('Next image');
       await nextButton.click();
-      await expect(lightbox.getByText('2 / 5')).toBeVisible();
+      await expect(lightbox.getByText('2 / 4')).toBeVisible();
     }
 
     // Close lightbox

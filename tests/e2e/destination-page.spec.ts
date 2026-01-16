@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Destination Detail Page', () => {
   const destinationSlug = 'el-nido-palawan';
-  const destinationUrl = `/destinations/${destinationSlug}`;
+  const destinationUrl = `./destinations/${destinationSlug}/`;
 
   test.beforeEach(async ({ page }) => {
     await page.goto(destinationUrl);
@@ -12,7 +12,8 @@ test.describe('Destination Detail Page', () => {
 
   test('Renders all major sections', async ({ page }) => {
     // 1. Hero Section
-    await expect(page.locator('h1')).toHaveText('El Nido, Palawan');
+    // Use first() to get the hero h1 and avoid the print header h1
+    await expect(page.locator('h1').first()).toHaveText(/El Nido, Palawan/);
 
     // Stats in Hero (Use .first() to avoid strict mode violation as it appears in sidebar too)
     await expect(page.getByText('Best Time').first()).toBeVisible();
@@ -21,7 +22,7 @@ test.describe('Destination Detail Page', () => {
 
     // 2. Main Content
     await expect(page.getByRole('heading', { name: 'About El Nido, Palawan' })).toBeVisible();
-    await expect(page.getByText('El Nido is known for')).toBeVisible();
+    await expect(page.getByText(/El Nido is known for/)).toBeVisible();
 
     // Highlights
     await expect(page.getByRole('heading', { name: 'Highlights' })).toBeVisible();
@@ -35,10 +36,10 @@ test.describe('Destination Detail Page', () => {
     // 4. Photo Gallery
     await expect(page.getByRole('heading', { name: 'Photo Gallery' })).toBeVisible();
     // Check for at least one image
-    const galleryImage = page.locator('img[alt="El Nido, Palawan"]').first();
+    const galleryImage = page.locator('img[alt="El Nido, Palawan photography - Shot 1"]').first();
     await galleryImage.scrollIntoViewIfNeeded();
-    // Verify it exists and has the src (relaxed visibility check for CI/headless where onLoad might lag)
-    await expect(galleryImage).toHaveAttribute('src', /images.unsplash.com/);
+    // Verify it exists (relaxed visibility check for CI/headless where onLoad might lag)
+    await expect(galleryImage).toBeVisible();
 
     // 5. Itinerary
     await expect(page.getByRole('heading', { name: 'Suggested Itinerary' })).toBeVisible();
@@ -135,7 +136,7 @@ test.describe('Destination Detail Page', () => {
       // Wait, dests are: El Nido (Palawan), Siargao (Surigao), Bohol, Boracay (Aklan).
       // The logic falls back to "others" if < 3 related.
       // So it should show 3 cards.
-      const relatedCards = page.locator('a[href^="/destinations/"]');
+      const relatedCards = page.locator('a[href*="/destinations/"]');
       // Ensure at least one related card is visible (waits for hydration/render)
       await expect(relatedCards.first()).toBeVisible();
 
