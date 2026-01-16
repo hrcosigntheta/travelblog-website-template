@@ -6,6 +6,7 @@ import { TravelPhilosophy } from '../components/TravelPhilosophy';
 import { TravelStats } from '../components/TravelStats';
 
 import { EquipmentShowcase, type EquipmentItem } from '../components/EquipmentShowcase';
+import { TravelTimeline, type Milestone } from '../components/TravelTimeline';
 
 const title = 'About MasuRii | Philippine Travel Blog';
 const description =
@@ -43,6 +44,48 @@ const travelStats = [
   { label: 'Years Traveling', value: 7, icon: 'calendar' as const },
   { label: 'Photos Taken', value: 15000, suffix: '+', icon: 'camera' as const },
   { label: 'Km Traveled', value: 50000, suffix: '+', icon: 'navigation' as const },
+];
+
+const milestones: Milestone[] = [
+  {
+    date: '2016',
+    title: 'The Journey Begins',
+    description:
+      'Quit my corporate job and bought a one-way ticket to Cebu. My first solo trip that changed everything.',
+    image: {
+      src: 'https://placehold.co/600x400/222222/ffffff?text=Cebu+2016',
+      alt: 'First trip to Cebu',
+    },
+  },
+  {
+    date: '2017',
+    title: 'First Viral Post',
+    description:
+      'My guide to the hidden waterfalls of Samboan went viral, reaching 100k people and launching my blogging career.',
+  },
+  {
+    date: '2019',
+    title: 'Explored Batanes',
+    description:
+      'A dream come true. Spent 2 weeks in the northernmost islands of the Philippines, experiencing Ivatan culture.',
+    image: {
+      src: 'https://placehold.co/600x400/222222/ffffff?text=Batanes',
+      alt: 'Batanes landscape',
+    },
+  },
+  {
+    date: '2021',
+    title: 'Sustainable Tourism Advocate',
+    description:
+      'Partnered with local LGUs to promote responsible tourism practices and beach cleanups.',
+  },
+  {
+    date: '2023',
+    title: 'Best Travel Blog Award',
+    description:
+      'Honored to receive the "Best Philippine Travel Blog" award at the Tourism Summit.',
+    image: { src: 'https://placehold.co/600x400/222222/ffffff?text=Award', alt: 'Holding award' },
+  },
 ];
 
 const socialLinks: SocialLink[] = [
@@ -188,6 +231,9 @@ const equipmentItems: EquipmentItem[] = [
 
   {/* Travel Stats Section */}
   <TravelStats stats={travelStats} client:visible />
+
+  {/* Travel Timeline Section */}
+  <TravelTimeline milestones={milestones} client:visible />
 
   {/* Gear Section */}
   <EquipmentShowcase items={equipmentItems} client:visible />
