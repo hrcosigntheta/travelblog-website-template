@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { openDemoModal } from '../store/demo-modal';
+import { Button } from './UI/Button';
 
 const NewsletterSignup: React.FC = () => {
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
   const [status, setStatus] = useState<'idle' | 'success'>('idle');
+  const [isLoading, setIsLoading] = useState(false);
 
   const validateEmail = (email: string) => {
     return String(email)
@@ -14,7 +16,7 @@ const NewsletterSignup: React.FC = () => {
       );
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
 
@@ -28,6 +30,11 @@ const NewsletterSignup: React.FC = () => {
       return;
     }
 
+    setIsLoading(true);
+
+    // Simulate network delay
+    await new Promise((resolve) => setTimeout(resolve, 800));
+
     // Trigger demo modal
     openDemoModal({
       url: `https://api.travelblog.demo/subscribe?email=${encodeURIComponent(email)}`,
@@ -35,6 +42,7 @@ const NewsletterSignup: React.FC = () => {
       category: 'newsletter',
     });
 
+    setIsLoading(false);
     // Simulate success
     setStatus('success');
     setEmail('');
@@ -86,12 +94,15 @@ const NewsletterSignup: React.FC = () => {
                 <p className="mt-2 text-sm text-green-600 font-medium">Thanks for subscribing!</p>
               )}
             </div>
-            <button
+            <Button
               type="submit"
-              className="h-12 px-8 rounded-[var(--radius-md)] bg-[var(--color-primary)] text-[var(--color-btn-primary-text)] font-semibold hover:bg-[var(--color-primary-hover)] transition-colors whitespace-nowrap shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 active:translate-y-0"
+              isLoading={isLoading}
+              isSuccess={status === 'success'}
+              successText="Subscribed!"
+              className="h-12 shadow-lg"
             >
               Subscribe
-            </button>
+            </Button>
           </form>
 
           <p className="mt-4 text-sm text-[var(--text-muted)]">
