@@ -18,7 +18,7 @@ export const palawanIslandHopping: Adventure = {
   date: 'January 15, 2026',
   readTime: '7 min read',
   categories: ['Island Hopping', 'Nature', 'Palawan'],
-  image: 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62',
+  image: '/images/destinations/el-nido-palawan-main.jpg',
   imageAlt: 'Beautiful Big Lagoon in El Nido, Palawan with clear blue water and limestone cliffs',
   author: {
     name: 'MasuRii',

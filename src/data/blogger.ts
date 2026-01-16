@@ -120,7 +120,7 @@ export const bloggerProfile: BloggerProfile = {
       description:
         'My daily driver for both photo and video. The autofocus is reliable and the dynamic range is perfect for travel scenes.',
       category: 'Camera',
-      imageUrl: 'https://placehold.co/600x400/222222/ffffff?text=Sony+A7+IV',
+      imageUrl: '/images/placeholders/adventure/adventure-1.jpg',
       shopUrl: 'https://amazon.com/dp/B09JZT6Y55',
     },
     {
@@ -129,7 +129,7 @@ export const bloggerProfile: BloggerProfile = {
       description:
         'Essential for capturing sweeping landscapes and tight indoor spaces. Sharp from corner to corner.',
       category: 'Lens',
-      imageUrl: 'https://placehold.co/600x400/222222/ffffff?text=Sony+16-35mm',
+      imageUrl: '/images/placeholders/adventure/adventure-2.jpg',
       shopUrl: 'https://amazon.com/dp/B074V56463',
     },
     {
@@ -138,7 +138,7 @@ export const bloggerProfile: BloggerProfile = {
       description:
         'For those aerial perspectives that show the true scale of the Philippine islands and coastlines.',
       category: 'Drone',
-      imageUrl: 'https://placehold.co/600x400/222222/ffffff?text=DJI+Mavic+3',
+      imageUrl: '/images/placeholders/adventure/adventure-3.jpg',
       shopUrl: 'https://amazon.com/dp/B09JZT6Y55',
     },
     {
@@ -147,7 +147,7 @@ export const bloggerProfile: BloggerProfile = {
       description:
         'Waterproof and rugged. Perfect for diving, canyoneering, and rainy days when the big camera stays dry.',
       category: 'Action Cam',
-      imageUrl: 'https://placehold.co/600x400/222222/ffffff?text=GoPro+Hero+11',
+      imageUrl: '/images/placeholders/beaches/beaches-1.jpg',
       shopUrl: 'https://amazon.com/dp/B09JZT6Y55',
     },
     {
@@ -156,7 +156,7 @@ export const bloggerProfile: BloggerProfile = {
       description:
         'The best travel camera bag I have found. Weather resistant, expandable, and looks good in the city too.',
       category: 'Bag',
-      imageUrl: 'https://placehold.co/600x400/222222/ffffff?text=Camera+Bag',
+      imageUrl: '/images/placeholders/beaches/beaches-2.jpg',
       shopUrl: 'https://amazon.com/dp/B09JZT6Y55',
     },
     {
@@ -165,7 +165,7 @@ export const bloggerProfile: BloggerProfile = {
       description:
         'Compact enough to fit in a water bottle pocket but stable enough for long exposures.',
       category: 'Accessory',
-      imageUrl: 'https://placehold.co/600x400/222222/ffffff?text=Travel+Tripod',
+      imageUrl: '/images/placeholders/beaches/beaches-3.jpg',
       shopUrl: 'https://amazon.com/dp/B09JZT6Y55',
     },
     {
@@ -174,7 +174,7 @@ export const bloggerProfile: BloggerProfile = {
       description:
         'My mobile editing studio. Powerful enough to handle 4K video editing on the go.',
       category: 'Tech',
-      imageUrl: 'https://placehold.co/600x400/222222/ffffff?text=MacBook+Pro',
+      imageUrl: '/images/placeholders/beaches/beaches-4.jpg',
       shopUrl: 'https://amazon.com/dp/B09JZT6Y55',
     },
     {
@@ -182,7 +182,7 @@ export const bloggerProfile: BloggerProfile = {
       name: 'Anker PowerCore 24K',
       description: 'Keeps everything charged during long travel days on ferries and buses.',
       category: 'Accessory',
-      imageUrl: 'https://placehold.co/600x400/222222/ffffff?text=Power+Bank',
+      imageUrl: '/images/placeholders/beaches/beaches-5.jpg',
       shopUrl: 'https://amazon.com/dp/B09JZT6Y55',
     },
   ],
@@ -193,7 +193,7 @@ export const bloggerProfile: BloggerProfile = {
       description:
         'Quit my corporate job and bought a one-way ticket to Cebu. My first solo trip that changed everything.',
       image: {
-        src: 'https://placehold.co/600x400/222222/ffffff?text=Cebu+2016',
+        src: '/images/destinations/siargao-island-main.jpg',
         alt: 'First trip to Cebu',
       },
     },
@@ -209,7 +209,7 @@ export const bloggerProfile: BloggerProfile = {
       description:
         'A dream come true. Spent 2 weeks in the northernmost islands of the Philippines, experiencing Ivatan culture.',
       image: {
-        src: 'https://placehold.co/600x400/222222/ffffff?text=Batanes',
+        src: '/images/destinations/batanes-main.jpg',
         alt: 'Batanes landscape',
       },
     },
@@ -224,7 +224,7 @@ export const bloggerProfile: BloggerProfile = {
       title: 'Best Travel Blog Award',
       description:
         'Honored to receive the "Best Philippine Travel Blog" award at the Tourism Summit.',
-      image: { src: 'https://placehold.co/600x400/222222/ffffff?text=Award', alt: 'Holding award' },
+      image: { src: '/images/destinations/coron-palawan-main.jpg', alt: 'Holding award' },
     },
   ],
 };

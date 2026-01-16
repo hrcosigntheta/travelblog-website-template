@@ -16,6 +16,7 @@ import Breadcrumb from '../components/Breadcrumb.astro';
 import { bloggerProfile } from '../data/blogger';
 import { generatePersonSchema } from '../utils/schema';
 import { ROUTES } from '../config/paths';
+import { getAssetPath } from '../utils/paths';
 
 const title = `About ${bloggerProfile.name} | Philippine Travel Blog`;
 const description = bloggerProfile.shortBio;
@@ -33,7 +34,7 @@ const heroImageLoader = images[heroAssetPath];
 const portraitAssetPath = `/src/assets${bloggerProfile.portraitSrc}`;
 const portraitImageLoader = images[portraitAssetPath];
 
-let optimizedPortrait = bloggerProfile.portraitSrc;
+let optimizedPortrait = getAssetPath(bloggerProfile.portraitSrc);
 if (portraitImageLoader) {
   const img = await getImage({
     src: (await portraitImageLoader()).default,

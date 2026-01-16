@@ -22,7 +22,7 @@ export const philippineBeachGuide: Adventure = {
   date: 'January 25, 2026',
   readTime: '8 min read',
   categories: ['Beaches', 'Guide', 'Philippines'],
-  image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e',
+  image: '/images/destinations/boracay-island-main.jpg',
   imageAlt:
     'Pristine white sand beach in the Philippines with leaning palm trees and crystal clear water',
   author: {

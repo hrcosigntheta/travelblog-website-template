@@ -18,7 +18,7 @@ export const cebuAdventure: Adventure = {
   date: 'January 10, 2026',
   readTime: '6 min read',
   categories: ['Adventure', 'Nature', 'Cebu'],
-  image: 'https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86',
+  image: '/images/destinations/tops-lookout-main.jpg',
   imageAlt:
     'Scenic view of Osmeña Peak in Cebu with jagged green hills and ocean in the background',
   author: {

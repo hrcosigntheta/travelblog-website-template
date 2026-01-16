@@ -20,7 +20,7 @@ export const boholHiddenGems: Adventure = {
   date: 'January 20, 2026',
   readTime: '5 min read',
   categories: ['Adventure', 'Culture', 'Bohol'],
-  image: 'https://images.unsplash.com/photo-1516690561799-46d8f74f9abf',
+  image: '/images/destinations/chocolate-hills-bohol-main.jpg',
   imageAlt: 'The famous Chocolate Hills of Bohol under a clear blue sky',
   author: {
     name: 'MasuRii',
