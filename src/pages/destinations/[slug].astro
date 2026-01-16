@@ -8,6 +8,7 @@ import { PhotoGallery } from '../../components/PhotoGallery';
 import { destinations } from '../../data/destinations';
 import type { Destination, ItineraryActivityData } from '../../data/destinations';
 import { RelatedDestinations } from '../../components/RelatedDestinations';
+import { ShareButtons } from '../../components/ShareButtons';
 import ReadingProgress from '../../components/ReadingProgress';
 
 export async function getStaticPaths() {
@@ -222,6 +223,17 @@ const schema = JSON.stringify(generateDestinationSchema(destination, Astro.url))
             </div>
           </div>
           <RelatedDestinations client:load destinations={relatedDestinations} />
+
+          <div
+            class="bg-[var(--bg-card)] border border-[var(--border-subtle)] rounded-[var(--radius-lg)] p-6 shadow-sm"
+          >
+            <ShareButtons
+              client:load
+              title={destination.title}
+              description={destination.description}
+              image={destination.images?.[0]}
+            />
+          </div>
         </div>
       </div>
     </section>
