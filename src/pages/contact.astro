@@ -4,6 +4,7 @@ import { ContactForm } from '../components/ContactForm';
 import { SocialLinksSection } from '../components/SocialLinksSection';
 import { FAQAccordion } from '../components/FAQAccordion';
 import { ImageWithFallback } from '../components/ImageWithFallback';
+import { CONTACT_FAQS } from '../data/faqs';
 
 const title = 'Contact Us | Philippines Travel Blog';
 const description =
@@ -11,23 +12,38 @@ const description =
 
 const schema = JSON.stringify({
   '@context': 'https://schema.org',
-  '@type': 'ContactPage',
-  name: title,
-  description: description,
-  url: new URL('/contact', Astro.site),
-  mainEntity: {
-    '@type': 'Person',
-    name: 'MasuRii',
-    image: new URL('/images/author-portrait.jpg', Astro.site),
-    jobTitle: 'Travel Blogger',
-    url: new URL('/about', Astro.site),
-    sameAs: [
-      'https://instagram.com',
-      'https://twitter.com',
-      'https://facebook.com',
-      'https://pinterest.com',
-    ],
-  },
+  '@graph': [
+    {
+      '@type': 'ContactPage',
+      name: title,
+      description: description,
+      url: new URL('/contact', Astro.site),
+      mainEntity: {
+        '@type': 'Person',
+        name: 'MasuRii',
+        image: new URL('/images/author-portrait.jpg', Astro.site),
+        jobTitle: 'Travel Blogger',
+        url: new URL('/about', Astro.site),
+        sameAs: [
+          'https://instagram.com',
+          'https://twitter.com',
+          'https://facebook.com',
+          'https://pinterest.com',
+        ],
+      },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: CONTACT_FAQS.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: faq.answer,
+        },
+      })),
+    },
+  ],
 });
 ---
 

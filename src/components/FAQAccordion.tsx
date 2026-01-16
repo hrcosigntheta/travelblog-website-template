@@ -1,58 +1,39 @@
 import React, { useState } from 'react';
-
-interface FAQItem {
-  question: string;
-  answer: string;
-}
-
-const FAQS: FAQItem[] = [
-  {
-    question: 'Can I use your photos for my blog?',
-    answer:
-      'All photos on this website are copyrighted. Please contact us if you would like to license any images for commercial or personal use.',
-  },
-  {
-    question: 'Do you accept guest posts?',
-    answer:
-      'Yes! We are always looking for authentic travel stories from the Philippines. Please select "Collaboration" in the contact form to pitch your idea.',
-  },
-  {
-    question: 'What camera gear do you use?',
-    answer:
-      'We primarily shoot with a Sony A7IV and a variety of G Master lenses. Check out our About page for a full breakdown of our gear bag.',
-  },
-  {
-    question: 'How do you fund your travels?',
-    answer:
-      'Our travels are funded through a mix of savings, freelance photography work, and partnerships with brands that align with our values.',
-  },
-];
+import { CONTACT_FAQS } from '../data/faqs';
 
 export const FAQAccordion: React.FC = () => {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggleIndex = (index: number) => {
     setOpenIndex((prev) => (prev === index ? null : index));
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent, index: number) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleIndex(index);
+    }
+  };
+
   return (
     <div className="space-y-4">
-      {FAQS.map((faq, index) => (
+      {CONTACT_FAQS.map((faq, index) => (
         <div
           key={index}
-          className="border border-[var(--border-subtle)] rounded-[var(--radius-lg)] bg-[var(--bg-surface-raised)] overflow-hidden transition-all duration-200"
+          className="border border-[var(--border-subtle)] rounded-[var(--radius-lg)] bg-[var(--bg-surface-raised)] overflow-hidden"
         >
           <button
             onClick={() => toggleIndex(index)}
-            className="w-full px-6 py-4 flex justify-between items-center text-left focus:outline-none focus:bg-[var(--bg-surface-neutral-subtle)] hover:bg-[var(--bg-surface-neutral-subtle)] transition-colors"
+            onKeyDown={(e) => handleKeyDown(e, index)}
+            className="w-full px-6 py-5 flex justify-between items-center text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] focus-visible:ring-inset hover:bg-[var(--bg-surface-neutral-subtle)] transition-colors cursor-pointer"
             aria-expanded={openIndex === index}
             aria-controls={`faq-answer-${index}`}
           >
-            <span className="font-display font-bold text-[var(--text-primary)] text-lg">
+            <span className="font-display font-bold text-[var(--text-primary)] text-lg pr-4">
               {faq.question}
             </span>
             <span
-              className={`transform transition-transform duration-200 text-[var(--text-secondary)] ${
+              className={`transform transition-transform duration-300 text-[var(--text-secondary)] flex-shrink-0 ${
                 openIndex === index ? 'rotate-180' : ''
               }`}
             >
@@ -73,12 +54,15 @@ export const FAQAccordion: React.FC = () => {
           </button>
           <div
             id={`faq-answer-${index}`}
-            className={`transition-all duration-300 ease-in-out ${
-              openIndex === index ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'
+            className={`grid transition-all duration-300 ease-in-out ${
+              openIndex === index ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
             }`}
+            aria-hidden={openIndex !== index}
           >
-            <div className="px-6 pb-6 text-[var(--text-secondary)] leading-relaxed border-t border-[var(--border-subtle)] pt-4">
-              {faq.answer}
+            <div className="overflow-hidden">
+              <div className="px-6 pb-6 text-[var(--text-secondary)] leading-relaxed border-t border-[var(--border-subtle)] pt-4">
+                {faq.answer}
+              </div>
             </div>
           </div>
         </div>
