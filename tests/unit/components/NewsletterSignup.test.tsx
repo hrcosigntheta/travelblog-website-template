@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import NewsletterSignup from '../../../src/components/NewsletterSignup';
 import * as demoModalStore from '../../../src/store/demo-modal';
 
@@ -45,7 +45,7 @@ describe('NewsletterSignup Component', () => {
     expect(demoModalStore.openDemoModal).not.toHaveBeenCalled();
   });
 
-  it('triggers demo modal on valid submission', () => {
+  it('triggers demo modal on valid submission', async () => {
     render(<NewsletterSignup />);
 
     const input = screen.getByPlaceholderText('Enter your email');
@@ -54,10 +54,12 @@ describe('NewsletterSignup Component', () => {
     fireEvent.change(input, { target: { value: 'test@example.com' } });
     fireEvent.click(button);
 
-    expect(demoModalStore.openDemoModal).toHaveBeenCalledWith({
-      url: 'https://api.travelblog.demo/subscribe?email=test%40example.com',
-      label: 'Newsletter Subscription',
-      category: 'newsletter',
+    await waitFor(() => {
+      expect(demoModalStore.openDemoModal).toHaveBeenCalledWith({
+        url: 'https://api.travelblog.demo/subscribe?email=test%40example.com',
+        label: 'Newsletter Subscription',
+        category: 'newsletter',
+      });
     });
 
     expect(screen.getByText('Thanks for subscribing!')).toBeInTheDocument();

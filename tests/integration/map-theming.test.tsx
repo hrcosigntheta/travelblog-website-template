@@ -29,6 +29,12 @@ vi.mock('react-leaflet', async () => {
     ZoomControl: () => null,
     Marker: () => null,
     Popup: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
+    useMap: () => ({
+      getCenter: () => ({ lat: 0, lng: 0 }),
+      getZoom: () => 0,
+      invalidateSize: vi.fn(),
+      setView: vi.fn(),
+    }),
   };
 });
 

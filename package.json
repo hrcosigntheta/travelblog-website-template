@@ -29,6 +29,7 @@
     "data:validate": "bun run scripts/validate-links.ts",
     "data:validate:all": "bun run scripts/validate-all-data.ts",
     "data:report": "bun run scripts/generate-data-report.ts",
+    "seo:validate": "bun run scripts/validate-schema.ts",
     "prepare": "husky"
   },
   "lint-staged": {
