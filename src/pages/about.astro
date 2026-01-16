@@ -5,6 +5,8 @@ import { BloggerHero, type SocialLink } from '../components/BloggerHero';
 import { TravelPhilosophy } from '../components/TravelPhilosophy';
 import { TravelStats } from '../components/TravelStats';
 
+import { EquipmentShowcase, type EquipmentItem } from '../components/EquipmentShowcase';
+
 const title = 'About MasuRii | Philippine Travel Blog';
 const description =
   'Meet the explorers behind the guide. Learn about our travel philosophy, gear, and mission to showcase the Philippines.';
@@ -52,11 +54,77 @@ const socialLinks: SocialLink[] = [
   { platform: 'tiktok', url: 'https://tiktok.com/@masurii', label: 'TikTok' },
 ];
 
-const gear = [
-  { name: 'Sony A7IV', category: 'Camera', icon: 'camera' },
-  { name: 'DJI Mavic 3', category: 'Drone', icon: 'aperture' },
-  { name: 'GoPro Hero 11', category: 'Action', icon: 'video' },
-  { name: 'Osprey 40L', category: 'Backpack', icon: 'briefcase' },
+const equipmentItems: EquipmentItem[] = [
+  {
+    id: 'camera',
+    name: 'Sony A7 IV',
+    description:
+      'My daily driver for both photo and video. The autofocus is reliable and the dynamic range is perfect for travel scenes.',
+    category: 'Camera',
+    imageUrl: 'https://placehold.co/600x400/222222/ffffff?text=Sony+A7+IV',
+    shopUrl: 'https://amazon.com/dp/B09JZT6Y55',
+  },
+  {
+    id: 'lens-wide',
+    name: 'Sony 16-35mm GM',
+    description:
+      'Essential for capturing sweeping landscapes and tight indoor spaces. Sharp from corner to corner.',
+    category: 'Lens',
+    imageUrl: 'https://placehold.co/600x400/222222/ffffff?text=Sony+16-35mm',
+    shopUrl: 'https://amazon.com/dp/B074V56463',
+  },
+  {
+    id: 'drone',
+    name: 'DJI Mavic 3',
+    description:
+      'For those aerial perspectives that show the true scale of the Philippine islands and coastlines.',
+    category: 'Drone',
+    imageUrl: 'https://placehold.co/600x400/222222/ffffff?text=DJI+Mavic+3',
+    shopUrl: 'https://amazon.com/dp/B09JZT6Y55',
+  },
+  {
+    id: 'action',
+    name: 'GoPro Hero 11',
+    description:
+      'Waterproof and rugged. Perfect for diving, canyoneering, and rainy days when the big camera stays dry.',
+    category: 'Action Cam',
+    imageUrl: 'https://placehold.co/600x400/222222/ffffff?text=GoPro+Hero+11',
+    shopUrl: 'https://amazon.com/dp/B09JZT6Y55',
+  },
+  {
+    id: 'bag',
+    name: 'Wandrd Prvke 31L',
+    description:
+      'The best travel camera bag I have found. Weather resistant, expandable, and looks good in the city too.',
+    category: 'Bag',
+    imageUrl: 'https://placehold.co/600x400/222222/ffffff?text=Camera+Bag',
+    shopUrl: 'https://amazon.com/dp/B09JZT6Y55',
+  },
+  {
+    id: 'tripod',
+    name: 'Peak Design Travel Tripod',
+    description:
+      'Compact enough to fit in a water bottle pocket but stable enough for long exposures.',
+    category: 'Accessory',
+    imageUrl: 'https://placehold.co/600x400/222222/ffffff?text=Travel+Tripod',
+    shopUrl: 'https://amazon.com/dp/B09JZT6Y55',
+  },
+  {
+    id: 'laptop',
+    name: 'MacBook Pro 14"',
+    description: 'My mobile editing studio. Powerful enough to handle 4K video editing on the go.',
+    category: 'Tech',
+    imageUrl: 'https://placehold.co/600x400/222222/ffffff?text=MacBook+Pro',
+    shopUrl: 'https://amazon.com/dp/B09JZT6Y55',
+  },
+  {
+    id: 'power',
+    name: 'Anker PowerCore 24K',
+    description: 'Keeps everything charged during long travel days on ferries and buses.',
+    category: 'Accessory',
+    imageUrl: 'https://placehold.co/600x400/222222/ffffff?text=Power+Bank',
+    shopUrl: 'https://amazon.com/dp/B09JZT6Y55',
+  },
 ];
 ---
 
@@ -122,68 +190,5 @@ const gear = [
   <TravelStats stats={travelStats} client:visible />
 
   {/* Gear Section */}
-  <section class="py-20 bg-[var(--bg-surface)]">
-    <div class="container mx-auto px-4">
-      <div class="text-center mb-12">
-        <span class="text-[var(--color-primary)] font-bold tracking-wider uppercase mb-2 block"
-          >What's in the bag</span
-        >
-        <h2 class="text-3xl md:text-4xl font-bold text-[var(--text-primary)]">Essential Gear</h2>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {
-          gear.map((item) => (
-            <div class="p-6 bg-[var(--bg-surface-raised)] rounded-2xl border border-[var(--border-default)] hover:border-[var(--color-primary)] transition-colors group text-center">
-              <div class="w-12 h-12 bg-[var(--bg-surface)] rounded-full flex items-center justify-center mx-auto mb-4 text-[var(--color-primary)] group-hover:scale-110 transition-transform">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  {item.icon === 'camera' && (
-                    <>
-                      <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
-                      <circle cx="12" cy="13" r="4" />
-                    </>
-                  )}
-                  {item.icon === 'aperture' && (
-                    <>
-                      <circle cx="12" cy="12" r="10" />
-                      <line x1="14.31" y1="8" x2="20.05" y2="17.94" />
-                      <line x1="9.69" y1="8" x2="21.17" y2="8" />
-                      <line x1="7.38" y1="12" x2="13.12" y2="2.06" />
-                      <line x1="9.69" y1="16" x2="3.95" y2="6.06" />
-                      <line x1="14.31" y1="16" x2="2.83" y2="16" />
-                      <line x1="16.62" y1="12" x2="10.88" y2="21.94" />
-                    </>
-                  )}
-                  {item.icon === 'video' && (
-                    <>
-                      <polygon points="23 7 16 12 23 17 23 7" />
-                      <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
-                    </>
-                  )}
-                  {item.icon === 'briefcase' && (
-                    <>
-                      <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
-                      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-                    </>
-                  )}
-                </svg>
-              </div>
-              <h3 class="font-bold text-[var(--text-primary)] mb-1">{item.name}</h3>
-              <p class="text-sm text-[var(--text-secondary)]">{item.category}</p>
-            </div>
-          ))
-        }
-      </div>
-    </div>
-  </section>
+  <EquipmentShowcase items={equipmentItems} client:visible />
 </BaseLayout>
