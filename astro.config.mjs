@@ -9,6 +9,9 @@ export default defineConfig({
   output: 'static',
 
   integrations: [react()],
+  build: {
+    inlineStylesheets: 'always',
+  },
 
   i18n: {
     defaultLocale: 'en',

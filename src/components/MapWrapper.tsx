@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
 import { useStore } from '@nanostores/react';
 import { themeStore } from '../store/theme';
 import type { ui } from '../i18n/ui';
