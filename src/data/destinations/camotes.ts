@@ -12,6 +12,11 @@ export const camotes: Destination = {
   rating: 4.5,
   tags: ['Island', 'Caves', 'Lake', 'Nature'],
   featured: false,
+  author: {
+    name: 'MasuRii',
+    url: '/about',
+    image: '/images/placeholders/people/people-1.jpg',
+  },
   images: [
     { src: '/images/destinations/camotes-1.jpg', alt: 'Camotes Islands photography - Shot 1' },
     { src: '/images/destinations/camotes-2.jpg', alt: 'Camotes Islands photography - Shot 2' },

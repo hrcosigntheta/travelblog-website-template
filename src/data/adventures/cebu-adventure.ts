@@ -21,5 +21,10 @@ export const cebuAdventure: Adventure = {
   image: 'https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86',
   imageAlt:
     'Scenic view of Osmeña Peak in Cebu with jagged green hills and ocean in the background',
+  author: {
+    name: 'MasuRii',
+    url: '/about',
+    image: '/images/placeholders/people/people-1.jpg',
+  },
   relatedDestinations: ['kawasan-falls', 'tops-lookout', 'temple-of-leah'],
 };

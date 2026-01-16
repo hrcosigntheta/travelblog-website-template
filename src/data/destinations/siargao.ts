@@ -12,6 +12,11 @@ export const siargao: Destination = {
   rating: 4.8,
   tags: ['Surfing', 'Beach', 'Nightlife', 'Nature'],
   featured: true,
+  author: {
+    name: 'MasuRii',
+    url: '/about',
+    image: '/images/placeholders/people/people-1.jpg',
+  },
   images: [
     {
       src: '/images/destinations/siargao-island-1.jpg',

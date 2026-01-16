@@ -12,6 +12,11 @@ export const templeOfLeah: Destination = {
   rating: 4.2,
   tags: ['Culture', 'Architecture', 'Viewpoint', 'History'],
   featured: false,
+  author: {
+    name: 'MasuRii',
+    url: '/about',
+    image: '/images/placeholders/people/people-1.jpg',
+  },
   images: [
     {
       src: '/images/destinations/temple-of-leah-1.jpg',

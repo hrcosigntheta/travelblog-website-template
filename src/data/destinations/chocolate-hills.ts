@@ -11,6 +11,11 @@ export const chocolateHills: Destination = {
   rating: 4.7,
   tags: ['Nature', 'Hiking', 'Sightseeing'],
   featured: true,
+  author: {
+    name: 'MasuRii',
+    url: '/about',
+    image: '/images/placeholders/people/people-1.jpg',
+  },
   images: [
     {
       src: '/images/destinations/chocolate-hills-bohol-1.jpg',

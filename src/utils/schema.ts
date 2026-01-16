@@ -1,5 +1,6 @@
 import type { Destination } from '../data/destinations';
 import type { BloggerProfile } from '../data/blogger';
+import type { Adventure } from '../data/adventures';
 
 export function generateDestinationSchema(destination: Destination, siteUrl: string | URL) {
   const urlString = typeof siteUrl === 'string' ? siteUrl : siteUrl.href;
@@ -41,6 +42,12 @@ export function generateDestinationSchema(destination: Destination, siteUrl: str
     name: `Photos of ${destination.title}`,
     url: `${urlString}#gallery`,
     image: images,
+    author: {
+      '@type': 'Person',
+      name: destination.author.name,
+      url: new URL(destination.author.url, baseUrl).href,
+      image: new URL(destination.author.image, baseUrl).href,
+    },
     about: {
       '@id': `${urlString}#destination`,
     },
@@ -98,6 +105,48 @@ export function generateGalleryPageSchema(
       '@type': 'WebSite',
       name: 'Philippines Travel Blog',
       url: new URL('/', urlString).href,
+    },
+  };
+
+  return schema;
+}
+
+export function generateAdventureSchema(adventure: Adventure, siteUrl: string | URL) {
+  const urlString = typeof siteUrl === 'string' ? siteUrl : siteUrl.href;
+  const baseUrl = new URL(urlString);
+
+  // Try to parse the date, fallback to current date if invalid
+  let datePublished: string;
+  try {
+    datePublished = new Date(adventure.date).toISOString();
+  } catch {
+    datePublished = new Date().toISOString();
+  }
+
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: adventure.title,
+    description: adventure.excerpt,
+    image: adventure.image,
+    datePublished,
+    author: {
+      '@type': 'Person',
+      name: adventure.author.name,
+      url: new URL(adventure.author.url, baseUrl).href,
+      image: new URL(adventure.author.image, baseUrl).href,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Philippines Travel Blog',
+      logo: {
+        '@type': 'ImageObject',
+        url: new URL('/favicon.svg', baseUrl).href,
+      },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': urlString,
     },
   };
 

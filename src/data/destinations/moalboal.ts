@@ -12,6 +12,11 @@ export const moalboal: Destination = {
   rating: 4.8,
   tags: ['Diving', 'Snorkeling', 'Beach', 'Marine Life'],
   featured: true,
+  author: {
+    name: 'MasuRii',
+    url: '/about',
+    image: '/images/placeholders/people/people-1.jpg',
+  },
   images: [
     { src: '/images/destinations/moalboal-1.jpg', alt: 'Moalboal photography - Shot 1' },
     { src: '/images/destinations/moalboal-2.jpg', alt: 'Moalboal photography - Shot 2' },

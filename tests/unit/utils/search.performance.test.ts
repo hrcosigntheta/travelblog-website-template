@@ -14,6 +14,11 @@ const generateDestinations = (count: number): Destination[] => {
     rating: 4.5,
     tags: [i % 2 === 0 ? 'Beach' : 'Hiking', 'Nature', 'Adventure'],
     featured: false,
+    author: {
+      name: 'MasuRii',
+      url: '/about',
+      image: '/images/placeholders/people/people-1.jpg',
+    },
     images: [],
     coordinates: { lat: 0, lng: 0 },
     stats: {

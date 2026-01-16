@@ -12,6 +12,11 @@ export const kawasanFalls: Destination = {
   rating: 4.9,
   tags: ['Waterfall', 'Adventure', 'Nature', 'Swimming'],
   featured: true,
+  author: {
+    name: 'MasuRii',
+    url: '/about',
+    image: '/images/placeholders/people/people-1.jpg',
+  },
   images: [
     { src: '/images/destinations/kawasan-falls-1.jpg', alt: 'Kawasan Falls photography - Shot 1' },
     { src: '/images/destinations/kawasan-falls-2.jpg', alt: 'Kawasan Falls photography - Shot 2' },

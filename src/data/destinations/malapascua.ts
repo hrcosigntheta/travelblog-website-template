@@ -12,6 +12,11 @@ export const malapascua: Destination = {
   rating: 4.7,
   tags: ['Diving', 'Sharks', 'Island', 'Beach'],
   featured: false,
+  author: {
+    name: 'MasuRii',
+    url: '/about',
+    image: '/images/placeholders/people/people-1.jpg',
+  },
   images: [
     { src: '/images/destinations/malapascua-1.jpg', alt: 'Malapascua Island photography - Shot 1' },
     { src: '/images/destinations/malapascua-2.jpg', alt: 'Malapascua Island photography - Shot 2' },

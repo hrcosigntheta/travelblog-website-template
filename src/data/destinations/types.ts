@@ -21,6 +21,11 @@ export interface Destination {
   rating: number;
   tags: string[];
   featured: boolean;
+  author: {
+    name: string;
+    url: string;
+    image: string;
+  };
 
   // Expanded fields
   images: { src: string; alt: string }[];

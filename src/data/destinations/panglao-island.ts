@@ -13,6 +13,11 @@ export const panglaoIsland: Destination = {
   rating: 4.8,
   tags: ['Beach', 'Diving', 'Nightlife', 'Island'],
   featured: false,
+  author: {
+    name: 'MasuRii',
+    url: '/about',
+    image: '/images/placeholders/people/people-1.jpg',
+  },
   images: [
     {
       src: '/images/destinations/panglao-island-1.jpg',

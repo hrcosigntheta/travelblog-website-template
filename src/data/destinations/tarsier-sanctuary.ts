@@ -12,6 +12,11 @@ export const tarsierSanctuary: Destination = {
   rating: 4.6,
   tags: ['Nature', 'Wildlife', 'Conservation'],
   featured: false,
+  author: {
+    name: 'MasuRii',
+    url: '/about',
+    image: '/images/placeholders/people/people-1.jpg',
+  },
   images: [
     {
       src: '/images/destinations/tarsier-sanctuary-1.jpg',

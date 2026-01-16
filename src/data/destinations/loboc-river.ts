@@ -13,6 +13,11 @@ export const lobocRiver: Destination = {
   rating: 4.5,
   tags: ['Culture', 'Food', 'Nature', 'Relaxation'],
   featured: false,
+  author: {
+    name: 'MasuRii',
+    url: '/about',
+    image: '/images/placeholders/people/people-1.jpg',
+  },
   images: [
     {
       src: '/images/destinations/loboc-river-1.jpg',

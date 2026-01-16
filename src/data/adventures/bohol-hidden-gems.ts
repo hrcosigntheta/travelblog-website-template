@@ -22,5 +22,10 @@ export const boholHiddenGems: Adventure = {
   categories: ['Adventure', 'Culture', 'Bohol'],
   image: 'https://images.unsplash.com/photo-1516690561799-46d8f74f9abf',
   imageAlt: 'The famous Chocolate Hills of Bohol under a clear blue sky',
+  author: {
+    name: 'MasuRii',
+    url: '/about',
+    image: '/images/placeholders/people/people-1.jpg',
+  },
   relatedDestinations: ['chocolate-hills-bohol', 'panglao-island', 'loboc-river-cruise'],
 };

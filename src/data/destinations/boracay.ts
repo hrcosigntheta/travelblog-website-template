@@ -12,6 +12,11 @@ export const boracay: Destination = {
   rating: 4.7,
   tags: ['Beach', 'Party', 'Luxury', 'Relaxation'],
   featured: false,
+  author: {
+    name: 'MasuRii',
+    url: '/about',
+    image: '/images/placeholders/people/people-1.jpg',
+  },
   images: [
     {
       src: '/images/destinations/boracay-island-1.jpg',

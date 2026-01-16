@@ -12,6 +12,11 @@ export const puertoPrincesa: Destination = {
   rating: 4.8,
   tags: ['Nature', 'Cave', 'UNESCO', 'Adventure'],
   featured: false,
+  author: {
+    name: 'MasuRii',
+    url: '/about',
+    image: '/images/placeholders/people/people-1.jpg',
+  },
   images: [
     {
       src: '/images/destinations/pp-underground-river-1.jpg',

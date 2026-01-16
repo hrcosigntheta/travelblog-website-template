@@ -15,6 +15,11 @@ const mockDestinations: Destination[] = [
     tags: ['Beach', 'Island', 'Nature'],
     rating: 4.9,
     featured: true,
+    author: {
+      name: 'MasuRii',
+      url: '/about',
+      image: '/images/placeholders/people/people-1.jpg',
+    },
     stats: {
       difficulty: 'Moderate',
       budget: '$$ - $$$',
@@ -36,6 +41,11 @@ const mockDestinations: Destination[] = [
     tags: ['Nature', 'Hiking'],
     rating: 4.7,
     featured: false,
+    author: {
+      name: 'MasuRii',
+      url: '/about',
+      image: '/images/placeholders/people/people-1.jpg',
+    },
     stats: {
       difficulty: 'Easy',
       budget: '$',

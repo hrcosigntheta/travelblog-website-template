@@ -11,6 +11,11 @@ export const elNido: Destination = {
   rating: 4.9,
   tags: ['Beach', 'Island Hopping', 'Nature'],
   featured: true,
+  author: {
+    name: 'MasuRii',
+    url: '/about',
+    image: '/images/placeholders/people/people-1.jpg',
+  },
   images: [
     {
       src: '/images/destinations/el-nido-palawan-1.jpg',

@@ -12,6 +12,11 @@ export const coron: Destination = {
   rating: 4.9,
   tags: ['Diving', 'Lakes', 'Nature', 'Shipwrecks'],
   featured: true,
+  author: {
+    name: 'MasuRii',
+    url: '/about',
+    image: '/images/placeholders/people/people-1.jpg',
+  },
   images: [
     { src: '/images/destinations/coron-palawan-1.jpg', alt: 'Coron, Palawan photography - Shot 1' },
     { src: '/images/destinations/coron-palawan-2.jpg', alt: 'Coron, Palawan photography - Shot 2' },

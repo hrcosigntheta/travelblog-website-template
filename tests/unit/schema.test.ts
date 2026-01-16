@@ -42,6 +42,11 @@ describe('generateDestinationSchema', () => {
     rating: 5,
     tags: ['Test'],
     featured: false,
+    author: {
+      name: 'MasuRii',
+      url: '/about',
+      image: '/images/placeholders/people/people-1.jpg',
+    },
     imageAlt: 'Test Image Alt',
     images: [
       { src: 'https://example.com/image1.jpg', alt: 'Alt 1' },

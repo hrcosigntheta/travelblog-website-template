@@ -12,6 +12,11 @@ export const topsLookout: Destination = {
   rating: 4.4,
   tags: ['Viewpoint', 'City', 'Nightlife', 'Relaxation'],
   featured: false,
+  author: {
+    name: 'MasuRii',
+    url: '/about',
+    image: '/images/placeholders/people/people-1.jpg',
+  },
   images: [
     { src: '/images/destinations/tops-lookout-1.jpg', alt: 'Tops Lookout photography - Shot 1' },
     { src: '/images/destinations/tops-lookout-2.jpg', alt: 'Tops Lookout photography - Shot 2' },

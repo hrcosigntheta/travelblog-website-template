@@ -43,7 +43,16 @@ const { adventure } = Astro.props;
     <p class="mb-4 text-sm text-[var(--text-secondary)] line-clamp-2 flex-1">
       {adventure.excerpt}
     </p>
-    <div class="mt-auto">
+    <div class="mt-auto flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <img
+          src={adventure.author.image}
+          alt={adventure.author.name}
+          class="w-6 h-6 rounded-full object-cover border border-[var(--border-subtle)]"
+        />
+        <span class="text-xs font-medium text-[var(--text-secondary)]">{adventure.author.name}</span
+        >
+      </div>
       <span class="text-sm font-semibold text-[var(--color-primary)] group-hover:underline">
         Read Story →
       </span>

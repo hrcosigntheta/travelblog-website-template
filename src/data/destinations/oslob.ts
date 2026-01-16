@@ -12,6 +12,11 @@ export const oslob: Destination = {
   rating: 4.5,
   tags: ['Whale Sharks', 'Wildlife', 'History', 'Waterfall'],
   featured: false,
+  author: {
+    name: 'MasuRii',
+    url: '/about',
+    image: '/images/placeholders/people/people-1.jpg',
+  },
   images: [
     { src: '/images/destinations/oslob-1.jpg', alt: 'Oslob photography - Shot 1' },
     { src: '/images/destinations/oslob-2.jpg', alt: 'Oslob photography - Shot 2' },

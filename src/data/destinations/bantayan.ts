@@ -12,6 +12,11 @@ export const bantayan: Destination = {
   rating: 4.6,
   tags: ['Beach', 'Island', 'Relaxation', 'Food'],
   featured: false,
+  author: {
+    name: 'MasuRii',
+    url: '/about',
+    image: '/images/placeholders/people/people-1.jpg',
+  },
   images: [
     { src: '/images/destinations/bantayan-1.jpg', alt: 'Bantayan Island photography - Shot 1' },
     { src: '/images/destinations/bantayan-2.jpg', alt: 'Bantayan Island photography - Shot 2' },

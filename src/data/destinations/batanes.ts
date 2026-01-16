@@ -12,6 +12,11 @@ export const batanes: Destination = {
   rating: 4.9,
   tags: ['Nature', 'Culture', 'History', 'Landscapes'],
   featured: true,
+  author: {
+    name: 'MasuRii',
+    url: '/about',
+    image: '/images/placeholders/people/people-1.jpg',
+  },
   images: [
     { src: '/images/destinations/batanes-1.jpg', alt: 'Batanes Islands photography - Shot 1' },
     { src: '/images/destinations/batanes-2.jpg', alt: 'Batanes Islands photography - Shot 2' },

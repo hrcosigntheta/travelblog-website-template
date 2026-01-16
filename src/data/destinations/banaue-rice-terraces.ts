@@ -12,6 +12,11 @@ export const banaueRiceTerraces: Destination = {
   rating: 4.8,
   tags: ['Culture', 'History', 'Hiking', 'Nature'],
   featured: false,
+  author: {
+    name: 'MasuRii',
+    url: '/about',
+    image: '/images/placeholders/people/people-1.jpg',
+  },
   images: [
     {
       src: '/images/destinations/banaue-rice-terraces-1.jpg',

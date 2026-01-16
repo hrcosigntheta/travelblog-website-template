@@ -25,5 +25,10 @@ export const philippineBeachGuide: Adventure = {
   image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e',
   imageAlt:
     'Pristine white sand beach in the Philippines with leaning palm trees and crystal clear water',
+  author: {
+    name: 'MasuRii',
+    url: '/about',
+    image: '/images/placeholders/people/people-1.jpg',
+  },
   relatedDestinations: ['boracay-island', 'siargao-island', 'bantayan', 'batanes'],
 };

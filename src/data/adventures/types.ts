@@ -9,5 +9,10 @@ export interface Adventure {
   categories: string[];
   image: string;
   imageAlt: string;
+  author: {
+    name: string;
+    url: string;
+    image: string;
+  };
   relatedDestinations: string[]; // Array of destination slugs
 }

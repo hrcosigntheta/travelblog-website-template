@@ -15,6 +15,11 @@ const mockDestination: Destination = {
   rating: 5,
   tags: ['Tag1'],
   featured: false,
+  author: {
+    name: 'MasuRii',
+    url: '/about',
+    image: '/images/placeholders/people/people-1.jpg',
+  },
   images: [],
   coordinates: { lat: 0, lng: 0 },
   stats: {
