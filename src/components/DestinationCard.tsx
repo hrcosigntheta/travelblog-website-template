@@ -33,7 +33,7 @@ export const DestinationCard: React.FC<DestinationCardProps> = ({
 
   return (
     <article
-      className={`group flex flex-col h-full overflow-hidden rounded-lg bg-background-surface border border-border-subtle dark:bg-background-surface dark:border-border-subtle hover:shadow-xl hover:-translate-y-1 transition-all duration-300 ${className}`}
+      className={`group flex flex-col h-full overflow-hidden rounded-lg bg-background-surface border border-border-subtle dark:bg-background-surface dark:border-border-subtle hover:shadow-xl hover:-translate-y-1 transition-all duration-200 ease-out ${className}`}
       data-testid="destination-card"
     >
       {/* Image Container - Aspect Ratio 4:3 */}

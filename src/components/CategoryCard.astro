@@ -10,7 +10,7 @@ const { category } = Astro.props;
 
 <a
   href={`/destinations?category=${category.slug}`}
-  class="group relative block aspect-[4/5] w-full overflow-hidden rounded-[var(--radius-lg)] bg-[var(--card-bg)] shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+  class="group relative block aspect-[4/5] w-full overflow-hidden rounded-[var(--radius-lg)] bg-[var(--card-bg)] shadow-md transition-all duration-200 ease-out hover:shadow-xl hover:-translate-y-1"
 >
   <img
     src={category.image}

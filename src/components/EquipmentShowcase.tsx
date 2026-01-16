@@ -45,7 +45,7 @@ export const EquipmentShowcase: React.FC<EquipmentShowcaseProps> = ({
           {items.map((item) => (
             <div
               key={item.id}
-              className="group bg-[var(--bg-surface-raised)] rounded-2xl overflow-hidden border border-[var(--border-default)] hover:border-[var(--color-primary)] transition-all duration-300 hover:shadow-lg flex flex-col"
+              className="group bg-[var(--bg-surface-raised)] rounded-2xl overflow-hidden border border-[var(--border-default)] hover:border-[var(--color-primary)] transition-all duration-200 ease-out hover:shadow-xl hover:-translate-y-1 flex flex-col"
             >
               <div className="relative aspect-video overflow-hidden bg-gray-100 dark:bg-gray-800">
                 <ImageWithFallback

@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest';
+// @vitest-environment jsdom
 import { render, screen } from '@testing-library/react';
 import { DestinationCard } from '../../../src/components/DestinationCard';
 import '@testing-library/jest-dom/vitest';
