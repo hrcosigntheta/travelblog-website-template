@@ -14,6 +14,8 @@ import { topsLookout } from './tops-lookout';
 import { panglaoIsland } from './panglao-island';
 import { tarsierSanctuary } from './tarsier-sanctuary';
 import { lobocRiver } from './loboc-river';
+import { puertoPrincesa } from './puerto-princesa';
+import { coron } from './coron';
 
 export const destinations: Destination[] = [
   elNido,
@@ -31,6 +33,8 @@ export const destinations: Destination[] = [
   panglaoIsland,
   tarsierSanctuary,
   lobocRiver,
+  puertoPrincesa,
+  coron,
 ];
 
 export * from './types';
