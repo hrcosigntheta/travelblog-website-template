@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import DestinationCard from '../components/DestinationCard.astro';
+import { destinations } from '../data/destinations';
+
+const pageTitle = 'Page Not Found | Philippines Travel Blog';
+const pageDescription =
+  "Sorry, we couldn't find the page you were looking for. Explore other Philippine destinations.";
+
+// Randomly select 3 destinations
+const suggestedDestinations = [...destinations].sort(() => 0.5 - Math.random()).slice(0, 3);
+
+const homeUrl = import.meta.env.BASE_URL;
+const searchUrl = `${import.meta.env.BASE_URL}destinations`.replace('//', '/');
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <div class="container mx-auto px-4 py-16 md:py-24 text-center">
+    <div class="max-w-2xl mx-auto space-y-8">
+      {/* 404 Illustration placeholder */}
+      <div
+        class="text-[120px] md:text-[180px] font-display font-bold text-[var(--color-primary)] opacity-20 select-none"
+      >
+        404
+      </div>
+
+      <h1
+        class="text-4xl md:text-5xl font-bold text-[var(--text-primary)] -mt-12 md:-mt-16 relative z-10"
+      >
+        Page Not Found
+      </h1>
+
+      <p class="text-xl text-[var(--text-secondary)]">
+        Oops! The page you're looking for seems to have wandered off the map.
+      </p>
+
+      {/* Search Bar */}
+      <form action={searchUrl} method="get" class="max-w-md mx-auto relative">
+        <input
+          type="search"
+          name="q"
+          placeholder="Search destinations..."
+          class="w-full px-6 py-4 rounded-full border border-[var(--border-subtle)] bg-[var(--bg-surface-raised)] text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] shadow-sm"
+          required
+        />
+        <button
+          type="submit"
+          class="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-[var(--color-primary)] text-white rounded-full hover:bg-[var(--color-primary-hover)] transition-colors"
+          aria-label="Search"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+      </form>
+
+      <div class="pt-8">
+        <a
+          href={homeUrl}
+          class="inline-flex items-center gap-2 text-[var(--color-primary)] hover:underline font-medium"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M19 12H5M12 19l-7-7 7-7"></path>
+          </svg>
+          Back to Home
+        </a>
+      </div>
+    </div>
+
+    {/* Suggested Destinations */}
+    <div class="mt-24 text-left">
+      <h2 class="text-2xl font-bold mb-8 text-[var(--text-primary)]">
+        You might be interested in...
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {suggestedDestinations.map((dest) => <DestinationCard destination={dest} />)}
+      </div>
+    </div>
+  </div>
+</BaseLayout>
