@@ -37,6 +37,7 @@ ralph*
 # lighthouse reports
 lighthouse-report.*
 .lighthouseci/
+coverage/
 
 # Ralph - AI agent loop files
 .ralph-state.json

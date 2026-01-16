@@ -11,6 +11,11 @@ export default getViteConfig({
       'tests/integration/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}',
     ],
     exclude: ['tests/e2e/**/*', 'node_modules/**/*'],
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'json', 'html'],
+      exclude: ['tests/**/*', 'node_modules/**/*', 'src/types/**/*'],
+    },
   },
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
 } as any);
