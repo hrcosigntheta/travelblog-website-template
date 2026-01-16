@@ -1,13 +1,40 @@
 import { MapContainer, TileLayer, ZoomControl, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { destinations } from '../../data/destinations';
-import { useMemo } from 'react';
+import { useMemo, useEffect, useState } from 'react';
 import { createCustomIcon, getCategoryFromTags } from './MapIcons';
 import MarkerPopup from './MarkerPopup';
 import MapCluster from './MapCluster';
+import { useStore } from '@nanostores/react';
+import { themeStore } from '../../store/theme';
 
 export default function FullPageMap() {
   const phCoordinates: [number, number] = [12.8797, 121.774];
+  const theme = useStore(themeStore);
+
+  // Track system preference
+  const [systemDark, setSystemDark] = useState(() =>
+    typeof window !== 'undefined'
+      ? window.matchMedia('(prefers-color-scheme: dark)').matches
+      : false
+  );
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const media = window.matchMedia('(prefers-color-scheme: dark)');
+    const listener = (e: MediaQueryListEvent) => setSystemDark(e.matches);
+    media.addEventListener('change', listener);
+    return () => media.removeEventListener('change', listener);
+  }, []);
+
+  const isDark = theme === 'dark' || (theme === 'system' && systemDark);
+
+  const tileLayerUrl = isDark
+    ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
+    : 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
+
+  const attribution =
+    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';
 
   // Pre-calculate icons for performance
   const destinationIcons = useMemo(() => {
@@ -30,10 +57,7 @@ export default function FullPageMap() {
         minZoom={5}
         maxZoom={12}
       >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
+        <TileLayer attribution={attribution} url={tileLayerUrl} />
         <ZoomControl position="bottomright" />
 
         <MapCluster>
