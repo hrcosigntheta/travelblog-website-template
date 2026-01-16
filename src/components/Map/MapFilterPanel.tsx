@@ -37,7 +37,7 @@ export default function MapFilterPanel({
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 p-3.5 rounded-lg shadow-lg hover:bg-gray-50 dark:hover:bg-zinc-700 transition-colors flex items-center gap-2.5 w-fit touch-manipulation"
+          className="bg-[var(--bg-surface)] text-[var(--text-primary)] p-3.5 rounded-lg shadow-lg hover:bg-[var(--bg-surface-raised)] border border-[var(--border-subtle)] transition-colors flex items-center gap-2.5 w-fit touch-manipulation"
           aria-label="Open filters"
         >
           <svg
@@ -66,9 +66,9 @@ export default function MapFilterPanel({
             onClick={() => setIsOpen(false)}
             aria-hidden="true"
           />
-          <div className="bg-white/95 dark:bg-zinc-900/95 backdrop-blur-sm p-5 md:p-4 shadow-xl border border-zinc-200 dark:border-zinc-800 animate-in slide-in-from-bottom-full md:slide-in-from-top-2 duration-300 pointer-events-auto rounded-t-2xl md:rounded-xl w-full max-h-[80vh] flex flex-col">
+          <div className="bg-[var(--bg-surface)]/95 backdrop-blur-sm p-5 md:p-4 shadow-xl border border-[var(--border-subtle)] animate-in slide-in-from-bottom-full md:slide-in-from-top-2 duration-300 pointer-events-auto rounded-t-2xl md:rounded-xl w-full max-h-[80vh] flex flex-col">
             <div className="flex justify-between items-center mb-4 flex-shrink-0">
-              <h2 className="text-xl md:text-lg font-bold text-zinc-900 dark:text-white flex items-center gap-2">
+              <h2 className="text-xl md:text-lg font-bold text-[var(--text-primary)] flex items-center gap-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
@@ -116,17 +116,17 @@ export default function MapFilterPanel({
                   {categories.map((category) => (
                     <label
                       key={category}
-                      className="flex items-center gap-3 text-sm text-zinc-700 dark:text-zinc-300 cursor-pointer hover:text-zinc-900 dark:hover:text-white group py-1.5"
+                      className="flex items-center gap-3 text-sm text-[var(--text-secondary)] cursor-pointer hover:text-[var(--text-primary)] group py-1.5"
                     >
                       <div className="relative flex items-center">
                         <input
                           type="checkbox"
                           checked={selectedCategories.includes(category)}
                           onChange={() => onCategoryChange(category)}
-                          className="peer appearance-none w-5 h-5 border border-zinc-300 dark:border-zinc-600 rounded bg-white dark:bg-zinc-800 checked:bg-blue-600 dark:checked:bg-blue-500 checked:border-transparent transition-all"
+                          className="peer appearance-none w-5 h-5 border border-[var(--border-default)] rounded bg-[var(--bg-default)] checked:bg-[var(--color-primary)] checked:border-transparent transition-all"
                         />
                         <svg
-                          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity"
+                          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[var(--text-inverse)] opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity"
                           viewBox="0 0 24 24"
                           fill="none"
                           stroke="currentColor"
@@ -152,17 +152,17 @@ export default function MapFilterPanel({
                   {regions.map((region) => (
                     <label
                       key={region}
-                      className="flex items-center gap-3 text-sm text-zinc-700 dark:text-zinc-300 cursor-pointer hover:text-zinc-900 dark:hover:text-white group py-1.5"
+                      className="flex items-center gap-3 text-sm text-[var(--text-secondary)] cursor-pointer hover:text-[var(--text-primary)] group py-1.5"
                     >
                       <div className="relative flex items-center">
                         <input
                           type="checkbox"
                           checked={selectedRegions.includes(region)}
                           onChange={() => onRegionChange(region)}
-                          className="peer appearance-none w-5 h-5 border border-zinc-300 dark:border-zinc-600 rounded bg-white dark:bg-zinc-800 checked:bg-blue-600 dark:checked:bg-blue-500 checked:border-transparent transition-all"
+                          className="peer appearance-none w-5 h-5 border border-[var(--border-default)] rounded bg-[var(--bg-default)] checked:bg-[var(--color-primary)] checked:border-transparent transition-all"
                         />
                         <svg
-                          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity"
+                          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[var(--text-inverse)] opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity"
                           viewBox="0 0 24 24"
                           fill="none"
                           stroke="currentColor"
@@ -181,14 +181,14 @@ export default function MapFilterPanel({
             </div>
 
             {/* Footer */}
-            <div className="pt-4 mt-4 border-t border-zinc-200 dark:border-zinc-800 flex justify-between items-center flex-shrink-0">
-              <span className="text-sm md:text-xs text-[var(--text-muted)] dark:text-[var(--text-muted)]">
+            <div className="pt-4 mt-4 border-t border-[var(--border-subtle)] flex justify-between items-center flex-shrink-0">
+              <span className="text-sm md:text-xs text-[var(--text-muted)]">
                 Showing {filteredCount} of {totalCount}
               </span>
               {(selectedCategories.length > 0 || selectedRegions.length > 0) && (
                 <button
                   onClick={onClear}
-                  className="text-sm md:text-xs font-medium text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors py-2 md:py-0"
+                  className="text-sm md:text-xs font-medium text-[var(--color-primary)] hover:text-[var(--color-primary-hover)] transition-colors py-2 md:py-0"
                 >
                   Clear all
                 </button>
