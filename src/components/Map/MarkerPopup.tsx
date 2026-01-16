@@ -57,7 +57,7 @@ export default function MarkerPopup({ destination }: MarkerPopupProps) {
           </a>
         </h3>
 
-        <p className="text-sm text-gray-500 dark:text-gray-400 mb-3 flex items-center">
+        <p className="text-sm text-[var(--text-secondary)] dark:text-[var(--text-secondary)] mb-3 flex items-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-4 w-4 mr-1"
@@ -78,7 +78,7 @@ export default function MarkerPopup({ destination }: MarkerPopupProps) {
           {destination.tags.slice(0, 3).map((tag) => (
             <span
               key={tag}
-              className="text-xs text-gray-500 border border-gray-200 px-1.5 py-0.5 rounded"
+              className="text-xs text-[var(--text-muted)] border border-[var(--border-subtle)] px-1.5 py-0.5 rounded"
             >
               {tag}
             </span>

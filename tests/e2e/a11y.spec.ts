@@ -14,8 +14,12 @@ test.describe('Accessibility', () => {
 
   for (const { url, name } of pages) {
     test(`${name} should not have accessibility violations`, async ({ page }, testInfo) => {
-      await page.goto(url);
-      await page.waitForLoadState('networkidle');
+      await page.goto(url, {
+        waitUntil: name === 'component-library' ? 'domcontentloaded' : 'load',
+      });
+      if (name === 'component-library') {
+        await page.waitForTimeout(2000); // Give some time for client components
+      }
       const results = await checkA11y(page, testInfo);
       expect(results.violations).toEqual([]);
     });
@@ -23,8 +27,12 @@ test.describe('Accessibility', () => {
     test(`${name} (dark mode) should not have accessibility violations`, async ({
       page,
     }, testInfo) => {
-      await page.goto(url);
-      await page.waitForLoadState('networkidle');
+      await page.goto(url, {
+        waitUntil: name === 'component-library' ? 'domcontentloaded' : 'load',
+      });
+      if (name === 'component-library') {
+        await page.waitForTimeout(2000);
+      }
 
       // Toggle dark mode
       await page.evaluate(() => {

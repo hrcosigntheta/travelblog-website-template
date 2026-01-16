@@ -18,6 +18,7 @@
 
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
   --color-text-inverse: var(--text-inverse);
 
   --color-border: var(--border-default);
@@ -127,7 +128,8 @@
     --bg-surface-raised: var(--palette-white);
 
     --text-primary: var(--palette-neutral-800);
-    --text-secondary: var(--palette-neutral-500);
+    --text-secondary: #404040; /* Improved contrast for accessibility (Neutral 800) */
+    --text-muted: #525252; /* Minimum contrast for small text (Neutral 700) */
     --text-inverse: var(--palette-white);
 
     --color-primary: var(--palette-ocean-500);
@@ -174,6 +176,7 @@
 
     --text-primary: #f8fafc;
     --text-secondary: #e2e8f0;
+    --text-muted: #cbd5e1; /* Improved contrast for dark mode (Slate 300) */
     --text-inverse: var(--palette-navy-900);
 
     --color-primary: #4fd1c5;

@@ -145,9 +145,7 @@ export const SocialLinksSection: React.FC = () => {
               <div className="font-bold text-[var(--text-primary)] group-hover:text-inherit transition-colors">
                 {platform.label}
               </div>
-              <div className="text-sm text-[var(--text-secondary)] opacity-80">
-                {platform.handle}
-              </div>
+              <div className="text-sm text-[var(--text-secondary)]">{platform.handle}</div>
               <div className="text-xs text-[var(--text-muted)] mt-1">{platform.description}</div>
             </div>
           </a>

@@ -86,7 +86,7 @@ export default function MapFilterPanel({
               </h2>
               <button
                 onClick={() => setIsOpen(false)}
-                className="text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-200 p-2 rounded-md hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors touch-manipulation"
+                className="text-[var(--text-muted)] hover:text-[var(--text-primary)] dark:text-[var(--text-muted)] dark:hover:text-[var(--text-primary)] p-2 rounded-md hover:bg-[var(--bg-surface-raised)] transition-colors touch-manipulation"
                 aria-label="Close filters"
               >
                 <svg
@@ -109,7 +109,7 @@ export default function MapFilterPanel({
             <div className="space-y-6 overflow-y-auto pr-2 custom-scrollbar flex-grow">
               {/* Categories */}
               <div className="space-y-3">
-                <h3 className="text-xs font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
+                <h3 className="text-xs font-bold text-[var(--text-muted)] dark:text-[var(--text-muted)] uppercase tracking-wider">
                   Categories
                 </h3>
                 <div className="space-y-2">
@@ -145,7 +145,7 @@ export default function MapFilterPanel({
 
               {/* Regions */}
               <div className="space-y-3">
-                <h3 className="text-xs font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
+                <h3 className="text-xs font-bold text-[var(--text-muted)] dark:text-[var(--text-muted)] uppercase tracking-wider">
                   Regions
                 </h3>
                 <div className="space-y-2">
@@ -182,7 +182,7 @@ export default function MapFilterPanel({
 
             {/* Footer */}
             <div className="pt-4 mt-4 border-t border-zinc-200 dark:border-zinc-800 flex justify-between items-center flex-shrink-0">
-              <span className="text-sm md:text-xs text-zinc-500 dark:text-zinc-400">
+              <span className="text-sm md:text-xs text-[var(--text-muted)] dark:text-[var(--text-muted)]">
                 Showing {filteredCount} of {totalCount}
               </span>
               {(selectedCategories.length > 0 || selectedRegions.length > 0) && (
