@@ -11,20 +11,12 @@ import { TravelTimeline } from '../components/TravelTimeline';
 import Breadcrumb from '../components/Breadcrumb.astro';
 
 import { bloggerProfile } from '../data/blogger';
+import { generatePersonSchema } from '../utils/schema';
 
 const title = `${bloggerProfile.name} | Philippine Travel Blog`;
 const description = bloggerProfile.shortBio;
 
-const schema = JSON.stringify({
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: bloggerProfile.name,
-  url: new URL('/about', Astro.site),
-  image: new URL(bloggerProfile.portraitSrc, Astro.site),
-  jobTitle: 'Travel Blogger',
-  description: description,
-  sameAs: bloggerProfile.socialLinks.map((link) => link.url),
-});
+const schema = JSON.stringify(generatePersonSchema(bloggerProfile, Astro.site!));
 
 const stats = [
   { label: 'Islands Visited', value: '45+' },

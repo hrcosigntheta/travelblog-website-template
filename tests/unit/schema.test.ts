@@ -1,6 +1,11 @@
 import { describe, it, expect } from 'vitest';
-import { generateDestinationSchema, generateCollectionPageSchema } from '../../src/utils/schema';
+import {
+  generateDestinationSchema,
+  generateCollectionPageSchema,
+  generatePersonSchema,
+} from '../../src/utils/schema';
 import type { Destination } from '../../src/data/destinations';
+import type { BloggerProfile } from '../../src/data/blogger';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
@@ -92,5 +97,45 @@ describe('generateDestinationSchema', () => {
     // Absolute URL resolution check
     // new URL('/image2.jpg', 'https://mysite.com/destinations/test-dest') results in 'https://mysite.com/image2.jpg'
     expect(destSchema.image).toContain('https://mysite.com/image2.jpg');
+  });
+});
+
+describe('generatePersonSchema', () => {
+  const mockProfile: BloggerProfile = {
+    name: 'Test Blogger',
+    tagline: 'Test Tagline',
+    shortBio: 'Test Bio',
+    fullBio: ['Paragraph 1'],
+    portraitSrc: '/test-portrait.jpg',
+    heroSrc: '/test-hero.jpg',
+    email: 'test@example.com',
+    socialLinks: [
+      {
+        platform: 'instagram' as any,
+        url: 'https://instagram.com/test',
+        label: 'Instagram',
+        handle: '@test',
+        color: 'blue',
+        description: 'desc',
+      },
+    ],
+    travelStats: [],
+    philosophy: { quote: 'q', content: 'c', missionStatement: 'm' },
+    equipment: [],
+    milestones: [],
+  };
+
+  const siteUrl = 'https://mysite.com';
+
+  it('generates valid Person schema', () => {
+    const schema = generatePersonSchema(mockProfile, siteUrl);
+    expect(schema['@context']).toBe('https://schema.org');
+    expect(schema['@type']).toBe('Person');
+    expect(schema.name).toBe(mockProfile.name);
+    expect(schema.url).toBe('https://mysite.com/about');
+    expect(schema.image).toBe('https://mysite.com/test-portrait.jpg');
+    expect(schema.description).toBe(mockProfile.shortBio);
+    expect(schema.jobTitle).toBe('Travel Blogger');
+    expect(schema.sameAs).toContain(mockProfile.socialLinks[0].url);
   });
 });

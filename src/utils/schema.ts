@@ -1,4 +1,5 @@
 import type { Destination } from '../data/destinations';
+import type { BloggerProfile } from '../data/blogger';
 
 export function generateDestinationSchema(destination: Destination, siteUrl: string | URL) {
   const urlString = typeof siteUrl === 'string' ? siteUrl : siteUrl.href;
@@ -141,4 +142,22 @@ export function generateBreadcrumbSchema(
       item: new URL(item.href, baseUrl).href,
     })),
   };
+}
+
+export function generatePersonSchema(profile: BloggerProfile, siteUrl: string | URL) {
+  const urlString = typeof siteUrl === 'string' ? siteUrl : siteUrl.href;
+  const baseUrl = new URL(urlString);
+
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: profile.name,
+    url: new URL('/about', baseUrl).href,
+    image: new URL(profile.portraitSrc, baseUrl).href,
+    description: profile.shortBio,
+    jobTitle: 'Travel Blogger',
+    sameAs: profile.socialLinks.map((link) => link.url),
+  };
+
+  return schema;
 }
