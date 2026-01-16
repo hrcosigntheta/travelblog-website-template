@@ -10,6 +10,8 @@ import type { Destination, ItineraryActivityData } from '../../data/destinations
 import { RelatedDestinations } from '../../components/RelatedDestinations';
 import { ShareButtons } from '../../components/ShareButtons';
 import ReadingProgress from '../../components/ReadingProgress';
+import { TravelTips } from '../../components/TravelTips';
+import { generalTravelTips } from '../../data/travelTips';
 
 export async function getStaticPaths() {
   return destinations.map((destination) => ({
@@ -82,6 +84,9 @@ const pageDescription = destination.description;
 
 import { generateDestinationSchema } from '../../utils/schema';
 const schema = JSON.stringify(generateDestinationSchema(destination, Astro.url));
+
+// Combine destination-specific tips with general tips
+const allTips = [...(destination.travelTips || []), ...generalTravelTips].slice(0, 6); // Limit to 6 tips for layout balance
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription} schema={schema}>
@@ -315,6 +320,11 @@ const schema = JSON.stringify(generateDestinationSchema(destination, Astro.url))
 
     {/* Practical Info */}
     {destination.practicalInfo && <PracticalInfo client:visible info={destination.practicalInfo} />}
+
+    {/* Travel Tips */}
+    <section>
+      <TravelTips client:visible tips={allTips} />
+    </section>
   </main>
 </BaseLayout>
 

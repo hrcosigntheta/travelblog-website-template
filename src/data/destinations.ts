@@ -1,4 +1,5 @@
 import type { ItineraryActivityProps } from '../types/itinerary';
+import type { TravelTip } from '../components/TravelTips';
 
 export interface ItineraryActivityData extends Omit<ItineraryActivityProps, 'icon'> {
   iconType?: 'transport' | 'food' | 'activity' | 'nature' | 'relax';
@@ -39,6 +40,7 @@ export interface Destination {
     accommodation: string;
     tips: string;
   };
+  travelTips?: TravelTip[];
 }
 
 export const destinations: Destination[] = [
@@ -143,6 +145,29 @@ export const destinations: Destination[] = [
         'El Nido offers a range of options from budget hostels in town to luxury island resorts.',
       tips: 'Bring cash as ATMs can be unreliable. Book tours in advance during peak season.',
     },
+    travelTips: [
+      {
+        id: 'elnido-1',
+        category: 'nature',
+        title: 'Protect the Corals',
+        content:
+          'When island hopping, be careful not to step on corals. Use reef-safe sunscreen to protect the marine ecosystem.',
+      },
+      {
+        id: 'elnido-2',
+        category: 'safety',
+        title: 'Water Safety',
+        content:
+          'Life jackets are mandatory on boat tours. Always wear them when the boat is moving.',
+      },
+      {
+        id: 'elnido-3',
+        category: 'packing',
+        title: 'Dry Bag is Essential',
+        content:
+          'Bring a dry bag to protect your electronics and valuables during boat tours and kayaking.',
+      },
+    ],
   },
   {
     id: '2',
