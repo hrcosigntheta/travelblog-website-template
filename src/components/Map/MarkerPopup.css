@@ -17,18 +17,30 @@
 .custom-popup-wrapper .leaflet-popup-close-button {
   color: white !important;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
-  font-size: 24px !important;
-  width: 30px !important;
-  height: 30px !important;
-  line-height: 30px !important;
-  top: 4px !important;
-  right: 4px !important;
+  font-size: 28px !important;
+  width: 40px !important;
+  height: 40px !important;
+  line-height: 40px !important;
+  top: 0 !important;
+  right: 0 !important;
   transition: transform 0.2s ease;
+  background: rgba(0, 0, 0, 0.1);
+  border-bottom-left-radius: 8px;
+  border-top-right-radius: 8px; /* Match container radius if needed */
 }
 
 .custom-popup-wrapper .leaflet-popup-close-button:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
   color: #f3f4f6 !important; /* gray-100 */
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Touch optimization for zoom controls */
+.leaflet-touch .leaflet-control-zoom a {
+  width: 44px !important;
+  height: 44px !important;
+  line-height: 44px !important;
+  font-size: 22px !important;
 }
 
 /* Dark mode support */
