@@ -2,7 +2,8 @@ import { MapContainer, TileLayer, ZoomControl, Marker, Popup, useMapEvents } fro
 import 'leaflet/dist/leaflet.css';
 import { destinations, type Destination } from '../../data/destinations';
 import L from 'leaflet';
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useMemo } from 'react';
+import { createCustomIcon, getCategoryFromTags } from './MapIcons';
 
 // Helper component to handle map events and track viewport
 function MapController({ onBoundsChange }: { onBoundsChange: (bounds: L.LatLngBounds) => void }) {
@@ -34,15 +35,14 @@ export default function FullPageMap() {
     setVisibleDestinations(filtered);
   }, []);
 
-  useEffect(() => {
-    // Fix for default marker icon in React Leaflet
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    delete (L.Icon.Default.prototype as any)._getIconUrl;
-    L.Icon.Default.mergeOptions({
-      iconRetinaUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png',
-      iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
-      shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
+  // Pre-calculate icons for performance
+  const destinationIcons = useMemo(() => {
+    const icons = new Map();
+    destinations.forEach((dest) => {
+      const category = getCategoryFromTags(dest.tags);
+      icons.set(dest.id, createCustomIcon(category));
     });
+    return icons;
   }, []);
 
   return (
@@ -67,6 +67,7 @@ export default function FullPageMap() {
           <Marker
             key={destination.id}
             position={[destination.coordinates.lat, destination.coordinates.lng]}
+            icon={destinationIcons.get(destination.id)}
           >
             <Popup>
               <div className="text-center">
