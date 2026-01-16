@@ -6,8 +6,7 @@ export const tarsierSanctuary: Destination = {
   title: 'Philippine Tarsier Sanctuary',
   description: "Meet the world's smallest primates in their natural protected habitat in Corella.",
   region: 'Bohol',
-  image:
-    'https://images.unsplash.com/photo-1598457008779-7a356df157e1?q=80&w=2662&auto=format&fit=crop',
+  image: '/images/destinations/tarsier-sanctuary-main.jpg',
   imageAlt: 'Hero image of Philippine Tarsier Sanctuary in Bohol, Philippines', // Placeholder
   rating: 4.6,
   tags: ['Nature', 'Wildlife', 'Conservation'],

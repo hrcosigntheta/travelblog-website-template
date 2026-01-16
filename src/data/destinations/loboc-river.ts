@@ -7,8 +7,7 @@ export const lobocRiver: Destination = {
   description:
     'A scenic river cruise through lush jungle landscapes featuring a buffet lunch and cultural music.',
   region: 'Bohol',
-  image:
-    'https://images.unsplash.com/photo-1621235372481-8051283c7487?q=80&w=2670&auto=format&fit=crop',
+  image: '/images/destinations/loboc-river-main.jpg',
   imageAlt: 'Hero image of Loboc River Cruise in Bohol, Philippines', // Placeholder
   rating: 4.5,
   tags: ['Culture', 'Food', 'Nature', 'Relaxation'],

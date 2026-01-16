@@ -7,8 +7,7 @@ export const panglaoIsland: Destination = {
   description:
     'World-class diving, white sand beaches, and vibrant island nightlife connected to Bohol.',
   region: 'Bohol',
-  image:
-    'https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?q=80&w=2574&auto=format&fit=crop',
+  image: '/images/destinations/panglao-island-main.jpg',
   imageAlt: 'Hero image of Panglao Island in Bohol, Philippines', // Placeholder
   rating: 4.8,
   tags: ['Beach', 'Diving', 'Nightlife', 'Island'],
