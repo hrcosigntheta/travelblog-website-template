@@ -29,8 +29,8 @@ export default function MapFilterPanel({
     <div
       className={`z-[2000] transition-all duration-300 ${
         isOpen
-          ? 'fixed inset-0 md:absolute md:inset-auto md:top-4 md:left-4 md:w-full md:max-w-[280px] flex flex-col justify-end md:block pointer-events-none md:pointer-events-auto'
-          : 'absolute top-4 left-4 w-fit'
+          ? 'fixed inset-0 md:absolute md:inset-auto md:top-20 md:left-4 md:w-full md:max-w-[280px] flex flex-col justify-end md:block pointer-events-none md:pointer-events-auto'
+          : 'absolute top-20 left-4 w-fit'
       }`}
     >
       {/* Mobile Toggle Button (visible when collapsed) */}
