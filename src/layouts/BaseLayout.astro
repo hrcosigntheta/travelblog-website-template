@@ -97,7 +97,7 @@ const currentPath = Astro.url.pathname;
 
     <Footer client:visible lang={lang as keyof typeof ui} />
 
-    <DemoLinkModal client:idle />
+    <DemoLinkModal client:load />
 
     <script>
       // Initialize the theme store (which sets up listeners)

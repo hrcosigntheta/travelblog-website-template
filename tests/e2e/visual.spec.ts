@@ -118,4 +118,38 @@ test.describe('Visual Regression', () => {
 
     await expect(page).toHaveScreenshot('about-page-dark.png', { fullPage: true });
   });
+
+  test('Contact Page - Light Mode', async ({ page }) => {
+    await page.goto('/contact');
+
+    // Ensure we are in light mode
+    const isDark = await isDarkMode(page);
+    if (isDark) {
+      await toggleTheme(page);
+    }
+    await expect(page.locator('html')).not.toHaveClass(/dark/);
+
+    // Wait for animations and content
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(1000);
+
+    await expect(page).toHaveScreenshot('contact-page-light.png', { fullPage: true });
+  });
+
+  test('Contact Page - Dark Mode', async ({ page }) => {
+    await page.goto('/contact');
+
+    // Switch to dark mode
+    const isDark = await isDarkMode(page);
+    if (!isDark) {
+      await toggleTheme(page);
+    }
+    await expect(page.locator('html')).toHaveClass(/dark/);
+
+    // Wait for transition and content
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(1000);
+
+    await expect(page).toHaveScreenshot('contact-page-dark.png', { fullPage: true });
+  });
 });
