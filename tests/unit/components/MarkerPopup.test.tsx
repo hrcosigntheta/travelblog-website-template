@@ -1,8 +1,13 @@
 // @vitest-environment jsdom
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import MarkerPopup from '@components/Map/MarkerPopup';
 import type { Destination } from '../../../src/data/destinations';
+
+// Mock path utilities
+vi.mock('../../../src/utils/paths', () => ({
+  getAssetPath: vi.fn((path) => `/base${path}`),
+}));
 
 const mockDestination: Destination = {
   id: 'test-dest',
@@ -37,7 +42,7 @@ describe('MarkerPopup', () => {
   it('renders image with correct src', () => {
     render(<MarkerPopup destination={mockDestination} />);
     const image = screen.getByRole('img');
-    expect(image).toHaveAttribute('src', 'https://example.com/image.jpg');
+    expect(image).toHaveAttribute('src', '/basehttps://example.com/image.jpg');
     expect(image).toHaveAttribute('alt', 'Test Destination');
   });
 

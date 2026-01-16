@@ -1,6 +1,7 @@
 import type { Destination } from '../../data/destinations';
 import { getCategoryFromTags, type MarkerCategory } from './MapIcons';
 import { ROUTES } from '../../config/paths';
+import { getAssetPath } from '../../utils/paths';
 import './MarkerPopup.css';
 
 interface MarkerPopupProps {
@@ -34,7 +35,7 @@ export default function MarkerPopup({ destination }: MarkerPopupProps) {
       {/* Thumbnail Image */}
       <div className="relative h-40 w-full overflow-hidden">
         <img
-          src={destination.image}
+          src={getAssetPath(destination.image)}
           alt={destination.title}
           className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
         />
