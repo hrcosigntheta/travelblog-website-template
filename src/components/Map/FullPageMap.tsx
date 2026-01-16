@@ -1,40 +1,13 @@
-import { MapContainer, TileLayer, ZoomControl, Marker, Popup, useMapEvents } from 'react-leaflet';
+import { MapContainer, TileLayer, ZoomControl, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import { destinations, type Destination } from '../../data/destinations';
-import L from 'leaflet';
-import { useEffect, useState, useCallback, useMemo } from 'react';
+import { destinations } from '../../data/destinations';
+import { useMemo } from 'react';
 import { createCustomIcon, getCategoryFromTags } from './MapIcons';
 import MarkerPopup from './MarkerPopup';
-
-// Helper component to handle map events and track viewport
-function MapController({ onBoundsChange }: { onBoundsChange: (bounds: L.LatLngBounds) => void }) {
-  const map = useMapEvents({
-    moveend: () => {
-      onBoundsChange(map.getBounds());
-    },
-  });
-
-  // Trigger initial bounds check when map is ready
-  useEffect(() => {
-    if (map) {
-      onBoundsChange(map.getBounds());
-    }
-  }, [map, onBoundsChange]);
-
-  return null;
-}
+import MapCluster from './MapCluster';
 
 export default function FullPageMap() {
   const phCoordinates: [number, number] = [12.8797, 121.774];
-  const [visibleDestinations, setVisibleDestinations] = useState<Destination[]>(destinations);
-
-  const handleBoundsChange = useCallback((bounds: L.LatLngBounds) => {
-    // Filter destinations to only show those within current map bounds
-    const filtered = destinations.filter((dest) =>
-      bounds.contains([dest.coordinates.lat, dest.coordinates.lng])
-    );
-    setVisibleDestinations(filtered);
-  }, []);
 
   // Pre-calculate icons for performance
   const destinationIcons = useMemo(() => {
@@ -61,20 +34,21 @@ export default function FullPageMap() {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <MapController onBoundsChange={handleBoundsChange} />
         <ZoomControl position="bottomright" />
 
-        {visibleDestinations.map((destination) => (
-          <Marker
-            key={destination.id}
-            position={[destination.coordinates.lat, destination.coordinates.lng]}
-            icon={destinationIcons.get(destination.id)}
-          >
-            <Popup className="custom-popup-wrapper" minWidth={300} maxWidth={300}>
-              <MarkerPopup destination={destination} />
-            </Popup>
-          </Marker>
-        ))}
+        <MapCluster>
+          {destinations.map((destination) => (
+            <Marker
+              key={destination.id}
+              position={[destination.coordinates.lat, destination.coordinates.lng]}
+              icon={destinationIcons.get(destination.id)}
+            >
+              <Popup className="custom-popup-wrapper" minWidth={300} maxWidth={300}>
+                <MarkerPopup destination={destination} />
+              </Popup>
+            </Marker>
+          ))}
+        </MapCluster>
       </MapContainer>
     </div>
   );

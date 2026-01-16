@@ -6,7 +6,10 @@ export default getViteConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: './tests/setup.ts',
-    include: ['tests/unit/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+    include: [
+      'tests/unit/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}',
+      'tests/integration/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}',
+    ],
     exclude: ['tests/e2e/**/*', 'node_modules/**/*'],
   },
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

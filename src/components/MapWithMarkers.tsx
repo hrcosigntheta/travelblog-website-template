@@ -1,6 +1,6 @@
 import React from 'react';
 import MapWrapper from './MapWrapper';
-import MapCluster from './MapCluster';
+import MapCluster from './Map/MapCluster';
 import { MapMarker, type MarkerCategory } from './MapMarker';
 import type { Destination } from '../data/destinations';
 
