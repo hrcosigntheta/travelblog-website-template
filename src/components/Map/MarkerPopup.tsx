@@ -14,17 +14,17 @@ export default function MarkerPopup({ destination }: MarkerPopupProps) {
   const getCategoryColor = (cat: MarkerCategory) => {
     switch (cat) {
       case 'beach':
-        return 'bg-teal-100 text-teal-800';
+        return 'bg-teal-100 dark:bg-teal-900/30 text-teal-800 dark:text-teal-300';
       case 'mountain':
-        return 'bg-emerald-100 text-emerald-800';
+        return 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-300';
       case 'cultural':
-        return 'bg-orange-100 text-orange-800';
+        return 'bg-orange-100 dark:bg-orange-900/30 text-orange-800 dark:text-orange-300';
       case 'food':
-        return 'bg-rose-100 text-rose-800';
+        return 'bg-rose-100 dark:bg-rose-900/30 text-rose-800 dark:text-rose-300';
       case 'adventure':
-        return 'bg-amber-100 text-amber-800';
+        return 'bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-300';
       default:
-        return 'bg-gray-100 text-gray-800';
+        return 'bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-300';
     }
   };
 
@@ -85,7 +85,7 @@ export default function MarkerPopup({ destination }: MarkerPopupProps) {
             </span>
           ))}
           {destination.tags.length > 3 && (
-            <span className="text-xs text-gray-400 px-1.5 py-0.5">
+            <span className="text-xs text-[var(--text-muted)] px-1.5 py-0.5">
               +{destination.tags.length - 3}
             </span>
           )}
