@@ -171,7 +171,9 @@ export const BloggerHero: React.FC<BloggerHeroProps> = ({
                 src={portraitSrc}
                 alt={`Portrait of ${name}`}
                 className="w-full h-full object-cover"
-                loading="lazy"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
               />
             </div>
           </div>
