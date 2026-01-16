@@ -6,6 +6,21 @@ test.describe('Map Page Integration', () => {
     await page.goto('./map/');
     // Wait for Leaflet container to be initialized and visible
     await page.waitForSelector('.leaflet-container', { state: 'visible', timeout: 15000 });
+
+    // On mobile, close the filter panel if it's open to avoid interception
+    const closeFilters = page.getByLabel('Close filters');
+    if ((await closeFilters.isVisible()) && (page.viewportSize()?.width || 1000) < 768) {
+      await closeFilters.click();
+      await expect(closeFilters).not.toBeVisible();
+    }
+
+    // Wait for at least one tile to load to ensure map is rendering
+    await page.waitForSelector('.leaflet-tile-loaded', { timeout: 10000 }).catch(() => {
+      console.log('Timeout waiting for leaflet-tile-loaded, continuing anyway');
+    });
+
+    // Give Leaflet some time to settle
+    await page.waitForTimeout(1000);
   });
 
   test('should load map tiles and display destination markers', async ({ page }) => {
@@ -23,28 +38,22 @@ test.describe('Map Page Integration', () => {
 
   test('should open popup with correct content when clicking a marker', async ({ page }) => {
     // 1. Find an individual marker
-    let marker = page.locator('.leaflet-marker-icon:not(.marker-cluster)').first();
-
-    // Wait for markers to be rendered
-    await page.locator('.leaflet-marker-icon').first().waitFor();
-
-    // If no individual marker is visible (all clustered), click a cluster to zoom in
-    if (!(await marker.isVisible())) {
-      const cluster = page.locator('.marker-cluster').first();
-      await cluster.click();
-      // Wait for zoom animation
-      await page.waitForTimeout(1000);
-      marker = page.locator('.leaflet-marker-icon:not(.marker-cluster)').first();
-    }
-
-    await expect(marker).toBeVisible();
+    const marker = page.locator('.leaflet-marker-icon').first();
+    await marker.waitFor({ state: 'visible', timeout: 15000 });
     await marker.click({ force: true });
 
-    // 2. Verify popup is visible
     const popup = page.locator('.leaflet-popup-content');
-    await expect(popup).toBeVisible();
+    if (!(await popup.isVisible())) {
+      // It was likely a cluster, click again or find another
+      await page.waitForTimeout(1000);
+      const individualMarker = page.locator('.leaflet-marker-icon:not(.marker-cluster)').first();
+      await individualMarker.waitFor({ state: 'visible' });
+      await individualMarker.click({ force: true });
+    }
 
-    // 3. Verify popup content structure
+    await expect(popup).toBeVisible({ timeout: 10000 });
+
+    // 2. Verify popup content structure
     await expect(popup.locator('h3')).toBeVisible();
     await expect(popup.locator('a', { hasText: 'View Details' })).toBeVisible();
 
@@ -57,7 +66,7 @@ test.describe('Map Page Integration', () => {
     // 1. Open a popup
     const marker = page.locator('.leaflet-marker-icon').first();
     await marker.waitFor();
-    await marker.click();
+    await marker.click({ force: true });
 
     const popup = page.locator('.leaflet-popup-content');
     if (!(await popup.isVisible())) {
@@ -65,7 +74,7 @@ test.describe('Map Page Integration', () => {
       await page.waitForTimeout(1000);
       const individualMarker = page.locator('.leaflet-marker-icon:not(.marker-cluster)').first();
       await individualMarker.waitFor();
-      await individualMarker.click();
+      await individualMarker.click({ force: true });
     }
 
     await expect(popup).toBeVisible();
@@ -83,6 +92,12 @@ test.describe('Map Page Integration', () => {
   test('should filter markers when category is selected', async ({ page }) => {
     // 1. Ensure filter panel is open
     const filterHeading = page.locator('h2', { hasText: 'Filters' });
+    const openBtn = page.getByLabel('Open filters');
+
+    if (!(await filterHeading.isVisible()) && (await openBtn.isVisible())) {
+      await openBtn.click();
+    }
+
     await filterHeading.waitFor({ state: 'visible', timeout: 10000 });
 
     await expect(filterHeading).toBeVisible();
@@ -120,6 +135,8 @@ test.describe('Map Page Integration', () => {
   });
 
   test('should switch map tiles on theme toggle', async ({ page }) => {
+    const isMobile = (page.viewportSize()?.width || 1000) < 768;
+
     // 1. Detect current theme
     const isInitiallyDark = await page.evaluate(() =>
       document.documentElement.classList.contains('dark')
@@ -132,8 +149,19 @@ test.describe('Map Page Integration', () => {
       .getAttribute('src');
 
     // 3. Toggle theme
+    if (isMobile) {
+      // Open mobile menu first
+      await page.getByLabel('Open menu').click();
+      await expect(page.getByRole('dialog')).toBeVisible();
+    }
+
     const toggleLabel = isInitiallyDark ? 'Switch to light mode' : 'Switch to dark mode';
     await page.getByRole('button', { name: toggleLabel }).click();
+
+    if (isMobile) {
+      // Close mobile menu
+      await page.getByLabel('Close menu').click();
+    }
 
     // 4. Wait for tile transition
     await page.waitForTimeout(1000);

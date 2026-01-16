@@ -17,6 +17,7 @@
     "test": "vitest",
     "test:unit": "vitest",
     "test:e2e": "playwright test",
+    "test:e2e:map": "playwright test tests/e2e/map.spec.ts",
     "test:a11y": "playwright test tests/e2e/a11y.spec.ts",
     "test:visual": "playwright test tests/e2e/visual.spec.ts",
     "test:lighthouse": "lhci autorun",
