@@ -247,8 +247,38 @@ const schema = JSON.stringify(generateDestinationSchema(destination, Astro.url))
     {
       itineraryDays.length > 0 && (
         <section id="itinerary" class="scroll-mt-24">
-          <h2 class="text-3xl font-bold mb-8 text-center">Suggested Itinerary</h2>
-          <div class="max-w-4xl mx-auto">
+          {/* Print Header - Fixed on every page when printing */}
+          <div class="hidden print:block fixed top-0 left-0 w-full text-center border-b border-gray-300 pb-4 mb-8 bg-white z-50">
+            <h1 class="text-2xl font-bold text-black">{destination.title} Itinerary</h1>
+            <p class="text-sm text-gray-600 mt-1">Suggested Travel Plan</p>
+          </div>
+
+          <div class="flex items-center justify-center gap-4 mb-8 relative">
+            <h2 class="text-3xl font-bold text-center">Suggested Itinerary</h2>
+            <button
+              id="print-itinerary-btn"
+              class="hidden md:inline-flex items-center gap-2 px-4 py-2 bg-[var(--bg-surface)] border border-[var(--border-subtle)] rounded-full text-sm font-medium hover:bg-[var(--bg-surface-raised)] hover:border-[var(--color-primary)] transition-colors text-[var(--text-secondary)] hover:text-[var(--color-primary)] print:hidden absolute right-0 top-1/2 -translate-y-1/2"
+              aria-label="Print Itinerary"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="6 9 6 2 18 2 18 9" />
+                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+                <rect x="6" y="14" width="12" height="8" />
+              </svg>
+              Print
+            </button>
+          </div>
+          <div class="max-w-4xl mx-auto print:mt-24">
             <ItineraryTimeline client:visible days={itineraryDays} />
           </div>
         </section>
@@ -275,3 +305,12 @@ const schema = JSON.stringify(generateDestinationSchema(destination, Astro.url))
     {destination.practicalInfo && <PracticalInfo client:visible info={destination.practicalInfo} />}
   </main>
 </BaseLayout>
+
+<script>
+  const printBtn = document.getElementById('print-itinerary-btn');
+  if (printBtn) {
+    printBtn.addEventListener('click', () => {
+      window.print();
+    });
+  }
+</script>
