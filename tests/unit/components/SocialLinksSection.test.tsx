@@ -36,7 +36,7 @@ describe('SocialLinksSection', () => {
 
     expect(isDemoModalOpen.get()).toBe(true);
     expect(demoLinkData.get()).toEqual({
-      url: 'https://instagram.com',
+      url: 'https://instagram.com/masurii',
       label: 'Instagram Profile',
       category: 'Social Media',
     });

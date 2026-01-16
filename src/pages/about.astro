@@ -1,34 +1,29 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { ImageWithFallback } from '../components/ImageWithFallback';
-import { BloggerHero, type SocialLink } from '../components/BloggerHero';
+import { BloggerHero } from '../components/BloggerHero';
 import { TravelPhilosophy } from '../components/TravelPhilosophy';
 import { TravelStats } from '../components/TravelStats';
 
-import { EquipmentShowcase, type EquipmentItem } from '../components/EquipmentShowcase';
-import { TravelTimeline, type Milestone } from '../components/TravelTimeline';
+import { EquipmentShowcase } from '../components/EquipmentShowcase';
+import { TravelTimeline } from '../components/TravelTimeline';
+
 import Breadcrumb from '../components/Breadcrumb.astro';
 
-const title = 'About MasuRii | Philippine Travel Blog';
-const description =
-  'Meet the explorers behind the guide. Learn about our travel philosophy, gear, and mission to showcase the Philippines.';
+import { bloggerProfile } from '../data/blogger';
+
+const title = `${bloggerProfile.name} | Philippine Travel Blog`;
+const description = bloggerProfile.shortBio;
 
 const schema = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'Person',
-  name: 'MasuRii',
+  name: bloggerProfile.name,
   url: new URL('/about', Astro.site),
-  image: new URL('/images/author-portrait.jpg', Astro.site),
+  image: new URL(bloggerProfile.portraitSrc, Astro.site),
   jobTitle: 'Travel Blogger',
   description: description,
-  sameAs: [
-    'https://instagram.com/masurii',
-    'https://twitter.com/masurii',
-    'https://facebook.com/masurii',
-    'https://youtube.com/@masurii',
-    'https://pinterest.com/masurii',
-    'https://tiktok.com/@masurii',
-  ],
+  sameAs: bloggerProfile.socialLinks.map((link) => link.url),
 });
 
 const stats = [
@@ -38,138 +33,10 @@ const stats = [
   { label: 'Photo Stories', value: '500+' },
 ];
 
-const travelStats = [
-  { label: 'Countries Visited', value: 12, icon: 'globe' as const },
-  { label: 'Destinations', value: 81, icon: 'map' as const },
-  { label: 'Islands Visited', value: 45, suffix: '+', icon: 'compass' as const },
-  { label: 'Years Traveling', value: 7, icon: 'calendar' as const },
-  { label: 'Photos Taken', value: 15000, suffix: '+', icon: 'camera' as const },
-  { label: 'Km Traveled', value: 50000, suffix: '+', icon: 'navigation' as const },
-];
-
-const milestones: Milestone[] = [
-  {
-    date: '2016',
-    title: 'The Journey Begins',
-    description:
-      'Quit my corporate job and bought a one-way ticket to Cebu. My first solo trip that changed everything.',
-    image: {
-      src: 'https://placehold.co/600x400/222222/ffffff?text=Cebu+2016',
-      alt: 'First trip to Cebu',
-    },
-  },
-  {
-    date: '2017',
-    title: 'First Viral Post',
-    description:
-      'My guide to the hidden waterfalls of Samboan went viral, reaching 100k people and launching my blogging career.',
-  },
-  {
-    date: '2019',
-    title: 'Explored Batanes',
-    description:
-      'A dream come true. Spent 2 weeks in the northernmost islands of the Philippines, experiencing Ivatan culture.',
-    image: {
-      src: 'https://placehold.co/600x400/222222/ffffff?text=Batanes',
-      alt: 'Batanes landscape',
-    },
-  },
-  {
-    date: '2021',
-    title: 'Sustainable Tourism Advocate',
-    description:
-      'Partnered with local LGUs to promote responsible tourism practices and beach cleanups.',
-  },
-  {
-    date: '2023',
-    title: 'Best Travel Blog Award',
-    description:
-      'Honored to receive the "Best Philippine Travel Blog" award at the Tourism Summit.',
-    image: { src: 'https://placehold.co/600x400/222222/ffffff?text=Award', alt: 'Holding award' },
-  },
-];
-
-const socialLinks: SocialLink[] = [
-  { platform: 'instagram', url: 'https://instagram.com/masurii', label: 'Instagram' },
-  { platform: 'twitter', url: 'https://twitter.com/masurii', label: 'Twitter' },
-  { platform: 'facebook', url: 'https://facebook.com/masurii', label: 'Facebook' },
-  { platform: 'youtube', url: 'https://youtube.com/@masurii', label: 'YouTube' },
-  { platform: 'pinterest', url: 'https://pinterest.com/masurii', label: 'Pinterest' },
-  { platform: 'tiktok', url: 'https://tiktok.com/@masurii', label: 'TikTok' },
-];
-
-const equipmentItems: EquipmentItem[] = [
-  {
-    id: 'camera',
-    name: 'Sony A7 IV',
-    description:
-      'My daily driver for both photo and video. The autofocus is reliable and the dynamic range is perfect for travel scenes.',
-    category: 'Camera',
-    imageUrl: 'https://placehold.co/600x400/222222/ffffff?text=Sony+A7+IV',
-    shopUrl: 'https://amazon.com/dp/B09JZT6Y55',
-  },
-  {
-    id: 'lens-wide',
-    name: 'Sony 16-35mm GM',
-    description:
-      'Essential for capturing sweeping landscapes and tight indoor spaces. Sharp from corner to corner.',
-    category: 'Lens',
-    imageUrl: 'https://placehold.co/600x400/222222/ffffff?text=Sony+16-35mm',
-    shopUrl: 'https://amazon.com/dp/B074V56463',
-  },
-  {
-    id: 'drone',
-    name: 'DJI Mavic 3',
-    description:
-      'For those aerial perspectives that show the true scale of the Philippine islands and coastlines.',
-    category: 'Drone',
-    imageUrl: 'https://placehold.co/600x400/222222/ffffff?text=DJI+Mavic+3',
-    shopUrl: 'https://amazon.com/dp/B09JZT6Y55',
-  },
-  {
-    id: 'action',
-    name: 'GoPro Hero 11',
-    description:
-      'Waterproof and rugged. Perfect for diving, canyoneering, and rainy days when the big camera stays dry.',
-    category: 'Action Cam',
-    imageUrl: 'https://placehold.co/600x400/222222/ffffff?text=GoPro+Hero+11',
-    shopUrl: 'https://amazon.com/dp/B09JZT6Y55',
-  },
-  {
-    id: 'bag',
-    name: 'Wandrd Prvke 31L',
-    description:
-      'The best travel camera bag I have found. Weather resistant, expandable, and looks good in the city too.',
-    category: 'Bag',
-    imageUrl: 'https://placehold.co/600x400/222222/ffffff?text=Camera+Bag',
-    shopUrl: 'https://amazon.com/dp/B09JZT6Y55',
-  },
-  {
-    id: 'tripod',
-    name: 'Peak Design Travel Tripod',
-    description:
-      'Compact enough to fit in a water bottle pocket but stable enough for long exposures.',
-    category: 'Accessory',
-    imageUrl: 'https://placehold.co/600x400/222222/ffffff?text=Travel+Tripod',
-    shopUrl: 'https://amazon.com/dp/B09JZT6Y55',
-  },
-  {
-    id: 'laptop',
-    name: 'MacBook Pro 14"',
-    description: 'My mobile editing studio. Powerful enough to handle 4K video editing on the go.',
-    category: 'Tech',
-    imageUrl: 'https://placehold.co/600x400/222222/ffffff?text=MacBook+Pro',
-    shopUrl: 'https://amazon.com/dp/B09JZT6Y55',
-  },
-  {
-    id: 'power',
-    name: 'Anker PowerCore 24K',
-    description: 'Keeps everything charged during long travel days on ferries and buses.',
-    category: 'Accessory',
-    imageUrl: 'https://placehold.co/600x400/222222/ffffff?text=Power+Bank',
-    shopUrl: 'https://amazon.com/dp/B09JZT6Y55',
-  },
-];
+const travelStats = bloggerProfile.travelStats;
+const milestones = bloggerProfile.milestones;
+const socialLinks = bloggerProfile.socialLinks;
+const equipmentItems = bloggerProfile.equipment;
 ---
 
 <BaseLayout title={title} description={description} schema={schema}>
@@ -180,7 +47,7 @@ const equipmentItems: EquipmentItem[] = [
   <section class="relative h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 z-0">
       <ImageWithFallback
-        src="/images/about-hero.jpg"
+        src={bloggerProfile.heroSrc}
         alt="Travel blogger looking at a landscape"
         className="w-full h-full object-cover"
         loading="eager"
@@ -203,33 +70,21 @@ const equipmentItems: EquipmentItem[] = [
 
   {/* Bio Section */}
   <BloggerHero
-    name="MasuRii"
-    tagline="Our Story"
-    portraitSrc="/images/author-portrait.jpg"
+    name={bloggerProfile.name}
+    tagline={bloggerProfile.tagline}
+    portraitSrc={bloggerProfile.portraitSrc}
     stats={stats}
     socialLinks={socialLinks}
     client:visible
   >
-    <p class="mb-4">
-      It started with a single backpack and a one-way ticket to Cebu. Seven years later, I'm still
-      discovering hidden lagoons, mountain peaks, and cultural treasures across the Philippines.
-    </p>
-    <p class="mb-4">
-      My mission is simple: to show you that the Philippines is more than just Boracay and Palawan.
-      There are thousands of islands waiting to be explored, each with its own story, flavor, and
-      rhythm.
-    </p>
-    <p>
-      Whether you're a luxury traveler or a budget backpacker, this blog is your guide to authentic
-      experiences, responsible tourism, and unforgettable memories.
-    </p>
+    {bloggerProfile.fullBio.map((paragraph) => <p class="mb-4">{paragraph}</p>)}
   </BloggerHero>
 
   {/* Philosophy Section */}
   <TravelPhilosophy
-    quote="We believe in slow travel, respecting local cultures, and leaving places better than we found them. It's not about checking items off a bucket list, but about the connections we make and the understanding we gain along the way."
-    content="Travel is more than just sightseeing; it's about immersion. It's waking up to the sound of waves in Siargao, sharing a meal with a local family in Batanes, and understanding the rich tapestry of cultures that make up the Philippines. With over 7,000 islands, the Philippines offers endless opportunities for discovery."
-    missionStatement="My mission is to promote responsible tourism and help you discover the authentic beauty of the Philippines, one island at a time."
+    quote={bloggerProfile.philosophy.quote}
+    content={bloggerProfile.philosophy.content}
+    missionStatement={bloggerProfile.philosophy.missionStatement}
     client:visible
   />
 

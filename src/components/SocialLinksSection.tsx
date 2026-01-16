@@ -1,65 +1,6 @@
 import React from 'react';
 import { openDemoModal } from '../store/demo-modal';
-
-interface SocialPlatform {
-  id: 'instagram' | 'youtube' | 'twitter' | 'facebook' | 'pinterest' | 'tiktok';
-  name: string;
-  handle: string;
-  url: string;
-  color: string; // Tailwind class for background or text color
-  description: string;
-}
-
-const socialPlatforms: SocialPlatform[] = [
-  {
-    id: 'instagram',
-    name: 'Instagram',
-    handle: '@masurii_travels',
-    url: 'https://instagram.com',
-    color: 'hover:border-pink-500 hover:text-pink-500',
-    description: 'Daily travel photos & stories',
-  },
-  {
-    id: 'youtube',
-    name: 'YouTube',
-    handle: 'MasuRii Vlogs',
-    url: 'https://youtube.com',
-    color: 'hover:border-red-600 hover:text-red-600',
-    description: 'Full travel guides & vlogs',
-  },
-  {
-    id: 'twitter',
-    name: 'X (Twitter)',
-    handle: '@masurii_tweets',
-    url: 'https://twitter.com',
-    color: 'hover:border-blue-400 hover:text-blue-400',
-    description: 'Travel updates & thoughts',
-  },
-  {
-    id: 'facebook',
-    name: 'Facebook',
-    handle: 'MasuRii Travels',
-    url: 'https://facebook.com',
-    color: 'hover:border-blue-700 hover:text-blue-700',
-    description: 'Community & events',
-  },
-  {
-    id: 'pinterest',
-    name: 'Pinterest',
-    handle: '@masurii_pins',
-    url: 'https://pinterest.com',
-    color: 'hover:border-red-500 hover:text-red-500',
-    description: 'Travel inspiration boards',
-  },
-  {
-    id: 'tiktok',
-    name: 'TikTok',
-    handle: '@masurii_tok',
-    url: 'https://tiktok.com',
-    color: 'hover:border-black dark:hover:border-white hover:text-black dark:hover:text-white',
-    description: 'Short-form travel clips',
-  },
-];
+import { bloggerProfile, type SocialLinkExtended } from '../data/blogger';
 
 const SocialIcon = ({ id }: { id: string }) => {
   switch (id) {
@@ -143,8 +84,8 @@ const SocialIcon = ({ id }: { id: string }) => {
           strokeLinecap="round"
           strokeLinejoin="round"
         >
-          <line x1="12" y1="5" x2="12" y2="19"></line>
-          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <path d="M8 20l4-9 4 9"></path>
+          <path d="M12 11V3"></path>
         </svg>
       );
     case 'tiktok':
@@ -169,11 +110,11 @@ const SocialIcon = ({ id }: { id: string }) => {
 };
 
 export const SocialLinksSection: React.FC = () => {
-  const handleClick = (e: React.MouseEvent, platform: SocialPlatform) => {
+  const handleClick = (e: React.MouseEvent, platform: SocialLinkExtended) => {
     e.preventDefault();
     openDemoModal({
       url: platform.url,
-      label: `${platform.name} Profile`,
+      label: `${platform.label} Profile`,
       category: 'Social Media',
     });
   };
@@ -189,20 +130,20 @@ export const SocialLinksSection: React.FC = () => {
       </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {socialPlatforms.map((platform) => (
+        {bloggerProfile.socialLinks.map((platform) => (
           <a
-            key={platform.id}
+            key={platform.platform}
             href={platform.url}
             onClick={(e) => handleClick(e, platform)}
             className={`group flex items-center p-4 bg-[var(--bg-surface)] rounded-xl border border-[var(--border-default)] transition-all duration-300 hover:shadow-md hover:-translate-y-1 ${platform.color}`}
-            aria-label={`Visit my ${platform.name}`}
+            aria-label={`Visit my ${platform.label}`}
           >
             <div className="flex-shrink-0 mr-4 text-[var(--text-secondary)] group-hover:text-inherit transition-colors">
-              <SocialIcon id={platform.id} />
+              <SocialIcon id={platform.platform} />
             </div>
             <div>
               <div className="font-bold text-[var(--text-primary)] group-hover:text-inherit transition-colors">
-                {platform.name}
+                {platform.label}
               </div>
               <div className="text-sm text-[var(--text-secondary)] opacity-80">
                 {platform.handle}

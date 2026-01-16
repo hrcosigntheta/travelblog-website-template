@@ -6,8 +6,9 @@ import { FAQAccordion } from '../components/FAQAccordion';
 import { ImageWithFallback } from '../components/ImageWithFallback';
 import { CONTACT_FAQS } from '../data/faqs';
 import Breadcrumb from '../components/Breadcrumb.astro';
+import { bloggerProfile } from '../data/blogger';
 
-const title = 'Contact Us | Philippines Travel Blog';
+const title = `Contact | ${bloggerProfile.name}`;
 const description =
   'Get in touch with us for collaborations, questions, or just to say hello. We love hearing from fellow travelers!';
 
@@ -21,16 +22,11 @@ const schema = JSON.stringify({
       url: new URL('/contact', Astro.site),
       mainEntity: {
         '@type': 'Person',
-        name: 'MasuRii',
-        image: new URL('/images/author-portrait.jpg', Astro.site),
+        name: bloggerProfile.name,
+        image: new URL(bloggerProfile.portraitSrc, Astro.site),
         jobTitle: 'Travel Blogger',
         url: new URL('/about', Astro.site),
-        sameAs: [
-          'https://instagram.com',
-          'https://twitter.com',
-          'https://facebook.com',
-          'https://pinterest.com',
-        ],
+        sameAs: bloggerProfile.socialLinks.map((link) => link.url),
       },
     },
     {
@@ -116,10 +112,10 @@ const schema = JSON.stringify({
           <h3 class="font-bold text-[var(--text-primary)] mb-2">Email Us Directly</h3>
           <p class="text-[var(--text-secondary)] mb-4">Prefer email? You can reach us at:</p>
           <a
-            href="mailto:hello@travelblog-template.com"
+            href={`mailto:${bloggerProfile.email}`}
             class="text-[var(--color-primary)] font-bold hover:underline"
           >
-            hello@travelblog-template.com
+            {bloggerProfile.email}
           </a>
         </div>
       </div>
