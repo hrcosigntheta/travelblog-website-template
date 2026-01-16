@@ -45,7 +45,7 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({ images, className = 
               className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                 selectedCategory === cat
                   ? 'bg-primary text-[var(--color-btn-primary-text)] shadow-md transform scale-105'
-                  : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-text-primary'
+                  : 'bg-[var(--bg-surface-raised)] text-[var(--text-secondary)] hover:bg-[var(--bg-surface)] hover:text-[var(--text-primary)] border border-[var(--border-subtle)]'
               }`}
             >
               {cat as string}
@@ -59,7 +59,7 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({ images, className = 
         {filteredImages.map((image, index) => (
           <div
             key={`${image.src}-${index}`}
-            className="break-inside-avoid mb-4 group cursor-zoom-in relative overflow-hidden rounded-xl bg-gray-100 dark:bg-gray-800 shadow-sm hover:shadow-md transition-all duration-300 min-h-[150px] animate-in fade-in zoom-in-95 duration-500 fill-mode-backwards"
+            className="break-inside-avoid mb-4 group cursor-zoom-in relative overflow-hidden rounded-xl bg-[var(--bg-surface)] shadow-sm hover:shadow-md transition-all duration-300 min-h-[150px] animate-in fade-in zoom-in-95 duration-500 fill-mode-backwards"
             style={{ animationDelay: `${index * 50}ms` }}
             onClick={() => openLightbox(index)}
             onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && openLightbox(index)}
