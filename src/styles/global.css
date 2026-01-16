@@ -2,8 +2,8 @@
 
 @theme {
   /* Typography */
-  --font-display: 'Playfair Display', serif;
-  --font-body: 'Inter', system-ui, sans-serif;
+  --font-display: 'Playfair Display Variable', serif;
+  --font-body: 'Inter Variable', system-ui, sans-serif;
   --font-accent: 'Caveat', cursive;
 
   /* Colors */
@@ -89,8 +89,8 @@
     --palette-white: #ffffff;
 
     /* Typography */
-    --font-display: 'Playfair Display', serif;
-    --font-body: 'Inter', system-ui, sans-serif;
+    --font-display: 'Playfair Display Variable', serif;
+    --font-body: 'Inter Variable', system-ui, sans-serif;
     --font-accent: 'Caveat', cursive;
 
     /* Text Sizes */
