@@ -17,12 +17,18 @@ const {
 
 // Ensure image is an absolute URL
 const socialImageURL = new URL(image, Astro.site || Astro.url);
+const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL;
 ---
 
 <meta charset="UTF-8" />
 <meta name="description" content={description} />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
+<link rel="icon" type="image/png" sizes="32x32" href={`${base}/favicon-32x32.png`} />
+<link rel="icon" type="image/png" sizes="16x16" href={`${base}/favicon-16x16.png`} />
+<link rel="apple-touch-icon" href={`${base}/apple-touch-icon.png`} />
+<link rel="manifest" href={`${base}/manifest.json`} />
+<meta name="theme-color" content="#0ea5e9" />
 <meta name="generator" content={Astro.generator} />
 
 <!-- Canonical URL -->

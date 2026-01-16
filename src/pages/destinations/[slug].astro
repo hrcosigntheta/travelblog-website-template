@@ -12,6 +12,7 @@ import { ShareButtons } from '../../components/ShareButtons';
 import ReadingProgress from '../../components/ReadingProgress';
 import { TravelTips } from '../../components/TravelTips';
 import { generalTravelTips } from '../../data/travelTips';
+import Breadcrumb from '../../components/Breadcrumb.astro';
 
 export async function getStaticPaths() {
   return destinations.map((destination) => ({
@@ -85,7 +86,6 @@ const pageDescription = destination.description;
 import { generateDestinationSchema } from '../../utils/schema';
 const schema = JSON.stringify(generateDestinationSchema(destination, Astro.url));
 
-// Combine destination-specific tips with general tips
 const allTips = [...(destination.travelTips || []), ...generalTravelTips].slice(0, 6); // Limit to 6 tips for layout balance
 ---
 
@@ -96,6 +96,14 @@ const allTips = [...(destination.travelTips || []), ...generalTravelTips].slice(
   schema={schema}
   ogType="article"
 >
+  <div class="container mx-auto px-4 pt-4">
+    <Breadcrumb
+      items={[
+        { label: 'Destinations', href: '/destinations' },
+        { label: destination.title, href: `/destinations/${destination.slug}` },
+      ]}
+    />
+  </div>
   <ReadingProgress client:idle />
   <DestinationHero destination={destination} />
 

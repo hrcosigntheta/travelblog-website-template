@@ -7,6 +7,7 @@ import { TravelStats } from '../components/TravelStats';
 
 import { EquipmentShowcase, type EquipmentItem } from '../components/EquipmentShowcase';
 import { TravelTimeline, type Milestone } from '../components/TravelTimeline';
+import Breadcrumb from '../components/Breadcrumb.astro';
 
 const title = 'About MasuRii | Philippine Travel Blog';
 const description =
@@ -172,6 +173,9 @@ const equipmentItems: EquipmentItem[] = [
 ---
 
 <BaseLayout title={title} description={description} schema={schema}>
+  <div class="container mx-auto px-4 pt-4">
+    <Breadcrumb items={[{ label: 'About', href: '/about' }]} />
+  </div>
   {/* Hero Section */}
   <section class="relative h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 z-0">

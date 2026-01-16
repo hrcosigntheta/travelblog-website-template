@@ -1,0 +1,26 @@
+{
+  "name": "Philippine Travel Blog",
+  "short_name": "TravelBlog",
+  "description": "Discover the best destinations in the Philippines",
+  "start_url": "/travelblog-website-template/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0ea5e9",
+  "icons": [
+    {
+      "src": "/travelblog-website-template/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/travelblog-website-template/pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/travelblog-website-template/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

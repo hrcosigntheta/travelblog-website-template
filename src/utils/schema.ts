@@ -30,6 +30,7 @@ export function generateDestinationSchema(destination: Destination, siteUrl: str
       addressLocality: destination.region,
       addressCountry: 'PH',
     },
+    hasMap: `https://www.google.com/maps/search/?api=1&query=${destination.coordinates.lat},${destination.coordinates.lng}`,
     touristType: destination.tags,
   };
 
@@ -87,7 +88,11 @@ export function generateGalleryPageSchema(
     name: title,
     description: description,
     url: urlString,
-    image: images.map((img) => img.src),
+    image: images.map((img) => ({
+      '@type': 'ImageObject',
+      contentUrl: img.src,
+      caption: img.caption,
+    })),
     isPartOf: {
       '@type': 'WebSite',
       name: 'Philippines Travel Blog',
@@ -96,4 +101,44 @@ export function generateGalleryPageSchema(
   };
 
   return schema;
+}
+
+export function generateWebSiteSchema(siteUrl: string | URL) {
+  const urlString = typeof siteUrl === 'string' ? siteUrl : siteUrl.href;
+
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Philippines Travel Blog',
+    url: urlString,
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: `${urlString.endsWith('/') ? urlString : urlString + '/'}destinations?q={search_term_string}`,
+      },
+      'query-input': 'required name=search_term_string',
+    },
+  };
+
+  return schema;
+}
+
+export function generateBreadcrumbSchema(
+  items: Array<{ label: string; href: string }>,
+  siteUrl: string | URL
+) {
+  const urlString = typeof siteUrl === 'string' ? siteUrl : siteUrl.href;
+  const baseUrl = new URL(urlString);
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.label,
+      item: new URL(item.href, baseUrl).href,
+    })),
+  };
 }

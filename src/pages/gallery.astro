@@ -5,6 +5,7 @@ import { destinations } from '../data/destinations';
 import type { GalleryImage } from '../types/gallery';
 import { generateGalleryPageSchema } from '../utils/schema';
 import { getUnsplashPlaceholder } from '../utils/images';
+import Breadcrumb from '../components/Breadcrumb.astro';
 
 // Aggregate images from all destinations
 const galleryImages: GalleryImage[] = destinations.flatMap((dest) =>
@@ -33,7 +34,10 @@ const schema = generateGalleryPageSchema(title, description, Astro.url, shuffled
 ---
 
 <BaseLayout title={title} description={description}>
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <div class="container mx-auto px-4 pt-4">
+    <Breadcrumb items={[{ label: 'Gallery', href: '/gallery' }]} />
+  </div>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} is:inline />
   <div class="container mx-auto px-4 py-12">
     <div class="text-center mb-12">
       <h1 class="text-4xl md:text-5xl font-bold text-text-primary mb-4">Travel Gallery</h1>

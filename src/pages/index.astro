@@ -8,11 +8,27 @@ import CategoriesShowcase from '../components/CategoriesShowcase.astro';
 import RecentAdventures from '../components/RecentAdventures.astro';
 import NewsletterSignup from '../components/NewsletterSignup';
 import heroImage from '../assets/images/hero-homepage.jpg';
+import { generateCollectionPageSchema, generateWebSiteSchema } from '../utils/schema';
+
+const title = 'TravelBlog - Explore the Philippines';
+const description =
+  'Discover the best destinations, tips, and adventures in the Philippines. Filter by region, activity, and budget.';
+
+const collectionSchema = generateCollectionPageSchema(title, description, Astro.url);
+const websiteSchema = generateWebSiteSchema(
+  Astro.site || new URL(import.meta.env.BASE_URL, Astro.url)
+);
+
+const schema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [collectionSchema, websiteSchema],
+});
 ---
 
 <BaseLayout
-  title="TravelBlog - Explore the Philippines"
+  title={title}
   description="Discover the best destinations, tips, and adventures in the Philippines."
+  schema={schema}
 >
   <Hero
     title="Discover the Philippines"
