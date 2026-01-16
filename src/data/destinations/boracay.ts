@@ -1,32 +1,109 @@
 import type { Destination } from './types';
 
 export const boracay: Destination = {
-  id: '4',
+  id: 'boracay-island',
   slug: 'boracay-island',
   title: 'Boracay Island',
-  description: 'Famous for its White Beach and vibrant nightlife.',
+  description:
+    'The crown jewel of Philippine tourism. Famous for its powdery White Beach, vibrant nightlife, and stunning sunsets. A perfect blend of relaxation and party.',
   region: 'Aklan',
-  image: 'https://images.unsplash.com/photo-1505881402582-c5bc9105ff75',
-  rating: 4.6,
-  tags: ['Beach', 'Party', 'Luxury'],
+  image: '/images/destinations/boracay-main.jpg',
+  rating: 4.7,
+  tags: ['Beach', 'Party', 'Luxury', 'Relaxation'],
   featured: false,
-  images: ['https://images.unsplash.com/photo-1505881402582-c5bc9105ff75'],
+  images: [
+    '/images/destinations/boracay-1.jpg',
+    '/images/destinations/boracay-2.jpg',
+    '/images/destinations/boracay-3.jpg',
+    '/images/destinations/boracay-4.jpg',
+  ],
   coordinates: {
     lat: 11.9674,
     lng: 121.9248,
   },
   stats: {
-    bestTime: 'Nov - Apr',
+    bestTime: 'Nov - Apr (Dry Season)',
     budget: '$$ - $$$$',
     difficulty: 'Easy',
   },
-  highlights: ['White Beach', 'Puka Shell Beach', 'Helmet Diving'],
-  content:
-    "Boracay is a small island in the central Philippines. It's known for its resorts and beaches.",
+  content: `
+    Boracay is world-renowned for its 4-kilometer White Beach, often voted as one of the best beaches in the world. After its rehabilitation in 2018, the island is cleaner and more regulated, preserving its natural beauty.
+    
+    The island is divided into three stations: Station 1 known for luxury resorts and the widest beachfront; Station 2 as the commercial center with D'Mall, restaurants, and bars; and Station 3, which is quieter and hosts budget accommodations.
+    
+    Beyond the main beach, Puka Shell Beach offers a more rugged charm, while Bulabog Beach is famous for kitesurfing and windsurfing.
+  `,
+  highlights: [
+    'White Beach (Station 1, 2, 3)',
+    'Puka Shell Beach',
+    'Bulabog Beach (Kitesurfing)',
+    'Paraw Sailing at Sunset',
+    'Island Hopping / Helmet Diving',
+  ],
+  itinerary: [
+    {
+      title: 'Day 1: White Beach & Sunset',
+      activities: [
+        {
+          time: '14:00',
+          title: 'Beach Bumming',
+          description: 'Relax and swim at White Beach',
+          iconType: 'relax',
+        },
+        {
+          time: '17:00',
+          title: 'Paraw Sailing',
+          description: 'Sunset cruise on a traditional sailboat',
+          iconType: 'nature',
+        },
+        {
+          time: '19:00',
+          title: 'Fire Dancers',
+          description: 'Watch fire dancing shows during dinner',
+          iconType: 'activity',
+        },
+      ],
+    },
+    {
+      title: 'Day 2: Water Activities',
+      activities: [
+        {
+          time: '09:00',
+          title: 'Island Hopping',
+          description: 'Visit Crystal Cove, Magic Island, and Puka Beach',
+          iconType: 'activity',
+        },
+        {
+          time: '14:00',
+          title: 'Water Sports',
+          description: 'Parasailing, helmet diving, or paddleboarding',
+          iconType: 'activity',
+        },
+      ],
+    },
+    {
+      title: 'Day 3: Alternative Beaches',
+      activities: [
+        {
+          time: '10:00',
+          title: 'Puka Beach',
+          description: 'Visit the northern tip for a quieter vibe',
+          iconType: 'nature',
+        },
+        {
+          time: '15:00',
+          title: 'Ilig-Iligan Beach',
+          description: 'Explore hidden coves and caves',
+          iconType: 'nature',
+        },
+      ],
+    },
+  ],
   practicalInfo: {
     gettingThere:
-      'Fly to Caticlan Airport (closest) or Kalibo Airport (cheaper but requires bus ride).',
-    accommodation: 'Station 1 for luxury, Station 2 for nightlife, Station 3 for budget.',
-    tips: 'Book accommodation in advance as entry to the island requires a confirmed booking.',
+      'Fly to Caticlan (MPH) for a 15-minute boat ride, or Kalibo (KLO) for a cheaper flight but 2-hour bus ride.',
+    accommodation:
+      'Station 1: Luxury. Station 2: Mid-range & Party. Station 3: Budget & Quiet. Bulabog: Water sports.',
+    tips: 'Hotel booking confirmation is REQUIRED for port entry. No drinking or smoking on the white beach proper.',
   },
 };

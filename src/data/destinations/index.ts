@@ -16,6 +16,8 @@ import { tarsierSanctuary } from './tarsier-sanctuary';
 import { lobocRiver } from './loboc-river';
 import { puertoPrincesa } from './puerto-princesa';
 import { coron } from './coron';
+import { batanes } from './batanes';
+import { banaueRiceTerraces } from './banaue-rice-terraces';
 
 export const destinations: Destination[] = [
   elNido,
@@ -35,6 +37,8 @@ export const destinations: Destination[] = [
   lobocRiver,
   puertoPrincesa,
   coron,
+  batanes,
+  banaueRiceTerraces,
 ];
 
 export * from './types';
