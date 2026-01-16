@@ -91,6 +91,22 @@ const currentPath = Astro.url.pathname;
       // Initialize the theme store (which sets up listeners)
       import { initTheme } from '../store/theme';
       initTheme();
+
+      // Register Service Worker for PWA
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          const base =
+            import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL.replace(/\/$/, '');
+          navigator.serviceWorker
+            .register(`${base}/sw.js`)
+            .then((registration) => {
+              console.log('SW registered: ', registration);
+            })
+            .catch((registrationError) => {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
     </script>
   </body>
 </html>
