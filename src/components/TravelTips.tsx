@@ -148,7 +148,7 @@ const getCategoryColor = (category: TipCategory) => {
     case 'nature':
       return 'text-teal-600 bg-teal-100 dark:text-teal-400 dark:bg-teal-900/30';
     default:
-      return 'text-gray-600 bg-gray-100 dark:text-gray-400 dark:bg-gray-800';
+      return 'text-[var(--text-secondary)] bg-[var(--bg-surface-raised)]';
   }
 };
 

@@ -47,7 +47,7 @@ export const EquipmentShowcase: React.FC<EquipmentShowcaseProps> = ({
               key={item.id}
               className="group bg-[var(--bg-surface-raised)] rounded-2xl overflow-hidden border border-[var(--border-default)] hover:border-[var(--color-primary)] transition-all duration-200 ease-out hover:shadow-xl hover:-translate-y-1 flex flex-col"
             >
-              <div className="relative aspect-video overflow-hidden bg-gray-100 dark:bg-gray-800">
+              <div className="relative aspect-video overflow-hidden bg-[var(--bg-default)]">
                 <ImageWithFallback
                   src={item.imageUrl}
                   alt={item.name}
@@ -70,7 +70,7 @@ export const EquipmentShowcase: React.FC<EquipmentShowcaseProps> = ({
                 <a
                   href={item.shopUrl}
                   onClick={(e) => handleShopClick(e, item)}
-                  className="inline-flex items-center justify-center w-full py-2.5 px-4 bg-[var(--bg-surface)] hover:bg-[var(--color-primary)] text-[var(--text-primary)] hover:text-white border border-[var(--border-default)] hover:border-transparent rounded-lg transition-all duration-300 font-medium text-sm gap-2"
+                  className="inline-flex items-center justify-center w-full py-2.5 px-4 bg-[var(--bg-surface)] hover:bg-[var(--color-primary)] text-[var(--text-primary)] hover:text-[var(--text-inverse)] border border-[var(--border-default)] hover:border-transparent rounded-lg transition-all duration-300 font-medium text-sm gap-2"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

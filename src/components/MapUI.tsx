@@ -12,11 +12,9 @@ export function MapSkeleton({
   const t = useTranslations(lang);
   return (
     <div
-      className={`bg-neutral-200 dark:bg-neutral-800 animate-pulse rounded-lg flex items-center justify-center ${className}`}
+      className={`bg-[var(--bg-surface-raised)] animate-pulse rounded-lg flex items-center justify-center ${className}`}
     >
-      <span className="text-[var(--text-secondary)] dark:text-[var(--text-muted)] font-medium">
-        {t('map.loading')}
-      </span>
+      <span className="text-[var(--text-secondary)] font-medium">{t('map.loading')}</span>
     </div>
   );
 }
@@ -31,13 +29,11 @@ export function MapError({
   const t = useTranslations(lang);
   return (
     <div
-      className={`bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-lg flex items-center justify-center ${className}`}
+      className={`bg-[var(--bg-surface)] border border-[var(--border-subtle)] rounded-lg flex items-center justify-center ${className}`}
     >
       <div className="text-center p-4">
         <span className="block text-red-500 font-medium mb-1">{t('map.error')}</span>
-        <span className="text-sm text-[var(--text-secondary)] dark:text-[var(--text-muted)]">
-          {t('common.error')}
-        </span>
+        <span className="text-sm text-[var(--text-secondary)]">{t('common.error')}</span>
       </div>
     </div>
   );

@@ -166,7 +166,7 @@ export const BloggerHero: React.FC<BloggerHeroProps> = ({
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center gap-12">
           <div className="w-full md:w-1/2">
-            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500 border-8 border-white dark:border-gray-800">
+            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500 border-8 border-[var(--bg-surface)]">
               <img
                 src={portraitSrc}
                 alt={`Portrait of ${name}`}

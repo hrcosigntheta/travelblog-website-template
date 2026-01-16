@@ -71,7 +71,7 @@ export const ShareButtons: React.FC<ShareButtonsProps> = ({
       id: 'twitter',
       name: 'X (Twitter)',
       url: `https://twitter.com/intent/tweet?text=${shareTitle}&url=${shareUrlEncoded}`,
-      color: 'hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black',
+      color: 'hover:bg-[var(--text-primary)] hover:text-[var(--bg-surface)]',
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"

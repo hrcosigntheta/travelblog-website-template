@@ -45,7 +45,7 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
       {/* Placeholder / Loading State */}
       {loading && (
         <div
-          className="absolute inset-0 bg-gray-200 dark:bg-gray-800 animate-pulse flex items-center justify-center z-10"
+          className="absolute inset-0 bg-[var(--bg-surface-raised)] animate-pulse flex items-center justify-center z-10"
           aria-hidden="true"
           data-testid="loading-placeholder"
         >
