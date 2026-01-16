@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { openDemoModal } from '../store/demo-modal';
 import { Button } from './UI/Button';
+import { Input } from './UI/Input';
 
 const NewsletterSignup: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -73,10 +74,7 @@ const NewsletterSignup: React.FC = () => {
             noValidate
           >
             <div className="flex-grow text-left">
-              <label htmlFor="email-address" className="sr-only">
-                Email address
-              </label>
-              <input
+              <Input
                 id="email-address"
                 name="email"
                 type="email"
@@ -84,25 +82,27 @@ const NewsletterSignup: React.FC = () => {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className={`w-full h-12 px-4 rounded-[var(--radius-md)] border bg-[var(--input-bg)] text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent transition-all outline-none ${
-                  error ? 'border-red-500' : 'border-[var(--border-default)]'
-                }`}
+                error={error}
                 placeholder="Enter your email"
+                className="h-12"
               />
-              {error && <p className="mt-2 text-sm text-red-500">{error}</p>}
               {status === 'success' && (
-                <p className="mt-2 text-sm text-green-600 font-medium">Thanks for subscribing!</p>
+                <p className="mt-2 text-sm text-green-600 font-medium animate-fade-in">
+                  Thanks for subscribing!
+                </p>
               )}
             </div>
-            <Button
-              type="submit"
-              isLoading={isLoading}
-              isSuccess={status === 'success'}
-              successText="Subscribed!"
-              className="h-12 shadow-lg"
-            >
-              Subscribe
-            </Button>
+            <div className="sm:mt-0 mt-2">
+              <Button
+                type="submit"
+                isLoading={isLoading}
+                isSuccess={status === 'success'}
+                successText="Subscribed!"
+                className="h-12 shadow-lg w-full sm:w-auto"
+              >
+                Subscribe
+              </Button>
+            </div>
           </form>
 
           <p className="mt-4 text-sm text-[var(--text-muted)]">

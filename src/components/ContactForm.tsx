@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { openDemoModal } from '../store/demo-modal';
 import { Button } from './UI/Button';
+import { Input } from './UI/Input';
+import { Textarea } from './UI/Textarea';
+import { Select } from './UI/Select';
 
 interface FormData {
   name: string;
@@ -123,7 +126,7 @@ export const ContactForm: React.FC = () => {
       {submitSuccess && (
         <div
           role="alert"
-          className="mb-6 p-4 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 rounded-lg border border-green-200 dark:border-green-800 flex items-center"
+          className="mb-6 p-4 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 rounded-lg border border-green-200 dark:border-green-800 flex items-center animate-fade-in"
         >
           <svg className="w-5 h-5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
             <path
@@ -139,124 +142,60 @@ export const ContactForm: React.FC = () => {
         </div>
       )}
 
-      <form onSubmit={handleSubmit} noValidate className="space-y-6">
+      <form onSubmit={handleSubmit} noValidate className="space-y-2">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Name Field */}
-          <div>
-            <label
-              htmlFor="name"
-              className="block text-sm font-medium text-[var(--text-secondary)] mb-2"
-            >
-              Name <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              className={`w-full px-4 py-3 rounded-lg bg-[var(--bg-surface-raised)] border ${
-                errors.name
-                  ? 'border-red-500 focus:ring-red-500'
-                  : 'border-[var(--border-default)] focus:border-[var(--color-primary)] focus:ring-[var(--color-primary)]'
-              } focus:ring-1 outline-none transition-colors text-[var(--text-primary)]`}
-              placeholder="Your Name"
-              disabled={isSubmitting}
-            />
-            {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
-          </div>
-
-          {/* Email Field */}
-          <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-[var(--text-secondary)] mb-2"
-            >
-              Email <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              className={`w-full px-4 py-3 rounded-lg bg-[var(--bg-surface-raised)] border ${
-                errors.email
-                  ? 'border-red-500 focus:ring-red-500'
-                  : 'border-[var(--border-default)] focus:border-[var(--color-primary)] focus:ring-[var(--color-primary)]'
-              } focus:ring-1 outline-none transition-colors text-[var(--text-primary)]`}
-              placeholder="your.email@example.com"
-              disabled={isSubmitting}
-            />
-            {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
-          </div>
-        </div>
-
-        {/* Subject Field */}
-        <div>
-          <label
-            htmlFor="subject"
-            className="block text-sm font-medium text-[var(--text-secondary)] mb-2"
-          >
-            Subject <span className="text-red-500">*</span>
-          </label>
-          <div className="relative">
-            <select
-              id="subject"
-              name="subject"
-              value={formData.subject}
-              onChange={handleChange}
-              className={`w-full px-4 py-3 rounded-lg bg-[var(--bg-surface-raised)] border ${
-                errors.subject
-                  ? 'border-red-500 focus:ring-red-500'
-                  : 'border-[var(--border-default)] focus:border-[var(--color-primary)] focus:ring-[var(--color-primary)]'
-              } focus:ring-1 outline-none transition-colors text-[var(--text-primary)] appearance-none cursor-pointer`}
-              disabled={isSubmitting}
-            >
-              {SUBJECT_OPTIONS.map((option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
-            <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-[var(--text-secondary)]">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
-            </div>
-          </div>
-          {errors.subject && <p className="text-red-500 text-sm mt-1">{errors.subject}</p>}
-        </div>
-
-        {/* Message Field */}
-        <div>
-          <label
-            htmlFor="message"
-            className="block text-sm font-medium text-[var(--text-secondary)] mb-2"
-          >
-            Message <span className="text-red-500">*</span>
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            rows={5}
-            value={formData.message}
+          <Input
+            id="name"
+            name="name"
+            label="Name"
+            value={formData.name}
             onChange={handleChange}
-            className={`w-full px-4 py-3 rounded-lg bg-[var(--bg-surface-raised)] border ${
-              errors.message
-                ? 'border-red-500 focus:ring-red-500'
-                : 'border-[var(--border-default)] focus:border-[var(--color-primary)] focus:ring-[var(--color-primary)]'
-            } focus:ring-1 outline-none transition-colors text-[var(--text-primary)] resize-y min-h-[120px]`}
-            placeholder="How can I help you?"
+            error={errors.name}
+            placeholder="Your Name"
             disabled={isSubmitting}
+            required
           />
-          {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
+
+          <Input
+            id="email"
+            name="email"
+            type="email"
+            label="Email"
+            value={formData.email}
+            onChange={handleChange}
+            error={errors.email}
+            placeholder="your.email@example.com"
+            disabled={isSubmitting}
+            required
+          />
         </div>
+
+        <Select
+          id="subject"
+          name="subject"
+          label="Subject"
+          value={formData.subject}
+          onChange={handleChange}
+          options={SUBJECT_OPTIONS}
+          error={errors.subject}
+          disabled={isSubmitting}
+          required
+        />
+
+        <Textarea
+          id="message"
+          name="message"
+          label="Message"
+          value={formData.message}
+          onChange={handleChange}
+          error={errors.message}
+          placeholder="How can I help you?"
+          disabled={isSubmitting}
+          required
+          rows={5}
+          showCount
+          minLength={20}
+        />
 
         {/* Submit Button */}
         <div className="pt-2">

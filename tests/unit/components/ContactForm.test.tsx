@@ -78,8 +78,11 @@ describe('ContactForm', () => {
     const submitBtn = screen.getByRole('button', { name: /send message/i });
     fireEvent.click(submitBtn);
 
-    // Should show loading state
-    expect(screen.getByText(/sending.../i)).toBeInTheDocument();
+    // Should show loading state (button disabled and spinner)
+    expect(submitBtn).toBeDisabled();
+    // Verify spinner exists inside button
+    const spinner = submitBtn.querySelector('svg.animate-spin');
+    expect(spinner).toBeInTheDocument();
 
     // Wait for submission to complete (mock delay is 800ms)
     await waitFor(() => {
