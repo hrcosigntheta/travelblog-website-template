@@ -11,6 +11,9 @@ import { bantayan } from './bantayan';
 import { camotes } from './camotes';
 import { templeOfLeah } from './temple-of-leah';
 import { topsLookout } from './tops-lookout';
+import { panglaoIsland } from './panglao-island';
+import { tarsierSanctuary } from './tarsier-sanctuary';
+import { lobocRiver } from './loboc-river';
 
 export const destinations: Destination[] = [
   elNido,
@@ -25,6 +28,9 @@ export const destinations: Destination[] = [
   camotes,
   templeOfLeah,
   topsLookout,
+  panglaoIsland,
+  tarsierSanctuary,
+  lobocRiver,
 ];
 
 export * from './types';
