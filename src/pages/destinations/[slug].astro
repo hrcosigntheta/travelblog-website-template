@@ -59,10 +59,10 @@ const itineraryDays =
 
 // Transform images for the gallery
 const galleryImages =
-  destination.images?.map((src) => ({
-    src,
-    alt: destination.title,
-    caption: destination.title, // We could add specific captions if data supported it
+  destination.images?.map((img) => ({
+    src: img.src,
+    alt: img.alt,
+    caption: img.alt,
   })) || [];
 
 // Logic to find related destinations
@@ -250,7 +250,7 @@ const allTips = [...(destination.travelTips || []), ...generalTravelTips].slice(
               client:load
               title={destination.title}
               description={destination.description}
-              image={destination.images?.[0]}
+              image={destination.images?.[0]?.src}
             />
           </div>
         </div>

@@ -10,6 +10,7 @@ const generateDestinations = (count: number): Destination[] => {
     description: `Description for destination ${i}. It has some unique keywords like ${i % 2 === 0 ? 'Beach' : 'Mountain'} and lots of text to index.`,
     region: i % 3 === 0 ? 'Palawan' : i % 3 === 1 ? 'Cebu' : 'Bohol',
     image: 'https://example.com/image.jpg',
+    imageAlt: 'Test Alt',
     rating: 4.5,
     tags: [i % 2 === 0 ? 'Beach' : 'Hiking', 'Nature', 'Adventure'],
     featured: false,

@@ -9,12 +9,12 @@ import Breadcrumb from '../components/Breadcrumb.astro';
 
 // Aggregate images from all destinations
 const galleryImages: GalleryImage[] = destinations.flatMap((dest) =>
-  dest.images.map((img, index) => ({
-    src: img,
-    alt: `${dest.title} - Photo ${index + 1}`,
+  dest.images.map((img) => ({
+    src: img.src,
+    alt: img.alt,
     caption: dest.title,
     category: dest.tags[0], // Use first tag as primary category for filtering
-    placeholderSrc: getUnsplashPlaceholder(img),
+    placeholderSrc: getUnsplashPlaceholder(img.src),
   }))
 );
 

@@ -7,14 +7,27 @@ export const chocolateHills: Destination = {
   description: 'Unique geological formation of over 1,200 hills.',
   region: 'Bohol',
   image: '/images/destinations/chocolate-hills-bohol-main.jpg',
+  imageAlt: 'Hero image of Chocolate Hills, Bohol in Bohol, Philippines',
   rating: 4.7,
   tags: ['Nature', 'Hiking', 'Sightseeing'],
   featured: true,
   images: [
-    '/images/destinations/chocolate-hills-bohol-1.jpg',
-    '/images/destinations/chocolate-hills-bohol-2.jpg',
-    '/images/destinations/chocolate-hills-bohol-3.jpg',
-    '/images/destinations/chocolate-hills-bohol-4.jpg',
+    {
+      src: '/images/destinations/chocolate-hills-bohol-1.jpg',
+      alt: 'Chocolate Hills, Bohol photography - Shot 1',
+    },
+    {
+      src: '/images/destinations/chocolate-hills-bohol-2.jpg',
+      alt: 'Chocolate Hills, Bohol photography - Shot 2',
+    },
+    {
+      src: '/images/destinations/chocolate-hills-bohol-3.jpg',
+      alt: 'Chocolate Hills, Bohol photography - Shot 3',
+    },
+    {
+      src: '/images/destinations/chocolate-hills-bohol-4.jpg',
+      alt: 'Chocolate Hills, Bohol photography - Shot 4',
+    },
   ],
   coordinates: {
     lat: 9.9171,

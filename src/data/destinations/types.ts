@@ -17,12 +17,13 @@ export interface Destination {
   description: string;
   region: string;
   image: string;
+  imageAlt: string;
   rating: number;
   tags: string[];
   featured: boolean;
 
   // Expanded fields
-  images: string[];
+  images: { src: string; alt: string }[];
   coordinates: {
     lat: number;
     lng: number;

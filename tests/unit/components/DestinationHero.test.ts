@@ -11,6 +11,7 @@ const mockDestination: Destination = {
   description: 'A test description',
   region: 'Test Region',
   image: 'https://example.com/image.jpg',
+  imageAlt: 'Test Alt',
   rating: 5,
   tags: ['Tag1'],
   featured: false,

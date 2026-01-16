@@ -17,10 +17,11 @@ const mockDestination: Destination = {
   description: 'A beautiful place for testing.',
   region: 'Test Region',
   image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e',
+  imageAlt: 'Test Image Alt',
   rating: 4.8,
   tags: ['Beach', 'Relaxation'],
   featured: true,
-  images: ['https://images.unsplash.com/photo-1507525428034-b723cf961d3e'],
+  images: [{ src: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e', alt: 'Test' }],
   coordinates: { lat: 10, lng: 10 },
   stats: {
     bestTime: 'Jan-Apr',

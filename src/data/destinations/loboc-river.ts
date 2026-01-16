@@ -8,15 +8,28 @@ export const lobocRiver: Destination = {
     'A scenic river cruise through lush jungle landscapes featuring a buffet lunch and cultural music.',
   region: 'Bohol',
   image:
-    'https://images.unsplash.com/photo-1621235372481-8051283c7487?q=80&w=2670&auto=format&fit=crop', // Placeholder
+    'https://images.unsplash.com/photo-1621235372481-8051283c7487?q=80&w=2670&auto=format&fit=crop',
+  imageAlt: 'Hero image of Loboc River Cruise in Bohol, Philippines', // Placeholder
   rating: 4.5,
   tags: ['Culture', 'Food', 'Nature', 'Relaxation'],
   featured: false,
   images: [
-    '/images/destinations/loboc-river-1.jpg',
-    '/images/destinations/loboc-river-2.jpg',
-    '/images/destinations/loboc-river-3.jpg',
-    '/images/destinations/loboc-river-4.jpg',
+    {
+      src: '/images/destinations/loboc-river-1.jpg',
+      alt: 'Loboc River Cruise photography - Shot 1',
+    },
+    {
+      src: '/images/destinations/loboc-river-2.jpg',
+      alt: 'Loboc River Cruise photography - Shot 2',
+    },
+    {
+      src: '/images/destinations/loboc-river-3.jpg',
+      alt: 'Loboc River Cruise photography - Shot 3',
+    },
+    {
+      src: '/images/destinations/loboc-river-4.jpg',
+      alt: 'Loboc River Cruise photography - Shot 4',
+    },
   ],
   coordinates: {
     lat: 9.6385,

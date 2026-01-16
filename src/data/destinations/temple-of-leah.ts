@@ -8,14 +8,27 @@ export const templeOfLeah: Destination = {
     'Dubbed as the "Taj Mahal of Cebu", this grand Roman-style temple was built as a symbol of undying love.',
   region: 'Cebu City',
   image: '/images/destinations/temple-of-leah-main.jpg',
+  imageAlt: 'Hero image of Temple of Leah in Cebu City, Philippines',
   rating: 4.2,
   tags: ['Culture', 'Architecture', 'Viewpoint', 'History'],
   featured: false,
   images: [
-    '/images/destinations/temple-of-leah-1.jpg',
-    '/images/destinations/temple-of-leah-2.jpg',
-    '/images/destinations/temple-of-leah-3.jpg',
-    '/images/destinations/temple-of-leah-4.jpg',
+    {
+      src: '/images/destinations/temple-of-leah-1.jpg',
+      alt: 'Temple of Leah photography - Shot 1',
+    },
+    {
+      src: '/images/destinations/temple-of-leah-2.jpg',
+      alt: 'Temple of Leah photography - Shot 2',
+    },
+    {
+      src: '/images/destinations/temple-of-leah-3.jpg',
+      alt: 'Temple of Leah photography - Shot 3',
+    },
+    {
+      src: '/images/destinations/temple-of-leah-4.jpg',
+      alt: 'Temple of Leah photography - Shot 4',
+    },
   ],
   coordinates: {
     lat: 10.3664,

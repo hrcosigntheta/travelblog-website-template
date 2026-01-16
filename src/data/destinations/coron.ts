@@ -7,15 +7,16 @@ export const coron: Destination = {
   description:
     'Famous for its World War II wrecks, crystal-clear freshwater lakes, and stunning limestone formations.',
   region: 'Palawan',
-  image: '/images/destinations/coron-palawan-main.jpg', // Placeholder
+  image: '/images/destinations/coron-palawan-main.jpg',
+  imageAlt: 'Hero image of Coron, Palawan in Palawan, Philippines', // Placeholder
   rating: 4.9,
   tags: ['Diving', 'Lakes', 'Nature', 'Shipwrecks'],
   featured: true,
   images: [
-    '/images/destinations/coron-palawan-1.jpg',
-    '/images/destinations/coron-palawan-2.jpg',
-    '/images/destinations/coron-palawan-3.jpg',
-    '/images/destinations/coron-palawan-4.jpg',
+    { src: '/images/destinations/coron-palawan-1.jpg', alt: 'Coron, Palawan photography - Shot 1' },
+    { src: '/images/destinations/coron-palawan-2.jpg', alt: 'Coron, Palawan photography - Shot 2' },
+    { src: '/images/destinations/coron-palawan-3.jpg', alt: 'Coron, Palawan photography - Shot 3' },
+    { src: '/images/destinations/coron-palawan-4.jpg', alt: 'Coron, Palawan photography - Shot 4' },
   ],
   coordinates: {
     lat: 11.9986,

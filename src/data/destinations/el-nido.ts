@@ -7,14 +7,27 @@ export const elNido: Destination = {
   description: 'Stunning limestone cliffs and crystal clear waters.',
   region: 'Palawan',
   image: '/images/destinations/el-nido-palawan-main.jpg',
+  imageAlt: 'Hero image of El Nido, Palawan in Palawan, Philippines',
   rating: 4.9,
   tags: ['Beach', 'Island Hopping', 'Nature'],
   featured: true,
   images: [
-    '/images/destinations/el-nido-palawan-1.jpg',
-    '/images/destinations/el-nido-palawan-2.jpg',
-    '/images/destinations/el-nido-palawan-3.jpg',
-    '/images/destinations/el-nido-palawan-4.jpg',
+    {
+      src: '/images/destinations/el-nido-palawan-1.jpg',
+      alt: 'El Nido, Palawan photography - Shot 1',
+    },
+    {
+      src: '/images/destinations/el-nido-palawan-2.jpg',
+      alt: 'El Nido, Palawan photography - Shot 2',
+    },
+    {
+      src: '/images/destinations/el-nido-palawan-3.jpg',
+      alt: 'El Nido, Palawan photography - Shot 3',
+    },
+    {
+      src: '/images/destinations/el-nido-palawan-4.jpg',
+      alt: 'El Nido, Palawan photography - Shot 4',
+    },
   ],
   coordinates: {
     lat: 11.1956,

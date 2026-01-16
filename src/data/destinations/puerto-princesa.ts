@@ -7,15 +7,28 @@ export const puertoPrincesa: Destination = {
   description:
     'A UNESCO World Heritage site featuring a spectacular limestone karst landscape with an underground river.',
   region: 'Palawan',
-  image: '/images/destinations/pp-underground-river-main.jpg', // Placeholder, reusing El Nido or similar until fetch script runs
+  image: '/images/destinations/pp-underground-river-main.jpg',
+  imageAlt: 'Hero image of Puerto Princesa Underground River in Palawan, Philippines', // Placeholder, reusing El Nido or similar until fetch script runs
   rating: 4.8,
   tags: ['Nature', 'Cave', 'UNESCO', 'Adventure'],
   featured: false,
   images: [
-    '/images/destinations/pp-underground-river-1.jpg',
-    '/images/destinations/pp-underground-river-2.jpg',
-    '/images/destinations/pp-underground-river-3.jpg',
-    '/images/destinations/pp-underground-river-4.jpg',
+    {
+      src: '/images/destinations/pp-underground-river-1.jpg',
+      alt: 'Puerto Princesa Underground River photography - Shot 1',
+    },
+    {
+      src: '/images/destinations/pp-underground-river-2.jpg',
+      alt: 'Puerto Princesa Underground River photography - Shot 2',
+    },
+    {
+      src: '/images/destinations/pp-underground-river-3.jpg',
+      alt: 'Puerto Princesa Underground River photography - Shot 3',
+    },
+    {
+      src: '/images/destinations/pp-underground-river-4.jpg',
+      alt: 'Puerto Princesa Underground River photography - Shot 4',
+    },
   ],
   coordinates: {
     lat: 10.1926,

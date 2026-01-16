@@ -8,15 +8,28 @@ export const panglaoIsland: Destination = {
     'World-class diving, white sand beaches, and vibrant island nightlife connected to Bohol.',
   region: 'Bohol',
   image:
-    'https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?q=80&w=2574&auto=format&fit=crop', // Placeholder
+    'https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?q=80&w=2574&auto=format&fit=crop',
+  imageAlt: 'Hero image of Panglao Island in Bohol, Philippines', // Placeholder
   rating: 4.8,
   tags: ['Beach', 'Diving', 'Nightlife', 'Island'],
   featured: false,
   images: [
-    '/images/destinations/panglao-island-1.jpg',
-    '/images/destinations/panglao-island-2.jpg',
-    '/images/destinations/panglao-island-3.jpg',
-    '/images/destinations/panglao-island-4.jpg',
+    {
+      src: '/images/destinations/panglao-island-1.jpg',
+      alt: 'Panglao Island photography - Shot 1',
+    },
+    {
+      src: '/images/destinations/panglao-island-2.jpg',
+      alt: 'Panglao Island photography - Shot 2',
+    },
+    {
+      src: '/images/destinations/panglao-island-3.jpg',
+      alt: 'Panglao Island photography - Shot 3',
+    },
+    {
+      src: '/images/destinations/panglao-island-4.jpg',
+      alt: 'Panglao Island photography - Shot 4',
+    },
   ],
   coordinates: {
     lat: 9.576,

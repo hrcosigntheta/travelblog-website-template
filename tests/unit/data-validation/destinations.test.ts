@@ -40,9 +40,18 @@ describe('Destination Data Validation', () => {
       expect(destination.featured).toBeDefined();
       expect(typeof destination.featured).toBe('boolean');
 
+      expect(destination.imageAlt).toBeDefined();
+      expect(typeof destination.imageAlt).toBe('string');
+      expect(destination.imageAlt.length).toBeGreaterThan(10);
+
       expect(destination.images).toBeDefined();
       expect(Array.isArray(destination.images)).toBe(true);
       expect(destination.images.length).toBeGreaterThan(0);
+      destination.images.forEach((img) => {
+        expect(img.src).toBeDefined();
+        expect(img.alt).toBeDefined();
+        expect(img.alt.length).toBeGreaterThan(5);
+      });
 
       expect(destination.coordinates).toBeDefined();
       expect(typeof destination.coordinates.lat).toBe('number');
@@ -78,7 +87,7 @@ describe('Destination Data Validation', () => {
       expect(destination.image.startsWith('http') || destination.image.startsWith('/')).toBe(true);
 
       destination.images.forEach((img) => {
-        expect(img.startsWith('http') || img.startsWith('/')).toBe(true);
+        expect(img.src.startsWith('http') || img.src.startsWith('/')).toBe(true);
       });
     });
   });

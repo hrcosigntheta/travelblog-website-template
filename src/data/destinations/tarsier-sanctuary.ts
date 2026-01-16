@@ -7,15 +7,28 @@ export const tarsierSanctuary: Destination = {
   description: "Meet the world's smallest primates in their natural protected habitat in Corella.",
   region: 'Bohol',
   image:
-    'https://images.unsplash.com/photo-1598457008779-7a356df157e1?q=80&w=2662&auto=format&fit=crop', // Placeholder
+    'https://images.unsplash.com/photo-1598457008779-7a356df157e1?q=80&w=2662&auto=format&fit=crop',
+  imageAlt: 'Hero image of Philippine Tarsier Sanctuary in Bohol, Philippines', // Placeholder
   rating: 4.6,
   tags: ['Nature', 'Wildlife', 'Conservation'],
   featured: false,
   images: [
-    '/images/destinations/tarsier-sanctuary-1.jpg',
-    '/images/destinations/tarsier-sanctuary-2.jpg',
-    '/images/destinations/tarsier-sanctuary-3.jpg',
-    '/images/destinations/tarsier-sanctuary-4.jpg',
+    {
+      src: '/images/destinations/tarsier-sanctuary-1.jpg',
+      alt: 'Philippine Tarsier Sanctuary photography - Shot 1',
+    },
+    {
+      src: '/images/destinations/tarsier-sanctuary-2.jpg',
+      alt: 'Philippine Tarsier Sanctuary photography - Shot 2',
+    },
+    {
+      src: '/images/destinations/tarsier-sanctuary-3.jpg',
+      alt: 'Philippine Tarsier Sanctuary photography - Shot 3',
+    },
+    {
+      src: '/images/destinations/tarsier-sanctuary-4.jpg',
+      alt: 'Philippine Tarsier Sanctuary photography - Shot 4',
+    },
   ],
   coordinates: {
     lat: 9.6934,

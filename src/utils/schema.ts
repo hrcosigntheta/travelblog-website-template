@@ -7,9 +7,9 @@ export function generateDestinationSchema(destination: Destination, siteUrl: str
   const images =
     destination.images?.map((img) => {
       try {
-        return new URL(img, baseUrl).href;
+        return new URL(img.src, baseUrl).href;
       } catch {
-        return img;
+        return img.src;
       }
     }) || [];
 

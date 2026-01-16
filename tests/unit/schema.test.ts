@@ -37,7 +37,11 @@ describe('generateDestinationSchema', () => {
     rating: 5,
     tags: ['Test'],
     featured: false,
-    images: ['https://example.com/image1.jpg', '/image2.jpg'],
+    imageAlt: 'Test Image Alt',
+    images: [
+      { src: 'https://example.com/image1.jpg', alt: 'Alt 1' },
+      { src: '/image2.jpg', alt: 'Alt 2' },
+    ],
     coordinates: { lat: 10, lng: 120 },
     stats: { bestTime: 'Now', budget: '$', difficulty: 'Easy' },
     content: '<p>Content</p>',
