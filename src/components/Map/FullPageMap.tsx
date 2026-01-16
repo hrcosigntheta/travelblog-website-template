@@ -4,6 +4,7 @@ import { destinations, type Destination } from '../../data/destinations';
 import L from 'leaflet';
 import { useEffect, useState, useCallback, useMemo } from 'react';
 import { createCustomIcon, getCategoryFromTags } from './MapIcons';
+import MarkerPopup from './MarkerPopup';
 
 // Helper component to handle map events and track viewport
 function MapController({ onBoundsChange }: { onBoundsChange: (bounds: L.LatLngBounds) => void }) {
@@ -69,17 +70,8 @@ export default function FullPageMap() {
             position={[destination.coordinates.lat, destination.coordinates.lng]}
             icon={destinationIcons.get(destination.id)}
           >
-            <Popup>
-              <div className="text-center">
-                <h3 className="font-bold text-lg mb-1">{destination.title}</h3>
-                <p className="text-sm text-gray-600 mb-2">{destination.region}</p>
-                <a
-                  href={`/destinations/${destination.slug}`}
-                  className="inline-block px-3 py-1 bg-primary text-white text-xs rounded hover:bg-primary/90 transition-colors"
-                >
-                  View Details
-                </a>
-              </div>
+            <Popup className="custom-popup-wrapper" minWidth={300} maxWidth={300}>
+              <MarkerPopup destination={destination} />
             </Popup>
           </Marker>
         ))}
