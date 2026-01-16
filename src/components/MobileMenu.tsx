@@ -65,66 +65,72 @@ export default function MobileMenu({ isOpen, onClose, t, currentPath }: MobileMe
       <nav className="flex flex-col gap-6 text-xl">
         <a
           href={ROUTES.HOME}
-          className={
+          className={`animate-slide-up opacity-0 ${
             currentPath === ROUTES.HOME
               ? 'font-bold text-[var(--color-primary)]'
               : 'text-[var(--color-text-primary)]'
-          }
+          }`}
+          style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}
           onClick={onClose}
         >
           {t('nav.home')}
         </a>
         <a
           href={ROUTES.DESTINATIONS}
-          className={
+          className={`animate-slide-up opacity-0 ${
             currentPath === ROUTES.DESTINATIONS
               ? 'font-bold text-[var(--color-primary)]'
               : 'text-[var(--color-text-primary)]'
-          }
+          }`}
+          style={{ animationDelay: '0.15s', animationFillMode: 'forwards' }}
           onClick={onClose}
         >
           {t('nav.destinations')}
         </a>
         <a
           href={ROUTES.GALLERY}
-          className={
+          className={`animate-slide-up opacity-0 ${
             currentPath === ROUTES.GALLERY
               ? 'font-bold text-[var(--color-primary)]'
               : 'text-[var(--color-text-primary)]'
-          }
+          }`}
+          style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}
           onClick={onClose}
         >
           {t('nav.gallery')}
         </a>
         <a
           href={ROUTES.ITINERARIES}
-          className={
+          className={`animate-slide-up opacity-0 ${
             currentPath === ROUTES.ITINERARIES
               ? 'font-bold text-[var(--color-primary)]'
               : 'text-[var(--color-text-primary)]'
-          }
+          }`}
+          style={{ animationDelay: '0.25s', animationFillMode: 'forwards' }}
           onClick={onClose}
         >
           {t('nav.itineraries')}
         </a>
         <a
           href={ROUTES.ABOUT}
-          className={
+          className={`animate-slide-up opacity-0 ${
             currentPath === ROUTES.ABOUT
               ? 'font-bold text-[var(--color-primary)]'
               : 'text-[var(--color-text-primary)]'
-          }
+          }`}
+          style={{ animationDelay: '0.3s', animationFillMode: 'forwards' }}
           onClick={onClose}
         >
           {t('nav.about')}
         </a>
         <a
           href={ROUTES.CONTACT}
-          className={
+          className={`animate-slide-up opacity-0 ${
             currentPath === ROUTES.CONTACT
               ? 'font-bold text-[var(--color-primary)]'
               : 'text-[var(--color-text-primary)]'
-          }
+          }`}
+          style={{ animationDelay: '0.35s', animationFillMode: 'forwards' }}
           onClick={onClose}
         >
           {t('nav.contact')}

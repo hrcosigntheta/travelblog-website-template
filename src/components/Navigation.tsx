@@ -14,11 +14,18 @@ export default function Navigation({
 }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const t = useTranslations(lang);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
+
+      const totalScroll = document.documentElement.scrollTop;
+      const windowHeight =
+        document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = `${totalScroll / windowHeight}`;
+      setScrollProgress(Number(scrolled));
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -52,9 +59,12 @@ export default function Navigation({
             <a
               key={link.href}
               href={link.href}
-              className={`text-sm font-medium transition-colors hover:text-[var(--color-primary)] ${currentPath === link.href ? 'text-[var(--color-primary)]' : 'text-[var(--color-text-primary)]'}`}
+              className={`text-sm font-medium transition-colors hover:text-[var(--color-primary)] relative py-1 group ${currentPath === link.href ? 'text-[var(--color-primary)]' : 'text-[var(--color-text-primary)]'}`}
             >
               {link.label}
+              <span
+                className={`absolute bottom-0 left-0 h-0.5 bg-[var(--color-primary)] transition-all duration-300 ease-out ${currentPath === link.href ? 'w-full' : 'w-0 group-hover:w-full'}`}
+              ></span>
             </a>
           ))}
           <div className="w-px h-6 bg-[var(--color-border)] mx-2"></div>
@@ -63,7 +73,7 @@ export default function Navigation({
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden p-2 text-[var(--color-text-primary)] hover:text-[var(--color-primary)] transition-colors"
+          className="md:hidden p-2 text-[var(--color-text-primary)] hover:text-[var(--color-primary)] transition-colors group"
           onClick={() => setIsMobileOpen(true)}
           aria-label="Open menu"
         >
@@ -77,13 +87,38 @@ export default function Navigation({
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
+            className="overflow-visible"
           >
-            <line x1="3" y1="12" x2="21" y2="12"></line>
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <line x1="3" y1="18" x2="21" y2="18"></line>
+            <line
+              x1="3"
+              y1="12"
+              x2="21"
+              y2="12"
+              className="transition-all duration-300 group-hover:opacity-0"
+            ></line>
+            <line
+              x1="3"
+              y1="6"
+              x2="21"
+              y2="6"
+              className="transition-all duration-300 origin-center group-hover:-translate-y-[1px] group-hover:translate-x-[2px]"
+            ></line>
+            <line
+              x1="3"
+              y1="18"
+              x2="21"
+              y2="18"
+              className="transition-all duration-300 origin-center group-hover:translate-y-[1px] group-hover:translate-x-[2px]"
+            ></line>
           </svg>
         </button>
       </div>
+
+      {/* Scroll Progress Bar */}
+      <div
+        className="absolute bottom-0 left-0 h-[2px] bg-[var(--color-primary)] transition-all duration-100 ease-out z-50"
+        style={{ width: `${scrollProgress * 100}%`, opacity: isScrolled ? 1 : 0 }}
+      ></div>
 
       <MobileMenu
         isOpen={isMobileOpen}
