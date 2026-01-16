@@ -3,6 +3,7 @@ import SearchFilter from './SearchFilter';
 import { DestinationCard } from './DestinationCard';
 import { EmptyState } from './EmptyState';
 import { DestinationCardSkeleton } from './Skeleton/DestinationCardSkeleton';
+import { ShareButtons } from './ShareButtons';
 import { destinations } from '../data/destinations';
 import { createSearchIndex, searchDestinations } from '../utils/search';
 import type { FilterConfig } from '../types/components';
@@ -227,7 +228,7 @@ export default function DestinationsListing() {
 
       {/* Main Content */}
       <main className="lg:col-span-3">
-        <div className="mb-6 flex justify-between items-center">
+        <div className="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <p className="text-text-secondary">
             {isInitialized ? (
               <>
@@ -239,7 +240,16 @@ export default function DestinationsListing() {
               <span className="animate-pulse bg-surface-neutral-subtle h-5 w-48 rounded inline-block" />
             )}
           </p>
-          {/* Sort control could go here */}
+
+          {isInitialized && filteredDestinations.length > 0 && (
+            <div className="flex items-center gap-3">
+              <span className="text-sm font-medium text-text-muted">Share results:</span>
+              <ShareButtons
+                showLabel={false}
+                title="Explore these amazing destinations in the Philippines!"
+              />
+            </div>
+          )}
         </div>
 
         {!isInitialized ? (

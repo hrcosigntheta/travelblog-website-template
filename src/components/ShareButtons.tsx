@@ -6,6 +6,7 @@ interface ShareButtonsProps {
   url?: string;
   description?: string;
   image?: string;
+  showLabel?: boolean;
 }
 
 export const ShareButtons: React.FC<ShareButtonsProps> = ({
@@ -13,6 +14,7 @@ export const ShareButtons: React.FC<ShareButtonsProps> = ({
   url,
   description = 'Check out this amazing travel destination!',
   image,
+  showLabel = true,
 }) => {
   const [showCopiedToast, setShowCopiedToast] = useState(false);
 
@@ -133,12 +135,14 @@ export const ShareButtons: React.FC<ShareButtonsProps> = ({
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex items-center gap-2 mb-2">
-        <span className="text-sm font-bold text-[var(--text-secondary)] uppercase tracking-wider">
-          Share This
-        </span>
-        <div className="h-px flex-1 bg-[var(--border-subtle)]"></div>
-      </div>
+      {showLabel && (
+        <div className="flex items-center gap-2 mb-2">
+          <span className="text-sm font-bold text-[var(--text-secondary)] uppercase tracking-wider">
+            Share This
+          </span>
+          <div className="h-px flex-1 bg-[var(--border-subtle)]"></div>
+        </div>
+      )}
 
       <div className="flex flex-wrap gap-2">
         {platforms.map((platform) => (
