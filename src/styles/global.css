@@ -261,3 +261,133 @@
     background-color: var(--bg-default);
   }
 }
+
+@media print {
+  @page {
+    margin: 2cm;
+  }
+
+  /* Reset colors and backgrounds for print */
+  body,
+  [data-theme='dark'] body {
+    background-color: white !important;
+    color: black !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Hide UI elements that shouldn't be printed */
+  nav,
+  footer,
+  iframe,
+  button,
+  .no-print,
+  [role='banner'],
+  [role='contentinfo'],
+  .leaflet-control-zoom,
+  .leaflet-control-attribution,
+  #back-to-top,
+  .demo-modal-trigger {
+    display: none !important;
+  }
+
+  /* Ensure text is readable */
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  li,
+  span,
+  strong {
+    color: black !important;
+    text-shadow: none !important;
+  }
+
+  /* Typography optimization for print */
+  h1 {
+    font-size: 24pt !important;
+    margin-bottom: 0.5cm !important;
+  }
+
+  h2 {
+    font-size: 18pt !important;
+    margin-top: 1cm !important;
+    margin-bottom: 0.3cm !important;
+    page-break-after: avoid;
+  }
+
+  h3 {
+    font-size: 14pt !important;
+    margin-top: 0.5cm !important;
+    page-break-after: avoid;
+  }
+
+  p,
+  li {
+    font-size: 12pt !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Links */
+  a {
+    text-decoration: underline !important;
+    color: black !important;
+  }
+
+  /* Show URLs for external links, but exclude internal anchors or javascript: */
+  a[href^='http']::after {
+    content: ' (' attr(href) ')';
+    font-size: 0.8em;
+    font-weight: normal;
+  }
+
+  /* Don't show URL for images linked to themselves or obvious buttons */
+  a[href^='http']:has(img)::after {
+    content: none;
+  }
+
+  /* Layout adjustments */
+  main {
+    padding-top: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    max-width: none !important;
+  }
+
+  /* Components */
+  .card,
+  article,
+  section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    border: 1px solid #ccc !important;
+    box-shadow: none !important;
+    margin-bottom: 1cm !important;
+  }
+
+  /* Images */
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+    display: block;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Grid layouts - linearize for print usually better, but keeping grid can work if space permits */
+  .grid {
+    display: block !important;
+  }
+
+  .grid > * {
+    margin-bottom: 1rem;
+  }
+
+  /* Map specifics - try to show a static view if possible, or just hide controls */
+  .leaflet-container {
+    border: 1px solid #999;
+  }
+}
