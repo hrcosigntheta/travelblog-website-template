@@ -7,16 +7,28 @@ export const boracay: Destination = {
   description:
     'The crown jewel of Philippine tourism. Famous for its powdery White Beach, vibrant nightlife, and stunning sunsets. A perfect blend of relaxation and party.',
   region: 'Aklan',
-  image: '/images/destinations/boracay-main.jpg',
+  image: '/images/destinations/boracay-island-main.jpg',
   imageAlt: 'Hero image of Boracay Island in Aklan, Philippines',
   rating: 4.7,
   tags: ['Beach', 'Party', 'Luxury', 'Relaxation'],
   featured: false,
   images: [
-    { src: '/images/destinations/boracay-1.jpg', alt: 'Boracay Island photography - Shot 1' },
-    { src: '/images/destinations/boracay-2.jpg', alt: 'Boracay Island photography - Shot 2' },
-    { src: '/images/destinations/boracay-3.jpg', alt: 'Boracay Island photography - Shot 3' },
-    { src: '/images/destinations/boracay-4.jpg', alt: 'Boracay Island photography - Shot 4' },
+    {
+      src: '/images/destinations/boracay-island-1.jpg',
+      alt: 'Boracay Island photography - Shot 1',
+    },
+    {
+      src: '/images/destinations/boracay-island-2.jpg',
+      alt: 'Boracay Island photography - Shot 2',
+    },
+    {
+      src: '/images/destinations/boracay-island-3.jpg',
+      alt: 'Boracay Island photography - Shot 3',
+    },
+    {
+      src: '/images/destinations/boracay-island-4.jpg',
+      alt: 'Boracay Island photography - Shot 4',
+    },
   ],
   coordinates: {
     lat: 11.9674,

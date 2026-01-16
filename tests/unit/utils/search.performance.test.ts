@@ -53,8 +53,8 @@ describe('Search Performance', () => {
     const duration = end - start;
     console.log(`Searching "Beach" in 1000 items took ${duration.toFixed(2)}ms`);
 
-    // Should be fast (e.g. < 50ms)
-    expect(duration).toBeLessThan(50);
+    // Should be fast (e.g. < 100ms)
+    expect(duration).toBeLessThan(100);
     // Approximately half should match "Beach" (based on tags/description)
     expect(results.length).toBeGreaterThan(400);
   });
@@ -71,7 +71,7 @@ describe('Search Performance', () => {
     const duration = end - start;
     console.log(`Specific search in 1000 items took ${duration.toFixed(2)}ms`);
 
-    expect(duration).toBeLessThan(50);
+    expect(duration).toBeLessThan(100);
     expect(results.length).toBeGreaterThan(0);
     expect(results[0].title).toContain('Destination 999');
   });

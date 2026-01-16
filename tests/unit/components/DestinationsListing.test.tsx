@@ -43,10 +43,12 @@ describe('DestinationsListing Component', () => {
     render(<DestinationsListing />);
     expect(screen.getByText('Region')).toBeInTheDocument();
     expect(screen.getByText('Category')).toBeInTheDocument();
+    const totalDestinations = 19; // Current number of destinations in data
     // Use regex to match text content across elements
     expect(
       screen.getByText((_, node) => {
-        const hasText = (node: Element | null) => node?.textContent === 'Showing 4 destinations'; // Mock data has 4 items
+        const hasText = (node: Element | null) =>
+          node?.textContent === `Showing ${totalDestinations} destinations`;
         const nodeHasText = hasText(node);
         const childrenDontHaveText = Array.from(node?.children || []).every(
           (child) => !hasText(child)

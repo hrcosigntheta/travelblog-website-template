@@ -7,16 +7,28 @@ export const banaueRiceTerraces: Destination = {
   description:
     'A UNESCO World Heritage site often called the "Eighth Wonder of the World". Ancient rice terraces carved into the mountains of Ifugao over 2,000 years ago.',
   region: 'Cordillera Administrative Region',
-  image: '/images/destinations/banaue-main.jpg',
+  image: '/images/destinations/banaue-rice-terraces-main.jpg',
   imageAlt: 'Hero image of Banaue Rice Terraces in Cordillera Administrative Region, Philippines',
   rating: 4.8,
   tags: ['Culture', 'History', 'Hiking', 'Nature'],
   featured: false,
   images: [
-    { src: '/images/destinations/banaue-1.jpg', alt: 'Banaue Rice Terraces photography - Shot 1' },
-    { src: '/images/destinations/banaue-2.jpg', alt: 'Banaue Rice Terraces photography - Shot 2' },
-    { src: '/images/destinations/banaue-3.jpg', alt: 'Banaue Rice Terraces photography - Shot 3' },
-    { src: '/images/destinations/banaue-4.jpg', alt: 'Banaue Rice Terraces photography - Shot 4' },
+    {
+      src: '/images/destinations/banaue-rice-terraces-1.jpg',
+      alt: 'Banaue Rice Terraces photography - Shot 1',
+    },
+    {
+      src: '/images/destinations/banaue-rice-terraces-2.jpg',
+      alt: 'Banaue Rice Terraces photography - Shot 2',
+    },
+    {
+      src: '/images/destinations/banaue-rice-terraces-3.jpg',
+      alt: 'Banaue Rice Terraces photography - Shot 3',
+    },
+    {
+      src: '/images/destinations/banaue-rice-terraces-4.jpg',
+      alt: 'Banaue Rice Terraces photography - Shot 4',
+    },
   ],
   coordinates: {
     lat: 16.918,

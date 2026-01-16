@@ -7,16 +7,28 @@ export const siargao: Destination = {
   description:
     'The surfing capital of the Philippines. A tear-drop shaped island with world-class waves, sugared white beaches, and enchanting lagoons.',
   region: 'Surigao del Norte',
-  image: '/images/destinations/siargao-main.jpg',
+  image: '/images/destinations/siargao-island-main.jpg',
   imageAlt: 'Hero image of Siargao Island in Surigao del Norte, Philippines',
   rating: 4.8,
   tags: ['Surfing', 'Beach', 'Nightlife', 'Nature'],
   featured: true,
   images: [
-    { src: '/images/destinations/siargao-1.jpg', alt: 'Siargao Island photography - Shot 1' },
-    { src: '/images/destinations/siargao-2.jpg', alt: 'Siargao Island photography - Shot 2' },
-    { src: '/images/destinations/siargao-3.jpg', alt: 'Siargao Island photography - Shot 3' },
-    { src: '/images/destinations/siargao-4.jpg', alt: 'Siargao Island photography - Shot 4' },
+    {
+      src: '/images/destinations/siargao-island-1.jpg',
+      alt: 'Siargao Island photography - Shot 1',
+    },
+    {
+      src: '/images/destinations/siargao-island-2.jpg',
+      alt: 'Siargao Island photography - Shot 2',
+    },
+    {
+      src: '/images/destinations/siargao-island-3.jpg',
+      alt: 'Siargao Island photography - Shot 3',
+    },
+    {
+      src: '/images/destinations/siargao-island-4.jpg',
+      alt: 'Siargao Island photography - Shot 4',
+    },
   ],
   coordinates: {
     lat: 9.78,
