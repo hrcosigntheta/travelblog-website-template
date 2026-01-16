@@ -44,8 +44,8 @@ export const bloggerProfile: BloggerProfile = {
     'My mission is simple: to show you that the Philippines is more than just Boracay and Palawan. There are thousands of islands waiting to be explored, each with its own story, flavor, and rhythm.',
     "Whether you're a luxury traveler or a budget backpacker, this blog is your guide to authentic experiences, responsible tourism, and unforgettable memories.",
   ],
-  portraitSrc: '/images/author-portrait.jpg',
-  heroSrc: '/images/about-hero.jpg',
+  portraitSrc: '/images/placeholders/people/people-1.jpg',
+  heroSrc: '/images/placeholders/beaches/beaches-1.jpg',
   email: 'hello@travelblog-template.com',
   socialLinks: [
     {

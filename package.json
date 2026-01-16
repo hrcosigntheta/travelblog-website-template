@@ -27,6 +27,8 @@
     "images:assign": "bun run scripts/assign-destination-images.ts",
     "images:verify": "bun run scripts/verify-image-processing.ts",
     "data:validate": "bun run scripts/validate-links.ts",
+    "data:validate:all": "bun run scripts/validate-all-data.ts",
+    "data:report": "bun run scripts/generate-data-report.ts",
     "prepare": "husky"
   },
   "lint-staged": {
