@@ -7,7 +7,8 @@
         "http://localhost/destinations/el-nido-palawan/",
         "http://localhost/gallery/",
         "http://localhost/about/",
-        "http://localhost/contact/"
+        "http://localhost/contact/",
+        "http://localhost/map/"
       ],
       "numberOfRuns": 1
     },
