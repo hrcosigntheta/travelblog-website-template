@@ -31,6 +31,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     const [charCount, setCharCount] = React.useState(
       value ? String(value).length : defaultValue ? String(defaultValue).length : 0
     );
+    const [countAnimate, setCountAnimate] = React.useState(false);
 
     const handleFocus = (e: React.FocusEvent<HTMLTextAreaElement>) => {
       setIsFocused(true);
@@ -44,6 +45,8 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
 
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
       setCharCount(e.target.value.length);
+      setCountAnimate(true);
+      setTimeout(() => setCountAnimate(false), 200);
       onChange?.(e);
     };
 
@@ -67,11 +70,11 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           {label && (
             <label
               htmlFor={props.id}
-              className={`block text-sm font-medium transition-colors duration-200 ${
+              className={`block text-sm font-medium transition-all duration-200 origin-left ${
                 error
                   ? 'text-red-500'
                   : isFocused
-                    ? 'text-[var(--color-primary)]'
+                    ? 'text-[var(--color-primary)] scale-105 -translate-y-0.5'
                     : 'text-[var(--text-secondary)] group-hover:text-[var(--text-primary)]'
               }`}
             >
@@ -79,20 +82,18 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
             </label>
           )}
 
-          {showCount && maxLength && (
+          {showCount && (
             <span
-              className={`text-xs transition-colors duration-200 ${
-                charCount > maxLength * 0.9
+              className={`text-xs transition-all duration-200 ${
+                countAnimate ? 'scale-110' : 'scale-100'
+              } ${
+                maxLength && charCount > maxLength * 0.9
                   ? 'text-orange-500 font-medium'
                   : 'text-[var(--text-muted)]'
               }`}
             >
-              {charCount} / {maxLength}
+              {charCount} {maxLength ? `/ ${maxLength}` : 'chars'}
             </span>
-          )}
-
-          {showCount && !maxLength && (
-            <span className="text-xs text-[var(--text-muted)]">{charCount} chars</span>
           )}
         </div>
 

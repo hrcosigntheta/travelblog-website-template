@@ -45,11 +45,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {label && (
           <label
             htmlFor={props.id}
-            className={`block text-sm font-medium mb-2 transition-colors duration-200 ${
+            className={`block text-sm font-medium mb-2 transition-all duration-200 origin-left ${
               error
                 ? 'text-red-500'
                 : isFocused
-                  ? 'text-[var(--color-primary)]'
+                  ? 'text-[var(--color-primary)] scale-105 -translate-y-0.5'
                   : 'text-[var(--text-secondary)] group-hover:text-[var(--text-primary)]'
             }`}
           >
