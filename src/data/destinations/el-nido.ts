@@ -1,21 +1,20 @@
 import type { Destination } from './types';
 
 export const elNido: Destination = {
-  id: '1',
+  id: 'el-nido-palawan',
   slug: 'el-nido-palawan',
   title: 'El Nido, Palawan',
   description: 'Stunning limestone cliffs and crystal clear waters.',
   region: 'Palawan',
-  image: 'https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86',
+  image: '/images/destinations/el-nido-palawan-main.jpg',
   rating: 4.9,
   tags: ['Beach', 'Island Hopping', 'Nature'],
   featured: true,
   images: [
-    'https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86',
-    'https://images.unsplash.com/photo-1540979388789-6cee28a1cdc9',
-    'https://images.unsplash.com/photo-1544413660-2991628527dd',
-    'https://images.unsplash.com/photo-1534008897965-38d2793108c4',
-    'https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99',
+    '/images/destinations/el-nido-palawan-1.jpg',
+    '/images/destinations/el-nido-palawan-2.jpg',
+    '/images/destinations/el-nido-palawan-3.jpg',
+    '/images/destinations/el-nido-palawan-4.jpg',
   ],
   coordinates: {
     lat: 11.1956,

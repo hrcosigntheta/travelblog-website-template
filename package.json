@@ -24,6 +24,7 @@
     "test:run": "vitest run",
     "images:fetch": "bun run scripts/fetch-placeholder-images.ts",
     "images:validate": "bun run scripts/validate-image-diversity.ts",
+    "images:assign": "bun run scripts/assign-destination-images.ts",
     "images:verify": "bun run scripts/verify-image-processing.ts",
     "prepare": "husky"
   },

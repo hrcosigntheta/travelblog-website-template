@@ -13,8 +13,10 @@ export const lobocRiver: Destination = {
   tags: ['Culture', 'Food', 'Nature', 'Relaxation'],
   featured: false,
   images: [
-    'https://images.unsplash.com/photo-1621235372481-8051283c7487?q=80&w=2670&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1518081461904-7d819e6d6c2c?q=80&w=2670&auto=format&fit=crop',
+    '/images/destinations/loboc-river-1.jpg',
+    '/images/destinations/loboc-river-2.jpg',
+    '/images/destinations/loboc-river-3.jpg',
+    '/images/destinations/loboc-river-4.jpg',
   ],
   coordinates: {
     lat: 9.6385,

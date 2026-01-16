@@ -7,16 +7,15 @@ export const coron: Destination = {
   description:
     'Famous for its World War II wrecks, crystal-clear freshwater lakes, and stunning limestone formations.',
   region: 'Palawan',
-  image: 'https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86', // Placeholder
+  image: '/images/destinations/coron-palawan-main.jpg', // Placeholder
   rating: 4.9,
   tags: ['Diving', 'Lakes', 'Nature', 'Shipwrecks'],
   featured: true,
   images: [
-    'https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86',
-    'https://images.unsplash.com/photo-1540979388789-6cee28a1cdc9',
-    'https://images.unsplash.com/photo-1544413660-2991628527dd',
-    'https://images.unsplash.com/photo-1534008897965-38d2793108c4',
-    'https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99',
+    '/images/destinations/coron-palawan-1.jpg',
+    '/images/destinations/coron-palawan-2.jpg',
+    '/images/destinations/coron-palawan-3.jpg',
+    '/images/destinations/coron-palawan-4.jpg',
   ],
   coordinates: {
     lat: 11.9986,

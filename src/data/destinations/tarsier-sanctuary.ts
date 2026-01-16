@@ -12,8 +12,10 @@ export const tarsierSanctuary: Destination = {
   tags: ['Nature', 'Wildlife', 'Conservation'],
   featured: false,
   images: [
-    'https://images.unsplash.com/photo-1598457008779-7a356df157e1?q=80&w=2662&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1627889332219-48286992d997?q=80&w=2670&auto=format&fit=crop',
+    '/images/destinations/tarsier-sanctuary-1.jpg',
+    '/images/destinations/tarsier-sanctuary-2.jpg',
+    '/images/destinations/tarsier-sanctuary-3.jpg',
+    '/images/destinations/tarsier-sanctuary-4.jpg',
   ],
   coordinates: {
     lat: 9.6934,

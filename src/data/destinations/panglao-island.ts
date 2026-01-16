@@ -13,9 +13,10 @@ export const panglaoIsland: Destination = {
   tags: ['Beach', 'Diving', 'Nightlife', 'Island'],
   featured: false,
   images: [
-    'https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?q=80&w=2574&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=2670&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2673&auto=format&fit=crop',
+    '/images/destinations/panglao-island-1.jpg',
+    '/images/destinations/panglao-island-2.jpg',
+    '/images/destinations/panglao-island-3.jpg',
+    '/images/destinations/panglao-island-4.jpg',
   ],
   coordinates: {
     lat: 9.576,

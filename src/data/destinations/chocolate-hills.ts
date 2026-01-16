@@ -1,16 +1,21 @@
 import type { Destination } from './types';
 
 export const chocolateHills: Destination = {
-  id: '3',
+  id: 'chocolate-hills-bohol',
   slug: 'chocolate-hills-bohol',
   title: 'Chocolate Hills, Bohol',
   description: 'Unique geological formation of over 1,200 hills.',
   region: 'Bohol',
-  image: 'https://images.unsplash.com/photo-1594396006509-3224b6113b1f',
+  image: '/images/destinations/chocolate-hills-bohol-main.jpg',
   rating: 4.7,
   tags: ['Nature', 'Hiking', 'Sightseeing'],
   featured: true,
-  images: ['https://images.unsplash.com/photo-1594396006509-3224b6113b1f'],
+  images: [
+    '/images/destinations/chocolate-hills-bohol-1.jpg',
+    '/images/destinations/chocolate-hills-bohol-2.jpg',
+    '/images/destinations/chocolate-hills-bohol-3.jpg',
+    '/images/destinations/chocolate-hills-bohol-4.jpg',
+  ],
   coordinates: {
     lat: 9.9171,
     lng: 124.1673,

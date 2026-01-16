@@ -7,16 +7,15 @@ export const puertoPrincesa: Destination = {
   description:
     'A UNESCO World Heritage site featuring a spectacular limestone karst landscape with an underground river.',
   region: 'Palawan',
-  image: 'https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86', // Placeholder, reusing El Nido or similar until fetch script runs
+  image: '/images/destinations/pp-underground-river-main.jpg', // Placeholder, reusing El Nido or similar until fetch script runs
   rating: 4.8,
   tags: ['Nature', 'Cave', 'UNESCO', 'Adventure'],
   featured: false,
   images: [
-    'https://images.unsplash.com/photo-1534008897965-38d2793108c4',
-    'https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99',
-    'https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86',
-    'https://images.unsplash.com/photo-1540979388789-6cee28a1cdc9',
-    'https://images.unsplash.com/photo-1544413660-2991628527dd',
+    '/images/destinations/pp-underground-river-1.jpg',
+    '/images/destinations/pp-underground-river-2.jpg',
+    '/images/destinations/pp-underground-river-3.jpg',
+    '/images/destinations/pp-underground-river-4.jpg',
   ],
   coordinates: {
     lat: 10.1926,
