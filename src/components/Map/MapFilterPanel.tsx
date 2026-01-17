@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 interface MapFilterPanelProps {
-  categories: string[];
+  categories: { value: string; label: string }[];
   regions: string[];
   selectedCategories: string[];
   selectedRegions: string[];
@@ -115,14 +115,14 @@ export default function MapFilterPanel({
                 <div className="space-y-2">
                   {categories.map((category) => (
                     <label
-                      key={category}
+                      key={category.value}
                       className="flex items-center gap-3 text-sm text-[var(--text-secondary)] cursor-pointer hover:text-[var(--text-primary)] group py-1.5"
                     >
                       <div className="relative flex items-center">
                         <input
                           type="checkbox"
-                          checked={selectedCategories.includes(category)}
-                          onChange={() => onCategoryChange(category)}
+                          checked={selectedCategories.includes(category.value)}
+                          onChange={() => onCategoryChange(category.value)}
                           className="peer appearance-none w-5 h-5 border border-[var(--border-default)] rounded bg-[var(--bg-default)] checked:bg-[var(--color-primary)] checked:border-transparent transition-all"
                         />
                         <svg
@@ -137,7 +137,7 @@ export default function MapFilterPanel({
                           <polyline points="20 6 9 17 4 12" />
                         </svg>
                       </div>
-                      <span>{category}</span>
+                      <span>{category.label}</span>
                     </label>
                   ))}
                 </div>

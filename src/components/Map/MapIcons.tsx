@@ -110,6 +110,7 @@ export const getCategoryFromTags = (tags: string[]): MarkerCategory => {
   if (
     lowerTags.includes('beach') ||
     lowerTags.includes('island') ||
+    lowerTags.includes('coastal') ||
     lowerTags.includes('surfing') ||
     lowerTags.includes('diving')
   )
@@ -117,23 +118,44 @@ export const getCategoryFromTags = (tags: string[]): MarkerCategory => {
   if (
     lowerTags.includes('hiking') ||
     lowerTags.includes('nature') ||
-    lowerTags.includes('mountain')
+    lowerTags.includes('mountain') ||
+    lowerTags.includes('mountains') ||
+    lowerTags.includes('volcano') ||
+    lowerTags.includes('waterfalls') ||
+    lowerTags.includes('river') ||
+    lowerTags.includes('forest') ||
+    lowerTags.includes('wildlife')
   )
     return 'mountain';
   if (
     lowerTags.includes('culture') ||
     lowerTags.includes('history') ||
     lowerTags.includes('landmark') ||
-    lowerTags.includes('sightseeing')
+    lowerTags.includes('sightseeing') ||
+    lowerTags.includes('heritage') ||
+    lowerTags.includes('temple') ||
+    lowerTags.includes('museum') ||
+    lowerTags.includes('cultural') ||
+    lowerTags.includes('city') ||
+    lowerTags.includes('urban') ||
+    lowerTags.includes('town')
   )
     return 'cultural';
   if (
     lowerTags.includes('food') ||
     lowerTags.includes('culinary') ||
-    lowerTags.includes('restaurant')
+    lowerTags.includes('restaurant') ||
+    lowerTags.includes('dining') ||
+    lowerTags.includes('local cuisine')
   )
     return 'food';
-  if (lowerTags.includes('adventure') || lowerTags.includes('activity')) return 'adventure';
+  if (
+    lowerTags.includes('adventure') ||
+    lowerTags.includes('activity') ||
+    lowerTags.includes('trekking') ||
+    lowerTags.includes('trails')
+  )
+    return 'adventure';
   return 'default';
 };
 

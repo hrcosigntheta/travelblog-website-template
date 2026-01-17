@@ -107,8 +107,8 @@ test.describe('Map Page Integration', () => {
     const totalCountMatch = statusText?.match(/of (\d+)/);
     const totalCount = totalCountMatch ? parseInt(totalCountMatch[1]) : 0;
 
-    // 3. Select a category (e.g., beach)
-    const categoryLabel = page.locator('label').filter({ hasText: 'beach' }).first();
+    // 3. Select a category (e.g., Beach)
+    const categoryLabel = page.locator('label').filter({ hasText: 'Beach' }).first();
     await categoryLabel.click();
 
     // 4. Verify filtered count updates

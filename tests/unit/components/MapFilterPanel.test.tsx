@@ -3,7 +3,11 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import MapFilterPanel from '../../../src/components/Map/MapFilterPanel';
 
 describe('MapFilterPanel', () => {
-  const mockCategories = ['beach', 'mountain', 'culture'];
+  const mockCategories = [
+    { value: 'beach', label: 'Beach' },
+    { value: 'mountain', label: 'Mountain' },
+    { value: 'culture', label: 'Culture' },
+  ];
   const mockRegions = ['Palawan', 'Cebu', 'Bohol'];
   const mockHandlers = {
     onCategoryChange: vi.fn(),
@@ -25,7 +29,7 @@ describe('MapFilterPanel', () => {
     render(<MapFilterPanel {...defaultProps} />);
 
     mockCategories.forEach((cat) => {
-      expect(screen.getByText(cat)).toBeInTheDocument();
+      expect(screen.getByText(cat.label)).toBeInTheDocument();
     });
     mockRegions.forEach((reg) => {
       expect(screen.getByText(reg)).toBeInTheDocument();
@@ -35,7 +39,7 @@ describe('MapFilterPanel', () => {
   it('handles category selection', () => {
     render(<MapFilterPanel {...defaultProps} />);
 
-    const categoryCheckbox = screen.getByLabelText('beach');
+    const categoryCheckbox = screen.getByLabelText('Beach');
     fireEvent.click(categoryCheckbox);
 
     expect(mockHandlers.onCategoryChange).toHaveBeenCalledWith('beach');

@@ -6,6 +6,7 @@ import { createCustomIcon, getCategoryFromTags } from './MapIcons';
 import MapCluster from './MapCluster';
 import { useStore } from '@nanostores/react';
 import { themeStore } from '../../store/theme';
+import { FILTER_CATEGORIES, getFilterCategoryFromTags } from '../../utils/categories';
 
 const MapFilterPanel = React.lazy(() => import('./MapFilterPanel'));
 const MarkerPopup = React.lazy(() => import('./MarkerPopup'));
@@ -45,17 +46,14 @@ export default function FullPageMap() {
   const [selectedRegions, setSelectedRegions] = useState<string[]>([]);
 
   // Extract unique filter options
-  const { categories, regions } = useMemo(() => {
-    const cats = new Set<string>();
+  const { regions } = useMemo(() => {
     const regs = new Set<string>();
 
     destinations.forEach((d) => {
-      cats.add(getCategoryFromTags(d.tags));
       regs.add(d.region);
     });
 
     return {
-      categories: Array.from(cats).sort(),
       regions: Array.from(regs).sort(),
     };
   }, []);
@@ -63,9 +61,10 @@ export default function FullPageMap() {
   // Filter Logic
   const filteredDestinations = useMemo(() => {
     return destinations.filter((dest) => {
+      const destCategories = getFilterCategoryFromTags(dest.tags);
       const categoryMatch =
         selectedCategories.length === 0 ||
-        selectedCategories.includes(getCategoryFromTags(dest.tags));
+        selectedCategories.some((cat) => destCategories.includes(cat));
 
       const regionMatch = selectedRegions.length === 0 || selectedRegions.includes(dest.region);
 
@@ -129,7 +128,7 @@ export default function FullPageMap() {
     <div className="w-full h-full relative z-0">
       <Suspense fallback={null}>
         <MapFilterPanel
-          categories={categories}
+          categories={FILTER_CATEGORIES}
           regions={regions}
           selectedCategories={selectedCategories}
           selectedRegions={selectedRegions}
