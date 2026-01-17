@@ -63,6 +63,12 @@ const FILTERS: FilterConfig[] = [
   },
 ];
 
+// Region aliases to handle cases where filter name differs from actual region
+// e.g., "Siargao" filter should match destinations in "Surigao del Norte" region
+const REGION_ALIASES: Record<string, string[]> = {
+  Siargao: ['Surigao del Norte'],
+};
+
 const mapBudgetToLevel = (budgetStr: string): 'budget' | 'mid-range' | 'luxury' => {
   if (budgetStr.includes('$$$$') || budgetStr.includes('$$$')) return 'luxury';
   if (budgetStr.includes('$$')) return 'mid-range';
@@ -162,13 +168,20 @@ export default function DestinationsListing() {
         if (selectedValues.length === 0) continue;
 
         if (groupId === 'region') {
-          // Region matching (exact or partial if needed, but usually exact for filters)
-          // The data region might be "Surigao del Norte" vs filter "Siargao" or "Mindanao".
-          // For simplicity, we check if destination region *contains* the filter value or equals it.
-          // Or we update data to match. Let's assume partial match for flexibility.
-          const matchesRegion = selectedValues.some(
-            (val) => dest.region.includes(val) || val.includes(dest.region)
-          );
+          // Region matching with multiple strategies:
+          // 1. Direct match: region contains filter value or vice versa
+          // 2. Title match: destination title contains filter value (e.g., "Siargao Island" contains "Siargao")
+          // 3. Alias match: filter value maps to alternate region names (e.g., "Siargao" -> "Surigao del Norte")
+          const matchesRegion = selectedValues.some((val) => {
+            // Direct region match
+            if (dest.region.includes(val) || val.includes(dest.region)) return true;
+            // Title contains filter value (case-insensitive)
+            if (dest.title.toLowerCase().includes(val.toLowerCase())) return true;
+            // Alias match
+            const aliases = REGION_ALIASES[val];
+            if (aliases && aliases.some((alias) => dest.region.includes(alias))) return true;
+            return false;
+          });
           if (!matchesRegion) return false;
         }
 
