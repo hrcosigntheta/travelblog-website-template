@@ -29,12 +29,14 @@ const FILTERS: FilterConfig[] = [
     label: 'Category',
     options: [
       { value: 'Beach', label: 'Beach' },
+      { value: 'Mountains', label: 'Mountains' },
       { value: 'Nature', label: 'Nature' },
       { value: 'Hiking', label: 'Hiking' },
       { value: 'Surfing', label: 'Surfing' },
       { value: 'Diving', label: 'Diving' },
       { value: 'City', label: 'City' },
       { value: 'Culture', label: 'Culture' },
+      { value: 'Food', label: 'Food' },
     ],
     type: 'checkbox',
     defaultOpen: true,
@@ -97,6 +99,13 @@ export default function DestinationsListing() {
       const val = params.get(key);
       if (val) newFilters[key] = val.split(',');
     });
+
+    // Normalize category to Title Case (e.g., "beach" → "Beach")
+    if (newFilters.category) {
+      newFilters.category = newFilters.category.map(
+        (cat) => cat.charAt(0).toUpperCase() + cat.slice(1).toLowerCase()
+      );
+    }
 
     return { query, newFilters };
   };
