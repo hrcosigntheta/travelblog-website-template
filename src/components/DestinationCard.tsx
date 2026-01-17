@@ -1,7 +1,7 @@
 import React from 'react';
 import { ImageWithFallback } from './ImageWithFallback';
 import { TagBadge } from './TagBadge';
-import { ROUTES, BASE_PATH } from '../config/paths';
+import { ROUTES } from '../config/paths';
 import type { DestinationCardProps } from '../types/destination';
 
 export const DestinationCard: React.FC<DestinationCardProps> = ({
@@ -16,7 +16,7 @@ export const DestinationCard: React.FC<DestinationCardProps> = ({
   bestSeason,
   className = '',
 }) => {
-  const destinationPath = `${BASE_PATH}${ROUTES.DESTINATION_DETAIL(slug)}`;
+  const destinationPath = ROUTES.DESTINATION_DETAIL(slug);
 
   const getPriceLabel = (level: string) => {
     switch (level) {
