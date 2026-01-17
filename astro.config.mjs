@@ -39,5 +39,19 @@ export default defineConfig({
           brotliSize: true,
         }),
     ].filter(Boolean),
+    resolve: {
+      // Dedupe React to prevent "Invalid hook call" errors from multiple React copies
+      dedupe: ['react', 'react-dom', 'react/jsx-runtime', 'react/jsx-dev-runtime'],
+    },
+    optimizeDeps: {
+      // Force include React packages to ensure proper bundling
+      include: [
+        'react',
+        'react-dom',
+        'react/jsx-runtime',
+        'react/jsx-dev-runtime',
+        '@nanostores/react',
+      ],
+    },
   },
 });

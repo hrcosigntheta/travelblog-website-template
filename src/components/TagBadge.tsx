@@ -14,10 +14,11 @@ export const TagBadge: React.FC<TagBadgeProps> = ({
   // Variant styles mapping to theme tokens
   const variantStyles: Record<TagBadgeVariant, string> = {
     default: 'bg-background-surface border border-border-default text-text-secondary',
-    category: 'bg-primary/10 text-primary border border-primary/20',
-    activity: 'bg-secondary/10 text-[var(--color-secondary-text)] border border-secondary/20',
+    category: 'bg-badge-primary-bg text-badge-primary-text border border-badge-primary-border',
+    activity:
+      'bg-badge-secondary-bg text-badge-secondary-text border border-badge-secondary-border',
     difficulty: 'bg-background-raised text-text-primary border border-border-default',
-    budget: 'bg-jungle/10 text-[var(--color-jungle-text)] border border-jungle/20',
+    budget: 'bg-badge-jungle-bg text-badge-jungle-text border border-badge-jungle-border',
   };
 
   const clickableStyles = onClick

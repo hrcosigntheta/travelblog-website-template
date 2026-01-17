@@ -18,6 +18,9 @@ export default function Navigation({
   const [scrollProgress, setScrollProgress] = useState(0);
   const t = useTranslations(lang);
 
+  // Full-page layouts (like map) need always-visible header background for readability
+  const isFullPageLayout = currentPath.includes('/map');
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -44,7 +47,7 @@ export default function Navigation({
 
   return (
     <header
-      className={`fixed top-0 w-full z-40 transition-all duration-300 ${isScrolled ? 'bg-[var(--nav-bg)] backdrop-blur-md shadow-sm py-2 border-b border-[var(--nav-border)]' : 'bg-transparent py-4'}`}
+      className={`fixed top-0 w-full z-40 transition-all duration-300 ${isScrolled || isFullPageLayout ? 'bg-[var(--nav-bg)] backdrop-blur-md shadow-sm py-2 border-b border-[var(--nav-border)]' : 'bg-transparent py-4'}`}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
         {/* Logo */}

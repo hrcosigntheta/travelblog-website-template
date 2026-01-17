@@ -44,3 +44,11 @@
   line-height: 44px !important;
   font-size: 22px !important;
 }
+
+/* Override Leaflet's default link color for the View Details button.
+   Leaflet's `.leaflet-container a { color: #0078A8 }` is unlayered,
+   which takes precedence over Tailwind's @layer utilities.
+   Target buttons with background classes using attribute selector. */
+.leaflet-popup-content a[class*='bg-'][class*='text-center'] {
+  color: var(--btn-primary-text) !important;
+}

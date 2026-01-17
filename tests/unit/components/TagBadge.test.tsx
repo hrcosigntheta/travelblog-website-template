@@ -42,7 +42,9 @@ describe('TagBadge Component', () => {
   it('applies variant styles correctly', () => {
     const { container } = render(<TagBadge label="Category" variant="category" />);
     const badge = container.firstChild as HTMLElement;
-    expect(badge.className).toContain('text-primary');
+    expect(badge.className).toContain('bg-badge-primary-bg');
+    expect(badge.className).toContain('text-badge-primary-text');
+    expect(badge.className).toContain('border-badge-primary-border');
   });
 
   it('passes through additional className', () => {
