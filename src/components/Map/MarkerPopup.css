@@ -2,6 +2,8 @@
   padding: 0;
   overflow: hidden;
   border-radius: 0.75rem; /* rounded-xl */
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
 }
 
 .leaflet-popup-content {
@@ -10,7 +12,7 @@
 }
 
 .leaflet-popup-tip {
-  background-color: white;
+  background-color: var(--bg-surface);
 }
 
 /* Style the close button to look good over the image */
@@ -41,14 +43,4 @@
   height: 44px !important;
   line-height: 44px !important;
   font-size: 22px !important;
-}
-
-/* Dark mode support */
-:global(.dark) .leaflet-popup-content-wrapper {
-  background-color: #1f2937; /* gray-800 */
-  color: #f3f4f6; /* gray-100 */
-}
-
-:global(.dark) .leaflet-popup-tip {
-  background-color: #1f2937;
 }

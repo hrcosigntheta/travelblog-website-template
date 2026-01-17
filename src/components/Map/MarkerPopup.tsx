@@ -51,14 +51,14 @@ export default function MarkerPopup({ destination }: MarkerPopupProps) {
       </div>
 
       {/* Content */}
-      <div className="p-4 bg-white dark:bg-gray-800">
-        <h3 className="text-lg font-bold text-gray-900 dark:text-white leading-tight mb-1">
+      <div className="p-4 bg-[var(--bg-surface)]">
+        <h3 className="text-lg font-bold text-[var(--text-primary)] leading-tight mb-1">
           <a href={destinationDetailUrl} className="hover:text-primary transition-colors">
             {destination.title}
           </a>
         </h3>
 
-        <p className="text-sm text-[var(--text-secondary)] dark:text-[var(--text-secondary)] mb-3 flex items-center">
+        <p className="text-sm text-[var(--text-secondary)] mb-3 flex items-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-4 w-4 mr-1"
@@ -94,7 +94,7 @@ export default function MarkerPopup({ destination }: MarkerPopupProps) {
         {/* Button */}
         <a
           href={destinationDetailUrl}
-          className="block w-full text-center bg-primary hover:bg-primary-hover text-white font-medium py-2 rounded-lg transition-colors duration-200"
+          className="block w-full text-center bg-primary hover:bg-primary-hover text-[var(--btn-primary-text)] font-medium py-2 rounded-lg transition-colors duration-200"
         >
           View Details
         </a>

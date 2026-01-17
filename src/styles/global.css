@@ -284,6 +284,10 @@
     color: var(--text-primary);
   }
 
+  [data-theme='dark'] .leaflet-popup-content {
+    color: var(--text-primary);
+  }
+
   [data-theme='dark'] .leaflet-control-zoom a {
     background-color: var(--bg-surface);
     color: var(--text-primary);

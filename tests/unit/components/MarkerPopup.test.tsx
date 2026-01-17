@@ -67,4 +67,24 @@ describe('MarkerPopup', () => {
     expect(screen.queryByText('4')).not.toBeInTheDocument();
     expect(screen.getByText('+2')).toBeInTheDocument();
   });
+
+  it('uses theme-aware CSS variables for styling', () => {
+    const { container } = render(<MarkerPopup destination={mockDestination} />);
+
+    // Check content container
+    const content = container.querySelector('.p-4');
+    expect(content).toHaveClass('bg-[var(--bg-surface)]');
+
+    // Check title
+    const title = screen.getByText('Test Destination').closest('h3');
+    expect(title).toHaveClass('text-[var(--text-primary)]');
+
+    // Check region text
+    const region = screen.getByText('Test Region');
+    expect(region).toHaveClass('text-[var(--text-secondary)]');
+
+    // Check button
+    const button = screen.getByText('View Details').closest('a');
+    expect(button).toHaveClass('text-[var(--btn-primary-text)]');
+  });
 });
