@@ -51,7 +51,7 @@ export const DestinationCard: React.FC<DestinationCardProps> = ({
             <TagBadge
               label={bestSeason}
               variant="default"
-              className="bg-white/90 backdrop-blur-sm text-text-primary"
+              className="bg-white/90 dark:bg-black/80 backdrop-blur-sm text-gray-800 dark:text-white"
             />
           )}
         </div>
