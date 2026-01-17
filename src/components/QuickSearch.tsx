@@ -20,9 +20,7 @@ export default function QuickSearch({
   };
 
   const handleTagClick = (tag: string) => {
-    window.location.assign(
-      `${ROUTES.DESTINATIONS}?category=${encodeURIComponent(tag.toLowerCase())}`
-    );
+    window.location.assign(`${ROUTES.DESTINATIONS}?category=${encodeURIComponent(tag)}`);
   };
 
   return (

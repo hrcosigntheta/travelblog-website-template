@@ -59,7 +59,7 @@ describe('QuickSearch Component', () => {
 
     fireEvent.click(tag);
 
-    expect(window.location.assign).toHaveBeenCalledWith('/destinations/?category=beach');
+    expect(window.location.assign).toHaveBeenCalledWith('/destinations/?category=Beach');
   });
 
   it('renders advanced search link', () => {
