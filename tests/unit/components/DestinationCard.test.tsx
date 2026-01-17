@@ -31,7 +31,7 @@ describe('DestinationCard', () => {
 
     expect(screen.getByText('Beaches')).toBeInTheDocument(); // Category
     expect(screen.getByText('Dry Season')).toBeInTheDocument(); // Season
-    expect(screen.getByText('$$')).toBeInTheDocument(); // Price
+    expect(screen.getByText('₱₱')).toBeInTheDocument(); // Price
     expect(screen.getByText('moderate')).toBeInTheDocument(); // Difficulty
   });
 
@@ -55,11 +55,11 @@ describe('DestinationCard', () => {
 
   it('applies budget variant styling', () => {
     render(<DestinationCard {...defaultProps} priceLevel="budget" />);
-    expect(screen.getByText('$')).toBeInTheDocument();
+    expect(screen.getByText('₱')).toBeInTheDocument();
   });
 
   it('applies luxury variant styling', () => {
     render(<DestinationCard {...defaultProps} priceLevel="luxury" />);
-    expect(screen.getByText('$$$')).toBeInTheDocument();
+    expect(screen.getByText('₱₱₱')).toBeInTheDocument();
   });
 });

@@ -21,13 +21,13 @@ export const DestinationCard: React.FC<DestinationCardProps> = ({
   const getPriceLabel = (level: string) => {
     switch (level) {
       case 'budget':
-        return '$';
+        return '₱';
       case 'mid-range':
-        return '$$';
+        return '₱₱';
       case 'luxury':
-        return '$$$';
+        return '₱₱₱';
       default:
-        return '$$';
+        return '₱₱';
     }
   };
 

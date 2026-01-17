@@ -29,7 +29,7 @@ export const bantayan: Destination = {
   },
   stats: {
     bestTime: 'Nov - May',
-    budget: '$$',
+    budget: '₱₱',
     difficulty: 'Easy',
   },
   content: `

@@ -40,7 +40,7 @@ export const elNido: Destination = {
   },
   stats: {
     bestTime: 'Nov - May',
-    budget: '$$ - $$$',
+    budget: '₱₱ - ₱₱₱',
     difficulty: 'Moderate',
   },
   highlights: [

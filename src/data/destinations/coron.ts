@@ -29,7 +29,7 @@ export const coron: Destination = {
   },
   stats: {
     bestTime: 'Nov - May',
-    budget: '$$ - $$$',
+    budget: '₱₱ - ₱₱₱',
     difficulty: 'Moderate',
   },
   highlights: [

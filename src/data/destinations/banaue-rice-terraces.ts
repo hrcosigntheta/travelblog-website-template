@@ -41,7 +41,7 @@ export const banaueRiceTerraces: Destination = {
   },
   stats: {
     bestTime: 'Apr - May, Oct - Nov',
-    budget: '$$',
+    budget: '₱₱',
     difficulty: 'Moderate',
   },
   content: `

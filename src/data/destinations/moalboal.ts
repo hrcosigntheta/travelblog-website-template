@@ -29,7 +29,7 @@ export const moalboal: Destination = {
   },
   stats: {
     bestTime: 'Nov - May',
-    budget: '$$',
+    budget: '₱₱',
     difficulty: 'Easy',
   },
   content: `

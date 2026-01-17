@@ -41,7 +41,7 @@ export const puertoPrincesa: Destination = {
   },
   stats: {
     bestTime: 'Jan - May',
-    budget: '$ - $$',
+    budget: '₱ - ₱₱',
     difficulty: 'Easy',
   },
   highlights: [

@@ -29,7 +29,7 @@ export const malapascua: Destination = {
   },
   stats: {
     bestTime: 'Dec - Apr',
-    budget: '$$$',
+    budget: '₱₱₱',
     difficulty: 'Moderate',
   },
   content: `

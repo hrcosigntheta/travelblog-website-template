@@ -41,7 +41,7 @@ export const boracay: Destination = {
   },
   stats: {
     bestTime: 'Nov - Apr (Dry Season)',
-    budget: '$$ - $$$$',
+    budget: '₱₱ - ₱₱₱₱',
     difficulty: 'Easy',
   },
   content: `

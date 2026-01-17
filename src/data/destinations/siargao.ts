@@ -41,7 +41,7 @@ export const siargao: Destination = {
   },
   stats: {
     bestTime: 'Aug - Nov (Surfing)',
-    budget: '$$',
+    budget: '₱₱',
     difficulty: 'Easy',
   },
   content: `

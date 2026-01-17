@@ -40,7 +40,7 @@ export const chocolateHills: Destination = {
   },
   stats: {
     bestTime: 'Dec - May',
-    budget: '$$',
+    budget: '₱₱',
     difficulty: 'Easy',
   },
   highlights: ['Chocolate Hills Complex', 'Tarsier Sanctuary', 'Loboc River Cruise'],

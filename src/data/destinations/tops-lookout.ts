@@ -29,7 +29,7 @@ export const topsLookout: Destination = {
   },
   stats: {
     bestTime: 'All Year',
-    budget: '$',
+    budget: '₱',
     difficulty: 'Easy',
   },
   content: `

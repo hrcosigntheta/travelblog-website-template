@@ -29,7 +29,7 @@ export const kawasanFalls: Destination = {
   },
   stats: {
     bestTime: 'Nov - May',
-    budget: '$$',
+    budget: '₱₱',
     difficulty: 'Moderate',
   },
   content: `

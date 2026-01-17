@@ -41,7 +41,7 @@ export const panglaoIsland: Destination = {
   },
   stats: {
     bestTime: 'Nov - May',
-    budget: '$$ - $$$',
+    budget: '₱₱ - ₱₱₱',
     difficulty: 'Easy',
   },
   highlights: [

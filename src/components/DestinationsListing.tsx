@@ -54,9 +54,9 @@ const FILTERS: FilterConfig[] = [
     id: 'budget',
     label: 'Budget',
     options: [
-      { value: '$', label: 'Budget ($)' },
-      { value: '$$', label: 'Mid-range ($$)' },
-      { value: '$$$', label: 'Luxury ($$$)' },
+      { value: '₱', label: 'Budget (₱)' },
+      { value: '₱₱', label: 'Mid-range (₱₱)' },
+      { value: '₱₱₱', label: 'Luxury (₱₱₱)' },
     ],
     type: 'checkbox',
     defaultOpen: false,
@@ -70,8 +70,15 @@ const REGION_ALIASES: Record<string, string[]> = {
 };
 
 const mapBudgetToLevel = (budgetStr: string): 'budget' | 'mid-range' | 'luxury' => {
-  if (budgetStr.includes('$$$$') || budgetStr.includes('$$$')) return 'luxury';
-  if (budgetStr.includes('$$')) return 'mid-range';
+  // Support both $ and ₱ formats for budget level mapping
+  if (
+    budgetStr.includes('₱₱₱₱') ||
+    budgetStr.includes('₱₱₱') ||
+    budgetStr.includes('$$$$') ||
+    budgetStr.includes('$$$')
+  )
+    return 'luxury';
+  if (budgetStr.includes('₱₱') || budgetStr.includes('$$')) return 'mid-range';
   return 'budget';
 };
 

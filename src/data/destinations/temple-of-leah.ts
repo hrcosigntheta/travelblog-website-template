@@ -41,7 +41,7 @@ export const templeOfLeah: Destination = {
   },
   stats: {
     bestTime: 'All Year',
-    budget: '$',
+    budget: '₱',
     difficulty: 'Easy',
   },
   content: `

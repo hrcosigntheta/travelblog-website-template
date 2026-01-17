@@ -29,7 +29,7 @@ export const camotes: Destination = {
   },
   stats: {
     bestTime: 'Feb - May',
-    budget: '$$',
+    budget: '₱₱',
     difficulty: 'Easy',
   },
   content: `

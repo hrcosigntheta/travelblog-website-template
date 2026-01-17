@@ -41,7 +41,7 @@ export const lobocRiver: Destination = {
   },
   stats: {
     bestTime: 'Lunch time',
-    budget: '$$',
+    budget: '₱₱',
     difficulty: 'Easy',
   },
   highlights: [

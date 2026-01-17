@@ -40,7 +40,7 @@ export const tarsierSanctuary: Destination = {
   },
   stats: {
     bestTime: 'Morning',
-    budget: '$',
+    budget: '₱',
     difficulty: 'Easy',
   },
   highlights: [

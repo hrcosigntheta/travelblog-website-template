@@ -29,7 +29,7 @@ export const oslob: Destination = {
   },
   stats: {
     bestTime: 'Dec - May',
-    budget: '$$$',
+    budget: '₱₱₱',
     difficulty: 'Easy',
   },
   content: `
