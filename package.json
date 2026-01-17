@@ -25,6 +25,8 @@
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",
     "images:fetch": "bun run scripts/fetch-placeholder-images.ts",
+    "images:fetch-gear": "bun run scripts/fetch-gear-images.ts",
+    "images:fetch-destinations": "bun run scripts/fetch-destination-images.ts",
     "images:validate": "bun run scripts/validate-image-diversity.ts",
     "images:assign": "bun run scripts/assign-destination-images.ts",
     "images:verify": "bun run scripts/verify-image-processing.ts",
