@@ -241,6 +241,42 @@
 }
 
 @layer components {
+  /* Custom Scrollbar Utility Classes */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: #d1d5db transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: #d1d5db;
+    border-radius: 9999px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background-color: #9ca3af;
+  }
+
+  /* Dark mode scrollbar */
+  [data-theme='dark'] .scrollbar-thin {
+    scrollbar-color: #4b5563 transparent;
+  }
+
+  [data-theme='dark'] .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: #4b5563;
+  }
+
+  [data-theme='dark'] .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background-color: #6b7280;
+  }
+
   /* Leaflet Dark Mode Overrides */
   [data-theme='dark'] .leaflet-popup-content-wrapper,
   [data-theme='dark'] .leaflet-popup-tip {

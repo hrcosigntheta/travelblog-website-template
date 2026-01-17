@@ -105,7 +105,7 @@ export default function SearchFilter({
         id="filter-panel"
         className={`
           space-y-1
-          lg:block
+          lg:block lg:max-h-[calc(100vh-200px)] lg:overflow-y-auto lg:pr-2 scrollbar-thin
           ${
             isMobileFiltersOpen
               ? 'fixed inset-x-0 bottom-0 z-50 bg-[var(--bg-surface)] p-6 rounded-t-2xl shadow-[var(--shadow-lg)] max-h-[85vh] overflow-y-auto animate-in slide-in-from-bottom duration-300'
