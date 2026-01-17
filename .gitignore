@@ -50,9 +50,3 @@ tests/e2e/screenshots/
 
 # Internal documentation (development docs)
 docs/
-
-# Development planning files
-AGENTS.md
-plan.md
-prd.json
-progress.txt
