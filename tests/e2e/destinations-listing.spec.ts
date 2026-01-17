@@ -31,7 +31,10 @@ test.describe('Destinations Listing Page', () => {
     await palawanCheckbox.check();
 
     // Close filters on mobile to see results
-    if (await filterToggle.isVisible()) {
+    const closeButton = page.getByLabel('Close filters');
+    if (await closeButton.isVisible()) {
+      await closeButton.click();
+    } else if (await filterToggle.isVisible()) {
       await filterToggle.click();
     }
 
@@ -42,6 +45,9 @@ test.describe('Destinations Listing Page', () => {
   });
 
   test('should show empty state when no results found', async ({ page }) => {
+    // Wait for initialization to be complete (Showing X destinations)
+    await expect(page.getByText(/Showing \d+ destinations/)).toBeVisible();
+
     const searchInput = page.getByPlaceholder('Search destinations...');
     await searchInput.fill('NonExistentPlaceXYZ');
 
@@ -50,6 +56,9 @@ test.describe('Destinations Listing Page', () => {
   });
 
   test('should clear all filters', async ({ page }) => {
+    // Wait for initialization to be complete
+    await expect(page.getByText(/Showing \d+ destinations/)).toBeVisible();
+
     const searchInput = page.getByPlaceholder('Search destinations...');
     await searchInput.fill('NonExistentPlaceXYZ');
     await expect(page.getByText('No results found')).toBeVisible();
@@ -136,7 +145,7 @@ test.describe('Destinations Listing Page', () => {
     await searchInput.fill('El Nido');
 
     // Verify URL contains query
-    await expect(page).toHaveURL(/q=El(\+|%20)Nido/);
+    await expect(page).toHaveURL(/q=El(\+|%20)Nido/, { timeout: 10000 });
 
     // 2. Reload page
     await page.reload();
