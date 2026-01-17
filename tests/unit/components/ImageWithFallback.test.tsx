@@ -41,7 +41,9 @@ describe('ImageWithFallback', () => {
 
     fireEvent.error(img);
 
-    expect(img).toHaveAttribute('src', '/images/custom-fallback.jpg');
+    // Re-query the image since key changes when src changes (causes remount)
+    const updatedImg = screen.getByAltText('Test image');
+    expect(updatedImg).toHaveAttribute('src', '/images/custom-fallback.jpg');
     // Should also remove loading state
     expect(screen.queryByTestId('loading-placeholder')).not.toBeInTheDocument();
   });
@@ -52,8 +54,13 @@ describe('ImageWithFallback', () => {
 
     fireEvent.error(img);
 
+    // Re-query the image since key changes when src changes (causes remount)
+    const updatedImg = screen.getByAltText('Test image');
     // Check if it uses the mocked path from utils
-    expect(img).toHaveAttribute('src', '/mocked-base/images/placeholders/default-fallback.jpg');
+    expect(updatedImg).toHaveAttribute(
+      'src',
+      '/mocked-base/images/placeholders/default-fallback.jpg'
+    );
   });
 
   it('applies custom className to wrapper', () => {

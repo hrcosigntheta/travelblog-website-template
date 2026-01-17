@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { getAssetPath } from '../utils/paths';
 import type { ImageWithFallbackProps } from '../types/common';
 
@@ -21,6 +21,14 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
     setError(false);
     setLoading(true);
   }
+
+  // Callback ref to handle the case where the image is already loaded (cached or fast network)
+  // The onLoad event won't fire if the image was already complete before React attached the handler
+  const imgCallbackRef = useCallback((img: HTMLImageElement | null) => {
+    if (img && img.complete && img.naturalWidth > 0) {
+      setLoading(false);
+    }
+  }, []);
 
   const handleLoad = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     setLoading(false);
@@ -59,15 +67,18 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
         </div>
       )}
 
-      {/* Main Image */}
+      {/* Main Image - key ensures remount when src changes to handle cached images */}
       <img
         {...props}
+        key={currentSrc}
+        ref={imgCallbackRef}
         src={currentSrc}
         alt={alt}
         onLoad={handleLoad}
         onError={handleError}
         className={`w-full h-full object-cover transition-opacity duration-300 ${loading ? 'opacity-0' : 'opacity-100'}`}
         loading={props.loading || 'lazy'}
+        decoding="async"
       />
     </div>
   );
