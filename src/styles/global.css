@@ -428,4 +428,31 @@
   .leaflet-container {
     border: 1px solid #999;
   }
+
+  /* Itinerary Print Optimizations */
+  #itinerary {
+    break-before: page;
+  }
+
+  #itinerary .relative.pl-8 {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 2cm !important;
+  }
+
+  #itinerary h2 {
+    margin-bottom: 1cm !important;
+  }
+
+  /* Ensure vertical lines and markers are visible in print */
+  .print\:border-l {
+    border-left-width: 2px !important;
+    border-left-style: solid !important;
+    border-left-color: #000 !important;
+  }
+
+  /* Hide the toggle buttons/icons in print */
+  .print\:hidden {
+    display: none !important;
+  }
 }

@@ -109,11 +109,13 @@ const allTips = [...(destination.travelTips || []), ...generalTravelTips].slice(
   <ReadingProgress client:idle />
   <DestinationHero destination={destination} />
 
-  <main class="container mx-auto px-4 py-16 space-y-20">
+  <main class="container mx-auto px-4 py-16 space-y-20 print:space-y-10 print:py-8">
     {/* Quick Stats & Highlights */}
-    <section class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+    <section class="grid grid-cols-1 lg:grid-cols-3 gap-12 print:block">
       <div class="lg:col-span-2 space-y-8">
-        <h2 class="text-3xl font-bold text-[var(--text-primary)]">About {destination.title}</h2>
+        <h2 class="text-3xl font-bold text-[var(--text-primary)] print:text-4xl print:mb-4">
+          About {destination.title}
+        </h2>
         <div
           class="prose dark:prose-invert max-w-none text-lg text-[var(--text-secondary)]"
           set:html={destination.content}
