@@ -46,84 +46,90 @@ export default function Navigation({
   ];
 
   return (
-    <header
-      className={`fixed top-0 w-full z-40 transition-all duration-300 ${isScrolled || isFullPageLayout ? 'bg-[var(--nav-bg)] backdrop-blur-md shadow-sm py-2 border-b border-[var(--nav-border)]' : 'bg-transparent py-4'}`}
-    >
-      <div className="container mx-auto px-4 flex items-center justify-between">
-        {/* Logo */}
-        <a
-          href={ROUTES.HOME}
-          className="text-2xl font-display font-bold text-[var(--color-primary)]"
-        >
-          TravelBlog
-        </a>
-
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-6">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className={`text-sm font-medium transition-colors hover:text-[var(--color-primary)] relative py-1 group ${currentPath === link.href ? 'text-[var(--color-primary)]' : 'text-[var(--text-primary)]'}`}
-            >
-              {link.label}
-              <span
-                className={`absolute bottom-0 left-0 h-0.5 bg-[var(--color-primary)] transition-all duration-300 ease-out ${currentPath === link.href ? 'w-full' : 'w-0 group-hover:w-full'}`}
-              ></span>
-            </a>
-          ))}
-          <div className="w-px h-6 bg-[var(--border-subtle)] mx-2"></div>
-          <ThemeToggle />
-        </nav>
-
-        {/* Mobile Toggle */}
-        <button
-          className="md:hidden p-2 text-[var(--text-primary)] hover:text-[var(--color-primary)] transition-colors group"
-          onClick={() => setIsMobileOpen(true)}
-          aria-label="Open menu"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="overflow-visible"
+    <>
+      <header
+        className={`fixed top-0 w-full z-[80] transition-all duration-300 ${
+          isScrolled || isFullPageLayout
+            ? 'bg-[var(--nav-bg)] backdrop-blur-md shadow-sm py-2 border-b border-[var(--nav-border)]'
+            : 'bg-transparent py-4'
+        }`}
+      >
+        <div className="container mx-auto px-4 flex items-center justify-between">
+          {/* Logo */}
+          <a
+            href={ROUTES.HOME}
+            className="text-2xl font-display font-bold text-[var(--color-primary)]"
           >
-            <line
-              x1="3"
-              y1="12"
-              x2="21"
-              y2="12"
-              className="transition-all duration-300 group-hover:opacity-0"
-            ></line>
-            <line
-              x1="3"
-              y1="6"
-              x2="21"
-              y2="6"
-              className="transition-all duration-300 origin-center group-hover:-translate-y-[1px] group-hover:translate-x-[2px]"
-            ></line>
-            <line
-              x1="3"
-              y1="18"
-              x2="21"
-              y2="18"
-              className="transition-all duration-300 origin-center group-hover:translate-y-[1px] group-hover:translate-x-[2px]"
-            ></line>
-          </svg>
-        </button>
-      </div>
+            TravelBlog
+          </a>
 
-      {/* Scroll Progress Bar */}
-      <div
-        className="absolute bottom-0 left-0 h-[2px] bg-[var(--color-primary)] transition-all duration-100 ease-out z-50"
-        style={{ width: `${scrollProgress * 100}%`, opacity: isScrolled ? 1 : 0 }}
-      ></div>
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex items-center gap-6">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className={`text-sm font-medium transition-colors hover:text-[var(--color-primary)] relative py-1 group ${currentPath === link.href ? 'text-[var(--color-primary)]' : 'text-[var(--text-primary)]'}`}
+              >
+                {link.label}
+                <span
+                  className={`absolute bottom-0 left-0 h-0.5 bg-[var(--color-primary)] transition-all duration-300 ease-out ${currentPath === link.href ? 'w-full' : 'w-0 group-hover:w-full'}`}
+                ></span>
+              </a>
+            ))}
+            <div className="w-px h-6 bg-[var(--border-subtle)] mx-2"></div>
+            <ThemeToggle />
+          </nav>
+
+          {/* Mobile Toggle */}
+          <button
+            className="md:hidden p-2 text-[var(--text-primary)] hover:text-[var(--color-primary)] transition-colors group"
+            onClick={() => setIsMobileOpen(true)}
+            aria-label="Open menu"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="overflow-visible"
+            >
+              <line
+                x1="3"
+                y1="12"
+                x2="21"
+                y2="12"
+                className="transition-all duration-300 group-hover:opacity-0"
+              ></line>
+              <line
+                x1="3"
+                y1="6"
+                x2="21"
+                y2="6"
+                className="transition-all duration-300 origin-center group-hover:-translate-y-[1px] group-hover:translate-x-[2px]"
+              ></line>
+              <line
+                x1="3"
+                y1="18"
+                x2="21"
+                y2="18"
+                className="transition-all duration-300 origin-center group-hover:translate-y-[1px] group-hover:translate-x-[2px]"
+              ></line>
+            </svg>
+          </button>
+        </div>
+
+        {/* Scroll Progress Bar */}
+        <div
+          className="absolute bottom-0 left-0 h-[2px] bg-[var(--color-primary)] transition-all duration-100 ease-out z-50"
+          style={{ width: `${scrollProgress * 100}%`, opacity: isScrolled ? 1 : 0 }}
+        ></div>
+      </header>
 
       <Suspense fallback={null}>
         <MobileMenu
@@ -133,6 +139,6 @@ export default function Navigation({
           currentPath={currentPath}
         />
       </Suspense>
-    </header>
+    </>
   );
 }

@@ -266,7 +266,7 @@ export default function DestinationsListing() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
       {/* Sidebar Filters */}
-      <aside className="lg:col-span-1">
+      <aside className="lg:col-span-1 relative z-20 lg:z-0">
         <div className="sticky top-24">
           <SearchFilter
             searchValue={searchValue}
@@ -280,7 +280,7 @@ export default function DestinationsListing() {
       </aside>
 
       {/* Main Content */}
-      <main className="lg:col-span-3">
+      <main className="lg:col-span-3 relative z-0">
         <div className="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <p className="text-text-secondary">
             {isInitialized ? (

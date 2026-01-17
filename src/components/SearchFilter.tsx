@@ -94,7 +94,7 @@ export default function SearchFilter({
       {isMobileFiltersOpen && (
         <div
           data-testid="mobile-backdrop"
-          className="fixed inset-0 bg-black/50 z-40 lg:hidden animate-in fade-in duration-200"
+          className="fixed inset-0 bg-black/50 z-[95] lg:hidden animate-in fade-in duration-200"
           onClick={() => setIsMobileFiltersOpen(false)}
           aria-hidden="true"
         />
@@ -108,7 +108,7 @@ export default function SearchFilter({
           lg:block lg:max-h-[calc(100vh-200px)] lg:overflow-y-auto lg:pr-2 scrollbar-thin
           ${
             isMobileFiltersOpen
-              ? 'fixed inset-x-0 bottom-0 z-50 bg-[var(--bg-surface)] p-6 rounded-t-2xl shadow-[var(--shadow-lg)] max-h-[85vh] overflow-y-auto animate-in slide-in-from-bottom duration-300'
+              ? 'fixed inset-x-0 bottom-0 z-[100] bg-background-surface p-6 rounded-t-2xl shadow-2xl max-h-[85vh] overflow-y-auto animate-in slide-in-from-bottom duration-300 border-t border-border-subtle'
               : 'hidden'
           }
         `}
