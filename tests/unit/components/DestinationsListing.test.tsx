@@ -79,10 +79,24 @@ describe('DestinationsListing Component', () => {
     render(<DestinationsListing />);
 
     await waitFor(() => {
-      // Should match "Beach" and "Nature" tagged destinations
-      // If normalization fails, it would try to match "beach" or "nature" (lowercase) which won't work if tags are "Beach"
+      // Should match \"Beach\" and \"Nature\" tagged destinations
+      // If normalization fails, it would try to match \"beach\" or \"nature\" (lowercase) which won't work if tags are \"Beach\"
       expect(screen.getByText('El Nido, Palawan')).toBeInTheDocument(); // Tagged with Beach, Nature
       expect(screen.getByText('Chocolate Hills, Bohol')).toBeInTheDocument(); // Tagged with Nature
+    });
+  });
+
+  it('filters by broad Region (Luzon, Visayas, Mindanao)', async () => {
+    window.location.search = '?region=Visayas';
+    render(<DestinationsListing />);
+
+    await waitFor(() => {
+      // Should match Bohol and Cebu destinations
+      expect(screen.getByText('Chocolate Hills, Bohol')).toBeInTheDocument();
+      expect(screen.getByText('Kawasan Falls')).toBeInTheDocument(); // Cebu
+      // Should NOT match Palawan (Luzon) or Siargao (Mindanao)
+      expect(screen.queryByText('El Nido, Palawan')).not.toBeInTheDocument();
+      expect(screen.queryByText('Siargao Island')).not.toBeInTheDocument();
     });
   });
 
@@ -94,15 +108,15 @@ describe('DestinationsListing Component', () => {
       expect(screen.getByPlaceholderText('Search destinations...')).toBeInTheDocument()
     );
 
-    const regionGroup = screen.getByText('Region');
-    fireEvent.click(regionGroup);
+    const locationGroup = screen.getByText('Location');
+    fireEvent.click(locationGroup);
 
     const boholCheckbox = screen.getByLabelText('Bohol');
     fireEvent.click(boholCheckbox);
 
     // Expect pushState to be called
     await waitFor(() => {
-      expect(window.history.pushState).toHaveBeenCalledWith({}, '', '/destinations?region=Bohol');
+      expect(window.history.pushState).toHaveBeenCalledWith({}, '', '/destinations?location=Bohol');
     });
   });
 
@@ -143,7 +157,7 @@ describe('DestinationsListing Component', () => {
     // Object.defineProperty(window, 'location', { value: { ... } })
     // So window.location is that object.
 
-    window.location.search = '?region=Bohol';
+    window.location.search = '?location=Bohol';
 
     act(() => {
       const popStateEvent = new PopStateEvent('popstate', {});

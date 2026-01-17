@@ -13,13 +13,21 @@ const FILTERS: FilterConfig[] = [
     id: 'region',
     label: 'Region',
     options: [
+      { value: 'Luzon', label: 'Luzon' },
+      { value: 'Visayas', label: 'Visayas' },
+      { value: 'Mindanao', label: 'Mindanao' },
+    ],
+    type: 'checkbox',
+    defaultOpen: true,
+  },
+  {
+    id: 'location',
+    label: 'Location',
+    options: [
       { value: 'Palawan', label: 'Palawan' },
       { value: 'Bohol', label: 'Bohol' },
       { value: 'Cebu', label: 'Cebu' },
       { value: 'Siargao', label: 'Siargao' },
-      { value: 'Visayas', label: 'Visayas' },
-      { value: 'Luzon', label: 'Luzon' },
-      { value: 'Mindanao', label: 'Mindanao' },
     ],
     type: 'checkbox',
     defaultOpen: true,
@@ -66,9 +74,19 @@ const FILTERS: FilterConfig[] = [
 ];
 
 // Region aliases to handle cases where filter name differs from actual region
-// e.g., "Siargao" filter should match destinations in "Surigao del Norte" region
+// e.g., \"Siargao\" filter should match destinations in \"Surigao del Norte\" region
 const REGION_ALIASES: Record<string, string[]> = {
   Siargao: ['Surigao del Norte'],
+};
+
+const PROVINCE_TO_REGION: Record<string, string> = {
+  Palawan: 'Luzon',
+  'Surigao del Norte': 'Mindanao',
+  Bohol: 'Visayas',
+  Aklan: 'Visayas',
+  Cebu: 'Visayas',
+  Batanes: 'Luzon',
+  'Cordillera Administrative Region': 'Luzon',
 };
 
 const mapBudgetToLevel = (budgetStr: string): 'budget' | 'mid-range' | 'luxury' => {
@@ -95,7 +113,7 @@ export default function DestinationsListing() {
     const query = params.get('q') || '';
     const newFilters: Record<string, string[]> = {};
 
-    ['category', 'region', 'difficulty', 'budget'].forEach((key) => {
+    ['category', 'region', 'location', 'difficulty', 'budget'].forEach((key) => {
       const val = params.get(key);
       if (val) newFilters[key] = val.split(',');
     });
@@ -183,12 +201,12 @@ export default function DestinationsListing() {
       for (const [groupId, selectedValues] of Object.entries(activeFilters)) {
         if (selectedValues.length === 0) continue;
 
-        if (groupId === 'region') {
-          // Region matching with multiple strategies:
+        if (groupId === 'location') {
+          // Location matching with multiple strategies:
           // 1. Direct match: region contains filter value or vice versa
-          // 2. Title match: destination title contains filter value (e.g., "Siargao Island" contains "Siargao")
-          // 3. Alias match: filter value maps to alternate region names (e.g., "Siargao" -> "Surigao del Norte")
-          const matchesRegion = selectedValues.some((val) => {
+          // 2. Title match: destination title contains filter value (e.g., \"Siargao Island\" contains \"Siargao\")
+          // 3. Alias match: filter value maps to alternate region names (e.g., \"Siargao\" -> \"Surigao del Norte\")
+          const matchesLocation = selectedValues.some((val) => {
             // Direct region match
             if (dest.region.includes(val) || val.includes(dest.region)) return true;
             // Title contains filter value (case-insensitive)
@@ -197,6 +215,15 @@ export default function DestinationsListing() {
             const aliases = REGION_ALIASES[val];
             if (aliases && aliases.some((alias) => dest.region.includes(alias))) return true;
             return false;
+          });
+          if (!matchesLocation) return false;
+        }
+
+        if (groupId === 'region') {
+          // Region matching (Visayas, Luzon, Mindanao)
+          const matchesRegion = selectedValues.some((val) => {
+            const mappedRegion = PROVINCE_TO_REGION[dest.region] || dest.region;
+            return mappedRegion.includes(val) || val.includes(mappedRegion);
           });
           if (!matchesRegion) return false;
         }
