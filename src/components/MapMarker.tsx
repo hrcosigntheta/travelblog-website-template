@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import { ImageWithFallback } from './ImageWithFallback';
-import { getRoutePath } from '../utils/paths';
+import { ROUTES } from '../config/paths';
 
 export type MarkerCategory =
   | 'beaches'
@@ -59,7 +59,7 @@ export const MapMarker: React.FC<MapMarkerProps> = ({
   location,
 }) => {
   const icon = useMemo(() => createMarkerIcon(category), [category]);
-  const detailPath = `${getRoutePath('DESTINATIONS')}/${slug}`;
+  const detailPath = ROUTES.DESTINATION_DETAIL(slug);
 
   return (
     <Marker position={position} icon={icon} title={title} alt={title}>
