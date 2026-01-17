@@ -6,6 +6,11 @@ import { DestinationCardSkeleton } from './Skeleton/DestinationCardSkeleton';
 import { ShareButtons } from './ShareButtons';
 import { destinations } from '../data/destinations';
 import { createSearchIndex, searchDestinations } from '../utils/search';
+import {
+  normalizeCategory,
+  FILTER_CATEGORIES,
+  getFilterCategoryFromTags,
+} from '../utils/categories';
 import type { FilterConfig } from '../types/components';
 
 const FILTERS: FilterConfig[] = [
@@ -35,17 +40,7 @@ const FILTERS: FilterConfig[] = [
   {
     id: 'category',
     label: 'Category',
-    options: [
-      { value: 'Beach', label: 'Beach' },
-      { value: 'Mountains', label: 'Mountains' },
-      { value: 'Nature', label: 'Nature' },
-      { value: 'Hiking', label: 'Hiking' },
-      { value: 'Surfing', label: 'Surfing' },
-      { value: 'Diving', label: 'Diving' },
-      { value: 'City', label: 'City' },
-      { value: 'Culture', label: 'Culture' },
-      { value: 'Food', label: 'Food' },
-    ],
+    options: FILTER_CATEGORIES,
     type: 'checkbox',
     defaultOpen: true,
   },
@@ -118,11 +113,11 @@ export default function DestinationsListing() {
       if (val) newFilters[key] = val.split(',');
     });
 
-    // Normalize category to Title Case (e.g., "beach" → "Beach")
+    // Normalize category values using shared utility
     if (newFilters.category) {
-      newFilters.category = newFilters.category.map(
-        (cat) => cat.charAt(0).toUpperCase() + cat.slice(1).toLowerCase()
-      );
+      newFilters.category = newFilters.category
+        .map((cat) => normalizeCategory(cat))
+        .filter((cat): cat is string => !!cat);
     }
 
     return { query, newFilters };
@@ -229,8 +224,10 @@ export default function DestinationsListing() {
         }
 
         if (groupId === 'category') {
-          // Check if ANY selected category is present in dest.tags
-          const hasCategory = selectedValues.some((cat) => dest.tags.includes(cat));
+          // Get normalized categories for this destination based on its tags
+          const destCategories = getFilterCategoryFromTags(dest.tags);
+          // Check if ANY selected category matches the destination's categories
+          const hasCategory = selectedValues.some((cat) => destCategories.includes(cat));
           if (!hasCategory) return false;
         }
 

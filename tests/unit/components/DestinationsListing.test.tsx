@@ -74,13 +74,13 @@ describe('DestinationsListing Component', () => {
     expect(screen.queryByText('Chocolate Hills, Bohol')).not.toBeInTheDocument();
   });
 
-  it('normalizes category URL parameters to Title Case', async () => {
+  it('normalizes category URL parameters using shared utility', async () => {
     window.location.search = '?category=beach,nature';
     render(<DestinationsListing />);
 
     await waitFor(() => {
-      // Should match \"Beach\" and \"Nature\" tagged destinations
-      // If normalization fails, it would try to match \"beach\" or \"nature\" (lowercase) which won't work if tags are \"Beach\"
+      // Should match "beach" and "nature" normalized categories
+      // getFilterCategoryFromTags handles matching tags (Beach, Nature) to these values
       expect(screen.getByText('El Nido, Palawan')).toBeInTheDocument(); // Tagged with Beach, Nature
       expect(screen.getByText('Chocolate Hills, Bohol')).toBeInTheDocument(); // Tagged with Nature
     });
