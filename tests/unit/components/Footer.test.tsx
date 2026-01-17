@@ -32,4 +32,12 @@ describe('Footer', () => {
     expect(screen.getByPlaceholderText('Enter your email')).toBeDefined();
     expect(screen.getByText('Subscribe')).toBeDefined();
   });
+
+  it('displays creator attribution', () => {
+    render(<Footer />);
+    expect(screen.getByText(/Template by/i)).toBeInTheDocument();
+    const link = screen.getByRole('link', { name: /MasuRii/i });
+    expect(link).toBeInTheDocument();
+    expect(link).toHaveAttribute('href', 'https://github.com/MasuRii');
+  });
 });

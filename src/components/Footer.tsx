@@ -143,9 +143,20 @@ export default function Footer({ lang = defaultLang }: FooterProps) {
         </div>
 
         <div className="pt-8 border-t border-[var(--border-subtle)] flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-[var(--text-secondary)]">
-            {t('footer.copyright', { year: currentYear })}
-          </p>
+          <div className="text-sm text-[var(--text-secondary)] text-center md:text-left">
+            <p>{t('footer.copyright', { year: currentYear })}</p>
+            <p className="mt-1">
+              Template by{' '}
+              <a
+                href="https://github.com/MasuRii"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-[var(--text-primary)] hover:text-[var(--color-primary)] transition-colors"
+              >
+                MasuRii
+              </a>
+            </p>
+          </div>
           <div className="flex space-x-4">
             {/* Social Placeholders */}
             <a
