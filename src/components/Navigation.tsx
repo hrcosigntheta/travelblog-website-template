@@ -37,6 +37,7 @@ export default function Navigation({
     { href: ROUTES.DESTINATIONS, label: t('nav.destinations') },
     { href: ROUTES.GALLERY, label: t('nav.gallery') },
     { href: ROUTES.ITINERARIES, label: t('nav.itineraries') },
+    { href: ROUTES.BLOG, label: t('nav.blog') },
     { href: ROUTES.ABOUT, label: t('nav.about') },
     { href: ROUTES.CONTACT, label: t('nav.contact') },
   ];

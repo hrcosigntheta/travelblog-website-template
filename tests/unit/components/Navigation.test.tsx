@@ -11,6 +11,8 @@ describe('Navigation', () => {
     expect(screen.getAllByText('Home')).toBeDefined();
     expect(screen.getAllByText('Destinations')).toBeDefined();
     expect(screen.getAllByText('Gallery')).toBeDefined();
+    expect(screen.getAllByText('Itineraries')).toBeDefined();
+    expect(screen.getAllByText('Blog')).toBeDefined();
     expect(screen.getAllByText('About')).toBeDefined();
     expect(screen.getAllByText('Contact')).toBeDefined();
   });

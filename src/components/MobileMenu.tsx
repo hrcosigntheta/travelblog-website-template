@@ -112,6 +112,18 @@ export default function MobileMenu({ isOpen, onClose, t, currentPath }: MobileMe
           {t('nav.itineraries')}
         </a>
         <a
+          href={ROUTES.BLOG}
+          className={`animate-slide-up opacity-0 ${
+            currentPath === ROUTES.BLOG
+              ? 'font-bold text-[var(--color-primary)]'
+              : 'text-[var(--color-text-primary)]'
+          }`}
+          style={{ animationDelay: '0.275s', animationFillMode: 'forwards' }}
+          onClick={onClose}
+        >
+          {t('nav.blog')}
+        </a>
+        <a
           href={ROUTES.ABOUT}
           className={`animate-slide-up opacity-0 ${
             currentPath === ROUTES.ABOUT
