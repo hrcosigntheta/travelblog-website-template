@@ -40,7 +40,7 @@ async function main() {
   if (duplicatedCount > 0) {
     console.log('\n🚩 Duplication Clusters (samples):');
     Object.entries(hashes)
-      .filter(([_, files]) => files.length > 1)
+      .filter(([, files]) => files.length > 1)
       .slice(0, 5)
       .forEach(([hash, files]) => {
         console.log(`  - ${hash.substring(0, 8)}: ${files.join(', ')}`);
